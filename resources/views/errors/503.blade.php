@@ -13,10 +13,7 @@
             <a href="{{ route('dashboard') }}">
                 <x-forms.button>Панель керування</x-forms.button>
             </a>
-            <a target="_blank" class="text-xs" href="{{ config('constants.urls.contact') }}">Зв'язатися з
-                підтримкою
-                <x-external-link />
-            </a>
+
         </div>
     </div>
 </div>

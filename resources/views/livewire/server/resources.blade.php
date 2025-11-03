@@ -12,24 +12,7 @@
                 </div>
                 <div>Тут ви можете знайти всі ресурси, якими керує AutoDeploy.</div>
                 <div class="flex flex-row gap-4 py-10">
-                    <div @class([
-                        'box-without-bg cursor-pointer dark:bg-coolgray-100 dark:text-white w-full text-center items-center justify-center',
-                        'dark:bg-coollabs bg-coollabs text-white' => $activeTab === 'managed',
-                    ]) wire:click="loadManagedContainers">
-                        Керовані
-                        <div class="flex flex-col items-center justify-center">
-                            <x-loading wire:loading wire:target="loadManagedContainers" />
-                        </div>
-                    </div>
-                    <div @class([
-                        'box-without-bg cursor-pointer dark:bg-coolgray-100 dark:text-white w-full text-center items-center justify-center',
-                        'dark:bg-coollabs bg-coollabs text-white' => $activeTab === 'unmanaged',
-                    ]) wire:click="loadUnmanagedContainers">
-                        Некеровані
-                        <div class="flex flex-col items-center justify-center">
-                            <x-loading wire:loading wire:target="loadUnmanagedContainers" />
-                        </div>
-                    </div>
+
                 </div>
             </div>
             @if ($containers->count() > 0)

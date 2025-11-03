@@ -121,56 +121,8 @@
                 </div>
                 <div x-show="filteredServices.length > 0">
                     <div class="flex items-center gap-4" x-init="loadResources">
-                        <h2>Сервіси</h2>
-                        <x-forms.button x-on:click="loadResources">Перезавантажити список</x-forms.button>
-                    </div>
-                    <div class="py-4 text-xs">Політика щодо торгових марок: Відповідні торгові марки, згадані тут, належать
-                        відповідним
-                        компаніям, і їх використання не передбачає будь-якої приналежності або схвалення.<br>Знайдіть більше сервісів
-                        <a class="dark:text-white underline" target="_blank"
-                            href="https://AutoDeploy.io/docs/services/overview">тут</a>.
                     </div>
 
-                    <div class="grid justify-start grid-cols-1 gap-4 text-left xl:grid-cols-2">
-                        <template x-for="service in filteredServices" :key="service.name">
-                            <div x-on:click="setType('one-click-service-' + service.name)"
-                                :class="{ 'cursor-pointer': !selecting, 'cursor-not-allowed opacity-50': selecting }">
-                                <x-resource-view>
-                                    <x-slot:title>
-                                        <template x-if="service.name">
-                                            <span x-text="service.name"></span>
-                                        </template>
-                                        </x-slot>
-                                        <x-slot:description>
-                                            <template x-if="service.slogan">
-                                                <span x-text="service.slogan"></span>
-                                            </template>
-                                            </x-slot>
-                                            <x-slot:logo>
-                                                <template x-if="service.logo">
-                                                    <img class="w-full h-full p-2 transition-all duration-200 dark:bg-white/10 bg-black/10 object-contain"
-                                                        :src='service.logo'
-                                                        x-on:error.window="$event.target.src = service.logo_github_url"
-                                                        onerror="this.onerror=null; this.src=this.getAttribute('data-fallback');"
-                                                        x-on:error="$event.target.src = '/AutoDeploy-logo.svg'"
-                                                        :data-fallback='service.logo_github_url' />
-                                                </template>
-                                            </x-slot:logo>
-                                            <x-slot:documentation>
-                                                <template x-if="service.documentation">
-                                                    <div class="flex items-center px-2" title="Читати документацію.">
-                                                        <a class="p-2 rounded-sm hover:bg-gray-100 dark:hover:bg-coolgray-200 hover:no-underline dark:group-hover:text-white text-neutral-600"
-                                                            onclick="event.stopPropagation()" :href="service.documentation"
-                                                            target="_blank">
-                                                            Документація
-                                                        </a>
-                                                    </div>
-                                                </template>
-                                            </x-slot:documentation>
-                                </x-resource-view>
-                            </div>
-                        </template>
-                    </div>
                 </div>
                 <div
                     x-show="filteredGitBasedApplications.length === 0 && filteredDockerBasedApplications.length === 0 && filteredDatabases.length === 0 && filteredServices.length === 0 && loading === false">
