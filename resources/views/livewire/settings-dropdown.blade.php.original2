@@ -119,7 +119,6 @@
             @if ($unreadCount > 0)
                 <span
                     class="absolute -top-1 -right-1 bg-error text-white text-xs rounded-full w-4.5 h-4.5 flex items-center justify-center">
-                    {{ $unreadCount > 9 ? '9+' : $unreadCount }}
                 </span>
             @endif
         </button>
@@ -132,32 +131,6 @@
             <div
                 class="p-1 bg-white border rounded-sm shadow-lg dark:bg-coolgray-200 dark:border-coolgray-300 border-neutral-300">
                 <div class="flex flex-col gap-1">
-                    <!-- What's New Section -->
-                    @if ($unreadCount > 0)
-                        <button wire:click="openWhatsNewModal" @click="dropdownOpen = false"
-                            class="px-1 dropdown-item-no-padding flex items-center justify-between">
-                            <div class="flex items-center gap-2">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                <span>Що нового</span>
-                            </div>
-                            <span
-                                class="bg-error text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                                {{ $unreadCount > 9 ? '9+' : $unreadCount }}
-                            </span>
-                        </button>
-                    @else
-                        <button wire:click="openWhatsNewModal" @click="dropdownOpen = false"
-                            class="px-1 dropdown-item-no-padding flex items-center gap-2">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                            <span>Список змін</span>
-                        </button>
-                    @endif
 
                     <!-- Divider -->
                     <div class="border-b dark:border-coolgray-500 border-neutral-300"></div>
@@ -190,169 +163,10 @@
                         <span>Системна</span>
                     </button>
 
-                    <!-- Width Section -->
-                    <div
-                        class="my-1 font-bold border-b dark:border-coolgray-500 border-neutral-300 dark:text-white text-md">
-                        Ширина</div>
-                    <button @click="switchWidth(); dropdownOpen = false"
-                        class="px-1 dropdown-item-no-padding flex items-center gap-2" x-show="full === 'full'">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h7" />
-                        </svg>
-                        <span>По центру</span>
-                    </button>
-                    <button @click="switchWidth(); dropdownOpen = false"
-                        class="px-1 dropdown-item-no-padding flex items-center gap-2" x-show="full === 'center'">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                        <span>На весь екран</span>
-                    </button>
 
-                    <!-- Zoom Section -->
-                    <div
-                        class="my-1 font-bold border-b dark:border-coolgray-500 border-neutral-300 dark:text-white text-md">
-                        Масштаб</div>
-                    <button @click="setZoom(100); dropdownOpen = false"
-                        class="px-1 dropdown-item-no-padding flex items-center gap-2">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                        <span>100%</span>
-                    </button>
-                    <button @click="setZoom(90); dropdownOpen = false"
-                        class="px-1 dropdown-item-no-padding flex items-center gap-2">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 10h4v4h-4v-4z" />
-                        </svg>
-                        <span>90%</span>
-                    </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- What's New Modal -->
-    @if ($showWhatsNewModal)
-        <div class="fixed inset-0 z-50 flex items-center justify-center py-6 px-4"
-            @keydown.escape.window="$wire.closeWhatsNewModal()">
-            <!-- Background overlay -->
-            <div class="absolute inset-0 w-full h-full bg-black/20 backdrop-blur-xs" wire:click="closeWhatsNewModal">
-            </div>
-
-            <!-- Modal panel -->
-            <div
-                class="relative w-full h-full max-w-7xl py-6 border rounded-sm drop-shadow-sm bg-white border-neutral-200 dark:bg-base px-6 dark:border-coolgray-300 flex flex-col">
-                <!-- Header -->
-                <div class="flex items-center justify-between  pb-3">
-                    <div>
-                        <h3 class="text-2xl font-bold dark:text-white">
-                            Список змін
-                        </h3>
-                        <p class="mt-1 text-sm dark:text-neutral-400">
-                            Будьте в курсі останніх функцій та покращень.
-                        </p>
-                        <p class="mt-1 text-xs dark:text-neutral-500">
-                            Поточна версія: <span class="font-semibold dark:text-neutral-300">{{ $currentVersion }}</span>
-                        </p>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        @if (isDev())
-                            <x-forms.button wire:click="manualFetchChangelog"
-                                class="bg-coolgray-200 hover:bg-coolgray-300">
-                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                                </svg>
-                                Оновити
-                            </x-forms.button>
-                        @endif
-                        @if ($unreadCount > 0)
-                            <x-forms.button @click="markAllEntriesAsRead">
-                                Позначити всі як прочитані
-                            </x-forms.button>
-                        @endif
-                        <button wire:click="closeWhatsNewModal"
-                            class="flex items-center justify-center w-8 h-8 rounded-full dark:text-white hover:bg-neutral-100 dark:hover:bg-coolgray-300 outline-0 cursor-pointer">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Search -->
-                <div class="pb-4 border-b dark:border-coolgray-200 flex-shrink-0">
-                    <div class="relative">
-                        <input x-model="search" placeholder="Пошук оновлень..." class="input pl-10" />
-                        <svg class="absolute left-3 top-2 w-4 h-4 dark:text-neutral-400" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                    </div>
-                </div>
-
-                <!-- Content -->
-                <div class="py-4 flex-1 overflow-y-auto scrollbar">
-                    <div x-show="filteredEntries.length > 0">
-                        <div class="space-y-4">
-                            <template x-for="entry in filteredEntries" :key="entry.tag_name">
-                                <div class="relative p-4 border dark:border-coolgray-300 rounded-sm"
-                                    :class="!entry.is_read ? 'dark:bg-coolgray-200 border-warning' : 'dark:bg-coolgray-100'">
-                                    <div class="flex items-start justify-between">
-                                        <div class="flex-1">
-                                            <div class="flex items-center gap-2 mb-2">
-                                                <span x-show="entry.title"
-                                                    class="px-2 py-1 text-xs font-semibold dark:bg-coolgray-300 dark:text-neutral-200 rounded-sm"><a
-                                                        :href="`https://github.com/coollabsio/coolify/releases/tag/${entry.tag_name}`"
-                                                        target="_blank"
-                                                        class="inline-flex items-center gap-1 hover:text-coolgray-500">
-                                                        <span x-text="entry.title"></span>
-                                                        <x-external-link />
-                                                    </a></span>
-                                                <span x-show="entry.tag_name === '{{ $currentVersion }}'"
-                                                    class="px-2 py-1 text-xs font-semibold bg-success text-white rounded-sm">
-                                                    ПОТОЧНА ВЕРСІЯ
-                                                </span>
-                                                <span class="text-xs dark:text-neutral-400"
-                                                    x-text="new Date(entry.published_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })"></span>
-                                            </div>
-                                            <div class="dark:text-neutral-300 leading-relaxed max-w-none"
-                                                x-html="entry.content_html">
-                                            </div>
-                                        </div>
-
-                                        <button x-show="!entry.is_read" @click="markEntryAsRead(entry.tag_name)"
-                                            class="ml-4 px-3 py-1 text-xs dark:text-neutral-400 hover:dark:text-white border dark:border-neutral-600 rounded hover:dark:bg-neutral-700 transition-colors cursor-pointer"
-                                            title="Позначити як прочитане">
-                                            позначити як прочитане
-                                        </button>
-                                    </div>
-                                </div>
-                            </template>
-                        </div>
-                    </div>
-
-                    <div x-show="filteredEntries.length === 0" class="text-center py-8">
-                        <svg class="mx-auto h-12 w-12 dark:text-neutral-400" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                        <h3 class="mt-2 text-sm font-medium dark:text-white">Оновлень не знайдено</h3>
-                        <p class="mt-1 text-sm dark:text-neutral-400">
-                            <span x-show="search.trim() !== ''">Оновлення за вашими критеріями пошуку не знайдено.</span>
-                            <span x-show="search.trim() === ''">Наразі немає доступних оновлень.</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endif
 </div>

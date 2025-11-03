@@ -79,8 +79,7 @@
     }">
     <div class="flex lg:pt-6 pt-4 pb-4 pl-2">
         <div class="flex flex-col w-full">
-            <a href="/" class="text-2xl font-bold tracking-wide dark:text-white hover:opacity-80 transition-opacity">AutoDeploy</a>
-            <x-version />
+            <a href="/" class="text-2xl font-bold tracking-wide dark:text-white hover:opacity-80 transition-opacity">Auto<br>Deploy</a>
         </div>
         <div>
             <!-- Search button that triggers global search modal -->
@@ -174,21 +173,6 @@
                         </a>
                     </li>
                     <li>
-                        <a title="S3 Сховища"
-                            class="{{ request()->is('storages*') ? 'menu-item-active menu-item' : 'menu-item' }}"
-                            href="{{ route('storage.index') }}">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24">
-                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2">
-                                    <path d="M4 6a8 3 0 1 0 16 0A8 3 0 1 0 4 6" />
-                                    <path d="M4 6v6a8 3 0 0 0 16 0V6" />
-                                    <path d="M4 12v6a8 3 0 0 0 16 0v-6" />
-                                </g>
-                            </svg>
-                            S3 Сховища
-                        </a>
-                    </li>
-                    <li>
                         <a title="Спільні змінні"
                             class="{{ request()->is('shared-variables*') ? 'menu-item-active menu-item' : 'menu-item' }}"
                             href="{{ route('shared-variables.index') }}">
@@ -204,18 +188,6 @@
                         </a>
                     </li>
                     <li>
-                        <a title="Сповіщення"
-                            class="{{ request()->is('notifications*') ? 'menu-item-active menu-item' : 'menu-item' }}"
-                            href="{{ route('notifications.email') }}">
-                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path fill="none" stroke="currentColor" stroke-linecap="round"
-                                    stroke-linejoin="round" stroke-width="2"
-                                    d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3H4a4 4 0 0 0 2-3v-3a7 7 0 0 1 4-6M9 17v1a3 3 0 0 0 6 0v-1" />
-                            </svg>
-                            Сповіщення
-                        </a>
-                    </li>
-                    <li>
                         <a title="Ключі та токени"
                             class="{{ request()->is('security*') ? 'menu-item-active menu-item' : 'menu-item' }}"
                             href="{{ route('security.private-key.index') }}">
@@ -224,22 +196,7 @@
                                     stroke-linejoin="round" stroke-width="2"
                                     d="m16.555 3.843l3.602 3.602a2.877 2.877 0 0 1 0 4.069l-2.643 2.643a2.877 2.877 0 0 1-4.069 0l-.301-.301l-6.558 6.558a2 2 0 0 1-1.239.578L5.172 21H4a1 1 0 0 1-.993-.883L3 20v-1.172a2 2 0 0 1 .467-1.284l.119-.13L4 17h2v-2h2v-2l2.144-2.144l-.301-.301a2.877 2.877 0 0 1 0-4.069l2.643-2.643a2.877 2.877 0 0 1 4.069 0zM15 9h.01" />
                             </svg>
-                            Ключі та токени
-                        </a>
-                    </li>
-                    <li>
-                        <a title="Теги"
-                            class="{{ request()->is('tags*') ? 'menu-item-active menu-item' : 'menu-item' }}"
-                            href="{{ route('tags.show') }}">
-                            <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <g fill="none" stroke="currentColor" stroke-linecap="round"
-                                    stroke-linejoin="round" stroke-width="2">
-                                    <path
-                                        d="M3 8v4.172a2 2 0 0 0 .586 1.414l5.71 5.71a2.41 2.41 0 0 0 3.408 0l3.592-3.592a2.41 2.41 0 0 0 0-3.408l-5.71-5.71A2 2 0 0 0 9.172 6H5a2 2 0 0 0-2 2" />
-                                    <path d="m18 19l1.592-1.592a4.82 4.82 0 0 0 0-6.816L15 6m-8 4h-.01" />
-                                </g>
-                            </svg>
-                            Теги
+                            Ключі ssh
                         </a>
                     </li>
                     @can('canAccessTerminal')
@@ -273,38 +230,6 @@
                             Профіль
                         </a>
                     </li>
-                    <li>
-                        <a title="Команди"
-                            class="{{ request()->is('team*') ? 'menu-item-active menu-item' : 'menu-item' }}"
-                            href="{{ route('team.index') }}">
-                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                                <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" />
-                                <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                                <path d="M17 10h2a2 2 0 0 1 2 2v1" />
-                                <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                                <path d="M3 13v-1a2 2 0 0 1 2 -2h2" />
-                            </svg>
-                            Команди
-                        </a>
-                    </li>
-                    @if (isCloud() && auth()->user()->isAdmin())
-                        <li>
-                            <a title="Підписка"
-                                class="{{ request()->is('subscription*') ? 'menu-item-active menu-item' : 'menu-item' }}"
-                                href="{{ route('subscription.show') }}">
-                                <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                    <path fill="none" stroke="currentColor" stroke-linecap="round"
-                                        stroke-linejoin="round" stroke-width="2"
-                                        d="M3 8a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3zm0 2h18M7 15h.01M11 15h2" />
-                                </svg>
-                                Підписка
-                            </a>
-                        </li>
-                    @endif
                     @if (isInstanceAdmin())
                         <li>
 
@@ -346,51 +271,8 @@
                             </li>
                         @endpersist
                     @endif
-                    {{-- <li>
-                        <a title="Onboarding"
-                            class="{{ request()->is('onboarding*') ? 'menu-item-active menu-item' : 'menu-item' }}"
-                            href="{{ route('onboarding') }}">
-                            <svg class="icon" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
-                                <path fill="currentColor"
-                                    d="M224 128a8 8 0 0 1-8 8h-88a8 8 0 0 1 0-16h88a8 8 0 0 1 8 8m-96-56h88a8 8 0 0 0 0-16h-88a8 8 0 0 0 0 16m88 112h-88a8 8 0 0 0 0 16h88a8 8 0 0 0 0-16M82.34 42.34L56 68.69L45.66 58.34a8 8 0 0 0-11.32 11.32l16 16a8 8 0 0 0 11.32 0l32-32a8 8 0 0 0-11.32-11.32m0 64L56 132.69l-10.34-10.35a8 8 0 0 0-11.32 11.32l16 16a8 8 0 0 0 11.32 0l32-32a8 8 0 0 0-11.32-11.32m0 64L56 196.69l-10.34-10.35a8 8 0 0 0-11.32 11.32l16 16a8 8 0 0 0 11.32 0l32-32a8 8 0 0 0-11.32-11.32" />
-                            </svg>
-                            Onboarding
-                        </a>
-                    </li> --}}
-                    <li>
-                        <a title="Спонсоруйте нас" class="menu-item" href="https://AutoDeploy.io/sponsorships"
-                            target="_blank">
-                            <svg class="text-pink-500 icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <g fill="none" stroke="currentColor" stroke-linecap="round"
-                                    stroke-linejoin="round" stroke-width="2">
-                                    <path d="M19.5 12.572L12 20l-7.5-7.428A5 5 0 1 1 12 6.006a5 5 0 1 1 7.5 6.572" />
-                                    <path
-                                        d="M12 6L8.707 9.293a1 1 0 0 0 0 1.414l.543.543c.69.69 1.81.69 2.5 0l1-1a3.182 3.182 0 0 1 4.5 0l2.25 2.25m-7 3l2 2M15 13l2 2" />
-                                </g>
-                            </svg>
-                            Спонсоруйте нас
-                        </a>
-                    </li>
                 @endif
-                @if (!isSubscribed() && isCloud() && auth()->user()->teams()->get()->count() > 1)
-                    <livewire:navbar-delete-team />
-                @endif
-                <li>
-                    <x-modal-input title="Чим можемо допомогти?">
-                        <x-slot:content>
-                            <div title="Надішліть нам відгук або отримайте допомогу!" class="cursor-pointer menu-item"
-                                wire:click="help">
-                                <svg class="icon" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill="currentColor"
-                                        d="M140 180a12 12 0 1 1-12-12a12 12 0 0 1 12 12M128 72c-22.06 0-40 16.15-40 36v4a8 8 0 0 0 16 0v-4c0-11 10.77-20 24-20s24 9 24 20s-10.77 20-24 20a8 8 0 0 0-8 8v8a8 8 0 0 0 16 0v-.72c18.24-3.35 32-17.9 32-35.28c0-19.85-17.94-36-40-36m104 56A104 104 0 1 1 128 24a104.11 104.11 0 0 1 104 104m-16 0a88 88 0 1 0-88 88a88.1 88.1 0 0 0 88-88" />
-                                </svg>
-                                Відгук
-                            </div>
-                        </x-slot:content>
-                        <livewire:help />
-                    </x-modal-input>
-                </li>
-                <li>
+
                     <form action="/logout" method="POST">
                         @csrf
                         <button title="Вийти" type="submit" class="gap-2 mb-6 menu-item">
