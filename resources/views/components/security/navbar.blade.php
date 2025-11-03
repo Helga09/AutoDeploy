@@ -6,19 +6,6 @@
             <a href="{{ route('security.private-key.index') }}">
                 <button>Приватні ключі</button>
             </a>
-            @can('viewAny', App\Models\CloudProviderToken::class)
-                <a href="{{ route('security.cloud-tokens') }}">
-                    <button>Хмарні токени</button>
-                </a>
-            @endcan
-            @can('viewAny', App\Models\CloudInitScript::class)
-                <a href="{{ route('security.cloud-init-scripts') }}">
-                    <button>Скрипти Cloud-Init</button>
-                </a>
-            @endcan
-            <a href="{{ route('security.api-tokens') }}">
-                <button>API Токени</button>
-            </a>
         </nav>
     </div>
 </div>
