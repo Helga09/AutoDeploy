@@ -1,67 +1,67 @@
 <div>
     <form wire:submit="submit" class="flex flex-col gap-2">
         <div class="flex items-center gap-2">
-            <h2>General</h2>
+            <h2>Загальне</h2>
             <x-forms.button type="submit">
-                Save
+                Зберегти
             </x-forms.button>
         </div>
         <div class="flex gap-2">
-            <x-forms.input label="Name" id="name" canGate="update" :canResource="$database" />
-            <x-forms.input label="Description" id="description" canGate="update" :canResource="$database" />
-            <x-forms.input label="Image" id="image" required
-                helper="For all available images, check here:<br><br><a target='_blank' href='https://hub.docker.com/_/mysql'>https://hub.docker.com/_/mysql</a>" canGate="update" :canResource="$database" />
+            <x-forms.input label="Назва" id="name" canGate="update" :canResource="$database" />
+            <x-forms.input label="Опис" id="description" canGate="update" :canResource="$database" />
+            <x-forms.input label="Образ" id="image" required
+                helper="Щоб переглянути всі доступні образи, перевірте тут:<br><br><a target='_blank' href='https://hub.docker.com/_/mysql'>https://hub.docker.com/_/mysql</a>" canGate="update" :canResource="$database" />
         </div>
-        <div class="pt-2 dark:text-warning">If you change the values in the database, please sync it here, otherwise
-            automations (like backups) won't work.
+        <div class="pt-2 dark:text-warning">Якщо ви зміните значення в базі даних, будь ласка, синхронізуйте їх тут, інакше
+            автоматизації (наприклад, резервні копії) не працюватимуть.
         </div>
         @if ($database->started_at)
             <div class="flex xl:flex-row flex-col gap-2">
-                <x-forms.input label="Root Password" id="mysqlRootPassword" type="password" required
-                    helper="If you change this in the database, please sync it here, otherwise automations (like backups) won't work." canGate="update" :canResource="$database" />
-                <x-forms.input label="Normal User" id="mysqlUser" required
-                    helper="If you change this in the database, please sync it here, otherwise automations (like backups) won't work." canGate="update" :canResource="$database" />
-                <x-forms.input label="Normal User Password" id="mysqlPassword" type="password" required
-                    helper="If you change this in the database, please sync it here, otherwise automations (like backups) won't work." canGate="update" :canResource="$database" />
+                <x-forms.input label="Пароль Root" id="mysqlRootPassword" type="password" required
+                    helper="Якщо ви зміните це в базі даних, будь ласка, синхронізуйте це тут, інакше автоматизації (наприклад, резервні копії) не працюватимуть." canGate="update" :canResource="$database" />
+                <x-forms.input label="Звичайний Користувач" id="mysqlUser" required
+                    helper="Якщо ви зміните це в базі даних, будь ласка, синхронізуйте це тут, інакше автоматизації (наприклад, резервні копії) не працюватимуть." canGate="update" :canResource="$database" />
+                <x-forms.input label="Пароль Звичайного Користувача" id="mysqlPassword" type="password" required
+                    helper="Якщо ви зміните це в базі даних, будь ласка, синхронізуйте це тут, інакше автоматизації (наприклад, резервні копії) не працюватимуть." canGate="update" :canResource="$database" />
             </div>
             <div class="flex flex-col gap-2">
-                <x-forms.input label="Initial Database" id="mysqlDatabase"
-                    placeholder="If empty, it will be the same as Username." readonly
-                    helper="You can only change this in the database." canGate="update" :canResource="$database" />
+                <x-forms.input label="Початкова База Даних" id="mysqlDatabase"
+                    placeholder="Якщо порожньо, буде таким же, як Ім'я Користувача." readonly
+                    helper="Ви можете змінити це лише в базі даних." canGate="update" :canResource="$database" />
             </div>
         @else
             <div class="flex xl:flex-row flex-col gap-4 pb-2">
-                <x-forms.input label="Root Password" id="mysqlRootPassword" type="password"
-                    helper="You can only change this in the database." canGate="update" :canResource="$database" />
-                <x-forms.input label="Normal User" id="mysqlUser" required
-                    helper="You can only change this in the database." canGate="update" :canResource="$database" />
-                <x-forms.input label="Normal User Password" id="mysqlPassword" type="password" required
-                    helper="You can only change this in the database." canGate="update" :canResource="$database" />
+                <x-forms.input label="Пароль Root" id="mysqlRootPassword" type="password"
+                    helper="Ви можете змінити це лише в базі даних." canGate="update" :canResource="$database" />
+                <x-forms.input label="Звичайний Користувач" id="mysqlUser" required
+                    helper="Ви можете змінити це лише в базі даних." canGate="update" :canResource="$database" />
+                <x-forms.input label="Пароль Звичайного Користувача" id="mysqlPassword" type="password" required
+                    helper="Ви можете змінити це лише в базі даних." canGate="update" :canResource="$database" />
             </div>
             <div class="flex flex-col gap-2">
-                <x-forms.input label="Initial Database" id="mysqlDatabase"
-                    placeholder="If empty, it will be the same as Username."
-                    helper="You can only change this in the database." canGate="update" :canResource="$database" />
+                <x-forms.input label="Початкова База Даних" id="mysqlDatabase"
+                    placeholder="Якщо порожньо, буде таким же, як Ім'я Користувача."
+                    helper="Ви можете змінити це лише в базі даних." canGate="update" :canResource="$database" />
             </div>
         @endif
         <div class="pt-2">
             <x-forms.input
-                helper="You can add custom docker run options that will be used when your container is started.<br>Note: Not all options are supported, as they could mess up Coolify's automation and could cause bad experience for users.<br><br>Check the <a class='underline dark:text-white' href='https://coolify.io/docs/knowledge-base/docker/custom-commands'>docs.</a>"
+                helper="Ви можете додати власні параметри запуску Docker, які будуть використовуватися при старті вашого контейнера.<br>Примітка: Не всі параметри підтримуються, оскільки вони можуть порушити автоматизацію Coolify та спричинити поганий досвід для користувачів.<br><br>Перегляньте <a class='underline dark:text-white' href='https://coolify.io/docs/knowledge-base/docker/custom-commands'>документацію.</a>"
                 placeholder="--cap-add SYS_ADMIN --device=/dev/fuse --security-opt apparmor:unconfined --ulimit nofile=1024:1024 --tmpfs /run:rw,noexec,nosuid,size=65536k"
-                id="customDockerRunOptions" label="Custom Docker Options" canGate="update" :canResource="$database" />
+                id="customDockerRunOptions" label="Власні Опції Docker" canGate="update" :canResource="$database" />
         </div>
         <div class="flex flex-col gap-2">
-            <h3 class="py-2">Network</h3>
+            <h3 class="py-2">Мережа</h3>
             <div class="flex items-end gap-2">
-                <x-forms.input placeholder="3000:5432" id="portsMappings" label="Ports Mappings"
-                    helper="A comma separated list of ports you would like to map to the host system.<br><span class='inline-block font-bold dark:text-warning'>Example</span>3000:5432,3002:5433" canGate="update" :canResource="$database" />
+                <x-forms.input placeholder="3000:5432" id="portsMappings" label="Мапування Портів"
+                    helper="Список портів, розділених комами, які ви хочете зіставити з хост-системою.<br><span class='inline-block font-bold dark:text-warning'>Приклад</span>3000:5432,3002:5433" canGate="update" :canResource="$database" />
             </div>
-            <x-forms.input label="MySQL URL (internal)"
-                helper="If you change the user/password/port, this could be different. This is with the default values."
+            <x-forms.input label="MySQL URL (внутрішній)"
+                helper="Якщо ви зміните користувача/пароль/порт, це може бути іншим. Це зі значеннями за замовчуванням."
                 type="password" readonly wire:model="db_url" />
             @if ($db_url_public)
-                <x-forms.input label="MySQL URL (public)"
-                    helper="If you change the user/password/port, this could be different. This is with the default values."
+                <x-forms.input label="MySQL URL (публічний)"
+                    helper="Якщо ви зміните користувача/пароль/порт, це може бути іншим. Це зі значеннями за замовчуванням."
                     type="password" readonly wire:model="db_url_public" />
             @endif
         </div>
@@ -69,24 +69,23 @@
         <div class="flex flex-col gap-2">
             <div class="flex items-center justify-between py-2">
                 <div class="flex items-center justify-between w-full">
-                    <h3>SSL Configuration</h3>
+                    <h3>Конфігурація SSL</h3>
                     @if ($enableSsl && $certificateValidUntil)
-                        <x-modal-confirmation title="Regenerate SSL Certificates"
-                            buttonTitle="Regenerate SSL Certificates" :actions="[
-                                'The SSL certificate of this database will be regenerated.',
-                                'You must restart the database after regenerating the certificate to start using the new certificate.',
+                        <x-modal-confirmation title="Відновити SSL-сертифікати"
+                            buttonTitle="Відновити SSL-сертифікати" :actions="[
+                                'SSL-сертифікат цієї бази даних буде відновлено.',
+                                'Ви повинні перезапустити базу даних після відновлення сертифіката, щоб почати використовувати новий сертифікат.',
                             ]"
                             submitAction="regenerateSslCertificate" :confirmWithText="false" :confirmWithPassword="false" />
                     @endif
                 </div>
             </div>
             @if ($enableSsl && $certificateValidUntil)
-                <span class="text-sm">Valid until:
+                <span class="text-sm">Дійсний до:
                     @if (now()->gt($certificateValidUntil))
-                        <span class="text-red-500">{{ $certificateValidUntil->format('d.m.Y H:i:s') }} - Expired</span>
+                        <span class="text-red-500">{{ $certificateValidUntil->format('d.m.Y H:i:s') }} - Термін дії закінчився</span>
                     @elseif(now()->addDays(30)->gt($certificateValidUntil))
-                        <span class="text-red-500">{{ $certificateValidUntil->format('d.m.Y H:i:s') }} - Expiring
-                            soon</span>
+                        <span class="text-red-500">{{ $certificateValidUntil->format('d.m.Y H:i:s') }} - Термін дії скоро закінчується</span>
                     @else
                         <span>{{ $certificateValidUntil->format('d.m.Y H:i:s') }}</span>
                     @endif
@@ -97,33 +96,33 @@
             <div class="flex flex-col gap-2">
                 <div class="w-64">
                     @if (str($database->status)->contains('exited'))
-                        <x-forms.checkbox id="enableSsl" label="Enable SSL"
+                        <x-forms.checkbox id="enableSsl" label="Увімкнути SSL"
                             wire:model.live="enableSsl" instantSave="instantSaveSSL" canGate="update" :canResource="$database" />
                     @else
-                        <x-forms.checkbox id="enableSsl" label="Enable SSL"
+                        <x-forms.checkbox id="enableSsl" label="Увімкнути SSL"
                             wire:model.live="enableSsl" instantSave="instantSaveSSL" disabled
-                            helper="Database should be stopped to change this settings." />
+                            helper="База даних повинна бути зупинена, щоб змінити ці налаштування." />
                     @endif
                 </div>
                 @if ($enableSsl)
                     <div class="mx-2">
                         @if (str($database->status)->contains('exited'))
-                            <x-forms.select id="sslMode" label="SSL Mode" wire:model.live="sslMode"
+                            <x-forms.select id="sslMode" label="Режим SSL" wire:model.live="sslMode"
                                 instantSave="instantSaveSSL"
-                                helper="Choose the SSL verification mode for MySQL connections" canGate="update" :canResource="$database">
-                                <option value="PREFERRED" title="Prefer secure connections">Prefer (secure)</option>
-                                <option value="REQUIRED" title="Require secure connections">Require (secure)</option>
-                                <option value="VERIFY_CA" title="Verify CA certificate">Verify CA (secure)</option>
-                                <option value="VERIFY_IDENTITY" title="Verify full certificate">Verify Full (secure)
+                                helper="Оберіть режим перевірки SSL для з'єднань MySQL" canGate="update" :canResource="$database">
+                                <option value="PREFERRED" title="Бажано безпечні з'єднання">Бажано (безпечно)</option>
+                                <option value="REQUIRED" title="Вимагати безпечні з'єднання">Вимагати (безпечно)</option>
+                                <option value="VERIFY_CA" title="Перевірити CA-сертифікат">Перевірити CA (безпечно)</option>
+                                <option value="VERIFY_IDENTITY" title="Перевірити повний сертифікат">Перевірити Повний (безпечно)
                                 </option>
                             </x-forms.select>
                         @else
-                            <x-forms.select id="sslMode" label="SSL Mode" instantSave="instantSaveSSL"
-                                disabled helper="Database should be stopped to change this settings.">
-                                <option value="PREFERRED" title="Prefer secure connections">Prefer (secure)</option>
-                                <option value="REQUIRED" title="Require secure connections">Require (secure)</option>
-                                <option value="VERIFY_CA" title="Verify CA certificate">Verify CA (secure)</option>
-                                <option value="VERIFY_IDENTITY" title="Verify full certificate">Verify Full (secure)
+                            <x-forms.select id="sslMode" label="Режим SSL" instantSave="instantSaveSSL"
+                                disabled helper="База даних повинна бути зупинена, щоб змінити ці налаштування.">
+                                <option value="PREFERRED" title="Бажано безпечні з'єднання">Бажано (безпечно)</option>
+                                <option value="REQUIRED" title="Вимагати безпечні з'єднання">Вимагати (безпечно)</option>
+                                <option value="VERIFY_CA" title="Перевірити CA-сертифікат">Перевірити CA (безпечно)</option>
+                                <option value="VERIFY_IDENTITY" title="Перевірити повний сертифікат">Перевірити Повний (безпечно)
                                 </option>
                             </x-forms.select>
                         @endif
@@ -136,31 +135,31 @@
             <div class="flex flex-col py-2 w-64">
                 <div class="flex items-center gap-2 pb-2">
                     <div class="flex items-center">
-                        <h3>Proxy</h3>
+                        <h3>Проксі</h3>
                         <x-loading wire:loading wire:target="instantSave" />
                     </div>
                     @if (data_get($database, 'is_public'))
                         <x-slide-over fullScreen>
-                            <x-slot:title>Proxy Logs</x-slot:title>
+                            <x-slot:title>Журнали Проксі</x-slot:title>
                             <x-slot:content>
                                 <livewire:project.shared.get-logs :server="$server" :resource="$database"
                                     container="{{ data_get($database, 'uuid') }}-proxy" lazy />
                             </x-slot:content>
                             <x-forms.button disabled="{{ !data_get($database, 'is_public') }}"
-                                @click="slideOverOpen=true">Logs</x-forms.button>
+                                @click="slideOverOpen=true">Журнали</x-forms.button>
                         </x-slide-over>
                     @endif
                 </div>
-                <x-forms.checkbox instantSave id="isPublic" label="Make it publicly available" canGate="update" :canResource="$database" />
+                <x-forms.checkbox instantSave id="isPublic" label="Зробити публічно доступним" canGate="update" :canResource="$database" />
             </div>
             <x-forms.input placeholder="5432" disabled="{{ $isPublic }}"
-                id="publicPort" label="Public Port" canGate="update" :canResource="$database" />
+                id="publicPort" label="Публічний Порт" canGate="update" :canResource="$database" />
         </div>
-        <x-forms.textarea label="Custom Mysql Configuration" rows="10" id="mysqlConf" canGate="update" :canResource="$database" />
-        <h3 class="pt-4">Advanced</h3>
+        <x-forms.textarea label="Власна Конфігурація MySQL" rows="10" id="mysqlConf" canGate="update" :canResource="$database" />
+        <h3 class="pt-4">Додатково</h3>
         <div class="flex flex-col">
-            <x-forms.checkbox helper="Drain logs to your configured log drain endpoint in your Server settings."
-                instantSave="instantSaveAdvanced" id="isLogDrainEnabled" label="Drain Logs" canGate="update" :canResource="$database" />
+            <x-forms.checkbox helper="Відправляти журнали на налаштовану кінцеву точку для зливу журналів у ваших налаштуваннях сервера."
+                instantSave="instantSaveAdvanced" id="isLogDrainEnabled" label="Відправляти Журнали" canGate="update" :canResource="$database" />
         </div>
     </form>
 </div>

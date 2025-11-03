@@ -1,9 +1,9 @@
 <x-emails.layout>
-Scheduled task ({{ $task->name }}) was FAILED with the following error:
+Заплановане завдання ({{ $task->name }}) завершилося ЗБОЄМ з такою помилкою:
 
 <pre>
 {{ $output }}
 </pre>
 
-Click [here]({{ $url }}) to view the task.
+Натисніть [тут]({{ $url }}) щоб переглянути завдання.
 </x-emails.layout>

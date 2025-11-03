@@ -1,17 +1,17 @@
 <div>
     <x-slot:title>
-        Team Admin | Coolify
+        Адміністратор команди | Coolify
     </x-slot>
     <x-team.navbar />
-    <h2>Admin View</h2>
+    <h2>Вигляд адміністратора</h2>
     <div class="subtitle">
-        Manage users of this instance.
+        Керуйте користувачами цього інстансу.
     </div>
     <form wire:submit="submitSearch" class="flex flex-col gap-2 lg:flex-row">
-        <x-forms.input wire:model="search" placeholder="Search for a user" />
-        <x-forms.button type="submit">Search</x-forms.button>
+        <x-forms.input wire:model="search" placeholder="Пошук користувача" />
+        <x-forms.button type="submit">Пошук</x-forms.button>
     </form>
-    <h3 class="py-4">Users</h3>
+    <h3 class="py-4">Користувачі</h3>
     <div class="grid grid-cols-1 gap-2 lg:grid-cols-2">
         @forelse ($users as $user)
             <div wire:key="user-{{ $user->id }}"
@@ -20,21 +20,21 @@
                 <div>{{ $user->email }}</div>
                 <div class="flex-1"></div>
                 <div class="flex items-center justify-center gap-2 mx-4 text-xs font-bold ">
-                    <x-modal-confirmation title="Confirm User Deletion?" buttonTitle="Delete" isErrorButton
+                    <x-modal-confirmation title="Підтвердити видалення користувача?" buttonTitle="Видалити" isErrorButton
                         submitAction="delete({{ $user->id }})" :actions="[
-                            'The selected user will be permanently deleted from Coolify\'s database.',
-                            'All resources (application, databases, services, configurations, servers, private keys, tags, etc.) related to this user\'s default team will be deleted from Coolify\'s database.',
+                            'Вибраний користувач буде назавжди видалений з бази даних Coolify.',
+                            'Усі ресурси (додатки, бази даних, сервіси, конфігурації, сервери, приватні ключі, теги тощо), пов\'язані з командою за замовчуванням цього користувача, будуть видалені з бази даних Coolify.',
                         ]"
                         confirmationText="{{ $user->name }}"
-                        confirmationLabel="Please confirm the execution of the actions by entering the User Name below"
-                        shortConfirmationLabel="User Name" />
+                        confirmationLabel="Будь ласка, підтвердьте виконання дій, ввівши ім'я користувача нижче"
+                        shortConfirmationLabel="Ім'я користувача" />
                 </div>
             </div>
         @empty
-            <div>No users found other than the root.</div>
+            <div>Користувачів, окрім кореневого, не знайдено.</div>
         @endforelse
         @if ($lots_of_users)
-            <div>There are more users than shown. Please use the search bar to find the user you are looking for.</div>
+            <div>Відображено більше користувачів, ніж показано. Будь ласка, скористайтеся рядком пошуку, щоб знайти потрібного користувача.</div>
         @endif
     </div>
 </div>

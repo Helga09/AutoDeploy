@@ -1,5 +1,5 @@
 <x-emails.layout>
-    Your server ({{ $name }}) disabled because it is not paid! All automations and integrations are stopped.
+    Ваш сервер ({{ $name }}) вимкнено, оскільки його не оплачено! Усі автоматизації та інтеграції зупинено.
 
-    Please update your subscription to enable the server again [here](https://app.coolify.io/subscriptions).
+    Будь ласка, оновіть свою підписку, щоб знову увімкнути сервер [тут](https://app.coolify.io/subscriptions).
 </x-emails.layout>

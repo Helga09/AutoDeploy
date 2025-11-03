@@ -1,10 +1,10 @@
 <x-emails.layout>
 @if ($pull_request_id === 0)
-Failed to deploy a new version of {{ $name }} at [{{ $fqdn }}]({{ $fqdn }}) .
+Не вдалося розгорнути нову версію {{ $name }} за адресою [{{ $fqdn }}]({{ $fqdn }}).
 @else
-Failed to deploy a pull request #{{ $pull_request_id }} of {{ $name }} at
+Не вдалося розгорнути запит на злиття #{{ $pull_request_id }} для {{ $name }} за адресою
 [{{ $fqdn }}]({{ $fqdn }}).
 @endif
 
-[View Deployment Logs]({{ $deployment_url }})
+[Переглянути логи розгортання]({{ $deployment_url }})
 </x-emails.layout>

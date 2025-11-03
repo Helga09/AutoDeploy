@@ -1,4 +1,4 @@
- <div wire:poll.2000ms="getDeployments" wire:init='getDeployments'>
+<div wire:poll.2000ms="getDeployments" wire:init='getDeployments'>
      @forelse ($deploymentsPerTagPerServer as $server_name => $deployments)
          <h4 class="py-4">{{ $server_name }}</h4>
          <div class="grid grid-cols-1 gap-2">
@@ -22,6 +22,6 @@
              @endforeach
          </div>
      @empty
-         <div>No deployments running.</div>
+         <div>Немає запущених розгортань.</div>
      @endforelse
  </div>

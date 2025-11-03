@@ -1,9 +1,9 @@
 <form class="flex flex-col w-full gap-2 rounded-sm" wire:submit='submit'>
-    <x-forms.input placeholder="Your Cool Project" id="name" label="Name" required />
-    <x-forms.input placeholder="This is my cool project everyone knows about" id="description" label="Description" />
-    <div class="subtitle">New project will have a default <span class="dark:text-warning font-bold">production</span>
-        environment.</div>
+    <x-forms.input placeholder="Ваш крутий проєкт" id="name" label="Назва" required />
+    <x-forms.input placeholder="Це мій крутий проєкт, про який усі знають" id="description" label="Опис" />
+    <div class="subtitle">Новий проєкт матиме типове <span class="dark:text-warning font-bold">виробниче</span>
+        середовище.</div>
     <x-forms.button type="submit">
-        Continue
+        Продовжити
     </x-forms.button>
 </form>

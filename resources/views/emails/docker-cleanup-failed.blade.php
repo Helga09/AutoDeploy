@@ -1,5 +1,5 @@
 <x-emails.layout>
-Docker Cleanup on {{ $name }} FAILED with the following error:
+Очищення Docker на {{ $name }} НЕ ВДАЛОСЯ з наступною помилкою:
 
 <pre>
 {{ $text }}

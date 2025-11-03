@@ -1,16 +1,16 @@
 <x-layout>
     <x-slot:title>
-        Sources | Coolify
+        Джерела | Coolify
     </x-slot>
     <div class="flex items-center gap-2">
-        <h1>Sources</h1>
+        <h1>Джерела</h1>
         @can('createAnyResource')
-            <x-modal-input buttonTitle="+ Add" title="New GitHub App" :closeOutside="false">
+            <x-modal-input buttonTitle="+ Додати" title="Нова програма GitHub" :closeOutside="false">
                 <livewire:source.github.create />
             </x-modal-input>
         @endcan
     </div>
-    <div class="subtitle">Git sources for your applications.</div>
+    <div class="subtitle">Джерела Git для ваших застосунків.</div>
     <div class="grid gap-4 lg:grid-cols-2 -mt-1">
         @forelse ($sources as $source)
             @if ($source->getMorphClass() === 'App\Models\GithubApp')
@@ -20,10 +20,10 @@
                     <div class="text-left dark:group-hover:text-white flex flex-col justify-center mx-6">
                         <div class="box-title">{{ $source->name }}</div>
                         @if (is_null($source->app_id))
-                            <span class="box-description text-error! ">Configuration is not finished.</span>
+                            <span class="box-description text-error! ">Конфігурація не завершена.</span>
                         @else
                             @if ($source->organization)
-                                <span class="box-description">Organization: {{ $source->organization }}</span>
+                                <span class="box-description">Організація: {{ $source->organization }}</span>
                             @endif
                         @endif
                     </div>
@@ -31,7 +31,7 @@
             @endif
         @empty
             <div>
-                <div>No sources found.</div>
+                <div>Джерела не знайдено.</div>
             </div>
         @endforelse
     </div>

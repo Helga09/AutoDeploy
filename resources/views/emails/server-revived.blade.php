@@ -1,3 +1,3 @@
 <x-emails.layout>
-Your server ({{ $name }}) was offline for a while, but it is back online now. All automations & integrations are turned on again.
+Ваш сервер ({{ $name }}) був офлайн деякий час, але тепер він знову в мережі. Усі автоматизації та інтеграції знову увімкнені.
 </x-emails.layout>

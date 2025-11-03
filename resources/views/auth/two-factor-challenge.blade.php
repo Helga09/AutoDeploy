@@ -51,7 +51,7 @@
                         Coolify
                     </h1>
                     <p class="text-lg dark:text-neutral-400">
-                        Two-Factor Authentication
+                        Двофакторна Автентифікація
                     </p>
                 </div>
 
@@ -80,7 +80,7 @@
                                     d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                             <p class="text-sm dark:text-neutral-400">
-                                Enter the verification code from your authenticator app to continue.
+                                Введіть код підтвердження з вашого додатку-автентифікатора, щоб продовжити.
                             </p>
                         </div>
                     </div>
@@ -100,14 +100,14 @@
                             </div>
                             <button type="button" x-on:click="showRecovery = !showRecovery"
                                 class="mt-4 text-sm dark:text-neutral-400 hover:text-black dark:hover:text-white hover:underline transition-colors cursor-pointer">
-                                Use Recovery Code Instead
+                                Використати Код Відновлення Замість Цього
                             </button>
                         </div>
                         <div x-show="showRecovery" x-cloak>
                             <x-forms.input name="recovery_code" label="{{ __('input.recovery_code') }}" />
                             <button type="button" x-on:click="showRecovery = !showRecovery"
                                 class="mt-2 text-sm dark:text-neutral-400 hover:text-black dark:hover:text-white hover:underline transition-colors cursor-pointer">
-                                Use Authenticator Code Instead
+                                Використати Код Автентифікатора Замість Цього
                             </button>
                         </div>
                         <x-forms.button class="w-full justify-center py-3 box-boarding" type="submit" isHighlighted>
@@ -120,15 +120,14 @@
                             <div class="w-full border-t border-neutral-300 dark:border-coolgray-400"></div>
                         </div>
                         <div class="relative flex justify-center text-sm">
-                            <span class="px-2 dark:bg-base text-neutral-500 dark:text-neutral-400">
-                                Need help?
-                            </span>
-                        </div>
+                                                            <span class="px-2 dark:bg-base text-neutral-500 dark:text-neutral-400">
+                                                                Потрібна допомога?
+                                                            </span>                        </div>
                     </div>
 
                     <a href="/login"
                         class="block w-full text-center py-3 px-4 rounded-lg border border-neutral-300 dark:border-coolgray-400 font-medium hover:border-coollabs dark:hover:border-warning transition-colors">
-                        Back to Login
+                        Повернутися до Входу
                     </a>
                 </div>
             </div>

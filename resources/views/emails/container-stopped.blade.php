@@ -1,7 +1,7 @@
 <x-emails.layout>
-A resource ({{ $containerName }}) has been stopped unexpectedly on {{ $serverName }}.
+Ресурс ({{ $containerName }}) було несподівано зупинено на {{ $serverName }}.
 
 @if ($url)
-Please check what is going on [here]({{ $url }}).
+Будь ласка, перевірте, що відбувається [тут]({{ $url }}).
 @endif
 </x-emails.layout>

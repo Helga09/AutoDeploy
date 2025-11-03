@@ -1,6 +1,6 @@
 <div x-data x-init="@if ($server->hetzner_server_id && $server->cloudProviderToken && !$hetznerServerStatus) $wire.checkHetznerServerStatus() @endif">
     <x-slot:title>
-        {{ data_get_str($server, 'name')->limit(10) }} > General | Coolify
+        {{ data_get_str($server, 'name')->limit(10) }} > Загальні | Coolify
     </x-slot>
     <livewire:server.navbar :server="$server" />
     <div class="flex flex-col h-full gap-8 sm:flex-row">
@@ -8,7 +8,7 @@
         <div class="w-full">
             <form wire:submit.prevent='submit' class="flex flex-col">
                 <div class="flex gap-2">
-                    <h2>General</h2>
+                    <h2>Загальні</h2>
                     @if ($server->hetzner_server_id)
                         <div class="flex items-center">
                             <div @class([
@@ -50,11 +50,11 @@
                                                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
                                             </path>
                                         </svg>
-                                        <span>Checking status...</span>
+                                        <span>Перевірка статусу...</span>
                                     </span>
                                 @endif
                             </div>
-                            <button wire:loading.remove wire:target="checkHetznerServerStatus" title="Refresh Status"
+                            <button wire:loading.remove wire:target="checkHetznerServerStatus" title="Оновити статус"
                                 wire:click.prevent='checkHetznerServerStatus(true)'
                                 class="mx-1 dark:hover:fill-white fill-black dark:fill-warning">
                                 <svg class="w-4 h-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -62,7 +62,7 @@
                                         d="M12 2a10.016 10.016 0 0 0-7 2.877V3a1 1 0 1 0-2 0v4.5a1 1 0 0 0 1 1h4.5a1 1 0 0 0 0-2H6.218A7.98 7.98 0 0 1 20 12a1 1 0 0 0 2 0A10.012 10.012 0 0 0 12 2zm7.989 13.5h-4.5a1 1 0 0 0 0 2h2.293A7.98 7.98 0 0 1 4 12a1 1 0 0 0-2 0a9.986 9.986 0 0 0 16.989 7.133V21a1 1 0 0 0 2 0v-4.5a1 1 0 0 0-1-1z" />
                                 </svg>
                             </button>
-                            <button wire:loading wire:target="checkHetznerServerStatus" title="Refreshing Status"
+                            <button wire:loading wire:target="checkHetznerServerStatus" title="Оновлення статусу"
                                 class="mx-1 dark:hover:fill-white fill-black dark:fill-warning">
                                 <svg class="w-4 h-4 animate-spin" viewBox="0 0 24 24"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -74,7 +74,7 @@
                         @if ($server->cloudProviderToken && !$server->isFunctional() && $hetznerServerStatus === 'off')
                             <x-forms.button wire:click.prevent='startHetznerServer' isHighlighted canGate="update"
                                 :canResource="$server">
-                                Power On
+                                Увімкнути
                             </x-forms.button>
                         @endif
                     @endif
@@ -89,41 +89,41 @@
                                     d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
                                 </path>
                             </svg>
-                            <span>Validating...</span>
+                            <span>Перевірка...</span>
                         </div>
                     @endif
                     @if ($server->id === 0)
-                        <x-modal-confirmation title="Confirm Server Settings Change?" buttonTitle="Save"
+                        <x-modal-confirmation title="Підтвердити зміну налаштувань сервера?" buttonTitle="Зберегти"
                             submitAction="submit" :actions="[
-                                'If you misconfigure the server, you could lose a lot of functionalities of Coolify.',
+                                'Якщо ви неправильно налаштуєте сервер, ви можете втратити багато функцій Coolify.',
                             ]" :confirmWithText="false" :confirmWithPassword="false"
-                            step2ButtonText="Save" canGate="update" :canResource="$server" />
+                            step2ButtonText="Зберегти" canGate="update" :canResource="$server" />
                     @else
                         <x-forms.button type="submit" canGate="update" :canResource="$server"
-                            :disabled="$isValidating">Save</x-forms.button>
+                            :disabled="$isValidating">Зберегти</x-forms.button>
                         @if ($server->isFunctional())
                             <x-slide-over closeWithX fullScreen>
-                                <x-slot:title>Validate & configure</x-slot:title>
+                                <x-slot:title>Перевірити та налаштувати</x-slot:title>
                                 <x-slot:content>
                                     <livewire:server.validate-and-install :server="$server" ask />
                                 </x-slot:content>
                                 <x-forms.button @click="slideOverOpen=true" wire:click.prevent='validateServer'
                                     isHighlighted canGate="update" :canResource="$server">
-                                    Revalidate server
+                                    Перевірити сервер ще раз
                                 </x-forms.button>
                             </x-slide-over>
                         @endif
                     @endif
                 </div>
                 @if ($server->isFunctional())
-                    Server is reachable and validated.
+                    Сервер доступний та перевірений.
                 @else
-                    You can't use this server until it is validated.
+                    Ви не можете використовувати цей сервер, доки його не буде перевірено.
                 @endif
                 @if ($isValidating)
                     <div x-data="{ slideOverOpen: true }">
                         <x-slide-over closeWithX fullScreen>
-                            <x-slot:title>Validation in Progress</x-slot:title>
+                            <x-slot:title>Перевірка в процесі</x-slot:title>
                             <x-slot:content>
                                 <livewire:server.validate-and-install :server="$server" />
                             </x-slot:content>
@@ -136,18 +136,18 @@
                         !$isValidating &&
                         !in_array($hetznerServerStatus, ['initializing', 'starting', 'stopping', 'off']))
                     <x-slide-over closeWithX fullScreen>
-                        <x-slot:title>Validate & configure</x-slot:title>
+                        <x-slot:title>Перевірити та налаштувати</x-slot:title>
                         <x-slot:content>
                             <livewire:server.validate-and-install :server="$server" />
                         </x-slot:content>
                         <x-forms.button @click="slideOverOpen=true"
                             class="mt-8 mb-4 w-full font-bold box-without-bg bg-coollabs hover:bg-coollabs-100"
                             wire:click.prevent='validateServer' isHighlighted>
-                            Validate Server & Install Docker Engine
+                            Перевірити сервер та встановити Docker Engine
                         </x-forms.button>
                     </x-slide-over>
                     @if ($server->validation_logs)
-                        <h4>Previous Validation Logs</h4>
+                        <h4>Попередні журнали перевірки</h4>
                         <div class="pb-8">
                             {!! $server->validation_logs !!}
                         </div>
@@ -156,46 +156,45 @@
                 @if ((!$isReachable || !$isUsable) && $server->id === 0)
                     <x-forms.button class="mt-8 mb-4 font-bold box-without-bg bg-coollabs hover:bg-coollabs-100"
                         wire:click.prevent='checkLocalhostConnection' isHighlighted>
-                        Validate Server
+                        Перевірити сервер
                     </x-forms.button>
                 @endif
                 @if ($server->isForceDisabled() && isCloud())
-                    <x-callout type="danger" title="Server Disabled" class="mt-4">
-                        The system has disabled the server because you have exceeded the
-                        number of servers for which you have paid.
+                    <x-callout type="danger" title="Сервер вимкнено" class="mt-4">
+                        Система вимкнула сервер, оскільки ви перевищили кількість серверів, за які ви заплатили.
                     </x-callout>
                 @endif
                 <div class="flex flex-col gap-2 pt-4">
                     <div class="flex flex-col gap-2 w-full lg:flex-row">
-                        <x-forms.input canGate="update" :canResource="$server" id="name" label="Name" required
+                        <x-forms.input canGate="update" :canResource="$server" id="name" label="Ім'я" required
                             :disabled="$isValidating" />
-                        <x-forms.input canGate="update" :canResource="$server" id="description" label="Description"
+                        <x-forms.input canGate="update" :canResource="$server" id="description" label="Опис"
                             :disabled="$isValidating" />
                         @if (!$isSwarmWorker && !$isBuildServer)
                             <x-forms.input canGate="update" :canResource="$server" placeholder="https://example.com"
-                                id="wildcardDomain" label="Wildcard Domain"
-                                helper='A wildcard domain allows you to receive a randomly generated domain for your new applications. <br><br>For instance, if you set "https://example.com" as your wildcard domain, your applications will receive domains like "https://randomId.example.com".'
+                                id="wildcardDomain" label="Домен з підстановкою"
+                                helper='Домен з підстановкою дозволяє отримувати випадково згенерований домен для ваших нових програм. <br><br>Наприклад, якщо ви встановите "https://example.com" як ваш домен з підстановкою, ваші програми отримуватимуть домени типу "https://randomId.example.com".'
                                 :disabled="$isValidating" />
                         @endif
 
                     </div>
                     <div class="flex flex-col gap-2 w-full lg:flex-row">
                         <x-forms.input canGate="update" :canResource="$server" type="password" id="ip"
-                            label="IP Address/Domain"
-                            helper="An IP Address (127.0.0.1) or domain (example.com). Make sure there is no protocol like http(s):// so you provide a FQDN not a URL."
+                            label="IP-адреса/Домен"
+                            helper="IP-адреса (127.0.0.1) або домен (example.com). Переконайтеся, що немає протоколу на зразок http(s)://, тобто ви надаєте FQDN, а не URL."
                             required :disabled="$isValidating" />
                         <div class="flex gap-2">
-                            <x-forms.input canGate="update" :canResource="$server" id="user" label="User" required
+                            <x-forms.input canGate="update" :canResource="$server" id="user" label="Користувач" required
                                 :disabled="$isValidating" />
                             <x-forms.input canGate="update" :canResource="$server" type="number" id="port"
-                                label="Port" required :disabled="$isValidating" />
+                                label="Порт" required :disabled="$isValidating" />
                         </div>
                     </div>
                     <div class="w-full">
                         <div class="flex items-center mb-1">
-                            <label for="serverTimezone">Server Timezone</label>
+                            <label for="serverTimezone">Часовий пояс сервера</label>
                             <x-helper class="ml-2"
-                                helper="Server's timezone. This is used for backups, cron jobs, etc." />
+                                helper="Часовий пояс сервера. Використовується для резервних копій, cron-завдань тощо." />
                         </div>
                         @can('update', $server)
                             @if ($isValidating)
@@ -203,8 +202,8 @@
                                     <div class="inline-flex relative items-center w-64">
                                         <input readonly disabled autocomplete="off"
                                             class="w-full input opacity-50 cursor-not-allowed"
-                                            value="{{ $serverTimezone ?: 'No timezone set' }}"
-                                            placeholder="Server Timezone">
+                                            value="{{ $serverTimezone ?: 'Часовий пояс не встановлено' }}"
+                                            placeholder="Часовий пояс сервера">
                                         <svg class="absolute right-0 mr-2 w-4 h-4 opacity-50"
                                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke-width="1.5" stroke="currentColor">
@@ -218,7 +217,7 @@
                                     open: false,
                                     search: '{{ $serverTimezone ?: '' }}',
                                     timezones: @js($this->timezones),
-                                    placeholder: '{{ $serverTimezone ? 'Search timezone...' : 'Select Server Timezone' }}',
+                                    placeholder: '{{ $serverTimezone ? 'Шукати часовий пояс...' : 'Виберіть часовий пояс сервера' }}',
                                     init() {
                                         this.$watch('search', value => {
                                             if (value === '') {
@@ -260,7 +259,7 @@
                                 <div class="inline-flex relative items-center w-64">
                                     <input readonly disabled autocomplete="off"
                                         class="w-full input opacity-50 cursor-not-allowed"
-                                        value="{{ $serverTimezone ?: 'No timezone set' }}" placeholder="Server Timezone">
+                                        value="{{ $serverTimezone ?: 'Часовий пояс не встановлено' }}" placeholder="Часовий пояс сервера">
                                     <svg class="absolute right-0 mr-2 w-4 h-4 opacity-50"
                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor">
@@ -277,42 +276,42 @@
                             <div class="w-96">
                                 @if ($isBuildServerLocked)
                                     <x-forms.checkbox disabled instantSave id="isBuildServer"
-                                        helper="You can't use this server as a build server because it has defined resources."
-                                        label="Use it as a build server?" />
+                                        helper="Ви не можете використовувати цей сервер як сервер збірки, оскільки він має визначені ресурси."
+                                        label="Використовувати як сервер збірки?" />
                                 @else
                                     <x-forms.checkbox canGate="update" :canResource="$server" instantSave
-                                        id="isBuildServer" label="Use it as a build server?" :disabled="$isValidating" />
+                                        id="isBuildServer" label="Використовувати як сервер збірки?" :disabled="$isValidating" />
                                 @endif
                             </div>
 
                             @if (!$server->isBuildServer() && !$server->settings->is_cloudflare_tunnel)
-                                <h3 class="pt-6">Swarm <span class="text-xs text-neutral-500">(experimental)</span>
+                                <h3 class="pt-6">Swarm <span class="text-xs text-neutral-500">(експериментально)</span>
                                 </h3>
-                                <div class="pb-4">Read the docs <a class='underline dark:text-white'
+                                <div class="pb-4">Прочитайте документацію <a class='underline dark:text-white'
                                         href='https://coolify.io/docs/knowledge-base/docker/swarm'
-                                        target='_blank'>here</a>.
+                                        target='_blank'>тут</a>.
                                 </div>
                                 <div class="w-96">
                                     @if ($server->settings->is_swarm_worker)
                                         <x-forms.checkbox disabled instantSave type="checkbox" id="isSwarmManager"
-                                            helper="For more information, please read the documentation <a class='dark:text-white' href='https://coolify.io/docs/knowledge-base/docker/swarm' target='_blank'>here</a>."
-                                            label="Is it a Swarm Manager?" />
+                                            helper="Для отримання додаткової інформації прочитайте документацію <a class='dark:text-white' href='https://coolify.io/docs/knowledge-base/docker/swarm' target='_blank'>тут</a>."
+                                            label="Це Swarm Manager?" />
                                     @else
                                         <x-forms.checkbox canGate="update" :canResource="$server" instantSave
                                             type="checkbox" id="isSwarmManager"
-                                            helper="For more information, please read the documentation <a class='dark:text-white' href='https://coolify.io/docs/knowledge-base/docker/swarm' target='_blank'>here</a>."
-                                            label="Is it a Swarm Manager?" :disabled="$isValidating" />
+                                            helper="Для отримання додаткової інформації прочитайте документацію <a class='dark:text-white' href='https://coolify.io/docs/knowledge-base/docker/swarm' target='_blank'>тут</a>."
+                                            label="Це Swarm Manager?" :disabled="$isValidating" />
                                     @endif
 
                                     @if ($server->settings->is_swarm_manager)
                                         <x-forms.checkbox disabled instantSave type="checkbox" id="isSwarmWorker"
-                                            helper="For more information, please read the documentation <a class='dark:text-white' href='https://coolify.io/docs/knowledge-base/docker/swarm' target='_blank'>here</a>."
-                                            label="Is it a Swarm Worker?" />
+                                            helper="Для отримання додаткової інформації прочитайте документацію <a class='dark:text-white' href='https://coolify.io/docs/knowledge-base/docker/swarm' target='_blank'>тут</a>."
+                                            label="Це Swarm Worker?" />
                                     @else
                                         <x-forms.checkbox canGate="update" :canResource="$server" instantSave
                                             type="checkbox" id="isSwarmWorker"
-                                            helper="For more information, please read the documentation <a class='dark:text-white' href='https://coolify.io/docs/knowledge-base/docker/swarm' target='_blank'>here</a>."
-                                            label="Is it a Swarm Worker?" :disabled="$isValidating" />
+                                            helper="Для отримання додаткової інформації прочитайте документацію <a class='dark:text-white' href='https://coolify.io/docs/knowledge-base/docker/swarm' target='_blank'>тут</a>."
+                                            label="Це Swarm Worker?" :disabled="$isValidating" />
                                     @endif
                                 </div>
                             @endif
@@ -324,39 +323,39 @@
                 <form wire:submit.prevent='submit'>
                     <div class="flex gap-2 items-center pt-4 pb-2">
                         <h3>Sentinel</h3>
-                        <x-helper helper="Sentinel reports your server's & container's health and collects metrics." />
+                        <x-helper helper="Sentinel повідомляє про стан вашого сервера та контейнерів, а також збирає метрики." />
                         @if ($server->isSentinelEnabled())
                             <div class="flex gap-2 items-center">
                                 @if ($server->isSentinelLive())
-                                    <x-status.running status="In sync" noLoading title="{{ $sentinelUpdatedAt }}" />
+                                    <x-status.running status="Синхронізовано" noLoading title="{{ $sentinelUpdatedAt }}" />
                                     <x-forms.button type="submit" canGate="update" :canResource="$server"
-                                        :disabled="$isValidating">Save</x-forms.button>
+                                        :disabled="$isValidating">Зберегти</x-forms.button>
                                     <x-forms.button wire:click='restartSentinel' canGate="update" :canResource="$server"
-                                        :disabled="$isValidating">Restart</x-forms.button>
+                                        :disabled="$isValidating">Перезапустити</x-forms.button>
                                     <x-slide-over fullScreen>
-                                        <x-slot:title>Sentinel Logs</x-slot:title>
+                                        <x-slot:title>Журнали Sentinel</x-slot:title>
                                         <x-slot:content>
                                             <livewire:project.shared.get-logs :server="$server"
                                                 container="coolify-sentinel" displayName="Sentinel" lazy />
                                         </x-slot:content>
                                         <x-forms.button @click="slideOverOpen=true"
-                                            :disabled="$isValidating">Logs</x-forms.button>
+                                            :disabled="$isValidating">Журнали</x-forms.button>
                                     </x-slide-over>
                                 @else
-                                    <x-status.stopped status="Out of sync" noLoading
+                                    <x-status.stopped status="Не синхронізовано" noLoading
                                         title="{{ $sentinelUpdatedAt }}" />
                                     <x-forms.button type="submit" canGate="update" :canResource="$server"
-                                        :disabled="$isValidating">Save</x-forms.button>
+                                        :disabled="$isValidating">Зберегти</x-forms.button>
                                     <x-forms.button wire:click='restartSentinel' canGate="update" :canResource="$server"
-                                        :disabled="$isValidating">Sync</x-forms.button>
+                                        :disabled="$isValidating">Синхронізувати</x-forms.button>
                                     <x-slide-over fullScreen>
-                                        <x-slot:title>Sentinel Logs</x-slot:title>
+                                        <x-slot:title>Журнали Sentinel</x-slot:title>
                                         <x-slot:content>
                                             <livewire:project.shared.get-logs :server="$server"
                                                 container="coolify-sentinel" displayName="Sentinel" lazy />
                                         </x-slot:content>
                                         <x-forms.button @click="slideOverOpen=true"
-                                            :disabled="$isValidating">Logs</x-forms.button>
+                                            :disabled="$isValidating">Журнали</x-forms.button>
                                     </x-slide-over>
                                 @endif
                             </div>
@@ -365,21 +364,21 @@
                     <div class="flex flex-col gap-2">
                         <div class="w-96">
                             <x-forms.checkbox canGate="update" :canResource="$server" wire:model.live="isSentinelEnabled"
-                                label="Enable Sentinel" :disabled="$isValidating" />
+                                label="Увімкнути Sentinel" :disabled="$isValidating" />
                             @if ($server->isSentinelEnabled())
                                 @if (isDev())
                                     <x-forms.checkbox canGate="update" :canResource="$server" id="isSentinelDebugEnabled"
-                                        label="Enable Sentinel (with debug)" instantSave :disabled="$isValidating" />
+                                        label="Увімкнути Sentinel (з налагодженням)" instantSave :disabled="$isValidating" />
                                 @endif
                                 <x-forms.checkbox canGate="update" :canResource="$server" instantSave
-                                    id="isMetricsEnabled" label="Enable Metrics" :disabled="$isValidating" />
+                                    id="isMetricsEnabled" label="Увімкнути метрики" :disabled="$isValidating" />
                             @else
                                 @if (isDev())
-                                    <x-forms.checkbox id="isSentinelDebugEnabled" label="Enable Sentinel (with debug)"
+                                    <x-forms.checkbox id="isSentinelDebugEnabled" label="Увімкнути Sentinel (з налагодженням)"
                                         disabled instantSave />
                                 @endif
                                 <x-forms.checkbox instantSave disabled id="isMetricsEnabled"
-                                    label="Enable Metrics (enable Sentinel first)" />
+                                    label="Увімкнути метрики (спочатку увімкніть Sentinel)" />
                             @endif
                         </div>
                         @if (isDev() && $server->isSentinelEnabled())
@@ -392,35 +391,35 @@
                             }" x-init="$wire.set('sentinelCustomDockerImage', customImage)">
                                 <x-forms.input x-model="customImage" @input.debounce.500ms="saveCustomImage()"
                                     placeholder="e.g., sentinel:latest or myregistry/sentinel:dev"
-                                    label="Custom Sentinel Docker Image (Dev Only)"
-                                    helper="Override the default Sentinel Docker image for testing. Leave empty to use the default." />
+                                    label="Спеціальний образ Docker для Sentinel (лише для розробників)"
+                                    helper="Перевизначити стандартний образ Docker для Sentinel для тестування. Залиште порожнім, щоб використовувати стандартний." />
                             </div>
                         @endif
                         @if ($server->isSentinelEnabled())
                             <div class="flex flex-wrap gap-2 sm:flex-nowrap items-end">
                                 <x-forms.input canGate="update" :canResource="$server" type="password" id="sentinelToken"
-                                    label="Sentinel token" required helper="Token for Sentinel." :disabled="$isValidating" />
+                                    label="Токен Sentinel" required helper="Токен для Sentinel." :disabled="$isValidating" />
                                 <x-forms.button canGate="update" :canResource="$server"
-                                    wire:click="regenerateSentinelToken" :disabled="$isValidating">Regenerate</x-forms.button>
+                                    wire:click="regenerateSentinelToken" :disabled="$isValidating">Згенерувати заново</x-forms.button>
                             </div>
 
                             <x-forms.input canGate="update" :canResource="$server" id="sentinelCustomUrl" required
-                                label="Coolify URL"
-                                helper="URL to your Coolify instance. If it is empty that means you do not have a FQDN set for your Coolify instance."
+                                label="URL Coolify"
+                                helper="URL вашого екземпляра Coolify. Якщо він порожній, це означає, що ви не встановили FQDN для вашого екземпляра Coolify."
                                 :disabled="$isValidating" />
 
                             <div class="flex flex-col gap-2">
                                 <div class="flex flex-wrap gap-2 sm:flex-nowrap">
                                     <x-forms.input canGate="update" :canResource="$server"
-                                        id="sentinelMetricsRefreshRateSeconds" label="Metrics rate (seconds)" required
-                                        helper="Interval used for gathering metrics. Lower values result in more disk space usage."
+                                        id="sentinelMetricsRefreshRateSeconds" label="Частота метрик (секунди)" required
+                                        helper="Інтервал, що використовується для збору метрик. Менші значення призводять до більшого використання дискового простору."
                                         :disabled="$isValidating" />
                                     <x-forms.input canGate="update" :canResource="$server" id="sentinelMetricsHistoryDays"
-                                        label="Metrics history (days)" required
-                                        helper="Number of days to retain metrics data for." :disabled="$isValidating" />
+                                        label="Історія метрик (днів)" required
+                                        helper="Кількість днів для зберігання даних метрик." :disabled="$isValidating" />
                                     <x-forms.input canGate="update" :canResource="$server"
-                                        id="sentinelPushIntervalSeconds" label="Push interval (seconds)" required
-                                        helper="Interval at which metrics data is sent to the collector."
+                                        id="sentinelPushIntervalSeconds" label="Інтервал надсилання (секунди)" required
+                                        helper="Інтервал, через який дані метрик надсилаються збирачу."
                                         :disabled="$isValidating" />
                                 </div>
                             </div>

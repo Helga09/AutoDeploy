@@ -1,21 +1,21 @@
 <div>
-    <h2>Tags</h2>
+    <h2>Теги</h2>
     @can('update', $resource)
         <form wire:submit='submit' class="flex items-end gap-2">
             <div class="w-64">
-                <x-forms.input label="Create new or assign existing tags"
-                    helper="You add more at once with space separated list: web api something<br><br>If the tag does not exists, it will be created."
-                    wire:model="newTags" placeholder="example: prod app1 user" />
+                <x-forms.input label="Створити нові або призначити існуючі теги"
+                    helper="Ви можете додати декілька за раз, розділивши їх пробілами: web api something<br><br>Якщо тег не існує, його буде створено."
+                    wire:model="newTags" placeholder="приклад: prod app1 user" />
             </div>
-            <x-forms.button type="submit">Add</x-forms.button>
+            <x-forms.button type="submit">Додати</x-forms.button>
         </form>
     @else
-        <x-callout type="warning" title="Access Restricted" class="mt-4">
-            You don't have permission to manage tags. Contact your team administrator to request access.
+        <x-callout type="warning" title="Доступ обмежено" class="mt-4">
+            Ви не маєте дозволу на керування тегами. Зверніться до адміністратора вашої команди, щоб запросити доступ.
         </x-callout>
     @endcan
     @if (data_get($this->resource, 'tags') && count(data_get($this->resource, 'tags')) > 0)
-        <h3 class="pt-4">Assigned Tags</h3>
+        <h3 class="pt-4">Призначені теги</h3>
         <div class="flex flex-wrap gap-2 pt-4">
             @foreach (data_get($this->resource, 'tags') as $tagId => $tag)
                 <div class="button">
@@ -34,8 +34,8 @@
     @endif
     @can('update', $resource)
         @if (count($filteredTags) > 0)
-            <h3 class="pt-4">Existing Tags</h3>
-            <div>Click to add quickly</div>
+            <h3 class="pt-4">Існуючі теги</h3>
+            <div>Натисніть, щоб швидко додати</div>
             <div class="flex flex-wrap gap-2 pt-4">
                 @foreach ($filteredTags as $tag)
                     <x-forms.button wire:click="addTag('{{ $tag->id }}','{{ $tag->name }}')">

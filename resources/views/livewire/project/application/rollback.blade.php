@@ -1,12 +1,12 @@
 <div x-init="$wire.loadImages">
     <div class="flex items-center gap-2">
-        <h2>Rollback</h2>
+        <h2>Відкат</h2>
         @can('view', $application)
-            <x-forms.button wire:click='loadImages(true)'>Reload Available Images</x-forms.button>
+            <x-forms.button wire:click='loadImages(true)'>Перезавантажити доступні образи</x-forms.button>
         @endcan
     </div>
-    <div class="pb-4 ">You can easily rollback to a previously built (local) images
-        quickly.</div>
+    <div class="pb-4 ">Ви можете легко відкотитися до раніше зібраних (локальних) образів
+        швидко.</div>
     <div wire:target='loadImages' wire:loading.remove>
         <div class="flex flex-wrap">
             @forelse ($images as $image)
@@ -15,7 +15,7 @@
                         <div class="p-2">
                             <div class="">
                                 @if (data_get($image, 'is_current'))
-                                    <span class="font-bold dark:text-warning">LIVE</span>
+                                    <span class="font-bold dark:text-warning">АКТИВНИЙ</span>
                                     |
                                 @endif
                                 SHA: {{ data_get($image, 'tag') }}
@@ -30,13 +30,13 @@
                         <div class="flex justify-end p-2">
                             @can('deploy', $application)
                                 @if (data_get($image, 'is_current'))
-                                    <x-forms.button disabled tooltip="This image is currently running.">
-                                        Rollback
+                                    <x-forms.button disabled tooltip="Цей образ зараз запущений.">
+                                        Відкат
                                     </x-forms.button>
                                 @else
                                     <x-forms.button class="dark:bg-coolgray-100"
                                         wire:click="rollbackImage('{{ data_get($image, 'tag') }}')">
-                                        Rollback
+                                        Відкат
                                     </x-forms.button>
                                 @endif
                             @endcan
@@ -44,9 +44,9 @@
                     </div>
                 </div>
             @empty
-                <div>No images found locally.</div>
+                <div>Локально не знайдено образів.</div>
             @endforelse
         </div>
     </div>
-    <div wire:target='loadImages' wire:loading>Loading available docker images...</div>
+    <div wire:target='loadImages' wire:loading>Завантаження доступних образів...</div>
 </div>

@@ -1,4 +1,4 @@
-@props(['type' => 'warning', 'title' => 'Warning', 'class' => ''])
+@props(['type' => 'warning', 'title' => 'Попередження', 'class' => ''])
 
 @php
     $icons = [

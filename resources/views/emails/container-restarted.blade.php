@@ -1,9 +1,9 @@
 <x-emails.layout>
-A resource ({{ $containerName }}) has been restarted automatically on {{ $serverName }}, because it was stopped unexpectedly.
+Ресурс ({{ $containerName }}) був автоматично перезапущений на {{ $serverName }}, оскільки він був несподівано зупинений.
 
 @if ($containerName === 'coolify-proxy')
-Coolify Proxy should run on your server as you have FQDNs set up in one of your resources.
+Coolify Proxy має працювати на вашому сервері, оскільки ви налаштували FQDN в одному з ваших ресурсів.
 
-If you don't want to use Coolify Proxy, please remove FQDN from your resources or set Proxy type to Custom(None).
+Якщо ви не бажаєте використовувати Coolify Proxy, будь ласка, видаліть FQDN зі своїх ресурсів або встановіть тип проксі на Користувацький (Немає).
 @endif
 </x-emails.layout>

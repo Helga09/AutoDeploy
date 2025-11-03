@@ -1,3 +1,3 @@
 <x-emails.layout>
-If you do not like to receive these emails, you can unsubscribe [here]({{ $unsubscribeUrl }}).
+Якщо ви не бажаєте отримувати ці листи, ви можете відписатися [тут]({{ $unsubscribeUrl }}).
 </x-emails.layout>

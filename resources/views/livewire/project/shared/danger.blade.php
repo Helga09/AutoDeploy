@@ -1,18 +1,18 @@
 <div>
-    <h2>Danger Zone</h2>
-    <div class="">Woah. I hope you know what are you doing.</div>
-    <h4 class="pt-4">Delete Resource</h4>
-    <div class="pb-4">This will stop your containers, delete all related data, etc. Beware! There is no coming back!
+    <h2>Небезпечна зона</h2>
+    <div class="">Ого. Сподіваюся, ви знаєте, що робите.</div>
+    <h4 class="pt-4">Видалити ресурс</h4>
+    <div class="pb-4">Це зупинить ваші контейнери, видалить усі пов'язані дані тощо. Обережно! Повернути нічого буде неможливо!
     </div>
 
     @if ($canDelete)
-        <x-modal-confirmation title="Confirm Resource Deletion?" buttonTitle="Delete" isErrorButton submitAction="delete"
-            buttonTitle="Delete" :checkboxes="$checkboxes" :actions="['Permanently delete all containers of this resource.']" confirmationText="{{ $resourceName }}"
-            confirmationLabel="Please confirm the execution of the actions by entering the Resource Name below"
-            shortConfirmationLabel="Resource Name" />
+        <x-modal-confirmation title="Підтвердити видалення ресурсу?" buttonTitle="Видалити" isErrorButton submitAction="delete"
+            buttonTitle="Видалити" :checkboxes="$checkboxes" :actions="['Безповоротно видалити всі контейнери цього ресурсу.']" confirmationText="{{ $resourceName }}"
+            confirmationLabel="Будь ласка, підтвердьте виконання дій, ввівши назву ресурсу нижче"
+            shortConfirmationLabel="Назва ресурсу" />
     @else
-        <x-callout type="danger" title="Insufficient Permissions">
-            You don't have permission to delete this resource. Contact your team administrator for access.
+        <x-callout type="danger" title="Недостатньо дозволів">
+            У вас немає дозволу на видалення цього ресурсу. Зверніться до адміністратора вашої команди для отримання доступу.
         </x-callout>
     @endif
 </div>

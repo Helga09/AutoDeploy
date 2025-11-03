@@ -1,13 +1,13 @@
 <x-emails.layout>
-Failed to check for package updates on your server {{ $name }}.
+Не вдалося перевірити оновлення пакетів на вашому сервері {{ $name }}.
 
-## Error Details
+## Деталі помилки
 
-- Operating System: {{ ucfirst($osId) }}
-- Package Manager: {{ $package_manager }}
-- Error: {{ $error }}
+- Операційна система: {{ ucfirst($osId) }}
+- Менеджер пакетів: {{ $package_manager }}
+- Помилка: {{ $error }}
 
 ---
 
-You can manage your server and view more details in your [Coolify Dashboard]({{ $server_url }}).
+Ви можете керувати своїм сервером та переглядати більше деталей у [Панелі керування Coolify]({{ $server_url }}).
 </x-emails.layout>

@@ -1,31 +1,30 @@
 @can('create', App\Models\S3Storage::class)
     <div class="w-full">
-        <div class="mb-4">For more details, please visit the <a class="underline dark:text-warning"
-                href="https://coolify.io/docs/knowledge-base/s3/introduction" target="_blank">Coolify Docs</a>.</div>
+        <div class="mb-4">Для отримання додаткової інформації, будь ласка, відвідайте <a class="underline dark:text-warning"
+                href="https://coolify.io/docs/knowledge-base/s3/introduction" target="_blank">Документацію Coolify</a>.</div>
         <form class="flex flex-col gap-2" wire:submit='submit'>
             <div class="flex gap-2">
-                <x-forms.input required label="Name" id="name" />
-                <x-forms.input label="Description" id="description" />
+                <x-forms.input required label="Назва" id="name" />
+                <x-forms.input label="Опис" id="description" />
             </div>
-            <x-forms.input required type="url" label="Endpoint" wire:model.blur="endpoint" />
+            <x-forms.input required type="url" label="Кінцева точка" wire:model.blur="endpoint" />
             <div class="flex gap-2">
-                <x-forms.input required label="Bucket" id="bucket" />
-                <x-forms.input required helper="Region only required for AWS. Leave it as-is for other providers."
-                    label="Region" id="region" />
+                <x-forms.input required label="Бакет" id="bucket" />
+                <x-forms.input required helper="Регіон потрібен лише для AWS. Залиште як є для інших провайдерів."
+                    label="Регіон" id="region" />
             </div>
             <div class="flex gap-2">
-                <x-forms.input required type="password" label="Access Key" id="key" />
-                <x-forms.input required type="password" label="Secret Key" id="secret" />
+                <x-forms.input required type="password" label="Ключ доступу" id="key" />
+                <x-forms.input required type="password" label="Секретний ключ" id="secret" />
             </div>
 
             <x-forms.button class="mt-4" type="submit">
-                Validate Connection & Continue
+                Перевірити з'єднання та продовжити
             </x-forms.button>
         </form>
     </div>
 @else
-    <x-callout type="warning" title="Permission Required">
-        You don't have permission to create new S3 storage configurations. Please contact your team administrator for
-        access.
+    <x-callout type="warning" title="Потрібен дозвіл">
+        У вас немає дозволу на створення нових конфігурацій сховища S3. Будь ласка, зв'яжіться з адміністратором вашої команди для отримання доступу.
     </x-callout>
 @endcan

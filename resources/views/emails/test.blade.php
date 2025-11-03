@@ -1,3 +1,3 @@
 <x-emails.layout>
-If you are seeing this, it means that your Email settings are correct.
+Якщо ви це бачите, це означає, що ваші налаштування електронної пошти правильні.
 </x-emails.layout>

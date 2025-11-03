@@ -1,7 +1,7 @@
 <div wire:init='refreshBackupExecutions'>
     @isset($backup)
         <div class="flex items-center gap-2">
-            <h3 class="py-4">Executions <span class="text-xs">({{ $executions_count }})</span></h3>
+            <h3 class="py-4">Виконання <span class="text-xs">({{ $executions_count }})</span></h3>
             @if ($executions_count > 0)
                 <div class="flex items-center gap-2">
                     <x-forms.button disabled="{{ !$showPrev }}" wire:click="previousPage('{{ $defaultTake }}')">
@@ -11,7 +11,7 @@
                         </svg>
                     </x-forms.button>
                     <span class="text-sm text-gray-600 dark:text-gray-400 px-2">
-                        Page {{ $currentPage }} of {{ ceil($executions_count / $defaultTake) }}
+                        Сторінка {{ $currentPage }} з {{ ceil($executions_count / $defaultTake) }}
                     </span>
                     <x-forms.button disabled="{{ !$showNext }}" wire:click="nextPage('{{ $defaultTake }}')">
                         <svg class="w-4 h-4" viewBox="0 0 24 24">
@@ -21,13 +21,13 @@
                     </x-forms.button>
                 </div>
             @endif
-            <x-forms.button wire:click='cleanupFailed'>Cleanup Failed Backups</x-forms.button>
-            <x-modal-confirmation title="Cleanup Deleted Backup Entries?" buttonTitle="Cleanup Deleted" isErrorButton
+            <x-forms.button wire:click='cleanupFailed'>Очистити невдалі резервні копії</x-forms.button>
+            <x-modal-confirmation title="Очистити видалені записи резервних копій?" buttonTitle="Очистити видалені" isErrorButton
                 submitAction="cleanupDeleted()" 
-                :actions="['This will permanently delete all backup execution entries that are marked as deleted from local storage.', 'This only removes database entries, not actual backup files.']" 
+                :actions="['Це назавжди видалить усі записи виконання резервних копій, які позначені як видалені з локального сховища.', 'Це видаляє лише записи з бази даних, а не фактичні файли резервних копій.']" 
                 confirmationText="cleanup deleted backups"
-                confirmationLabel="Please confirm by typing 'cleanup deleted backups' below"
-                shortConfirmationLabel="Confirmation" />
+                confirmationLabel="Будь ласка, підтвердьте, ввівши 'cleanup deleted backups' нижче"
+                shortConfirmationLabel="Підтвердження" />
         </div>
         <div @if (!$skip) wire:poll.5000ms="refreshBackupExecutions" @endif
             class="flex flex-col gap-4">
@@ -58,9 +58,9 @@
                         ])>
                             @php
                                 $statusText = match (data_get($execution, 'status')) {
-                                    'success' => data_get($execution, 's3_uploaded') === false ? 'Success (S3 Warning)' : 'Success',
-                                    'running' => 'In Progress',
-                                    'failed' => 'Failed',
+                                    'success' => data_get($execution, 's3_uploaded') === false ? 'Успішно (попередження S3)' : 'Успішно',
+                                    'running' => 'Виконується',
+                                    'failed' => 'Невдало',
                                     default => ucfirst(data_get($execution, 'status')),
                                 };
                             @endphp
@@ -68,29 +68,29 @@
                         </span>
                     </div>
                     <div class="text-gray-600 dark:text-gray-400 text-sm">
-                        Started: {{ formatDateInServerTimezone(data_get($execution, 'created_at'), $this->server()) }}
+                        Початок: {{ formatDateInServerTimezone(data_get($execution, 'created_at'), $this->server()) }}
                         @if (data_get($execution, 'status') !== 'running')
-                            <br>Ended:
+                            <br>Кінець:
                             {{ formatDateInServerTimezone(data_get($execution, 'finished_at'), $this->server()) }}
-                            <br>Duration:
+                            <br>Тривалість:
                             {{ calculateDuration(data_get($execution, 'created_at'), data_get($execution, 'finished_at')) }}
-                            <br>Finished {{ \Carbon\Carbon::parse(data_get($execution, 'finished_at'))->diffForHumans() }}
+                            <br>Завершено {{ \Carbon\Carbon::parse(data_get($execution, 'finished_at'))->diffForHumans() }}
                         @endif
                     </div>
                     <div class="text-gray-600 dark:text-gray-400 text-sm">
-                        Database: {{ data_get($execution, 'database_name', 'N/A') }}
+                        База даних: {{ data_get($execution, 'database_name', 'Н/Д') }}
                     </div>
                     <div class="text-gray-600 dark:text-gray-400 text-sm">
-                        Size: {{ data_get($execution, 'size') }} B /
-                        {{ round((int) data_get($execution, 'size') / 1024, 2) }} kB /
-                        {{ round((int) data_get($execution, 'size') / 1024 / 1024, 3) }} MB
+                        Розмір: {{ data_get($execution, 'size') }} Б /
+                        {{ round((int) data_get($execution, 'size') / 1024, 2) }} кБ /
+                        {{ round((int) data_get($execution, 'size') / 1024 / 1024, 3) }} МБ
                     </div>
                     <div class="text-gray-600 dark:text-gray-400 text-sm">
-                        Location: {{ data_get($execution, 'filename', 'N/A') }}
+                        Розташування: {{ data_get($execution, 'filename', 'Н/Д') }}
                     </div>
                     <div class="flex items-center gap-3 mt-2">
                         <div class="text-gray-600 dark:text-gray-400 text-sm">
-                            Backup Availability:
+                            Доступність резервної копії:
                         </div>
                         <span @class([
                             'px-2 py-1 rounded-sm text-xs font-medium',
@@ -119,7 +119,7 @@
                                             clip-rule="evenodd"></path>
                                     </svg>
                                 @endif
-                                Local Storage
+                                Локальне сховище
                             </span>
                         </span>
                         @if (data_get($execution, 's3_uploaded') !== null)
@@ -145,7 +145,7 @@
                                                 clip-rule="evenodd"></path>
                                         </svg>
                                     @endif
-                                    S3 Storage
+                                    S3 сховище
                                 </span>
                             </span>
                         @endif
@@ -158,33 +158,33 @@
                     <div class="flex gap-2 mt-4">
                         @if (data_get($execution, 'status') === 'success')
                             <x-forms.button class="dark:hover:bg-coolgray-400"
-                                x-on:click="download_file('{{ data_get($execution, 'id') }}')">Download</x-forms.button>
+                                x-on:click="download_file('{{ data_get($execution, 'id') }}')">Завантажити</x-forms.button>
                         @endif
                         @php
                             $executionCheckboxes = [];
                             $deleteActions = [];
 
                             if (!data_get($execution, 'local_storage_deleted', false)) {
-                                $deleteActions[] = 'This backup will be permanently deleted from local storage.';
+                                $deleteActions[] = 'Ця резервна копія буде назавжди видалена з локального сховища.';
                             }
 
                             if (data_get($execution, 's3_uploaded') === true && !data_get($execution, 's3_storage_deleted', false)) {
-                                $executionCheckboxes[] = ['id' => 'delete_backup_s3', 'label' => 'Delete the selected backup permanently from S3 Storage'];
+                                $executionCheckboxes[] = ['id' => 'delete_backup_s3', 'label' => 'Видалити вибрану резервну копію назавжди з S3 сховища'];
                             }
 
                             if (empty($deleteActions)) {
-                                $deleteActions[] = 'This backup execution record will be deleted.';
+                                $deleteActions[] = 'Цей запис виконання резервної копії буде видалено.';
                             }
                         @endphp
-                        <x-modal-confirmation title="Confirm Backup Deletion?" buttonTitle="Delete" isErrorButton
+                        <x-modal-confirmation title="Підтвердити видалення резервної копії?" buttonTitle="Видалити" isErrorButton
                             submitAction="deleteBackup({{ data_get($execution, 'id') }})" :checkboxes="$executionCheckboxes"
                             :actions="$deleteActions" confirmationText="{{ data_get($execution, 'filename') }}"
-                            confirmationLabel="Please confirm the execution of the actions by entering the Backup Filename below"
-                            shortConfirmationLabel="Backup Filename" 1 />
+                            confirmationLabel="Будь ласка, підтвердьте виконання дій, ввівши ім'я файлу резервної копії нижче"
+                            shortConfirmationLabel="Ім'я файлу резервної копії" 1 />
                     </div>
                 </div>
             @empty
-                <div class="p-4 bg-gray-100 dark:bg-coolgray-100 rounded-sm">No executions found.</div>
+                <div class="p-4 bg-gray-100 dark:bg-coolgray-100 rounded-sm">Виконання не знайдено.</div>
             @endforelse
         </div>
         <script>

@@ -1,25 +1,25 @@
 <x-emails.layout>
-{{ $total_updates }} package updates are available for your server {{ $name }}.
+Для вашого сервера {{ $name }} доступні {{ $total_updates }} оновлення пакетів.
 
-## Summary
+## Підсумок
 
-- Operating System: {{ ucfirst($osId) }}
-- Package Manager: {{ $package_manager }}
-- Total Updates: {{ $total_updates }}
+- Операційна система: {{ ucfirst($osId) }}
+- Менеджер пакетів: {{ $package_manager }}
+- Всього оновлень: {{ $total_updates }}
 
-## Available Updates
+## Доступні оновлення
 
 @if ($total_updates > 0)
 @foreach ($updates as $update)
 
-Package: {{ $update['package'] }} ({{ $update['architecture'] }}), from version {{ $update['current_version'] }} to {{ $update['new_version'] }} at repository {{ $update['repository'] ?? 'Unknown' }}
+Пакет: {{ $update['package'] }} ({{ $update['architecture'] }}), з версії {{ $update['current_version'] }} до {{ $update['new_version'] }} у репозиторії {{ $update['repository'] ?? 'Невідомо' }}
 @endforeach
 
-## Security Considerations
+## Міркування безпеки
 
-Some of these updates may include important security patches. We recommend reviewing and applying these updates promptly.
+Деякі з цих оновлень можуть містити важливі виправлення безпеки. Ми рекомендуємо якнайшвидше переглянути та застосувати ці оновлення.
 
-### Critical packages that may require container/server/service restarts:
+### Критичні пакети, які можуть вимагати перезапуску контейнера/сервера/сервісу:
 @php
 $criticalPackages = collect($updates)->filter(function ($update) {
                 return str_contains(strtolower($update['package']), 'docker') ||
@@ -34,20 +34,20 @@ $criticalPackages = collect($updates)->filter(function ($update) {
 - {{ $package['package'] }}: {{ $package['current_version'] }} → {{ $package['new_version'] }}
 @endforeach
 @else
-No critical packages requiring container restarts detected.
+Критичних пакетів, які вимагають перезапуску контейнера, не виявлено.
 @endif
 
-## Next Steps
+## Наступні кроки
 
-1. Review the available updates
-2. Plan maintenance window if critical packages are involved
-3. Apply updates through the Coolify dashboard
-4. Monitor services after updates are applied
+1. Перегляньте доступні оновлення
+2. Заплануйте вікно технічного обслуговування, якщо задіяні критичні пакети
+3. Застосуйте оновлення через панель керування Coolify
+4. Контролюйте сервіси після застосування оновлень
 @else
-Your server is up to date! No packages require updating at this time.
+Ваш сервер оновлено! Наразі жодні пакети не потребують оновлення.
 @endif
 
 ---
 
-You can manage server patches in your [Coolify Dashboard]({{ $server_url }}).
+Ви можете керувати виправленнями сервера на вашій [Панелі керування Coolify]({{ $server_url }}).
 </x-emails.layout>

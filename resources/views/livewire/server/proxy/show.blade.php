@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Proxy Configuration | Coolify
+        Налаштування проксі | Coolify
     </x-slot>
     <livewire:server.navbar :server="$server" />
     @if ($server->isFunctional())
@@ -11,6 +11,6 @@
             </div>
         </div>
     @else
-        <div>Server is not validated. Validate first.</div>
+        <div>Сервер не перевірений. Спочатку перевірте.</div>
     @endif
 </div>

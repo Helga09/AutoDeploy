@@ -1,9 +1,9 @@
 <x-emails.layout>
-Scheduled task ({{ $task->name }}) completed successfully with the following output:
+Заплановане завдання ({{ $task->name }}) успішно завершено з наступним виводом:
 
 <pre>
 {{ $output }}
 </pre>
 
-Click [here]({{ $url }}) to view the task.
+Натисніть [тут]({{ $url }}) щоб переглянути завдання.
 </x-emails.layout>

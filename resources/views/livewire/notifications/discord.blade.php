@@ -1,85 +1,85 @@
 <div>
     <x-slot:title>
-        Notifications | Coolify
+        Сповіщення | Coolify
     </x-slot>
     <x-notification.navbar />
     <form wire:submit='submit' class="flex flex-col gap-4 pb-4">
         <div class="flex items-center gap-2">
             <h2>Discord</h2>
             <x-forms.button canGate="update" :canResource="$settings" type="submit">
-                Save
+                Зберегти
             </x-forms.button>
             @if ($discordEnabled)
                 <x-forms.button canGate="sendTest" :canResource="$settings" class="normal-case dark:text-white btn btn-xs no-animation btn-primary"
                     wire:click="sendTestNotification">
-                    Send Test Notification
+                    Надіслати тестове сповіщення
                 </x-forms.button>
             @else
                 <x-forms.button canGate="sendTest" :canResource="$settings" disabled class="normal-case dark:text-white btn btn-xs no-animation btn-primary">
-                    Send Test Notification
+                    Надіслати тестове сповіщення
                 </x-forms.button>
             @endif
         </div>
         <div class="w-48">
-            <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="instantSaveDiscordEnabled" id="discordEnabled" label="Enabled" />
+            <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="instantSaveDiscordEnabled" id="discordEnabled" label="Увімкнено" />
             <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="instantSaveDiscordPingEnabled" id="discordPingEnabled"
-                helper="If enabled, a ping (@here) will be sent to the notification when a critical event happens."
-                label="Ping Enabled" />
+                helper="Якщо увімкнено, пінг (@here) буде надіслано до сповіщення, коли станеться критична подія."
+                label="Пінг увімкнено" />
         </div>
         <x-forms.input canGate="update" :canResource="$settings" type="password"
-            helper="Create a Discord Server and generate a Webhook URL. <br><a class='inline-block underline dark:text-white' href='https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks' target='_blank'>Webhook Documentation</a>"
-            required id="discordWebhookUrl" label="Webhook" />
+            helper="Створіть Discord-сервер та згенеруйте URL вебхука. <br><a class='inline-block underline dark:text-white' href='https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks' target='_blank'>Документація по вебхуках</a>"
+            required id="discordWebhookUrl" label="Вебхук" />
     </form>
-    <h2 class="mt-4">Notification Settings</h2>
+    <h2 class="mt-4">Налаштування сповіщень</h2>
     <p class="mb-4">
-        Select events for which you would like to receive Discord notifications.
+        Виберіть події, для яких ви бажаєте отримувати сповіщення Discord.
     </p>
     <div class="flex flex-col gap-4 max-w-2xl">
         <div class="border dark:border-coolgray-300 border-neutral-200 p-4 rounded-lg">
-            <h3 class="font-medium mb-3">Deployments</h3>
+            <h3 class="font-medium mb-3">Розгортання</h3>
             <div class="flex flex-col gap-1.5 pl-1">
                 <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="saveModel" id="deploymentSuccessDiscordNotifications"
-                    label="Deployment Success" />
+                    label="Успішне розгортання" />
                 <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="saveModel" id="deploymentFailureDiscordNotifications"
-                    label="Deployment Failure" />
+                    label="Невдале розгортання" />
                 <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="saveModel"
-                    helper="Send a notification when a container status changes. It will notify for Stopped and Restarted events of a container."
-                    id="statusChangeDiscordNotifications" label="Container Status Changes" />
+                    helper="Надсилати сповіщення, коли змінюється статус контейнера. Буде сповіщати про зупинені та перезапущені події контейнера."
+                    id="statusChangeDiscordNotifications" label="Зміни статусу контейнера" />
             </div>
         </div>
         <div class="border dark:border-coolgray-300 border-neutral-200 p-4 rounded-lg">
-            <h3 class="font-medium mb-3">Backups</h3>
+            <h3 class="font-medium mb-3">Резервні копії</h3>
             <div class="flex flex-col gap-1.5 pl-1">
                 <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="saveModel" id="backupSuccessDiscordNotifications"
-                    label="Backup Success" />
+                    label="Успішне резервне копіювання" />
                 <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="saveModel" id="backupFailureDiscordNotifications"
-                    label="Backup Failure" />
+                    label="Невдале резервне копіювання" />
             </div>
         </div>
         <div class="border dark:border-coolgray-300 border-neutral-200 p-4 rounded-lg">
-            <h3 class="font-medium mb-3">Scheduled Tasks</h3>
+            <h3 class="font-medium mb-3">Заплановані завдання</h3>
             <div class="flex flex-col gap-1.5 pl-1">
                 <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="saveModel" id="scheduledTaskSuccessDiscordNotifications"
-                    label="Scheduled Task Success" />
+                    label="Успішне заплановане завдання" />
                 <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="saveModel" id="scheduledTaskFailureDiscordNotifications"
-                    label="Scheduled Task Failure" />
+                    label="Невдале заплановане завдання" />
             </div>
         </div>
         <div class="border dark:border-coolgray-300 border-neutral-200 p-4 rounded-lg">
-            <h3 class="font-medium mb-3">Server</h3>
+            <h3 class="font-medium mb-3">Сервер</h3>
             <div class="flex flex-col gap-1.5 pl-1">
                 <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="saveModel" id="dockerCleanupSuccessDiscordNotifications"
-                    label="Docker Cleanup Success" />
+                    label="Успішне очищення Docker" />
                 <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="saveModel" id="dockerCleanupFailureDiscordNotifications"
-                    label="Docker Cleanup Failure" />
+                    label="Невдале очищення Docker" />
                 <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="saveModel" id="serverDiskUsageDiscordNotifications"
-                    label="Server Disk Usage" />
+                    label="Використання диска сервера" />
                 <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="saveModel" id="serverReachableDiscordNotifications"
-                    label="Server Reachable" />
+                    label="Сервер доступний" />
                 <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="saveModel" id="serverUnreachableDiscordNotifications"
-                    label="Server Unreachable" />
+                    label="Сервер недоступний" />
                 <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="saveModel" id="serverPatchDiscordNotifications"
-                    label="Server Patching" />
+                    label="Оновлення сервера" />
             </div>
         </div>
     </div>

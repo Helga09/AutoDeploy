@@ -5,57 +5,57 @@
             @if ($selectedProxy !== 'NONE')
                 <form wire:submit='submit'>
                     <div class="flex items-center gap-2">
-                        <h2>Configuration</h2>
+                        <h2>Конфігурація</h2>
                         @if ($server->proxy->status === 'exited' || $server->proxy->status === 'removing')
                             @can('update', $server)
-                                <x-modal-confirmation title="Confirm Proxy Switching?" buttonTitle="Switch Proxy"
-                                    submitAction="changeProxy" :actions="['Custom proxy configurations may be reset to their default settings.']"
-                                    warningMessage="This operation may cause issues. Please refer to the guide <a href='https://coolify.io/docs/knowledge-base/server/proxies#switch-between-proxies' target='_blank' class='underline text-white'>switching between proxies</a> before proceeding!"
-                                    step2ButtonText="Switch Proxy" :confirmWithText="false" :confirmWithPassword="false">
+                                <x-modal-confirmation title="Підтвердити перемикання проксі?" buttonTitle="Перемкнути проксі"
+                                    submitAction="changeProxy" :actions="['Користувацькі конфігурації проксі можуть бути скинуті до налаштувань за замовчуванням.']"
+                                    warningMessage="Ця операція може спричинити проблеми. Будь ласка, зверніться до посібника <a href='https://coolify.io/docs/knowledge-base/server/proxies#switch-between-proxies' target='_blank' class='underline text-white'>перемикання між проксі</a> перед продовженням!"
+                                    step2ButtonText="Перемкнути проксі" :confirmWithText="false" :confirmWithPassword="false">
                                 </x-modal-confirmation>
                             @endcan
                         @else
                             <x-forms.button canGate="update" :canResource="$server"
-                                wire:click="$dispatch('error', 'Currently running proxy must be stopped before switching proxy')">Switch
-                                Proxy</x-forms.button>
+                                wire:click="$dispatch('error', 'Поточний проксі повинен бути зупинений перед перемиканням')">Перемкнути
+                                проксі</x-forms.button>
                         @endif
-                        <x-forms.button canGate="update" :canResource="$server" type="submit">Save</x-forms.button>
+                        <x-forms.button canGate="update" :canResource="$server" type="submit">Зберегти</x-forms.button>
                     </div>
-                    <div class="subtitle">Configure your proxy settings and advanced options.</div>
-                    <h3>Advanced</h3>
+                    <div class="subtitle">Налаштуйте параметри проксі та розширені опції.</div>
+                    <h3>Розширені</h3>
                     <div class="pb-6 w-96">
                         <x-forms.checkbox canGate="update" :canResource="$server"
-                            helper="If set, all resources will only have docker container labels for {{ str($server->proxyType())->title() }}.<br>For applications, labels needs to be regenerated manually. <br>Resources needs to be restarted."
+                            helper="Якщо встановлено, усі ресурси матимуть мітки контейнерів Docker лише для {{ str($server->proxyType())->title() }}.<br>Для програм мітки потрібно генерувати вручну. <br>Ресурси потрібно перезапустити."
                             id="generateExactLabels"
-                            label="Generate labels only for {{ str($server->proxyType())->title() }}" instantSave />
+                            label="Генерувати мітки лише для {{ str($server->proxyType())->title() }}" instantSave />
                         <x-forms.checkbox canGate="update" :canResource="$server" instantSave="instantSaveRedirect"
-                            id="redirectEnabled" label="Override default request handler"
-                            helper="Requests to unknown hosts or stopped services will receive a 503 response or be redirected to the URL you set below (need to enable this first)." />
+                            id="redirectEnabled" label="Перевизначити обробник запитів за замовчуванням"
+                            helper="Запити до невідомих хостів або зупинених служб отримають відповідь 503 або будуть перенаправлені на URL-адресу, яку ви встановили нижче (потрібно спочатку увімкнути)." />
                         @if ($redirectEnabled)
                             <x-forms.input canGate="update" :canResource="$server" placeholder="https://app.coolify.io"
-                                id="redirectUrl" label="Redirect to (optional)" />
+                                id="redirectUrl" label="Перенаправити на (необов'язково)" />
                         @endif
                     </div>
                     @php
                         $proxyTitle =
                             $server->proxyType() === ProxyTypes::TRAEFIK->value
-                                ? 'Traefik (Coolify Proxy)'
-                                : 'Caddy (Coolify Proxy)';
+                                ? 'Traefik (Проксі Coolify)'
+                                : 'Caddy (Проксі Coolify)';
                     @endphp
                     @if ($server->proxyType() === ProxyTypes::TRAEFIK->value || $server->proxyType() === 'CADDY')
                         <div class="flex items-center gap-2">
                             <h3>{{ $proxyTitle }}</h3>
                             @if ($proxySettings)
                                 @can('update', $server)
-                                    <x-modal-confirmation title="Reset Proxy Configuration?"
-                                        buttonTitle="Reset Configuration" submitAction="resetProxyConfiguration"
+                                    <x-modal-confirmation title="Скинути конфігурацію проксі?"
+                                        buttonTitle="Скинути конфігурацію" submitAction="resetProxyConfiguration"
                                         :actions="[
-                                            'Reset proxy configuration to default settings',
-                                            'All custom configurations will be lost',
-                                            'Custom ports and entrypoints will be removed',
+                                            'Скинути конфігурацію проксі до налаштувань за замовчуванням',
+                                            'Усі користувацькі конфігурації будуть втрачені',
+                                            'Користувацькі порти та точки входу будуть видалені',
                                         ]" confirmationText="{{ $server->name }}"
-                                        confirmationLabel="Please confirm by entering the server name below"
-                                        shortConfirmationLabel="Server Name" step2ButtonText="Reset Configuration"
+                                        confirmationLabel="Будь ласка, підтвердіть, ввівши назву сервера нижче"
+                                        shortConfirmationLabel="Назва сервера" step2ButtonText="Скинути конфігурацію"
                                         :confirmWithPassword="false" :confirmWithText="true">
                                     </x-modal-confirmation>
                                 @endcan
@@ -65,19 +65,19 @@
                     @if (
                         $server->proxy->last_applied_settings &&
                             $server->proxy->last_saved_settings !== $server->proxy->last_applied_settings)
-                        <div class="text-red-500 ">Configuration out of sync. Restart the proxy to apply the new
-                            configurations.
+                        <div class="text-red-500 ">Конфігурація не синхронізована. Перезапустіть проксі, щоб застосувати нові
+                            конфігурації.
                         </div>
                     @endif
                     <div wire:loading wire:target="loadProxyConfiguration" class="pt-4">
-                        <x-loading text="Loading proxy configuration..." />
+                        <x-loading text="Завантаження конфігурації проксі..." />
                     </div>
                     <div wire:loading.remove wire:target="loadProxyConfiguration">
                         @if ($proxySettings)
                             <div class="flex flex-col gap-2 pt-2">
                                 <x-forms.textarea canGate="update" :canResource="$server" useMonacoEditor
                                     monacoEditorLanguage="yaml"
-                                    label="Configuration file ( {{ $this->configurationFilePath }} )"
+                                    label="Файл конфігурації ( {{ $this->configurationFilePath }} )"
                                     name="proxySettings" id="proxySettings" rows="30" />
                             </div>
                         @endif
@@ -85,28 +85,28 @@
                 </form>
             @elseif($selectedProxy === 'NONE')
                 <div class="flex items-center gap-2">
-                    <h2>Configuration</h2>
+                    <h2>Конфігурація</h2>
                     @can('update', $server)
-                        <x-forms.button wire:click.prevent="changeProxy">Switch Proxy</x-forms.button>
+                        <x-forms.button wire:click.prevent="changeProxy">Перемкнути проксі</x-forms.button>
                     @endcan
                 </div>
-                <div class="pt-2 pb-4">Custom (None) Proxy Selected</div>
+                <div class="pt-2 pb-4">Вибрано спеціальний проксі (Немає)</div>
             @else
                 <div class="flex items-center gap-2">
-                    <h2>Configuration</h2>
+                    <h2>Конфігурація</h2>
                     @can('update', $server)
-                        <x-forms.button wire:click.prevent="changeProxy">Switch Proxy</x-forms.button>
+                        <x-forms.button wire:click.prevent="changeProxy">Перемкнути проксі</x-forms.button>
                     @endcan
                 </div>
             @endif
         @else
             <div>
-                <h2>Configuration</h2>
-                <div class="subtitle">Select a proxy you would like to use on this server.</div>
+                <h2>Конфігурація</h2>
+                <div class="subtitle">Оберіть проксі, який ви хочете використовувати на цьому сервері.</div>
                 @can('update', $server)
                     <div class="grid gap-4">
                         <x-forms.button class="box" wire:click="selectProxy('NONE')">
-                            Custom (None)
+                            Спеціальний (Немає)
                         </x-forms.button>
                         <x-forms.button class="box" wire:click="selectProxy('TRAEFIK')">
                             Traefik
@@ -119,8 +119,8 @@
                         </x-forms.button> --}}
                     </div>
                 @else
-                    <x-callout type="warning" title="Permission Required" class="mb-4">
-                        You don't have permission to configure proxy settings for this server.
+                    <x-callout type="warning" title="Потрібен дозвіл" class="mb-4">
+                        У вас немає дозволу на налаштування параметрів проксі для цього сервера.
                     </x-callout>
                 @endcan
             </div>

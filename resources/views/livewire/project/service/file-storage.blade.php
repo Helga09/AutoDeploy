@@ -3,16 +3,16 @@
         @if ($isReadOnly)
             <div class="w-full p-2 text-sm rounded bg-warning/10 text-warning">
                 @if ($fileStorage->is_directory)
-                    This directory is mounted as read-only and cannot be modified from the UI.
+                    Цей каталог змонтований як тільки для читання та не може бути змінений через інтерфейс.
                 @else
-                    This file is mounted as read-only and cannot be modified from the UI.
+                    Цей файл змонтований як тільки для читання та не може бути змінений через інтерфейс.
                 @endif
             </div>
         @endif
         <div class="flex flex-col justify-center text-sm select-text">
             <div class="flex gap-2  md:flex-row flex-col">
-                <x-forms.input label="Source Path" :value="$fileStorage->fs_path" readonly />
-                <x-forms.input label="Destination Path" :value="$fileStorage->mount_path" readonly />
+                <x-forms.input label="Шлях джерела" :value="$fileStorage->fs_path" readonly />
+                <x-forms.input label="Шлях призначення" :value="$fileStorage->mount_path" readonly />
             </div>
         </div>
         <form wire:submit='submit' class="flex flex-col gap-2">
@@ -20,38 +20,38 @@
                 @can('update', $resource)
                     <div class="flex gap-2">
                         @if ($fileStorage->is_directory)
-                            <x-modal-confirmation :ignoreWire="false" title="Confirm Directory Conversion to File?"
-                                buttonTitle="Convert to file" submitAction="convertToFile" :actions="[
-                                    'All files in this directory will be permanently deleted and an empty file will be created in its place.',
+                            <x-modal-confirmation :ignoreWire="false" title="Підтвердити перетворення каталогу у файл?"
+                                buttonTitle="Перетворити у файл" submitAction="convertToFile" :actions="[
+                                    'Усі файли в цьому каталозі будуть безповоротно видалені, а на їх місці буде створено порожній файл.',
                                 ]"
                                 confirmationText="{{ $fs_path }}"
-                                confirmationLabel="Please confirm the execution of the actions by entering the Filepath below"
-                                shortConfirmationLabel="Filepath" :confirmWithPassword="false" step2ButtonText="Convert to file" />
-                            <x-modal-confirmation :ignoreWire="false" title="Confirm Directory Deletion?" buttonTitle="Delete"
+                                confirmationLabel="Будь ласка, підтвердьте виконання дій, ввівши шлях до файлу нижче"
+                                shortConfirmationLabel="Шлях до файлу" :confirmWithPassword="false" step2ButtonText="Перетворити у файл" />
+                            <x-modal-confirmation :ignoreWire="false" title="Підтвердити видалення каталогу?" buttonTitle="Видалити"
                                 isErrorButton submitAction="delete" :checkboxes="$directoryDeletionCheckboxes" :actions="[
-                                    'The selected directory and all its contents will be permanently deleted from the container.',
+                                    'Вибраний каталог та весь його вміст буде безповоротно видалено з контейнера.',
                                 ]"
                                 confirmationText="{{ $fs_path }}"
-                                confirmationLabel="Please confirm the execution of the actions by entering the Filepath below"
-                                shortConfirmationLabel="Filepath" />
+                                confirmationLabel="Будь ласка, підтвердьте виконання дій, ввівши шлях до файлу нижче"
+                                shortConfirmationLabel="Шлях до файлу" />
                         @else
                             @if (!$fileStorage->is_binary)
-                                <x-modal-confirmation :ignoreWire="false" title="Confirm File Conversion to Directory?"
-                                    buttonTitle="Convert to directory" submitAction="convertToDirectory" :actions="[
-                                        'The selected file will be permanently deleted and an empty directory will be created in its place.',
+                                <x-modal-confirmation :ignoreWire="false" title="Підтвердити перетворення файлу у каталог?"
+                                    buttonTitle="Перетворити у каталог" submitAction="convertToDirectory" :actions="[
+                                        'Вибраний файл буде безповоротно видалено, а на його місці буде створено порожній каталог.',
                                     ]"
                                     confirmationText="{{ $fs_path }}"
-                                    confirmationLabel="Please confirm the execution of the actions by entering the Filepath below"
-                                    shortConfirmationLabel="Filepath" :confirmWithPassword="false"
-                                    step2ButtonText="Convert to directory" />
+                                    confirmationLabel="Будь ласка, підтвердьте виконання дій, ввівши шлях до файлу нижче"
+                                    shortConfirmationLabel="Шлях до файлу" :confirmWithPassword="false"
+                                    step2ButtonText="Перетворити у каталог" />
                             @endif
-                            <x-forms.button type="button" wire:click="loadStorageOnServer">Load from
-                                server</x-forms.button>
-                            <x-modal-confirmation :ignoreWire="false" title="Confirm File Deletion?" buttonTitle="Delete"
-                                isErrorButton submitAction="delete" :checkboxes="$fileDeletionCheckboxes" :actions="['The selected file will be permanently deleted from the container.']"
+                            <x-forms.button type="button" wire:click="loadStorageOnServer">Завантажити з
+                                сервера</x-forms.button>
+                            <x-modal-confirmation :ignoreWire="false" title="Підтвердити видалення файлу?" buttonTitle="Видалити"
+                                isErrorButton submitAction="delete" :checkboxes="$fileDeletionCheckboxes" :actions="['Вибраний файл буде безповоротно видалено з контейнера.']"
                                 confirmationText="{{ $fs_path }}"
-                                confirmationLabel="Please confirm the execution of the actions by entering the Filepath below"
-                                shortConfirmationLabel="Filepath" />
+                                confirmationLabel="Будь ласка, підтвердьте виконання дій, ввівши шлях до файлу нижче"
+                                shortConfirmationLabel="Шлях до файлу" />
                         @endif
                     </div>
                 @endcan
@@ -59,26 +59,26 @@
                     @can('update', $resource)
                         @if (data_get($resource, 'settings.is_preserve_repository_enabled'))
                             <div class="w-96">
-                                <x-forms.checkbox instantSave label="Is this based on the Git repository?"
+                                <x-forms.checkbox instantSave label="Чи базується це на репозиторії Git?"
                                     id="isBasedOnGit"></x-forms.checkbox>
                             </div>
                         @endif
                         <x-forms.textarea
-                            label="{{ $fileStorage->is_based_on_git ? 'Content (refreshed after a successful deployment)' : 'Content' }}"
+                            label="{{ $fileStorage->is_based_on_git ? 'Вміст (оновлюється після успішного розгортання)' : 'Вміст' }}"
                             rows="20" id="content"
                             readonly="{{ $fileStorage->is_based_on_git || $fileStorage->is_binary }}"></x-forms.textarea>
                         @if (!$fileStorage->is_based_on_git && !$fileStorage->is_binary)
-                            <x-forms.button class="w-full" type="submit">Save</x-forms.button>
+                            <x-forms.button class="w-full" type="submit">Зберегти</x-forms.button>
                         @endif
                     @else
                         @if (data_get($resource, 'settings.is_preserve_repository_enabled'))
                             <div class="w-96">
-                                <x-forms.checkbox disabled label="Is this based on the Git repository?"
+                                <x-forms.checkbox disabled label="Чи базується це на репозиторії Git?"
                                     id="isBasedOnGit"></x-forms.checkbox>
                             </div>
                         @endif
                         <x-forms.textarea
-                            label="{{ $fileStorage->is_based_on_git ? 'Content (refreshed after a successful deployment)' : 'Content' }}"
+                            label="{{ $fileStorage->is_based_on_git ? 'Вміст (оновлюється після успішного розгортання)' : 'Вміст' }}"
                             rows="20" id="content" disabled></x-forms.textarea>
                     @endcan
                 @endif
@@ -87,12 +87,12 @@
                 @if (!$fileStorage->is_directory)
                     @if (data_get($resource, 'settings.is_preserve_repository_enabled'))
                         <div class="w-96">
-                            <x-forms.checkbox disabled label="Is this based on the Git repository?"
+                            <x-forms.checkbox disabled label="Чи базується це на репозиторії Git?"
                                 id="isBasedOnGit"></x-forms.checkbox>
                         </div>
                     @endif
                     <x-forms.textarea
-                        label="{{ $fileStorage->is_based_on_git ? 'Content (refreshed after a successful deployment)' : 'Content' }}"
+                        label="{{ $fileStorage->is_based_on_git ? 'Вміст (оновлюється після успішного розгортання)' : 'Вміст' }}"
                         rows="20" id="content" disabled></x-forms.textarea>
                 @endif
             @endif

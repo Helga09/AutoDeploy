@@ -1,11 +1,11 @@
 <div class="pb-6">
-    <h1>Notifications</h1>
-    <div class="subtitle">Get notified about your infrastructure.</div>
+    <h1>Сповіщення</h1>
+    <div class="subtitle">Отримуйте сповіщення про вашу інфраструктуру.</div>
     <div class="navbar-main">
         <nav class="flex items-center gap-6 min-h-10">
             <a class="{{ request()->routeIs('notifications.email') ? 'dark:text-white' : '' }}"
                 href="{{ route('notifications.email') }}">
-                <button>Email</button>
+                <button>Електронна пошта</button>
             </a>
             <a class="{{ request()->routeIs('notifications.discord') ? 'dark:text-white' : '' }}"
                 href="{{ route('notifications.discord') }}">
@@ -25,7 +25,7 @@
             </a>
             <a class="{{ request()->routeIs('notifications.webhook') ? 'dark:text-white' : '' }}"
                 href="{{ route('notifications.webhook') }}">
-                <button>Webhook</button>
+                <button>Вебхук</button>
             </a>
         </nav>
     </div>

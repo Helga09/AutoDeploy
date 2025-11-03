@@ -1,5 +1,5 @@
 <div x-data="{
-    title: 'Default Toast Notification',
+    title: 'Спливаюче сповіщення за замовчуванням',
     description: '',
     type: 'default',
     expanded: false,
@@ -442,7 +442,7 @@
                                 'opacity-0': !
                                     toastHovered
                             }">
-                            Copied
+                            Скопійовано
                         </span>
                         <span @click="copyToClipboard()"
                             class="absolute right-7 p-1.5 mr-2.5 text-neutral-700 hover:text-neutral-900 dark:text-neutral-400 hover:bg-neutral-300  duration-100 ease-in-out rounded-full opacity-0 cursor-pointer dark:hover:bg-coolgray-400 dark:hover:text-neutral-300"

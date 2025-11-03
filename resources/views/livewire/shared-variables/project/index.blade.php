@@ -1,11 +1,11 @@
 <div>
     <x-slot:title>
-        Project Variables | Coolify
+        Змінні проєкту | Coolify
     </x-slot>
     <div class="flex gap-2">
-        <h1>Projects</h1>
+        <h1>Проєкти</h1>
     </div>
-    <div class="subtitle">List of your projects.</div>
+    <div class="subtitle">Список ваших проєктів.</div>
     <div class="flex flex-col gap-2">
         @forelse ($projects as $project)
             <a class="box group"
@@ -18,7 +18,7 @@
             </a>
         @empty
             <div>
-                <div>No project found.</div>
+                <div>Проєктів не знайдено.</div>
             </div>
         @endforelse
     </div>

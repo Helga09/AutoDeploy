@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Subscribe | Coolify
+        Підписка | Coolify
     </x-slot>
     @if (auth()->user()->isAdminFromSession())
         @if (request()->query->get('cancelled'))
@@ -10,27 +10,27 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span>Something went wrong with your subscription. Please try again or contact
-                    support.</span>
+                <span>Щось пішло не так з вашою підпискою. Будь ласка, спробуйте знову або зв'яжіться зі службою
+                    підтримки.</span>
             </div>
         @endif
         <div class="flex gap-2">
-            <h1>Subscriptions</h1>
+            <h1>Підписки</h1>
         </div>
         @if ($loading)
             <div class="flex gap-2" wire:init="getStripeStatus">
-                Loading your subscription status...
+                Завантаження статусу вашої підписки...
             </div>
         @else
             @if ($isUnpaid)
                 <div class="mb-6 rounded-sm alert-error">
-                    <span>Your last payment was failed for Coolify Cloud.</span>
+                    <span>Ваш останній платіж для Coolify Cloud не вдався.</span>
                 </div>
                 <div>
-                    <p class="mb-2">Open the following link, navigate to the button and pay your unpaid/past due
-                        subscription.
+                    <p class="mb-2">Відкрийте наступне посилання, перейдіть до кнопки та сплатіть свою
+                        несплачену/прострочену підписку.
                     </p>
-                    <x-forms.button wire:click='stripeCustomerPortal'>Billing Portal</x-forms.button>
+                    <x-forms.button wire:click='stripeCustomerPortal'>Платіжний портал</x-forms.button>
                 </div>
             @else
                 @if (config('subscription.provider') === 'stripe')
@@ -40,9 +40,9 @@
                     ])>
                         @if ($isCancelled)
                             <div class="alert-error">
-                                <span>It looks like your previous subscription has been cancelled, because you forgot to
-                                    pay
-                                    the bills.<br />Please subscribe again to continue using Coolify.</span>
+                                <span>Схоже, вашу попередню підписку було скасовано, оскільки ви забули сплатити
+                                    рахунки.<br />Будь ласка, підпишіться знову, щоб продовжувати користуватися
+                                    Coolify.</span>
                             </div>
                         @endif
                     </div>
@@ -53,11 +53,12 @@
     @else
         <div class="flex flex-col justify-center mx-10">
             <div class="flex gap-2">
-                <h1>Subscription</h1>
+                <h1>Підписка</h1>
             </div>
-            <x-callout type="warning" title="Permission Required">
-                You are not an admin so you cannot manage your Team's subscription. If this does not make sense, please
-                <span class="underline cursor-pointer dark:text-white" wire:click="help">contact us</span>.
+            <x-callout type="warning" title="Потрібен дозвіл">
+                Ви не є адміністратором, тому не можете керувати підпискою вашої команди. Якщо це незрозуміло, будь
+                ласка,
+                <span class="underline cursor-pointer dark:text-white" wire:click="help">зв'яжіться з нами</span>.
             </x-callout>
         </div>
     @endif

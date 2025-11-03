@@ -1,11 +1,11 @@
 <div>
-    <x-slot:title>{{ data_get_str($application, 'name')->limit(10) }} > Deployments | Coolify</x-slot>
-    <h1>Deployments</h1>
+    <x-slot:title>{{ data_get_str($application, 'name')->limit(10) }} > Розгортання | Coolify</x-slot>
+    <h1>Розгортання</h1>
     <livewire:project.shared.configuration-checker :resource="$application" />
     <livewire:project.application.heading :application="$application" />
     <div class="flex flex-col gap-2 pb-10" @if (!$skip) wire:poll.5000ms='reloadDeployments' @endif>
         <div class="flex items-end gap-2">
-            <h2>Deployments <span class="text-xs">({{ $deployments_count }})</span></h2>
+            <h2>Розгортання <span class="text-xs">({{ $deployments_count }})</span></h2>
             @if ($deployments_count > 0)
                 <div class="flex items-center gap-2">
                     <x-forms.button disabled="{{ !$showPrev }}" wire:click="previousPage('{{ $defaultTake }}')">
@@ -15,7 +15,7 @@
                         </svg>
                     </x-forms.button>
                     <span class="text-sm text-gray-600 dark:text-gray-400 px-2">
-                        Page {{ $currentPage }} of {{ ceil($deployments_count / $defaultTake) }}
+                        Сторінка {{ $currentPage }} з {{ ceil($deployments_count / $defaultTake) }}
                     </span>
                     <x-forms.button disabled="{{ !$showNext }}" wire:click="nextPage('{{ $defaultTake }}')">
                         <svg class="w-4 h-4" viewBox="0 0 24 24">
@@ -27,10 +27,10 @@
             @endif
         </div>
         <form class="flex items-end gap-2">
-            <x-forms.input id="pull_request_id" type="number" min="1" label="Pull Request Id"></x-forms.input>
-            <x-forms.button type="submit">Filter</x-forms.button>
+            <x-forms.input id="pull_request_id" type="number" min="1" label="Ідентифікатор запиту на злиття"></x-forms.input>
+            <x-forms.button type="submit">Фільтрувати</x-forms.button>
             @if ($pull_request_id)
-                <x-forms.button type="button" wire:click="clearFilter">Clear</x-forms.button>
+                <x-forms.button type="button" wire:click="clearFilter">Очистити</x-forms.button>
             @endif
         </form>
         @forelse ($deployments as $deployment)
@@ -63,10 +63,10 @@
                             ])>
                                 @php
                                     $statusText = match (data_get($deployment, 'status')) {
-                                        'finished' => 'Success',
-                                        'in_progress' => 'In Progress',
-                                        'cancelled-by-user' => 'Cancelled',
-                                        'queued' => 'Queued',
+                                        'finished' => 'Успішно',
+                                        'in_progress' => 'В процесі',
+                                        'cancelled-by-user' => 'Скасовано',
+                                        'queued' => 'В черзі',
                                         default => ucfirst(data_get($deployment, 'status')),
                                     };
                                 @endphp
@@ -75,17 +75,17 @@
                         </div>
                         @if (data_get($deployment, 'status') !== 'queued')
                             <div class="text-gray-600 dark:text-gray-400 text-sm">
-                                Started:
+                                Початок:
                                 {{ formatDateInServerTimezone(data_get($deployment, 'created_at'), data_get($application, 'destination.server')) }}
                                 @if ($deployment->status !== 'in_progress' && $deployment->status !== 'cancelled-by-user')
-                                    <br>Ended:
+                                    <br>Завершення:
                                     {{ formatDateInServerTimezone(data_get($deployment, 'finished_at'), data_get($application, 'destination.server')) }}
-                                    <br>Duration:
+                                    <br>Тривалість:
                                     {{ calculateDuration(data_get($deployment, 'created_at'), data_get($deployment, 'finished_at')) }}
-                                    <br>Finished
+                                    <br>Завершено
                                     {{ \Carbon\Carbon::parse(data_get($deployment, 'finished_at'))->diffForHumans() }}
                                 @elseif($deployment->status === 'in_progress')
-                                    <br>Running for:
+                                    <br>Виконується:
                                     {{ calculateDuration(data_get($deployment, 'created_at'), now()) }}
                                 @endif
                             </div>
@@ -95,7 +95,7 @@
                             @if (data_get($deployment, 'commit'))
                                 <div x-data="{ expanded: false }">
                                     <div class="flex items-center gap-2">
-                                        <span class="font-medium">Commit:</span>
+                                        <span class="font-medium">Коміт:</span>
                                         <a href="{{ $application->gitCommitLink(data_get($deployment, 'commit')) }}"
                                             target="_blank" class="underline">
                                             {{ substr(data_get($deployment, 'commit'), 0, 7) }}
@@ -104,18 +104,18 @@
                                             <span
                                                 class="bg-gray-200/70 dark:bg-gray-600/20 px-2 py-0.5 rounded-md text-xs text-gray-800 dark:text-gray-100 border border-gray-400/30">
                                                 @if (data_get($deployment, 'is_webhook'))
-                                                    Webhook
+                                                    Вебхук
                                                     @if (data_get($deployment, 'pull_request_id'))
-                                                        | Pull Request #{{ data_get($deployment, 'pull_request_id') }}
+                                                        | Запит на злиття #{{ data_get($deployment, 'pull_request_id') }}
                                                     @endif
                                                 @elseif (data_get($deployment, 'pull_request_id'))
-                                                    Pull Request #{{ data_get($deployment, 'pull_request_id') }}
+                                                    Запит на злиття #{{ data_get($deployment, 'pull_request_id') }}
                                                 @elseif (data_get($deployment, 'rollback') === true)
-                                                    Rollback
+                                                    Відкат
                                                 @elseif (data_get($deployment, 'is_api'))
                                                     API
                                                 @else
-                                                    Manual
+                                                    Вручну
                                                 @endif
                                             </span>
                                         @endif
@@ -140,18 +140,18 @@
                                             <span
                                                 class="bg-gray-200/70 dark:bg-gray-600/20 px-2 py-0.5 rounded-md text-xs text-gray-800 dark:text-gray-100 border border-gray-400/30">
                                                 @if (data_get($deployment, 'is_webhook'))
-                                                    Webhook
+                                                    Вебхук
                                                     @if (data_get($deployment, 'pull_request_id'))
-                                                        | Pull Request #{{ data_get($deployment, 'pull_request_id') }}
+                                                        | Запит на злиття #{{ data_get($deployment, 'pull_request_id') }}
                                                     @endif
                                                 @elseif (data_get($deployment, 'pull_request_id'))
-                                                    Pull Request #{{ data_get($deployment, 'pull_request_id') }}
+                                                    Запит на злиття #{{ data_get($deployment, 'pull_request_id') }}
                                                 @elseif (data_get($deployment, 'rollback') === true)
-                                                    Rollback
+                                                    Відкат
                                                 @elseif (data_get($deployment, 'is_api'))
                                                     API
                                                 @else
-                                                    Manual
+                                                    Вручну
                                                 @endif
                                             </span>
                                         @endif
@@ -170,14 +170,14 @@
 
                         @if (data_get($deployment, 'server_name') && $application->additional_servers->count() > 0)
                             <div class="text-gray-600 dark:text-gray-400 text-sm mt-2">
-                                Server: {{ data_get($deployment, 'server_name') }}
+                                Сервер: {{ data_get($deployment, 'server_name') }}
                             </div>
                         @endif
                     </div>
                 </a>
             </div>
         @empty
-            <div>No deployments found</div>
+            <div>Розгортань не знайдено</div>
         @endforelse
     </div>
 </div>

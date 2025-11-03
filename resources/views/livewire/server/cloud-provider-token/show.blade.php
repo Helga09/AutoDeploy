@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        {{ data_get_str($server, 'name')->limit(10) }} > Hetzner Token | Coolify
+        {{ data_get_str($server, 'name')->limit(10) }} > Токен Hetzner | Coolify
     </x-slot>
     <livewire:server.navbar :server="$server" />
     <div class="flex flex-col h-full gap-8 sm:flex-row">
@@ -8,18 +8,18 @@
         <div class="w-full">
             @if ($server->hetzner_server_id)
                 <div class="flex items-end gap-2">
-                    <h2>Hetzner Token</h2>
+                    <h2>Токен Hetzner</h2>
                     @can('create', App\Models\CloudProviderToken::class)
-                        <x-modal-input buttonTitle="+ Add" title="Add Hetzner Token">
+                        <x-modal-input buttonTitle="+ Додати" title="Додати токен Hetzner">
                             <livewire:security.cloud-provider-token-form :modal_mode="true" provider="hetzner" />
                         </x-modal-input>
                     @endcan
                     <x-forms.button canGate="update" :canResource="$server" isHighlighted
                         wire:click.prevent='validateToken'>
-                        Validate token
+                        Перевірити токен
                     </x-forms.button>
                 </div>
-                <div class="pb-4">Change your server's Hetzner token.</div>
+                <div class="pb-4">Змініть токен Hetzner для вашого сервера.</div>
                 <div class="grid xl:grid-cols-2 grid-cols-1 gap-2">
                     @forelse ($cloudProviderTokens as $token)
                         <div
@@ -27,32 +27,32 @@
                             <div class="flex flex-col w-full">
                                 <div class="box-title">{{ $token->name }}</div>
                                 <div class="box-description">
-                                    Created {{ $token->created_at->diffForHumans() }}
+                                    Створено {{ $token->created_at->diffForHumans() }}
                                 </div>
                             </div>
                             @if (data_get($server, 'cloudProviderToken.id') !== $token->id)
                                 <x-forms.button canGate="update" :canResource="$server" class="w-full"
                                     wire:click='setCloudProviderToken({{ $token->id }})'>
-                                    Use this token
+                                    Використати цей токен
                                 </x-forms.button>
                             @else
                                 <x-forms.button class="w-full" disabled>
-                                    Currently used
+                                    Використовується
                                 </x-forms.button>
                             @endif
                         </div>
                     @empty
-                        <div>No Hetzner tokens found. </div>
+                        <div>Токени Hetzner не знайдено. </div>
                     @endforelse
                 </div>
             @else
                 <div class="flex items-end gap-2">
-                    <h2>Hetzner Token</h2>
+                    <h2>Токен Hetzner</h2>
                 </div>
-                <div class="pb-4">This server was not created through Hetzner Cloud integration.</div>
+                <div class="pb-4">Цей сервер не був створений за допомогою інтеграції з Hetzner Cloud.</div>
                 <div class="p-4 border rounded-md dark:border-coolgray-300 dark:bg-coolgray-100">
                     <p class="dark:text-neutral-400">
-                        Only servers created through Hetzner Cloud can have their tokens managed here.
+                        Лише сервери, створені через Hetzner Cloud, можуть мати свої токени, керовані тут.
                     </p>
                 </div>
             @endif

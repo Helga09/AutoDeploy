@@ -7,24 +7,24 @@
 }">
     <form wire:submit='submit' class="flex flex-col pb-32">
         <div class="flex items-center gap-2">
-            <h2>General</h2>
+            <h2>Загальні налаштування</h2>
             @if (isDev())
                 <div>{{ $application->compose_parsing_version }}</div>
             @endif
-            <x-forms.button canGate="update" :canResource="$application" type="submit">Save</x-forms.button>
+            <x-forms.button canGate="update" :canResource="$application" type="submit">Зберегти</x-forms.button>
         </div>
-        <div>General configuration for your application.</div>
+        <div>Загальна конфігурація для вашої програми.</div>
         <div class="flex flex-col gap-2 py-4">
             <div class="flex flex-col items-end gap-2 xl:flex-row">
-                <x-forms.input x-bind:disabled="shouldDisable()" id="name" label="Name" required />
-                <x-forms.input x-bind:disabled="shouldDisable()" id="description" label="Description" />
+                <x-forms.input x-bind:disabled="shouldDisable()" id="name" label="Назва" required />
+                <x-forms.input x-bind:disabled="shouldDisable()" id="description" label="Опис" />
             </div>
 
             @if (!$application->dockerfile && $application->build_pack !== 'dockerimage')
                 <div class="flex flex-col gap-2">
                     <div class="flex gap-2">
                         <x-forms.select x-bind:disabled="shouldDisable()" wire:model.live="build_pack"
-                            label="Build Pack" required>
+                            label="Пакет збірки" required>
                             <option value="nixpacks">Nixpacks</option>
                             <option value="static">Static</option>
                             <option value="dockerfile">Dockerfile</option>
@@ -32,7 +32,7 @@
                         </x-forms.select>
                         @if ($application->settings->is_static || $application->build_pack === 'static')
                             <x-forms.select x-bind:disabled="!canUpdate" id="static_image"
-                                label="Static Image" required>
+                                label="Статичний образ" required>
                                 <option value="nginx:alpine">nginx:alpine</option>
                                 <option disabled value="apache:alpine">apache:alpine</option>
                             </x-forms.select>
@@ -44,18 +44,18 @@
                             !is_null($parsedServices) &&
                                 count($parsedServices) > 0 &&
                                 !$application->settings->is_raw_compose_deployment_enabled)
-                            <h3 class="pt-6">Domains</h3>
+                            <h3 class="pt-6">Домени</h3>
                             @foreach (data_get($parsedServices, 'services') as $serviceName => $service)
                                 @if (!isDatabaseImage(data_get($service, 'image')))
                                     <div class="flex items-end gap-2">
                                         <x-forms.input
-                                            helper="You can specify one domain with path or more with comma. You can specify a port to bind the domain to.<br><br><span class='text-helper'>Example</span><br>- http://app.coolify.io,https://cloud.coolify.io/dashboard<br>- http://app.coolify.io/api/v3<br>- http://app.coolify.io:3000 -> app.coolify.io will point to port 3000 inside the container. "
-                                            label="Domains for {{ $serviceName }}"
+                                            helper="Ви можете вказати один домен зі шляхом або кілька через кому. Ви можете вказати порт, до якого буде прив'язано домен.<br><br><span class='text-helper'>Приклад</span><br>- http://app.coolify.io,https://cloud.coolify.io/dashboard<br>- http://app.coolify.io/api/v3<br>- http://app.coolify.io:3000 -> app.coolify.io буде вказувати на порт 3000 всередині контейнера. "
+                                            label="Домени для {{ $serviceName }}"
                                             id="parsedServiceDomains.{{ str($serviceName)->replace('-', '_')->replace('.', '_') }}.domain"
                                             x-bind:disabled="shouldDisable()"></x-forms.input>
                                         @can('update', $application)
-                                            <x-forms.button wire:click="generateDomain('{{ $serviceName }}')">Generate
-                                                Domain</x-forms.button>
+                                            <x-forms.button wire:click="generateDomain('{{ $serviceName }}')">Згенерувати домен
+                                            </x-forms.button>
                                         @endcan
                                     </div>
                                 @endif
@@ -67,23 +67,23 @@
             @endif
             @if ($application->settings->is_static || $application->build_pack === 'static')
                 <x-forms.textarea id="custom_nginx_configuration"
-                    placeholder="Empty means default configuration will be used." label="Custom Nginx Configuration"
-                    helper="You can add custom Nginx configuration here." x-bind:disabled="!canUpdate" />
+                    placeholder="Порожнє значення означає використання конфігурації за замовчуванням." label="Власна конфігурація Nginx"
+                    helper="Тут ви можете додати власну конфігурацію Nginx." x-bind:disabled="!canUpdate" />
                 @can('update', $application)
                     <x-forms.button wire:click="generateNginxConfiguration">
-                        Generate Default Nginx Configuration
+                        Згенерувати конфігурацію Nginx за замовчуванням
                     </x-forms.button>
                 @endcan
             @endif
             <div class="w-96 pb-6">
                 @if ($application->could_set_build_commands())
-                    <x-forms.checkbox instantSave id="is_static" label="Is it a static site?"
-                        helper="If your application is a static site or the final build assets should be served as a static site, enable this."
+                    <x-forms.checkbox instantSave id="is_static" label="Це статичний сайт?"
+                        helper="Якщо ваша програма є статичним сайтом або кінцеві активи збірки мають подаватися як статичний сайт, увімкніть це."
                         x-bind:disabled="!canUpdate" />
                 @endif
                 @if ($application->settings->is_static && $application->build_pack !== 'static')
-                    <x-forms.checkbox label="Is it a SPA (Single Page Application)?"
-                        helper="If your application is a SPA, enable this." id="is_spa" instantSave
+                    <x-forms.checkbox label="Це SPA (Single Page Application)?"
+                        helper="Якщо ваша програма є SPA, увімкніть це." id="is_spa" instantSave
                         x-bind:disabled="!canUpdate"></x-forms.checkbox>
                 @endif
             </div>
@@ -91,16 +91,16 @@
                 <div class="flex items-end gap-2">
                     @if ($application->settings->is_container_label_readonly_enabled == false)
                         <x-forms.input placeholder="https://coolify.io" wire:model="fqdn"
-                            label="Domains" readonly
-                            helper="Readonly labels are disabled. You can set the domains in the labels section."
+                            label="Домени" readonly
+                            helper="Мітки тільки для читання вимкнено. Ви можете встановити домени в розділі міток."
                             x-bind:disabled="!canUpdate" />
                     @else
                         <x-forms.input placeholder="https://coolify.io" wire:model="fqdn"
-                            label="Domains"
-                            helper="You can specify one domain with path or more with comma. You can specify a port to bind the domain to.<br><br><span class='text-helper'>Example</span><br>- http://app.coolify.io,https://cloud.coolify.io/dashboard<br>- http://app.coolify.io/api/v3<br>- http://app.coolify.io:3000 -> app.coolify.io will point to port 3000 inside the container. "
+                            label="Домени"
+                            helper="Ви можете вказати один домен зі шляхом або кілька через кому. Ви можете вказати порт, до якого буде прив'язано домен.<br><br><span class='text-helper'>Приклад</span><br>- http://app.coolify.io,https://cloud.coolify.io/dashboard<br>- http://app.coolify.io/api/v3<br>- http://app.coolify.io:3000 -> app.coolify.io буде вказувати на порт 3000 всередині контейнера. "
                             x-bind:disabled="!canUpdate" />
                         @can('update', $application)
-                            <x-forms.button wire:click="getWildcardDomain">Generate Domain
+                            <x-forms.button wire:click="getWildcardDomain">Згенерувати домен
                             </x-forms.button>
                         @endcan
                     @endif
@@ -108,36 +108,36 @@
                 <div class="flex items-end gap-2">
                     @if ($application->settings->is_container_label_readonly_enabled == false)
                         @if ($application->redirect === 'both')
-                            <x-forms.input label="Direction" value="Allow www & non-www." readonly
-                                helper="Readonly labels are disabled. You can set the direction in the labels section."
+                            <x-forms.input label="Напрямок" value="Дозволити www та без-www." readonly
+                                helper="Мітки тільки для читання вимкнено. Ви можете встановити напрямок у розділі міток."
                                 x-bind:disabled="!canUpdate" />
                         @elseif ($application->redirect === 'www')
-                            <x-forms.input label="Direction" value="Redirect to www." readonly
-                                helper="Readonly labels are disabled. You can set the direction in the labels section."
+                            <x-forms.input label="Напрямок" value="Перенаправляти на www." readonly
+                                helper="Мітки тільки для читання вимкнено. Ви можете встановити напрямок у розділі міток."
                                 x-bind:disabled="!canUpdate" />
                         @elseif ($application->redirect === 'non-www')
-                            <x-forms.input label="Direction" value="Redirect to non-www." readonly
-                                helper="Readonly labels are disabled. You can set the direction in the labels section."
+                            <x-forms.input label="Напрямок" value="Перенаправляти на без-www." readonly
+                                helper="Мітки тільки для читання вимкнено. Ви можете встановити напрямок у розділі міток."
                                 x-bind:disabled="!canUpdate" />
                         @endif
                     @else
-                        <x-forms.select label="Direction" id="redirect" required
-                            helper="You must need to add www and non-www as an A DNS record. Make sure the www domain is added under Domains."
+                        <x-forms.select label="Напрямок" id="redirect" required
+                            helper="Вам необхідно додати www та без-www як записи A DNS. Переконайтеся, що домен www додано в розділі 'Домени'."
                             x-bind:disabled="!canUpdate">
-                            <option value="both">Allow www & non-www.</option>
-                            <option value="www">Redirect to www.</option>
-                            <option value="non-www">Redirect to non-www.</option>
+                            <option value="both">Дозволити www та без-www.</option>
+                            <option value="www">Перенаправляти на www.</option>
+                            <option value="non-www">Перенаправляти на без-www.</option>
                         </x-forms.select>
                         @if ($application->settings->is_container_label_readonly_enabled)
                             @can('update', $application)
-                                <x-modal-confirmation title="Confirm Redirection Setting?" buttonTitle="Set Direction"
-                                    submitAction="setRedirect" :actions="['All traffic will be redirected to the selected direction.']"
+                                <x-modal-confirmation title="Підтвердити налаштування перенаправлення?" buttonTitle="Встановити напрямок"
+                                    submitAction="setRedirect" :actions="['Весь трафік буде перенаправлено до обраного напрямку.']"
                                     confirmationText="{{ $application->fqdn . '/' }}"
-                                    confirmationLabel="Please confirm the execution of the action by entering the Application URL below"
-                                    shortConfirmationLabel="Application URL" :confirmWithPassword="false"
-                                    step2ButtonText="Set Direction">
+                                    confirmationLabel="Будь ласка, підтвердьте виконання дії, ввівши URL програми нижче"
+                                    shortConfirmationLabel="URL програми" :confirmWithPassword="false"
+                                    step2ButtonText="Встановити напрямок">
                                     <x-slot:customButton>
-                                        <div class="w-[7.2rem]">Set Direction</div>
+                                        <div class="w-[7.2rem]">Встановити напрямок</div>
                                     </x-slot:customButton>
                                 </x-modal-confirmation>
                             @endcan
@@ -148,32 +148,32 @@
 
             @if ($application->build_pack !== 'dockercompose')
                 <div class="flex items-center gap-2 pt-8">
-                    <h3>Docker Registry</h3>
+                    <h3>Реєстр Docker</h3>
                     @if ($application->build_pack !== 'dockerimage' && !$application->destination->server->isSwarm())
                         <x-helper
-                            helper="Push the built image to a docker registry. More info <a class='underline' href='https://coolify.io/docs/knowledge-base/docker/registry' target='_blank'>here</a>." />
+                            helper="Відправити зібраний образ до реєстру Docker. Додаткова інформація <a class='underline' href='https://coolify.io/docs/knowledge-base/docker/registry' target='_blank'>тут</a>." />
                     @endif
                 </div>
                 @if ($application->destination->server->isSwarm())
                     @if ($application->build_pack !== 'dockerimage')
-                        <div>Docker Swarm requires the image to be available in a registry. More info <a
+                        <div>Docker Swarm вимагає, щоб образ був доступний у реєстрі. Додаткова інформація <a
                                 class="underline" href="https://coolify.io/docs/knowledge-base/docker/registry"
-                                target="_blank">here</a>.</div>
+                                target="_blank">тут</a>.</div>
                     @endif
                 @endif
                 <div class="flex flex-col gap-2 xl:flex-row">
                     @if ($application->build_pack === 'dockerimage')
                         @if ($application->destination->server->isSwarm())
-                            <x-forms.input required id="docker_registry_image_name" label="Docker Image"
+                            <x-forms.input required id="docker_registry_image_name" label="Образ Docker"
                                 x-bind:disabled="!canUpdate" />
-                            <x-forms.input id="docker_registry_image_tag" label="Docker Image Tag or Hash"
-                                helper="Enter a tag (e.g., 'latest', 'v1.2.3') or SHA256 hash (e.g., 'sha256-59e02939b1bf39f16c93138a28727aec520bb916da021180ae502c61626b3cf0')"
+                            <x-forms.input id="docker_registry_image_tag" label="Тег або хеш образу Docker"
+                                helper="Введіть тег (наприклад, 'latest', 'v1.2.3') або хеш SHA256 (наприклад, 'sha256-59e02939b1bf39f16c93138a28727aec520bb916da021180ae502c61626b3cf0')"
                                 x-bind:disabled="!canUpdate" />
                         @else
-                            <x-forms.input id="docker_registry_image_name" label="Docker Image"
+                            <x-forms.input id="docker_registry_image_name" label="Образ Docker"
                                 x-bind:disabled="!canUpdate" />
-                            <x-forms.input id="docker_registry_image_tag" label="Docker Image Tag or Hash"
-                                helper="Enter a tag (e.g., 'latest', 'v1.2.3') or SHA256 hash (e.g., 'sha256-59e02939b1bf39f16c93138a28727aec520bb916da021180ae502c61626b3cf0')"
+                            <x-forms.input id="docker_registry_image_tag" label="Тег або хеш образу Docker"
+                                helper="Введіть тег (наприклад, 'latest', 'v1.2.3') або хеш SHA256 (наприклад, 'sha256-59e02939b1bf39f16c93138a28727aec520bb916da021180ae502c61626b3cf0')"
                                 x-bind:disabled="!canUpdate" />
                         @endif
                     @else
@@ -181,51 +181,49 @@
                             $application->destination->server->isSwarm() ||
                                 $application->additional_servers->count() > 0 ||
                                 $application->settings->is_build_server_enabled)
-                            <x-forms.input id="docker_registry_image_name" required label="Docker Image"
-                                placeholder="Required!" x-bind:disabled="!canUpdate" />
+                            <x-forms.input id="docker_registry_image_name" required label="Образ Docker"
+                                placeholder="Обов'язково!" x-bind:disabled="!canUpdate" />
                             <x-forms.input id="docker_registry_image_tag"
-                                helper="If set, it will tag the built image with this tag too. <br><br>Example: If you set it to 'latest', it will push the image with the commit sha tag + with the latest tag."
-                                placeholder="Empty means latest will be used." label="Docker Image Tag"
+                                helper="Якщо встановлено, він також позначить зібраний образ цим тегом. <br><br>Приклад: Якщо ви встановите 'latest', образ буде відправлено з тегом коміту sha + з тегом latest."
+                                placeholder="Порожнє значення означає використання 'latest'." label="Тег образу Docker"
                                 x-bind:disabled="!canUpdate" />
                         @else
                             <x-forms.input id="docker_registry_image_name"
-                                helper="Empty means it won't push the image to a docker registry. Pre-tag the image with your registry url if you want to push it to a private registry (default: Dockerhub). <br><br>Example: ghcr.io/myimage"
-                                placeholder="Empty means it won't push the image to a docker registry."
-                                label="Docker Image" x-bind:disabled="!canUpdate" />
+                                helper="Порожнє значення означає, що образ не буде відправлено до реєстру Docker. Попередньо позначте образ URL-адресою вашого реєстру, якщо ви хочете відправити його до приватного реєстру (за замовчуванням: Dockerhub). <br><br>Приклад: ghcr.io/myimage"
+                                placeholder="Порожнє значення означає, що образ не буде відправлено до реєстру Docker."
+                                label="Образ Docker" x-bind:disabled="!canUpdate" />
                             <x-forms.input id="docker_registry_image_tag"
-                                placeholder="Empty means only push commit sha tag."
-                                helper="If set, it will tag the built image with this tag too. <br><br>Example: If you set it to 'latest', it will push the image with the commit sha tag + with the latest tag."
-                                label="Docker Image Tag" x-bind:disabled="!canUpdate" />
+                                placeholder="Порожнє значення означає відправку лише тегу sha коміту."
+                                helper="Якщо встановлено, він також позначить зібраний образ цим тегом. <br><br>Приклад: Якщо ви встановите 'latest', образ буде відправлено з тегом коміту sha + з тегом latest."
+                                label="Тег образу Docker" x-bind:disabled="!canUpdate" />
                         @endif
                     @endif
                 </div>
             @endif
             <div>
-                <h3>Build</h3>
+                <h3>Збірка</h3>
                 @if ($application->build_pack === 'dockerimage')
                     <x-forms.input
-                        helper="You can add custom docker run options that will be used when your container is started.<br>Note: Not all options are supported, as they could mess up Coolify's automation and could cause bad experience for users.<br><br>Check the <a class='underline dark:text-white' href='https://coolify.io/docs/knowledge-base/docker/custom-commands'>docs.</a>"
+                        helper="Ви можете додати власні опції запуску Docker, які будуть використані при запуску вашого контейнера.<br>Примітка: Не всі опції підтримуються, оскільки вони можуть порушити автоматизацію Coolify та спричинити неприємності для користувачів.<br><br>Перегляньте <a class='underline dark:text-white' href='https://coolify.io/docs/knowledge-base/docker/custom-commands'>документацію.</a>"
                         placeholder="--cap-add SYS_ADMIN --device=/dev/fuse --security-opt apparmor:unconfined --ulimit nofile=1024:1024 --tmpfs /run:rw,noexec,nosuid,size=65536k --hostname=myapp"
-                        id="custom_docker_run_options" label="Custom Docker Options"
+                        id="custom_docker_run_options" label="Власні опції Docker"
                         x-bind:disabled="!canUpdate" />
                 @else
                     @if ($application->could_set_build_commands())
                         @if ($application->build_pack === 'nixpacks')
                             <div class="flex flex-col gap-2 xl:flex-row">
-                                <x-forms.input helper="If you modify this, you probably need to have a nixpacks.toml"
-                                    id="install_command" label="Install Command"
+                                <x-forms.input helper="Якщо ви це зміните, вам, ймовірно, знадобиться файл nixpacks.toml"
+                                    id="install_command" label="Команда встановлення"
                                     x-bind:disabled="!canUpdate" />
-                                <x-forms.input helper="If you modify this, you probably need to have a nixpacks.toml"
-                                    id="build_command" label="Build Command"
+                                <x-forms.input helper="Якщо ви це зміните, вам, ймовірно, знадобиться файл nixpacks.toml"
+                                    id="build_command" label="Команда збірки"
                                     x-bind:disabled="!canUpdate" />
-                                <x-forms.input helper="If you modify this, you probably need to have a nixpacks.toml"
-                                    id="start_command" label="Start Command"
+                                <x-forms.input helper="Якщо ви це зміните, вам, ймовірно, знадобиться файл nixpacks.toml"
+                                    id="start_command" label="Команда запуску"
                                     x-bind:disabled="!canUpdate" />
                             </div>
-                            <div class="pt-1 text-xs">Nixpacks will detect the required configuration
-                                automatically.
-                                <a class="underline" href="https://coolify.io/docs/applications/">Framework
-                                    Specific Docs</a>
+                            <div class="pt-1 text-xs">Nixpacks автоматично виявить необхідну конфігурацію.
+                                <a class="underline" href="https://coolify.io/docs/applications/">Документація по фреймворках</a>
                             </div>
                         @endif
 
@@ -239,72 +237,71 @@
                                     @endcan
                                     <div class="flex gap-2">
                                         <x-forms.input x-bind:disabled="shouldDisable()" placeholder="/"
-                                            id="base_directory" label="Base Directory"
-                                            helper="Directory to use as root. Useful for monorepos." />
+                                            id="base_directory" label="Базовий каталог"
+                                            helper="Каталог, який використовуватиметься як кореневий. Корисно для монорепозиторіїв." />
                                         <x-forms.input x-bind:disabled="shouldDisable()"
                                             placeholder="/docker-compose.yaml"
-                                            id="docker_compose_location" label="Docker Compose Location"
-                                            helper="It is calculated together with the Base Directory:<br><span class='dark:text-warning'>{{ Str::start($application->base_directory . $application->docker_compose_location, '/') }}</span>" />
+                                            id="docker_compose_location" label="Розташування Docker Compose"
+                                            helper="Обчислюється разом з базовим каталогом:<br><span class='dark:text-warning'>{{ Str::start($application->base_directory . $application->docker_compose_location, '/') }}</span>" />
                                     </div>
                                     <div class="w-96">
                                         <x-forms.checkbox instantSave
                                             id="is_preserve_repository_enabled"
-                                            label="Preserve Repository During Deployment"
-                                            helper="Git repository (based on the base directory settings) will be copied to the deployment directory."
+                                            label="Зберігати репозиторій під час розгортання"
+                                            helper="Репозиторій Git (на основі налаштувань базового каталогу) буде скопійовано до каталогу розгортання."
                                             x-bind:disabled="shouldDisable()" />
                                     </div>
-                                    <div class="pt-4">The following commands are for advanced use cases.
-                                        Only
-                                        modify them if you
-                                        know what are
-                                        you doing.</div>
+                                    <div class="pt-4">Наступні команди призначені для просунутих випадків використання.
+                                        Змінюйте їх, лише якщо ви
+                                        знаєте, що
+                                        робите.</div>
                                     <div class="flex gap-2">
                                         <x-forms.input x-bind:disabled="shouldDisable()"
                                             placeholder="docker compose build"
                                             id="docker_compose_custom_build_command"
-                                            helper="If you use this, you need to specify paths relatively and should use the same compose file in the custom command, otherwise the automatically configured labels / etc won't work.<br><br>So in your case, use: <span class='dark:text-warning'>docker compose -f .{{ Str::start($application->base_directory . $application->docker_compose_location, '/') }} build</span>"
-                                            label="Custom Build Command" />
+                                            helper="Якщо ви використовуєте це, вам потрібно вказати шляхи відносно та використовувати той самий файл compose у власній команді, інакше автоматично налаштовані мітки тощо не працюватимуть.<br><br>У вашому випадку використовуйте: <span class='dark:text-warning'>docker compose -f .{{ Str::start($application->base_directory . $application->docker_compose_location, '/') }} build</span>"
+                                            label="Власна команда збірки" />
                                         <x-forms.input x-bind:disabled="shouldDisable()"
                                             placeholder="docker compose up -d"
                                             id="docker_compose_custom_start_command"
-                                            helper="If you use this, you need to specify paths relatively and should use the same compose file in the custom command, otherwise the automatically configured labels / etc won't work.<br><br>So in your case, use: <span class='dark:text-warning'>docker compose -f .{{ Str::start($application->base_directory . $application->docker_compose_location, '/') }} up -d</span>"
-                                            label="Custom Start Command" />
+                                            helper="Якщо ви використовуєте це, вам потрібно вказати шляхи відносно та використовувати той самий файл compose у власній команді, інакше автоматично налаштовані мітки тощо не працюватимуть.<br><br>У вашому випадку використовуйте: <span class='dark:text-warning'>docker compose -f .{{ Str::start($application->base_directory . $application->docker_compose_location, '/') }} up -d</span>"
+                                            label="Власна команда запуску" />
                                     </div>
                                     @if ($this->application->is_github_based() && !$this->application->is_public_repository())
                                         <div class="pt-4">
                                             <x-forms.textarea
-                                                helper="Order-based pattern matching to filter Git webhook deployments. Supports wildcards (*, **, ?) and negation (!). Last matching pattern wins."
+                                                helper="Пошук за шаблоном на основі порядку для фільтрації розгортань Git webhook. Підтримує символи-замінники (*, **, ?) та заперечення (!). Перемагає останній відповідний шаблон."
                                                 placeholder="services/api/**" id="watch_paths"
-                                                label="Watch Paths" x-bind:disabled="shouldDisable()" />
+                                                label="Шляхи для спостереження" x-bind:disabled="shouldDisable()" />
                                         </div>
                                     @endif
                                 </div>
                             @else
                                 <div class="flex flex-col gap-2 xl:flex-row">
                                     <x-forms.input placeholder="/" id="base_directory"
-                                        label="Base Directory"
-                                        helper="Directory to use as root. Useful for monorepos."
+                                        label="Базовий каталог"
+                                        helper="Каталог, який використовуватиметься як кореневий. Корисно для монорепозиторіїв."
                                         x-bind:disabled="!canUpdate" />
                                     @if ($application->build_pack === 'dockerfile' && !$application->dockerfile)
                                         <x-forms.input placeholder="/Dockerfile" id="dockerfile_location"
-                                            label="Dockerfile Location"
-                                            helper="It is calculated together with the Base Directory:<br><span class='dark:text-warning'>{{ Str::start($application->base_directory . $application->dockerfile_location, '/') }}</span>"
+                                            label="Розташування Dockerfile"
+                                            helper="Обчислюється разом з базовим каталогом:<br><span class='dark:text-warning'>{{ Str::start($application->base_directory . $application->dockerfile_location, '/') }}</span>"
                                             x-bind:disabled="!canUpdate" />
                                     @endif
 
                                     @if ($application->build_pack === 'dockerfile')
                                         <x-forms.input id="dockerfile_target_build"
-                                            label="Docker Build Stage Target"
-                                            helper="Useful if you have multi-staged dockerfile."
+                                            label="Цільова стадія збірки Docker"
+                                            helper="Корисно, якщо у вас багатостадійний Dockerfile."
                                             x-bind:disabled="!canUpdate" />
                                     @endif
                                     @if ($application->could_set_build_commands())
                                         @if ($application->settings->is_static)
                                             <x-forms.input placeholder="/dist" id="publish_directory"
-                                                label="Publish Directory" required x-bind:disabled="!canUpdate" />
+                                                label="Каталог публікації" required x-bind:disabled="!canUpdate" />
                                         @else
                                             <x-forms.input placeholder="/" id="publish_directory"
-                                                label="Publish Directory" x-bind:disabled="!canUpdate" />
+                                                label="Каталог публікації" x-bind:disabled="!canUpdate" />
                                         @endif
                                     @endif
 
@@ -312,23 +309,23 @@
                                 @if ($this->application->is_github_based() && !$this->application->is_public_repository())
                                     <div class="pb-4">
                                         <x-forms.textarea
-                                            helper="Order-based pattern matching to filter Git webhook deployments. Supports wildcards (*, **, ?) and negation (!). Last matching pattern wins."
+                                            helper="Пошук за шаблоном на основі порядку для фільтрації розгортань Git webhook. Підтримує символи-замінники (*, **, ?) та заперечення (!). Перемагає останній відповідний шаблон."
                                             placeholder="src/pages/**" id="watch_paths"
-                                            label="Watch Paths" x-bind:disabled="!canUpdate" />
+                                            label="Шляхи для спостереження" x-bind:disabled="!canUpdate" />
                                     </div>
                                 @endif
                                 <x-forms.input
-                                    helper="You can add custom docker run options that will be used when your container is started.<br>Note: Not all options are supported, as they could mess up Coolify's automation and could cause bad experience for users.<br><br>Check the <a class='underline dark:text-white' href='https://coolify.io/docs/knowledge-base/docker/custom-commands'>docs.</a>"
+                                    helper="Ви можете додати власні опції запуску Docker, які будуть використані при запуску вашого контейнера.<br>Примітка: Не всі опції підтримуються, оскільки вони можуть порушити автоматизацію Coolify та спричинити неприємності для користувачів.<br><br>Перегляньте <a class='underline dark:text-white' href='https://coolify.io/docs/knowledge-base/docker/custom-commands'>документацію.</a>"
                                     placeholder="--cap-add SYS_ADMIN --device=/dev/fuse --security-opt apparmor:unconfined --ulimit nofile=1024:1024 --tmpfs /run:rw,noexec,nosuid,size=65536k --hostname=myapp"
-                                    id="custom_docker_run_options" label="Custom Docker Options"
+                                    id="custom_docker_run_options" label="Власні опції Docker"
                                     x-bind:disabled="!canUpdate" />
 
                                 @if ($application->build_pack !== 'dockercompose')
                                     <div class="pt-2 w-96">
                                         <x-forms.checkbox
-                                            helper="Use a build server to build your application. You can configure your build server in the Server settings. For more info, check the <a href='https://coolify.io/docs/knowledge-base/server/build-server' class='underline' target='_blank'>documentation</a>."
+                                            helper="Використовуйте сервер збірки для створення вашої програми. Ви можете налаштувати сервер збірки в налаштуваннях сервера. Для отримання додаткової інформації перегляньте <a href='https://coolify.io/docs/knowledge-base/server/build-server' class='underline' target='_blank'>документацію</a>."
                                             instantSave id="is_build_server_enabled"
-                                            label="Use a Build Server?" x-bind:disabled="!canUpdate" />
+                                            label="Використовувати сервер збірки?" x-bind:disabled="!canUpdate" />
                                     </div>
                                 @endif
                         @endif
@@ -340,29 +337,29 @@
                     <h3>Docker Compose</h3>
                     @can('update', $application)
                         <x-forms.button wire:target='initLoadingCompose'
-                            x-on:click="$wire.dispatch('loadCompose', false)">Reload Compose File</x-forms.button>
+                            x-on:click="$wire.dispatch('loadCompose', false)">Перезавантажити файл Compose</x-forms.button>
                     @endcan
                 </div>
                 @if ($application->settings->is_raw_compose_deployment_enabled)
                     <x-forms.textarea rows="10" readonly id="docker_compose_raw"
-                        label="Docker Compose Content (applicationId: {{ $application->id }})"
-                        helper="You need to modify the docker compose file in the git repository."
+                        label="Вміст Docker Compose (applicationId: {{ $application->id }})"
+                        helper="Вам потрібно змінити файл docker compose у репозиторії Git."
                         monacoEditorLanguage="yaml" useMonacoEditor />
                 @else
                     @if ((int) $application->compose_parsing_version >= 3)
                         <x-forms.textarea rows="10" readonly id="docker_compose_raw"
-                            label="Docker Compose Content (raw)"
-                            helper="You need to modify the docker compose file in the git repository."
+                            label="Вміст Docker Compose (сирий)"
+                            helper="Вам потрібно змінити файл docker compose у репозиторії Git."
                             monacoEditorLanguage="yaml" useMonacoEditor />
                     @endif
                     <x-forms.textarea rows="10" readonly id="docker_compose"
-                        label="Docker Compose Content"
-                        helper="You need to modify the docker compose file in the git repository."
+                        label="Вміст Docker Compose"
+                        helper="Вам потрібно змінити файл docker compose у репозиторії Git."
                         monacoEditorLanguage="yaml" useMonacoEditor />
                 @endif
                 <div class="w-96">
-                    <x-forms.checkbox label="Escape special characters in labels?"
-                        helper="By default, $ (and other chars) is escaped. So if you write $ in the labels, it will be saved as $$.<br><br>If you want to use env variables inside the labels, turn this off."
+                    <x-forms.checkbox label="Екранувати спеціальні символи в мітках?"
+                        helper="За замовчуванням, $ (та інші символи) екрануються. Тому, якщо ви напишете $ у мітках, воно буде збережено як $$.<br><br>Якщо ви хочете використовувати змінні середовища всередині міток, вимкніть цю опцію."
                         id="is_container_label_escape_enabled" instantSave
                         x-bind:disabled="!canUpdate"></x-forms.checkbox>
                     {{-- <x-forms.checkbox label="Readonly labels"
@@ -375,102 +372,102 @@
                     useMonacoEditor rows="6" x-bind:disabled="!canUpdate"> </x-forms.textarea>
             @endif
             @if ($application->build_pack !== 'dockercompose')
-                <h3 class="pt-8">Network</h3>
+                <h3 class="pt-8">Мережа</h3>
                 <div class="flex flex-col gap-2 xl:flex-row">
                     @if ($application->settings->is_static || $application->build_pack === 'static')
-                        <x-forms.input id="ports_exposes" label="Ports Exposes" readonly
+                        <x-forms.input id="ports_exposes" label="Відкриті порти" readonly
                             x-bind:disabled="!canUpdate" />
                     @else
                         @if ($application->settings->is_container_label_readonly_enabled === false)
                             <x-forms.input placeholder="3000,3001" id="ports_exposes"
-                                label="Ports Exposes" readonly
-                                helper="Readonly labels are disabled. You can set the ports manually in the labels section."
+                                label="Відкриті порти" readonly
+                                helper="Мітки тільки для читання вимкнено. Ви можете встановити порти вручну в розділі міток."
                                 x-bind:disabled="!canUpdate" />
                         @else
                             <x-forms.input placeholder="3000,3001" id="ports_exposes"
-                                label="Ports Exposes" required
-                                helper="A comma separated list of ports your application uses. The first port will be used as default healthcheck port if nothing defined in the Healthcheck menu. Be sure to set this correctly."
+                                label="Відкриті порти" required
+                                helper="Список портів, розділених комою, які використовує ваша програма. Перший порт буде використано як порт для перевірки стану за замовчуванням, якщо нічого не визначено в меню перевірки стану. Обов'язково встановіть це правильно."
                                 x-bind:disabled="!canUpdate" />
                         @endif
                     @endif
                     @if (!$application->destination->server->isSwarm())
-                        <x-forms.input placeholder="3000:3000" id="ports_mappings" label="Ports Mappings"
-                            helper="A comma separated list of ports you would like to map to the host system. Useful when you do not want to use domains.<br><br><span class='inline-block font-bold dark:text-warning'>Example:</span><br>3000:3000,3002:3002<br><br>Rolling update is not supported if you have a port mapped to the host."
+                        <x-forms.input placeholder="3000:3000" id="ports_mappings" label="Мапування портів"
+                            helper="Список портів, розділених комою, які ви хочете мапувати до хост-системи. Корисно, коли ви не хочете використовувати домени.<br><br><span class='inline-block font-bold dark:text-warning'>Приклад:</span><br>3000:3000,3002:3002<br><br>Прокатне оновлення не підтримується, якщо у вас є порт, мапований до хоста."
                             x-bind:disabled="!canUpdate" />
                     @endif
                     @if (!$application->destination->server->isSwarm())
-                        <x-forms.input id="custom_network_aliases" label="Network Aliases"
-                            helper="A comma separated list of custom network aliases you would like to add for container in Docker network.<br><br><span class='inline-block font-bold dark:text-warning'>Example:</span><br>api.internal,api.local"
+                        <x-forms.input id="custom_network_aliases" label="Мережеві псевдоніми"
+                            helper="Список власних мережевих псевдонімів, розділених комою, які ви хочете додати для контейнера в мережі Docker.<br><br><span class='inline-block font-bold dark:text-warning'>Приклад:</span><br>api.internal,api.local"
                             wire:model="custom_network_aliases" x-bind:disabled="!canUpdate" />
                     @endif
                 </div>
 
-                <h3 class="pt-8">HTTP Basic Authentication</h3>
+                <h3 class="pt-8">Базова HTTP-аутентифікація</h3>
                 <div>
                     <div class="w-96">
-                        <x-forms.checkbox helper="This will add the proper proxy labels to the container." instantSave
-                            label="Enable" id="is_http_basic_auth_enabled"
+                        <x-forms.checkbox helper="Це додасть відповідні мітки проксі до контейнера." instantSave
+                            label="Увімкнути" id="is_http_basic_auth_enabled"
                             x-bind:disabled="!canUpdate" />
                     </div>
                     @if ($application->is_http_basic_auth_enabled)
                         <div class="flex gap-2 py-2">
-                            <x-forms.input id="http_basic_auth_username" label="Username" required
+                            <x-forms.input id="http_basic_auth_username" label="Ім'я користувача" required
                                 x-bind:disabled="!canUpdate" />
-                            <x-forms.input id="http_basic_auth_password" type="password" label="Password"
+                            <x-forms.input id="http_basic_auth_password" type="password" label="Пароль"
                                 required x-bind:disabled="!canUpdate" />
                         </div>
                     @endif
                 </div>
 
                 @if ($application->settings->is_container_label_readonly_enabled)
-                    <x-forms.textarea readonly disabled label="Container Labels" rows="15" id="customLabels"
+                    <x-forms.textarea readonly disabled label="Мітки контейнера" rows="15" id="customLabels"
                         monacoEditorLanguage="ini" useMonacoEditor x-bind:disabled="!canUpdate"></x-forms.textarea>
                 @else
-                    <x-forms.textarea label="Container Labels" rows="15" id="customLabels"
+                    <x-forms.textarea label="Мітки контейнера" rows="15" id="customLabels"
                         monacoEditorLanguage="ini" useMonacoEditor x-bind:disabled="!canUpdate"></x-forms.textarea>
                 @endif
                 <div class="w-96">
-                    <x-forms.checkbox label="Readonly labels"
-                        helper="Labels are readonly by default. Readonly means that edits you do to the labels could be lost and Coolify will autogenerate the labels for you. If you want to edit the labels directly, disable this option. <br><br>Be careful, it could break the proxy configuration after you restart the container as Coolify will now NOT autogenerate the labels for you (ofc you can always reset the labels to the coolify defaults manually)."
+                    <x-forms.checkbox label="Мітки тільки для читання"
+                        helper="Мітки за замовчуванням доступні лише для читання. Режим 'лише для читання' означає, що внесені вами зміни до міток можуть бути втрачені, і Coolify автоматично згенерує мітки для вас. Якщо ви хочете редагувати мітки безпосередньо, вимкніть цю опцію. <br><br>Будьте обережні, це може порушити конфігурацію проксі після перезапуску контейнера, оскільки Coolify тепер НЕ буде автоматично генерувати мітки для вас (звісно, ви завжди можете скинути мітки до стандартних налаштувань Coolify вручну)."
                         id="is_container_label_readonly_enabled" instantSave
                         x-bind:disabled="!canUpdate"></x-forms.checkbox>
-                    <x-forms.checkbox label="Escape special characters in labels?"
-                        helper="By default, $ (and other chars) is escaped. So if you write $ in the labels, it will be saved as $$.<br><br>If you want to use env variables inside the labels, turn this off."
+                    <x-forms.checkbox label="Екранувати спеціальні символи в мітках?"
+                        helper="За замовчуванням, $ (та інші символи) екрануються. Тому, якщо ви напишете $ у мітках, воно буде збережено як $$.<br><br>Якщо ви хочете використовувати змінні середовища всередині міток, вимкніть цю опцію."
                         id="is_container_label_escape_enabled" instantSave
                         x-bind:disabled="!canUpdate"></x-forms.checkbox>
                 </div>
                 @can('update', $application)
-                    <x-modal-confirmation title="Confirm Labels Reset to Coolify Defaults?"
-                        buttonTitle="Reset Labels to Defaults" buttonFullWidth submitAction="resetDefaultLabels(true)"
+                    <x-modal-confirmation title="Підтвердити скидання міток до стандартних налаштувань Coolify?"
+                        buttonTitle="Скинути мітки до стандартних" buttonFullWidth submitAction="resetDefaultLabels(true)"
                         :actions="[
-                            'All your custom proxy labels will be lost.',
-                            'Proxy labels (traefik, caddy, etc) will be reset to the coolify defaults.',
+                            'Усі ваші власні мітки проксі буде втрачено.',
+                            'Мітки проксі (traefik, caddy тощо) буде скинуто до стандартних налаштувань Coolify.',
                         ]" confirmationText="{{ $application->fqdn . '/' }}"
-                        confirmationLabel="Please confirm the execution of the actions by entering the Application URL below"
-                        shortConfirmationLabel="Application URL" :confirmWithPassword="false"
-                        step2ButtonText="Permanently Reset Labels" />
+                        confirmationLabel="Будь ласка, підтвердьте виконання дій, ввівши URL програми нижче"
+                        shortConfirmationLabel="URL програми" :confirmWithPassword="false"
+                        step2ButtonText="Остаточно скинути мітки" />
                 @endcan
             @endif
 
-            <h3 class="pt-8">Pre/Post Deployment Commands</h3>
+            <h3 class="pt-8">Команди перед/після розгортання</h3>
             <div class="flex flex-col gap-2 xl:flex-row">
                 <x-forms.input x-bind:disabled="shouldDisable()" placeholder="php artisan migrate"
-                    id="pre_deployment_command" label="Pre-deployment "
-                    helper="An optional script or command to execute in the existing container before the deployment begins.<br>It is always executed with 'sh -c', so you do not need add it manually." />
+                    id="pre_deployment_command" label="Перед розгортанням "
+                    helper="Необов'язковий скрипт або команда для виконання в існуючому контейнері перед початком розгортання.<br>Завжди виконується за допомогою 'sh -c', тому вам не потрібно додавати це вручну." />
                 @if ($application->build_pack === 'dockercompose')
                     <x-forms.input x-bind:disabled="shouldDisable()" id="pre_deployment_command_container"
-                        label="Container Name"
-                        helper="The name of the container to execute within. You can leave it blank if your application only has one container." />
+                        label="Ім'я контейнера"
+                        helper="Назва контейнера, в якому буде виконано команду. Ви можете залишити поле порожнім, якщо ваша програма має лише один контейнер." />
                 @endif
             </div>
             <div class="flex flex-col gap-2 xl:flex-row">
                 <x-forms.input x-bind:disabled="shouldDisable()" placeholder="php artisan migrate"
-                    id="post_deployment_command" label="Post-deployment "
-                    helper="An optional script or command to execute in the newly built container after the deployment completes.<br>It is always executed with 'sh -c', so you do not need add it manually." />
+                    id="post_deployment_command" label="Після розгортання "
+                    helper="Необов'язковий скрипт або команда для виконання в щойно створеному контейнері після завершення розгортання.<br>Завжди виконується за допомогою 'sh -c', тому вам не потрібно додавати це вручну." />
                 @if ($application->build_pack === 'dockercompose')
                     <x-forms.input x-bind:disabled="shouldDisable()"
-                        id="post_deployment_command_container" label="Container Name"
-                        helper="The name of the container to execute within. You can leave it blank if your application only has one container." />
+                        id="post_deployment_command_container" label="Ім'я контейнера"
+                        helper="Назва контейнера, в якому буде виконано команду. Ви можете залишити поле порожнім, якщо ваша програма має лише один контейнер." />
                 @endif
             </div>
         </div>

@@ -1,8 +1,8 @@
 <div class="pt-4">
     @if (isset($link))
-        Create a new one
+        Створити новий
         <a href="{{ $link }}" class="underline dark:text-warning">
-            here.
+            тут.
         </a>
     {{-- @else
         Use the magic

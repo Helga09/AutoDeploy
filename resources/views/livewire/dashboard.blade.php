@@ -1,24 +1,23 @@
 <div>
     <x-slot:title>
-        Dashboard | Coolify
+        Панель приладів | Coolify
     </x-slot>
     @if (session('error'))
         <span x-data x-init="$wire.emit('error', '{{ session('error') }}')" />
     @endif
-    <h1>Dashboard</h1>
-    <div class="subtitle">Your self-hosted infrastructure.</div>
+    <h1>Панель приладів</h1>
+    <div class="subtitle">Ваша самостійно розміщена інфраструктура.</div>
     @if (request()->query->get('success'))
         <div class=" mb-10 font-bold alert alert-success">
-            Your subscription has been activated! Welcome onboard! It could take a few seconds before your
-            subscription is activated.<br> Please be patient.
+            Ваша підписка активована! Ласкаво просимо! Активація підписки може зайняти кілька секунд.<br> Будь ласка, зачекайте.
         </div>
     @endif
 
     <section class="-mt-2">
         <div class="flex items-center gap-2 pb-2">
-            <h3>Projects</h3>
+            <h3>Проєкти</h3>
             @if ($projects->count() > 0)
-                <x-modal-input buttonTitle="Add" title="New Project">
+                <x-modal-input buttonTitle="Додати" title="Новий проєкт">
                     <x-slot:content>
                         <button
                             class="flex items-center justify-center size-4 text-white rounded hover:bg-coolgray-400 dark:hover:bg-coolgray-300 cursor-pointer">
@@ -52,14 +51,14 @@
                                                 'project_uuid' => $project->uuid,
                                                 'environment_uuid' => $project->environments->first()->uuid,
                                             ]) }}">
-                                            + Add Resource
+                                            + Додати ресурс
                                         </a>
                                     @endcan
                                 @endif
                                 @can('update', $project)
                                     <a class="hover:underline"
                                         href="{{ route('project.edit', ['project_uuid' => $project->uuid]) }}">
-                                        Settings
+                                        Налаштування
                                     </a>
                                 @endcan
                             </div>
@@ -69,12 +68,12 @@
             </div>
         @else
             <div class="flex flex-col gap-1">
-                <div class='font-bold dark:text-warning'>No projects found.</div>
+                <div class='font-bold dark:text-warning'>Проєктів не знайдено.</div>
                 <div class="flex items-center gap-1">
-                    <x-modal-input buttonTitle="Add" title="New Project">
+                    <x-modal-input buttonTitle="Додати" title="Новий проєкт">
                         <livewire:project.add-empty />
-                    </x-modal-input> your first project or
-                    go to the <a class="underline dark:text-white" href="{{ route('onboarding') }}">onboarding</a> page.
+                    </x-modal-input> ваш перший проєкт або
+                    перейдіть на <a class="underline dark:text-white" href="{{ route('onboarding') }}">сторінку адаптації</a>.
                 </div>
             </div>
         @endif
@@ -82,9 +81,9 @@
 
     <section>
         <div class="flex items-center gap-2 pb-2">
-            <h3>Servers</h3>
+            <h3>Сервери</h3>
             @if ($servers->count() > 0 && $privateKeys->count() > 0)
-                <x-modal-input buttonTitle="Add" title="New Server" :closeOutside="false">
+                <x-modal-input buttonTitle="Додати" title="Новий сервер" :closeOutside="false">
                     <x-slot:content>
                         <button
                             class="flex items-center justify-center size-4 text-white rounded hover:bg-coolgray-400 dark:hover:bg-coolgray-300 cursor-pointer">
@@ -115,13 +114,13 @@
                                 {{ $server->description }}</div>
                             <div class="flex gap-1 text-xs text-error">
                                 @if (!$server->settings->is_reachable)
-                                    Not reachable
+                                    Недоступний
                                 @endif
                                 @if (!$server->settings->is_reachable && !$server->settings->is_usable)
-                                    &
+                                    та
                                 @endif
                                 @if (!$server->settings->is_usable)
-                                    Not usable by Coolify
+                                    Непридатний для використання Coolify
                                 @endif
                             </div>
                         </div>
@@ -132,26 +131,26 @@
         @else
             @if ($privateKeys->count() === 0)
                 <div class="flex flex-col gap-1">
-                    <div class='font-bold dark:text-warning'>No private keys found.</div>
-                    <div class="flex items-center gap-1">Before you can add your server, first <x-modal-input
-                            buttonTitle="add" title="New Private Key">
+                    <div class='font-bold dark:text-warning'>Приватних ключів не знайдено.</div>
+                    <div class="flex items-center gap-1">Перш ніж додати сервер, спочатку <x-modal-input
+                            buttonTitle="додайте" title="Новий приватний ключ">
                             <livewire:security.private-key.create from="server" />
-                        </x-modal-input> a private key
-                        or
-                        go to the <a class="underline dark:text-white" href="{{ route('onboarding') }}">onboarding</a>
-                        page.
+                        </x-modal-input> приватний ключ
+                        або
+                        перейдіть на <a class="underline dark:text-white" href="{{ route('onboarding') }}">сторінку адаптації</a>
+                        .
                     </div>
                 </div>
             @else
                 <div class="flex flex-col gap-1">
-                    <div class='font-bold dark:text-warning'>No servers found.</div>
+                    <div class='font-bold dark:text-warning'>Серверів не знайдено.</div>
                     <div class="flex items-center gap-1">
-                        <x-modal-input buttonTitle="Add" title="New Server" :closeOutside="false">
+                        <x-modal-input buttonTitle="Додати" title="Новий сервер" :closeOutside="false">
                             <livewire:server.create />
-                        </x-modal-input> your first server
-                        or
-                        go to the <a class="underline dark:text-white" href="{{ route('onboarding') }}">onboarding</a>
-                        page.
+                        </x-modal-input> ваш перший сервер
+                        або
+                        перейдіть на <a class="underline dark:text-white" href="{{ route('onboarding') }}">сторінку адаптації</a>
+                        .
                     </div>
                 </div>
             @endif

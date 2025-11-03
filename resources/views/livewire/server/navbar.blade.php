@@ -1,46 +1,46 @@
 <div class="pb-6">
     <x-slide-over @startproxy.window="slideOverOpen = true" fullScreen>
-        <x-slot:title>Proxy Startup Logs</x-slot:title>
+        <x-slot:title>Журнали запуску проксі</x-slot:title>
         <x-slot:content>
             <livewire:activity-monitor header="Logs" fullHeight />
         </x-slot:content>
     </x-slide-over>
     <div class="flex items-center gap-2">
-        <h1>Server</h1>
+        <h1>Сервер</h1>
         @if ($server->proxySet())
             <div class="flex">
                 <div class="flex items-center">
                     @if ($proxyStatus === 'running')
-                        <x-status.running status="Proxy Running" noLoading />
+                        <x-status.running status="Проксі працює" noLoading />
                     @elseif ($proxyStatus === 'restarting')
-                        <x-status.restarting status="Proxy Restarting" noLoading />
+                        <x-status.restarting status="Проксі перезавантажується" noLoading />
                     @elseif ($proxyStatus === 'stopping')
-                        <x-status.restarting status="Proxy Stopping" noLoading />
+                        <x-status.restarting status="Проксі зупиняється" noLoading />
                     @elseif ($proxyStatus === 'starting')
-                        <x-status.restarting status="Proxy Starting" noLoading />
+                        <x-status.restarting status="Проксі запускається" noLoading />
                     @elseif (data_get($server, 'proxy.force_stop'))
                         <div wire:loading.remove wire:target="checkProxy">
-                            <x-status.stopped status="Proxy Stopped (Force Stop)" noLoading />
+                            <x-status.stopped status="Проксі зупинено (Примусова зупинка)" noLoading />
                         </div>
                     @elseif ($proxyStatus === 'exited')
                         <div wire:loading.remove wire:target="checkProxy">
-                            <x-status.stopped status="Proxy Exited" noLoading />
+                            <x-status.stopped status="Проксі завершив роботу" noLoading />
                         </div>
                     @endif
                     <div wire:loading wire:target="checkProxy" class="badge badge-warning"></div>
                     <div wire:loading wire:target="checkProxy"
                         class="pl-2 pr-1 text-xs font-bold tracking-wider dark:text-warning">
-                        Checking Ports Availability...
+                        Перевірка доступності портів...
                     </div>
                     @if ($proxyStatus !== 'exited')
-                        <button wire:loading.remove title="Refresh Status" wire:click='checkProxyStatus'
+                        <button wire:loading.remove title="Оновити статус" wire:click='checkProxyStatus'
                             class="mx-1 dark:hover:fill-white fill-black dark:fill-warning">
                             <svg class="w-4 h-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M12 2a10.016 10.016 0 0 0-7 2.877V3a1 1 0 1 0-2 0v4.5a1 1 0 0 0 1 1h4.5a1 1 0 0 0 0-2H6.218A7.98 7.98 0 0 1 20 12a1 1 0 0 0 2 0A10.012 10.012 0 0 0 12 2zm7.989 13.5h-4.5a1 1 0 0 0 0 2h2.293A7.98 7.98 0 0 1 4 12a1 1 0 0 0-2 0a9.986 9.986 0 0 0 16.989 7.133V21a1 1 0 0 0 2 0v-4.5a1 1 0 0 0-1-1z" />
                             </svg>
                         </button>
-                        <button wire:loading title="Refreshing Status" wire:click='checkProxyStatus'
+                        <button wire:loading title="Оновлення статусу" wire:click='checkProxyStatus'
                             class="mx-1 dark:hover:fill-white fill-black dark:fill-warning">
                             <svg class="w-4 h-4 animate-spin" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -60,7 +60,7 @@
                 href="{{ route('server.show', [
                     'server_uuid' => data_get($server, 'uuid'),
                 ]) }}">
-                Configuration
+                Конфігурація
             </a>
 
             @if (!$server->isSwarmWorker() && !$server->settings->is_build_server)
@@ -68,21 +68,21 @@
                     href="{{ route('server.proxy', [
                         'server_uuid' => data_get($server, 'uuid'),
                     ]) }}">
-                    Proxy
+                    Проксі
                 </a>
             @endif
             <a class="{{ request()->routeIs('server.resources') ? 'dark:text-white' : '' }}"
                 href="{{ route('server.resources', [
                     'server_uuid' => data_get($server, 'uuid'),
                 ]) }}">
-                Resources
+                Ресурси
             </a>
             @can('canAccessTerminal')
                 <a class="{{ request()->routeIs('server.command') ? 'dark:text-white' : '' }}"
                     href="{{ route('server.command', [
                         'server_uuid' => data_get($server, 'uuid'),
                     ]) }}">
-                    Terminal
+                    Термінал
                 </a>
             @endcan
             @can('update', $server)
@@ -90,7 +90,7 @@
                     href="{{ route('server.security.patches', [
                         'server_uuid' => data_get($server, 'uuid'),
                     ]) }}">
-                    Security
+                    Безпека
                 </a>
             @endcan
         </nav>
@@ -98,7 +98,7 @@
             <div>
                 @if ($server->proxySet())
                     <x-slide-over fullScreen @startproxy.window="slideOverOpen = true">
-                        <x-slot:title>Proxy Status</x-slot:title>
+                        <x-slot:title>Статус проксі</x-slot:title>
                         <x-slot:content>
                             <livewire:activity-monitor header="Logs" />
                         </x-slot:content>
@@ -106,22 +106,22 @@
                     @if ($proxyStatus === 'running')
                         <div class="flex gap-2">
                             <div class="mt-1" wire:loading wire:target="loadProxyConfiguration">
-                                <x-loading text="Checking Traefik dashboard" />
+                                <x-loading text="Перевірка панелі Traefik" />
                             </div>
                             @if ($traefikDashboardAvailable)
                                 <button>
                                     <a target="_blank" href="http://{{ $serverIp }}:8080">
-                                        Traefik Dashboard
+                                        Панель Traefik
                                         <x-external-link />
                                     </a>
                                 </button>
                             @endif
-                            <x-modal-confirmation title="Confirm Proxy Restart?" buttonTitle="Restart Proxy"
+                            <x-modal-confirmation title="Підтвердити перезапуск проксі?" buttonTitle="Перезапустити проксі"
                                 submitAction="restart" :actions="[
-                                    'This proxy will be stopped and started again.',
-                                    'All resources hosted on coolify will be unavailable during the restart.',
+                                    'Цей проксі буде зупинено та знову запущено.',
+                                    'Усі ресурси, розміщені на coolify, будуть недоступні під час перезапуску.',
                                 ]" :confirmWithText="false" :confirmWithPassword="false"
-                                step2ButtonText="Restart Proxy" :dispatchEvent="true" dispatchEventType="restartEvent">
+                                step2ButtonText="Перезапустити проксі" :dispatchEvent="true" dispatchEventType="restartEvent">
                                 <x-slot:button-title>
                                     <svg class="w-5 h-5 dark:text-warning" viewBox="0 0 24 24"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -132,15 +132,15 @@
                                             <path d="M20 4v5h-5" />
                                         </g>
                                     </svg>
-                                    Restart Proxy
+                                    Перезапустити проксі
                                 </x-slot:button-title>
                             </x-modal-confirmation>
-                            <x-modal-confirmation title="Confirm Proxy Stopping?" buttonTitle="Stop Proxy"
+                            <x-modal-confirmation title="Підтвердити зупинку проксі?" buttonTitle="Зупинити проксі"
                                 submitAction="stop(true)" :actions="[
-                                    'The coolify proxy will be stopped.',
-                                    'All resources hosted on coolify will be unavailable.',
+                                    'Проксі coolify буде зупинено.',
+                                    'Усі ресурси, розміщені на coolify, будуть недоступні.',
                                 ]" :confirmWithText="false" :confirmWithPassword="false"
-                                step2ButtonText="Stop Proxy" :dispatchEvent="true" dispatchEventType="stopEvent">
+                                step2ButtonText="Зупинити проксі" :dispatchEvent="true" dispatchEventType="stopEvent">
                                 <x-slot:button-title>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-error"
                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -153,7 +153,7 @@
                                             d="M14 5m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z">
                                         </path>
                                     </svg>
-                                    Stop Proxy
+                                    Зупинити проксі
                                 </x-slot:button-title>
                             </x-modal-confirmation>
                         </div>
@@ -165,7 +165,7 @@
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <path d="M7 4v16l13 -8z" />
                             </svg>
-                            Start Proxy
+                            Запустити проксі
                         </button>
                     @endif
                 @endif
@@ -176,11 +176,11 @@
                                 $wire.$call('checkProxy');
                             } catch (error) {
                                 console.error(error);
-                                $wire.$dispatch('error', 'Failed to check proxy status. Please try again.');
+                                $wire.$dispatch('error', 'Не вдалося перевірити статус проксі. Будь ласка, спробуйте ще раз.');
                             }
                         });
                         $wire.$on('restartEvent', () => {
-                            $wire.$dispatch('info', 'Initiating proxy restart.');
+                            $wire.$dispatch('info', 'Ініціюється перезапуск проксі.');
                             $wire.$call('restart');
                         });
                         $wire.$on('startProxy', () => {

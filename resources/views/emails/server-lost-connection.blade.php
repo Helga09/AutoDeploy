@@ -1,9 +1,9 @@
 <x-emails.layout>
-Coolify cannot connect to your server ({{ $name }}). Please check your server and make sure it is running.
+Coolify не може підключитися до вашого сервера ({{ $name }}). Будь ласка, перевірте ваш сервер і переконайтеся, що він працює.
 
-All automations & integrations are turned off!
+Усі автоматизації та інтеграції вимкнено!
 
-IMPORTANT: We automatically try to revive your server and turn on all automations & integrations.
+ВАЖЛИВО: Ми автоматично намагаємося відновити ваш сервер і увімкнути всі автоматизації та інтеграції.
 
-If you have any questions, please contact us.
+Якщо у вас виникли запитання, будь ласка, зв'яжіться з нами.
 </x-emails.layout>

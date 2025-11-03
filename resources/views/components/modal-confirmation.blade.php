@@ -1,8 +1,8 @@
 @props([
-    'title' => 'Are you sure?',
+    'title' => 'Ви впевнені?',
     'isErrorButton' => false,
     'isHighlightedButton' => false,
-    'buttonTitle' => 'Confirm Action',
+    'buttonTitle' => 'Підтвердити дію',
     'buttonFullWidth' => false,
     'customButton' => null,
     'disabled' => false,
@@ -13,13 +13,13 @@
     'actions' => [],
     'warningMessage' => null,
     'confirmWithText' => true,
-    'confirmationText' => 'Confirm Deletion',
-    'confirmationLabel' => 'Please confirm the execution of the actions by entering the Name below',
-    'shortConfirmationLabel' => 'Name',
+    'confirmationText' => 'Підтвердити видалення',
+    'confirmationLabel' => 'Будь ласка, підтвердьте виконання дій, ввівши Назву нижче',
+    'shortConfirmationLabel' => 'Назва',
     'confirmWithPassword' => true,
-    'step1ButtonText' => 'Continue',
-    'step2ButtonText' => 'Continue',
-    'step3ButtonText' => 'Confirm',
+    'step1ButtonText' => 'Продовжити',
+    'step2ButtonText' => 'Продовжити',
+    'step3ButtonText' => 'Підтвердити',
     'dispatchEvent' => false,
     'dispatchEventType' => 'success',
     'dispatchEventMessage' => '',
@@ -72,7 +72,7 @@
     step3ButtonText: @js($step3ButtonText),
     validatePassword() {
         if (this.confirmWithPassword && !this.password) {
-            return 'Password is required.';
+            return 'Пароль обов’язковий.';
         }
         return '';
     },
@@ -213,7 +213,7 @@
                             <div class="flex flex-wrap gap-2 justify-between mt-4">
                                 <x-forms.button @click="modalOpen = false; resetModal()"
                                     class="w-24 dark:bg-coolgray-200 dark:hover:bg-coolgray-300">
-                                    Cancel
+                                    Скасувати
                                 </x-forms.button>
                                 <x-forms.button @click="step++" class="w-auto" isError>
                                     <span x-text="step1ButtonText"></span>
@@ -224,10 +224,10 @@
 
                     <!-- Step 2: Confirm deletion -->
                     <div x-show="step === 2">
-                        <x-callout type="danger" title="Warning" class="mb-4">
-                            {!! $warningMessage ?: 'This operation is permanent and cannot be undone. Please think again before proceeding!' !!}
+                        <x-callout type="danger" title="Попередження" class="mb-4">
+                            {!! $warningMessage ?: 'Ця операція є постійною і не може бути скасована. Будь ласка, подумайте ще раз, перш ніж продовжити!' !!}
                         </x-callout>
-                        <div class="mb-4">The following actions will be performed:</div>
+                        <div class="mb-4">Наступні дії будуть виконані:</div>
                         <ul class="mb-4 space-y-2">
                             @foreach ($actions as $action)
                                 <li class="flex items-center text-red-500">
@@ -267,7 +267,7 @@
                         @if (!$disableTwoStepConfirmation)
                             @if ($confirmWithText)
                                 <div class="mb-4">
-                                    <h4 class="mb-2 text-lg font-semibold">Confirm Actions</h4>
+                                    <h4 class="mb-2 text-lg font-semibold">Підтвердити дії</h4>
                                     <p class="mb-2 text-sm">{{ $confirmationLabel }}</p>
                                     <div class="relative mb-2" x-data="{ decodedText: confirmationText }">
                                         <div class="relative">
@@ -275,7 +275,7 @@
                                             <button x-show="window.isSecureContext"
                                                 @click.prevent="navigator.clipboard.writeText(decodedText); $el.innerHTML = '<svg class=\'w-5 h-5 text-green-500\' fill=\'none\' stroke=\'currentColor\' viewBox=\'0 0 24 24\'><path stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'M5 13l4 4L19 7\' /></svg>'; setTimeout(() => $el.innerHTML = '<svg class=\'w-5 h-5\' fill=\'none\' stroke=\'currentColor\' viewBox=\'0 0 24 24\'><path stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z\' /></svg>', 1000)"
                                                 class="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 text-gray-400 hover:text-gray-300 transition-colors"
-                                                title="Copy to clipboard">
+                                                title="Скопіювати до буфера обміну">
                                                 <svg class="w-5 h-5" fill="none" stroke="currentColor"
                                                     viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -300,12 +300,12 @@
                             @if (!empty($checkboxes))
                                 <x-forms.button @click="step--"
                                     class="w-24 dark:bg-coolgray-200 dark:hover:bg-coolgray-300">
-                                    Back
+                                    Назад
                                 </x-forms.button>
                             @else
                                 <x-forms.button @click="modalOpen = false; resetModal()"
                                     class="w-24 dark:bg-coolgray-200 dark:hover:bg-coolgray-300">
-                                    Cancel
+                                    Скасувати
                                 </x-forms.button>
                             @endif
                             <x-forms.button
@@ -332,8 +332,8 @@
                     <!-- Step 3: Password confirmation -->
                     @if (!$disableTwoStepConfirmation)
                         <div x-show="step === 3 && confirmWithPassword">
-                            <x-callout type="danger" title="Final Confirmation" class="mb-4">
-                                Please enter your password to confirm this destructive action.
+                            <x-callout type="danger" title="Остаточне підтвердження" class="mb-4">
+                                Будь ласка, введіть свій пароль, щоб підтвердити цю руйнівну дію.
                             </x-callout>
                             <div class="flex flex-col gap-2 mb-4">
                                 @php
@@ -341,13 +341,13 @@
                                 @endphp
                                 <label for="password-confirm-{{ $passwordConfirm }}"
                                     class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                                    Your Password
+                                    Ваш пароль
                                 </label>
                                 <form @submit.prevent="false" @keydown.enter.prevent>
                                     <input type="text" name="username" autocomplete="username"
                                         value="{{ auth()->user()->email }}" style="display: none;">
                                     <input type="password" id="password-confirm-{{ $passwordConfirm }}"
-                                        x-model="password" class="w-full input" placeholder="Enter your password"
+                                        x-model="password" class="w-full input" placeholder="Введіть ваш пароль"
                                         autocomplete="current-password">
                                 </form>
                                 <p x-show="passwordError" x-text="passwordError" class="mt-1 text-sm text-red-500">
@@ -360,7 +360,7 @@
                             <div class="flex flex-wrap gap-2 justify-between mt-4">
                                 <x-forms.button @click="step--"
                                     class="w-24 dark:bg-coolgray-200 dark:hover:bg-coolgray-300">
-                                    Back
+                                    Назад
                                 </x-forms.button>
                                 <x-forms.button x-bind:disabled="!password" class="w-auto" isError
                                     @click="

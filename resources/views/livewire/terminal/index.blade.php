@@ -1,24 +1,24 @@
 <div>
     <x-slot:title>
-        Terminal | Coolify
+        Термінал | Coolify
         </x-slot>
-        <h1>Terminal</h1>
+        <h1>Термінал</h1>
         <div class="flex gap-2 items-end subtitle">
-            <div>Execute commands on your servers and containers without leaving the browser.</div>
+            <div>Виконуйте команди на ваших серверах і контейнерах, не виходячи з браузера.</div>
             <x-helper
-                helper="If you're having trouble connecting to your server, make sure that the port is open.<br><br><a class='underline' href='https://coolify.io/docs/knowledge-base/server/firewall/#terminal' target='_blank'>Documentation</a>"></x-helper>
+                helper="Якщо у вас виникли проблеми з підключенням до сервера, переконайтеся, що порт відкритий.<br><br><a class='underline' href='https://coolify.io/docs/knowledge-base/server/firewall/#terminal' target='_blank'>Документація</a>"></x-helper>
         </div>
         <div x-init="$wire.loadContainers()">
             @if ($isLoadingContainers)
                 <div class="pt-1">
-                    <x-loading text="Loading servers and containers..." />
+                    <x-loading text="Завантаження серверів і контейнерів..." />
                 </div>
             @else
                 @if ($servers->count() > 0)
                     <form class="flex flex-col gap-2 justify-center xl:items-end xl:flex-row"
                         wire:submit="$dispatchSelf('connectToContainer')">
                         <x-forms.select id="selected_uuid" required wire:model.live="selected_uuid">
-                            <option value="default">Select a server or container</option>
+                            <option value="default">Виберіть сервер або контейнер</option>
                             @foreach ($servers as $server)
                                 <option value="{{ $server->uuid }}">{{ $server->name }}</option>
                                 @foreach ($containers as $container)
@@ -30,10 +30,10 @@
                                 @endforeach
                             @endforeach
                         </x-forms.select>
-                        <x-forms.button type="submit">Connect</x-forms.button>
+                        <x-forms.button type="submit">Підключитися</x-forms.button>
                     </form>
                 @else
-                    <div>No servers with terminal access found.</div>
+                    <div>Не знайдено серверів з доступом до терміналу.</div>
                 @endif
             @endif
             <livewire:project.shared.terminal />

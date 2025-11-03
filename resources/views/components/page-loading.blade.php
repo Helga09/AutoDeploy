@@ -1,4 +1,4 @@
-@props(['text' => "Loading..."])
+@props(['text' => "Завантаження..."])
 <div class="inline-flex items-center justify-center" {{ $attributes }}>
     @if (isset($text))
         <div>{{ $text }}</div>

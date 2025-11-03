@@ -1,23 +1,23 @@
 <div>
     <div class="flex items-end gap-2">
-        <h1>Create a new Application</h1>
-        <x-modal-input buttonTitle="+ Add GitHub App" title="New GitHub App" closeOutside="false">
+        <h1>Створити нову Застосунок</h1>
+        <x-modal-input buttonTitle="+ Додати GitHub Застосунок" title="Новий GitHub Застосунок" closeOutside="false">
             <livewire:source.github.create />
         </x-modal-input>
         @if ($repositories->count() > 0)
             <a target="_blank" class="flex hover:no-underline" href="{{ getInstallationPath($github_app) }}">
                 <x-forms.button>
-                    Change Repositories on GitHub
+                    Змінити репозиторії на GitHub
                     <x-external-link />
                 </x-forms.button>
             </a>
         @endif
     </div>
-    <div class="pb-4">Deploy any public or private Git repositories through a GitHub App.</div>
+    <div class="pb-4">Розгортайте будь-які публічні або приватні Git-репозиторії за допомогою GitHub Застосунку.</div>
     @if ($github_apps->count() !== 0)
         <div class="flex flex-col gap-2">
             @if ($current_step === 'github_apps')
-                <h2 class="pt-4 pb-4">Select a Github App</h2>
+                <h2 class="pt-4 pb-4">Виберіть GitHub Застосунок</h2>
                 <div class="flex flex-col justify-center gap-2 text-left">
                     @foreach ($github_apps as $ghapp)
                         <div class="flex">
@@ -45,7 +45,7 @@
                 @if ($repositories->count() > 0)
                     <div class="flex flex-col gap-2 pb-6">
                         <div class="flex gap-2">
-                            <x-forms.select class="w-full" label="Repository" wire:model="selected_repository_id">
+                            <x-forms.select class="w-full" label="Репозиторій" wire:model="selected_repository_id">
                                 @foreach ($repositories as $repo)
                                     @if ($loop->first)
                                         <option selected value="{{ data_get($repo, 'id') }}">
@@ -58,19 +58,19 @@
                                 @endforeach
                             </x-forms.select>
                         </div>
-                        <x-forms.button wire:click.prevent="loadBranches"> Load Repository </x-forms.button>
+                        <x-forms.button wire:click.prevent="loadBranches"> Завантажити репозиторій </x-forms.button>
                     </div>
                 @else
-                    <div>No repositories found. Check your GitHub App configuration.</div>
+                    <div>Репозиторії не знайдені. Перевірте конфігурацію вашого GitHub Застосунку.</div>
                 @endif
                 @if ($branches->count() > 0)
-                    <h2 class="text-lg font-bold">Configuration</h2>
+                    <h2 class="text-lg font-bold">Конфігурація</h2>
                     <div class="flex flex-col gap-2 pb-6">
                         <form class="flex flex-col" wire:submit='submit'>
                             <div class="flex flex-col gap-2 pb-6">
                                 <div class="flex gap-2">
-                                    <x-forms.select id="selected_branch_name" label="Branch">
-                                        <option value="default" disabled selected>Select a branch</option>
+                                    <x-forms.select id="selected_branch_name" label="Гілка">
+                                        <option value="default" disabled selected>Виберіть гілку</option>
                                         @foreach ($branches as $branch)
                                             @if ($loop->first)
                                                 <option selected value="{{ data_get($branch, 'name') }}">
@@ -83,56 +83,56 @@
                                             @endif
                                         @endforeach
                                     </x-forms.select>
-                                    <x-forms.select wire:model.live="build_pack" label="Build Pack" required>
+                                    <x-forms.select wire:model.live="build_pack" label="Пакет збірки" required>
                                         <option value="nixpacks">Nixpacks</option>
-                                        <option value="static">Static</option>
+                                        <option value="static">Статичний</option>
                                         <option value="dockerfile">Dockerfile</option>
                                         <option value="dockercompose">Docker Compose</option>
                                     </x-forms.select>
                                     @if ($is_static)
-                                        <x-forms.input id="publish_directory" label="Publish Directory"
-                                            helper="If there is a build process involved (like Svelte, React, Next, etc..), please specify the output directory for the build assets." />
+                                        <x-forms.input id="publish_directory" label="Каталог публікації"
+                                            helper="Якщо є процес збірки (наприклад, Svelte, React, Next тощо), будь ласка, вкажіть вихідний каталог для зібраних ресурсів." />
                                     @endif
                                 </div>
                                 @if ($build_pack === 'dockercompose')
                                     <div x-data="{ baseDir: '{{ $base_directory }}', composeLocation: '{{ $docker_compose_location }}' }" class="gap-2 flex flex-col">
                                         <x-forms.input placeholder="/" wire:model.blur="base_directory"
-                                            label="Base Directory"
-                                            helper="Directory to use as root. Useful for monorepos."
+                                            label="Базовий каталог"
+                                            helper="Каталог, який використовувати як корінь. Корисно для монорепозиторіїв."
                                             x-model="baseDir" />
                                         <x-forms.input placeholder="/docker-compose.yaml"
-                                            wire:model.blur="docker_compose_location" label="Docker Compose Location"
-                                            helper="It is calculated together with the Base Directory."
+                                            wire:model.blur="docker_compose_location" label="Розташування Docker Compose"
+                                            helper="Розраховується разом з базовим каталогом."
                                             x-model="composeLocation" />
                                         <div class="pt-2">
                                             <span>
-                                                Compose file location in your repository: </span><span
+                                                Розташування файлу Compose у вашому репозиторії: </span><span
                                                 class='dark:text-warning'
                                                 x-text='(baseDir === "/" ? "" : baseDir) + (composeLocation.startsWith("/") ? composeLocation : "/" + composeLocation)'></span>
                                         </div>
                                     </div>
                                 @else
-                                    <x-forms.input wire:model="base_directory" label="Base Directory"
-                                        helper="Directory to use as root. Useful for monorepos." />
+                                    <x-forms.input wire:model="base_directory" label="Базовий каталог"
+                                        helper="Каталог, який використовувати як корінь. Корисно для монорепозиторіїв." />
                                 @endif
                                 @if ($show_is_static)
-                                    <x-forms.input type="number" id="port" label="Port" :readonly="$is_static || $build_pack === 'static'"
-                                        helper="The port your application listens on." />
+                                    <x-forms.input type="number" id="port" label="Порт" :readonly="$is_static || $build_pack === 'static'"
+                                        helper="Порт, на якому працює ваш застосунок." />
                                     <div class="w-52">
-                                        <x-forms.checkbox instantSave id="is_static" label="Is it a static site?"
-                                            helper="If your application is a static site or the final build assets should be served as a static site, enable this." />
+                                        <x-forms.checkbox instantSave id="is_static" label="Це статичний сайт?"
+                                            helper="Якщо ваш застосунок є статичним сайтом або кінцеві зібрані ресурси мають подаватися як статичний сайт, увімкніть це." />
                                     </div>
                                 @endif
                             </div>
                             <x-forms.button type="submit">
-                                Continue
+                                Продовжити
                             </x-forms.button>
                 @endif
             @endif
         </div>
     @else
         <div class="hero">
-            No GitHub Application found. Please create a new GitHub Application.
+            GitHub Застосунок не знайдено. Будь ласка, створіть новий GitHub Застосунок.
         </div>
     @endif
 </div>

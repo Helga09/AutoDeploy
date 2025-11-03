@@ -1,6 +1,6 @@
 <x-dropdown>
     <x-slot:title>
-        Links
+        Посилання
     </x-slot>
     @if (
         (data_get($application, 'fqdn') ||
@@ -12,7 +12,7 @@
             @if (data_get($application, 'gitBrancLocation'))
                 <a target="_blank" class="dropdown-item" href="{{ $application->gitBranchLocation }}">
                     <x-git-icon git="{{ $application->source?->getMorphClass() }}" />
-                    Git Repository
+                    Git Репозиторій
                 </a>
             @endif
             @if (data_get($application, 'build_pack') === 'dockercompose')
@@ -66,7 +66,7 @@
                     @if ($application->destination->server->id === 0)
                         <a class="dropdown-item" target="_blank" href="http://localhost:{{ explode(':', $port)[0] }}">
                             <x-external-link class="size-4" />
-                            Port {{ $port }}
+                            Порт {{ $port }}
                         </a>
                     @else
                         <a class="dropdown-item" target="_blank"
@@ -88,6 +88,6 @@
             @endif
         </div>
     @else
-        <div class="px-2 py-1.5 text-xs">No links available</div>
+        <div class="px-2 py-1.5 text-xs">Посилання відсутні</div>
     @endif
 </x-dropdown>

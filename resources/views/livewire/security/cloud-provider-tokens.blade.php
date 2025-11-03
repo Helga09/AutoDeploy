@@ -1,13 +1,13 @@
 <div>
-    <h2>Cloud Provider Tokens</h2>
-    <div class="pb-4">Manage API tokens for cloud providers (Hetzner, DigitalOcean, etc.).</div>
+    <h2>Токени хмарних провайдерів</h2>
+    <div class="pb-4">Керуйте токенами API для хмарних провайдерів (Hetzner, DigitalOcean тощо).</div>
 
-    <h3>New Token</h3>
+    <h3>Новий токен</h3>
     @can('create', App\Models\CloudProviderToken::class)
         <livewire:security.cloud-provider-token-form :modal_mode="false" />
     @endcan
 
-    <h3 class="py-4">Saved Tokens</h3>
+    <h3 class="py-4">Збережені токени</h3>
     <div class="grid gap-2 lg:grid-cols-1">
         @forelse ($tokens as $savedToken)
             <div wire:key="token-{{ $savedToken->id }}"
@@ -18,22 +18,22 @@
                     </span>
                     <span class="font-bold dark:text-white">{{ $savedToken->name }}</span>
                 </div>
-                <div class="text-sm">Created: {{ $savedToken->created_at->diffForHumans() }}</div>
+                <div class="text-sm">Створено: {{ $savedToken->created_at->diffForHumans() }}</div>
 
                 @can('delete', $savedToken)
-                    <x-modal-confirmation title="Confirm Token Deletion?" isErrorButton buttonTitle="Delete Token"
+                    <x-modal-confirmation title="Підтвердити видалення токена?" isErrorButton buttonTitle="Видалити токен"
                         submitAction="deleteToken({{ $savedToken->id }})" :actions="[
-                            'This cloud provider token will be permanently deleted.',
-                            'Any servers using this token will need to be reconfigured.',
+                            'Цей токен хмарного провайдера буде остаточно видалено.',
+                            'Будь-які сервери, що використовують цей токен, потребуватимуть переналаштування.',
                         ]"
                         confirmationText="{{ $savedToken->name }}"
-                        confirmationLabel="Please confirm the deletion by entering the token name below"
-                        shortConfirmationLabel="Token Name" :confirmWithPassword="false" step2ButtonText="Delete Token" />
+                        confirmationLabel="Будь ласка, підтвердьте видалення, ввівши ім'я токена нижче"
+                        shortConfirmationLabel="Ім'я токена" :confirmWithPassword="false" step2ButtonText="Видалити токен" />
                 @endcan
             </div>
         @empty
             <div>
-                <div>No cloud provider tokens found.</div>
+                <div>Токенів хмарних провайдерів не знайдено.</div>
             </div>
         @endforelse
     </div>

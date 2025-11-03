@@ -1,5 +1,5 @@
 @props([
-    'status' => 'Running',
+    'status' => 'Працює',
     'title' => null,
     'lastDeploymentLink' => null,
     'noLoading' => false,
@@ -26,7 +26,7 @@
         @endphp
         @if ($showUnhealthyHelper)
             <x-helper
-                helper="Unhealthy state. <span class='dark:text-warning text-coollabs'>This doesn't mean that the resource is malfunctioning.</span><br><br>- If the resource is accessible, it indicates that no health check is configured - it is not mandatory.<br>- If the resource is not accessible (returning 404 or 503), it may indicate that a health check is needed and has not passed. <span class='dark:text-warning text-coollabs'>Your action is required.</span><br><br>More details in the <a href='https://coolify.io/docs/knowledge-base/proxy/traefik/healthchecks' class='underline dark:text-warning text-coollabs' target='_blank'>documentation</a>.">
+                helper="Несправний стан. <span class='dark:text-warning text-coollabs'>Це не означає, що ресурс працює некоректно.</span><br><br>- Якщо ресурс доступний, це означає, що перевірка стану не налаштована - це не є обов'язковим.<br>- Якщо ресурс недоступний (повертає 404 або 503), це може означати, що необхідна перевірка стану і вона не пройшла. <span class='dark:text-warning text-coollabs'>Потрібна ваша дія.</span><br><br>Більше деталей у <a href='https://coolify.io/docs/knowledge-base/proxy/traefik/healthchecks' class='underline dark:text-warning text-coollabs' target='_blank'>документації</a>.">
                 <x-slot:icon>
                     <svg class="hidden w-4 h-4 dark:text-warning lg:block" viewBox="0 0 256 256"
                         xmlns="http://www.w3.org/2000/svg">

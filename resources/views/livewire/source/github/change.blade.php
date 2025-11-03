@@ -2,30 +2,30 @@
     @if (data_get($github_app, 'app_id'))
         <form wire:submit='submit'>
             <div class="flex flex-col sm:flex-row sm:items-center gap-2">
-                <h1>GitHub App</h1>
+                <h1>Застосунок GitHub</h1>
                 <div class="flex gap-2">
                     @if (data_get($github_app, 'installation_id'))
-                        <x-forms.button canGate="update" :canResource="$github_app" type="submit">Save</x-forms.button>
+                        <x-forms.button canGate="update" :canResource="$github_app" type="submit">Зберегти</x-forms.button>
                     @endif
                     @can('delete', $github_app)
                         @if ($applications->count() > 0)
-                            <x-modal-confirmation title="Confirm GitHub App Deletion?" isErrorButton buttonTitle="Delete"
-                                submitAction="delete" :actions="['The selected GitHub App will be permanently deleted.']" confirmationText="{{ data_get($github_app, 'name') }}"
-                                confirmationLabel="Please confirm the execution of the actions by entering the GitHub App Name below"
-                                shortConfirmationLabel="GitHub App Name" :confirmWithPassword="false"
-                                step2ButtonText="Permanently Delete" />
+                            <x-modal-confirmation title="Підтвердити видалення Застосунку GitHub?" isErrorButton buttonTitle="Видалити"
+                                submitAction="delete" :actions="['Вибраний Застосунок GitHub буде остаточно видалено.']" confirmationText="{{ data_get($github_app, 'name') }}"
+                                confirmationLabel="Будь ласка, підтвердьте виконання дій, ввівши назву Застосунку GitHub нижче"
+                                shortConfirmationLabel="Назва Застосунку GitHub" :confirmWithPassword="false"
+                                step2ButtonText="Видалити остаточно" />
                         @else
-                            <x-modal-confirmation title="Confirm GitHub App Deletion?" isErrorButton buttonTitle="Delete"
-                                submitAction="delete" :actions="['The selected GitHub App will be permanently deleted.']"
-                                confirmationLabel="Please confirm the execution of the actions by entering the GitHub App Name below"
-                                shortConfirmationLabel="GitHub App Name"
+                            <x-modal-confirmation title="Підтвердити видалення Застосунку GitHub?" isErrorButton buttonTitle="Видалити"
+                                submitAction="delete" :actions="['Вибраний Застосунок GitHub буде остаточно видалено.']"
+                                confirmationLabel="Будь ласка, підтвердьте виконання дій, ввівши назву Застосунку GitHub нижче"
+                                shortConfirmationLabel="Назва Застосунку GitHub"
                                 confirmationText="{{ data_get($github_app, 'name') }}" :confirmWithPassword="false"
-                                step2ButtonText="Permanently Delete" />
+                                step2ButtonText="Видалити остаточно" />
                         @endif
                     @endcan
                 </div>
             </div>
-            <div class="subtitle">Your Private GitHub App for private repositories.</div>
+            <div class="subtitle">Ваш приватний Застосунок GitHub для приватних репозиторіїв.</div>
             @if (!data_get($github_app, 'installation_id'))
                 <div class="mb-10 rounded-sm alert-error">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 stroke-current shrink-0" fill="none"
@@ -33,80 +33,80 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                     </svg>
-                    <span>You must complete this step before you can use this source!</span>
+                    <span>Ви повинні виконати цей крок, перш ніж зможете використовувати це джерело!</span>
                 </div>
                 <a class="items-center justify-center box" href="{{ getInstallationPath($github_app) }}">
-                    Install Repositories on GitHub
+                    Встановити репозиторії на GitHub
                 </a>
             @else
                 <div class="flex flex-col gap-2">
                     <div class="flex flex-col sm:flex-row gap-2">
                         <div class="flex flex-col sm:flex-row items-start sm:items-end gap-2 w-full">
-                            <x-forms.input canGate="update" :canResource="$github_app" id="name" label="App Name" />
+                            <x-forms.input canGate="update" :canResource="$github_app" id="name" label="Назва застосунку" />
                             <x-forms.button canGate="update" :canResource="$github_app" wire:click.prevent="updateGithubAppName">
-                                Sync Name
+                                Синхронізувати назву
                             </x-forms.button>
                             @can('update', $github_app)
                                 <a href="{{ $this->getGithubAppNameUpdatePath() }}">
                                     <x-forms.button
                                         class="bg-transparent border-transparent hover:bg-transparent hover:border-transparent hover:underline">
-                                        Rename
+                                        Перейменувати
                                         <x-external-link />
                                     </x-forms.button>
                                 </a>
                                 <a href="{{ getInstallationPath($github_app) }}" class="w-fit">
                                     <x-forms.button
                                         class="bg-transparent border-transparent hover:bg-transparent hover:border-transparent hover:underline whitespace-nowrap">
-                                        Update Repositories
+                                        Оновити репозиторії
                                         <x-external-link />
                                     </x-forms.button>
                                 </a>
                             @endcan
                         </div>
                     </div>
-                    <x-forms.input canGate="update" :canResource="$github_app" id="organization" label="Organization"
-                        placeholder="If empty, personal user will be used" />
+                    <x-forms.input canGate="update" :canResource="$github_app" id="organization" label="Організація"
+                        placeholder="Якщо поле порожнє, буде використано особистого користувача" />
                     @if (!isCloud())
                         <div class="w-48">
-                            <x-forms.checkbox canGate="update" :canResource="$github_app" label="System Wide?"
-                                helper="If checked, this GitHub App will be available for everyone in this Coolify instance."
+                            <x-forms.checkbox canGate="update" :canResource="$github_app" label="Загальносистемний?"
+                                helper="Якщо позначено, цей Застосунок GitHub буде доступний для всіх у цьому екземплярі Coolify."
                                 instantSave id="isSystemWide" />
                         </div>
                         @if ($isSystemWide)
-                            <x-callout type="warning" title="Not Recommended">
-                                System-wide GitHub Apps are shared across all teams on this Coolify instance. This means any team can use this GitHub App to deploy applications from your repositories. For better security and isolation, it's recommended to create team-specific GitHub Apps instead.
+                            <x-callout type="warning" title="Не рекомендовано">
+                                Загальносистемні Застосунки GitHub є спільними для всіх команд у цьому екземплярі Coolify. Це означає, що будь-яка команда може використовувати цей Застосунок GitHub для розгортання застосунків з ваших репозиторіїв. Для кращої безпеки та ізоляції рекомендується створювати Застосунки GitHub для конкретних команд.
                             </x-callout>
                         @endif
                     @endif
                     <div class="flex flex-col sm:flex-row gap-2">
-                        <x-forms.input canGate="update" :canResource="$github_app" id="htmlUrl" label="HTML Url" />
-                        <x-forms.input canGate="update" :canResource="$github_app" id="apiUrl" label="API Url" />
+                        <x-forms.input canGate="update" :canResource="$github_app" id="htmlUrl" label="URL HTML" />
+                        <x-forms.input canGate="update" :canResource="$github_app" id="apiUrl" label="URL API" />
                     </div>
                     <div class="flex flex-col sm:flex-row gap-2">
-                        <x-forms.input canGate="update" :canResource="$github_app" id="customUser" label="User"
+                        <x-forms.input canGate="update" :canResource="$github_app" id="customUser" label="Користувач"
                             required />
                         <x-forms.input canGate="update" :canResource="$github_app" type="number" id="customPort"
-                            label="Port" required />
+                            label="Порт" required />
                     </div>
                     <div class="flex flex-col sm:flex-row gap-2">
                         <x-forms.input canGate="update" :canResource="$github_app" type="number" id="appId"
-                            label="App Id" required />
+                            label="ID Застосунку" required />
                         <x-forms.input canGate="update" :canResource="$github_app" type="number"
-                            id="installationId" label="Installation Id" required />
+                            id="installationId" label="ID Інсталяції" required />
                     </div>
                     <div class="flex flex-col sm:flex-row gap-2">
-                        <x-forms.input canGate="update" :canResource="$github_app" id="clientId" label="Client Id"
+                        <x-forms.input canGate="update" :canResource="$github_app" id="clientId" label="ID Клієнта"
                             type="password" required />
                         <x-forms.input canGate="update" :canResource="$github_app" id="clientSecret"
-                            label="Client Secret" type="password" required />
+                            label="Секрет Клієнта" type="password" required />
                         <x-forms.input canGate="update" :canResource="$github_app" id="webhookSecret"
-                            label="Webhook Secret" type="password" required />
+                            label="Секрет Вебхука" type="password" required />
                     </div>
                     <div class="flex gap-2">
                         <x-forms.select canGate="update" :canResource="$github_app" id="privateKeyId"
-                            label="Private Key" required>
+                            label="Приватний ключ" required>
                             @if (blank($github_app->private_key_id))
-                                <option value="0" selected>Select a private key</option>
+                                <option value="0" selected>Виберіть приватний ключ</option>
                             @endif
                             @foreach ($privateKeys as $privateKey)
                                 <option value="{{ $privateKey->id }}">{{ $privateKey->name }}</option>
@@ -114,28 +114,28 @@
                         </x-forms.select>
                     </div>
                     <div class="flex flex-col sm:flex-row items-start sm:items-end gap-2">
-                        <h2 class="pt-4">Permissions</h2>
+                        <h2 class="pt-4">Дозволи</h2>
                         @can('view', $github_app)
-                            <x-forms.button wire:click.prevent="checkPermissions">Refetch</x-forms.button>
+                            <x-forms.button wire:click.prevent="checkPermissions">Оновити</x-forms.button>
                             <a href="{{ getPermissionsPath($github_app) }}">
                                 <x-forms.button>
-                                    Update
+                                    Оновити
                                     <x-external-link />
                                 </x-forms.button>
                             </a>
                         @endcan
                     </div>
                     <div class="flex flex-col sm:flex-row gap-2">
-                        <x-forms.input id="contents" helper="read - mandatory." label="Content" readonly
+                        <x-forms.input id="contents" helper="читання - обов'язково." label="Вміст" readonly
                             placeholder="N/A" />
-                        <x-forms.input id="metadata" helper="read - mandatory." label="Metadata" readonly
+                        <x-forms.input id="metadata" helper="читання - обов'язково." label="Метадані" readonly
                             placeholder="N/A" />
                         {{-- <x-forms.input id="administration"
                             helper="read:write access needed to setup servers as GitHub Runner." label="Administration"
                             readonly placeholder="N/A" /> --}}
                         <x-forms.input id="pullRequests"
-                            helper="write access needed to use deployment status update in previews."
-                            label="Pull Request" readonly placeholder="N/A" />
+                            helper="потрібен доступ на запис для оновлення статусу розгортання в попередніх переглядах."
+                            label="Запит на злиття" readonly placeholder="N/A" />
                     </div>
                 </div>
             @endif
@@ -145,13 +145,13 @@
                 <div class="h-full">
                     <div class="flex flex-col">
                         <div class="flex gap-2">
-                            <h2>Resources</h2>
+                            <h2>Ресурси</h2>
                         </div>
-                        <div class="pb-4 title">Here you can find all resources that are using this source.</div>
+                        <div class="pb-4 title">Тут ви можете знайти всі ресурси, що використовують це джерело.</div>
                     </div>
                     @if ($applications->isEmpty())
                         <div class="py-4 text-sm opacity-70">
-                            No resources are currently using this GitHub App.
+                            Наразі жодні ресурси не використовують цей Застосунок GitHub.
                         </div>
                     @else
                         <div class="flex flex-col">
@@ -163,13 +163,13 @@
                                                 <thead>
                                                     <tr>
                                                         <th class="px-5 py-3 text-xs font-medium text-left uppercase">
-                                                            Project
+                                                            Проєкт
                                                         </th>
                                                         <th class="px-5 py-3 text-xs font-medium text-left uppercase">
-                                                            Environment</th>
-                                                        <th class="px-5 py-3 text-xs font-medium text-left uppercase">Name
+                                                            Середовище</th>
+                                                        <th class="px-5 py-3 text-xs font-medium text-left uppercase">Назва
                                                         </th>
-                                                        <th class="px-5 py-3 text-xs font-medium text-left uppercase">Type
+                                                        <th class="px-5 py-3 text-xs font-medium text-left uppercase">Тип
                                                         </th>
                                                     </tr>
                                                 </thead>
@@ -204,34 +204,34 @@
         @endif
     @else
         <div class="flex flex-col sm:flex-row sm:items-center gap-2 pb-4">
-            <h1>GitHub App</h1>
+            <h1>Застосунок GitHub</h1>
             <div class="flex gap-2">
                 @can('delete', $github_app)
-                    <x-modal-confirmation title="Confirm GitHub App Deletion?" isErrorButton buttonTitle="Delete"
-                        submitAction="delete" :actions="['The selected GitHub App will be permanently deleted.']" confirmationText="{{ data_get($github_app, 'name') }}"
-                        confirmationLabel="Please confirm the execution of the actions by entering the GitHub App Name below"
-                        shortConfirmationLabel="GitHub App Name" :confirmWithPassword="false"
-                        step2ButtonText="Permanently Delete" />
+                    <x-modal-confirmation title="Підтвердити видалення Застосунку GitHub?" isErrorButton buttonTitle="Видалити"
+                        submitAction="delete" :actions="['Вибраний Застосунок GitHub буде остаточно видалено.']" confirmationText="{{ data_get($github_app, 'name') }}"
+                        confirmationLabel="Будь ласка, підтвердьте виконання дій, ввівши назву Застосунку GitHub нижче"
+                        shortConfirmationLabel="Назва Застосунку GitHub" :confirmWithPassword="false"
+                        step2ButtonText="Видалити остаточно" />
                 @endcan
             </div>
         </div>
         <div class="flex flex-col gap-2">
             @can('create', $github_app)
-                <h3>Manual Installation</h3>
+                <h3>Ручна інсталяція</h3>
                 <div class="flex gap-2 items-center">
-                    If you want to fill the form manually, you can continue below. Only for advanced users.
+                    Якщо ви хочете заповнити форму вручну, ви можете продовжити нижче. Лише для досвідчених користувачів.
                     <x-forms.button wire:click.prevent="createGithubAppManually">
-                        Continue
+                        Продовжити
                     </x-forms.button>
                 </div>
-                <h3>Automated Installation</h3>
+                <h3>Автоматична інсталяція</h3>
                 <div class=" pb-5 rounded-sm alert-error">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 stroke-current shrink-0" fill="none"
                         viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                     </svg>
-                    <span>You must complete this step before you can use this source!</span>
+                    <span>Ви повинні виконати цей крок, перш ніж зможете використовувати це джерело!</span>
                 </div>
             @endcan
             <div class="flex flex-col">
@@ -239,48 +239,48 @@
                     @can('create', $github_app)
                         @if (!isCloud() || isDev())
                             <div class="flex flex-col sm:flex-row items-start sm:items-end gap-2">
-                                <x-forms.select wire:model.live='webhook_endpoint' label="Webhook Endpoint"
-                                    helper="All Git webhooks will be sent to this endpoint. <br><br>If you would like to use domain instead of IP address, set your Coolify instance's FQDN in the Settings menu.">
+                                <x-forms.select wire:model.live='webhook_endpoint' label="Кінцева точка вебхука"
+                                    helper="Усі вебхуки Git будуть надсилатися на цю кінцеву точку. <br><br>Якщо ви бажаєте використовувати домен замість IP-адреси, встановіть FQDN вашого екземпляра Coolify у меню Налаштувань.">
                                     @if ($ipv4)
-                                        <option value="{{ $ipv4 }}">Use {{ $ipv4 }}</option>
+                                        <option value="{{ $ipv4 }}">Використовувати {{ $ipv4 }}</option>
                                     @endif
                                     @if ($ipv6)
-                                        <option value="{{ $ipv6 }}">Use {{ $ipv6 }}</option>
+                                        <option value="{{ $ipv6 }}">Використовувати {{ $ipv6 }}</option>
                                     @endif
                                     @if ($fqdn)
-                                        <option value="{{ $fqdn }}">Use {{ $fqdn }}</option>
+                                        <option value="{{ $fqdn }}">Використовувати {{ $fqdn }}</option>
                                     @endif
                                     @if (config('app.url'))
-                                        <option value="{{ config('app.url') }}">Use {{ config('app.url') }}</option>
+                                        <option value="{{ config('app.url') }}">Використовувати {{ config('app.url') }}</option>
                                     @endif
                                 </x-forms.select>
                                 <x-forms.button isHighlighted
                                     x-on:click.prevent="createGithubApp('{{ $webhook_endpoint }}','{{ $preview_deployment_permissions }}',{{ $administration }})">
-                                    Register Now
+                                    Зареєструвати зараз
                                 </x-forms.button>
                             </div>
                         @else
                             <div class="flex flex-col sm:flex-row gap-2">
-                                <h2>Register a GitHub App</h2>
+                                <h2>Зареєструвати Застосунок GitHub</h2>
                                 <x-forms.button isHighlighted
                                     x-on:click.prevent="createGithubApp('{{ $webhook_endpoint }}','{{ $preview_deployment_permissions }}',{{ $administration }})">
-                                    Register Now
+                                    Зареєструвати зараз
                                 </x-forms.button>
                             </div>
-                            <div>You need to register a GitHub App before using this source.</div>
+                            <div>Вам потрібно зареєструвати Застосунок GitHub перед використанням цього джерела.</div>
                         @endif
 
                         <div class="flex flex-col gap-2 pt-4 w-96">
-                            <x-forms.checkbox disabled id="default_permissions" label="Mandatory"
-                                helper="Contents: read<br>Metadata: read<br>Email: read" />
-                            <x-forms.checkbox id="preview_deployment_permissions" label="Preview Deployments "
-                                helper="Necessary for updating pull requests with useful comments (deployment status, links, etc.)<br><br>Pull Request: read & write" />
+                            <x-forms.checkbox disabled id="default_permissions" label="Обов'язково"
+                                helper="Вміст: читання<br>Метадані: читання<br>Електронна пошта: читання" />
+                            <x-forms.checkbox id="preview_deployment_permissions" label="Попередні розгортання "
+                                helper="Необхідно для оновлення запитів на злиття з корисними коментарями (статус розгортання, посилання тощо).<br><br>Запит на злиття: читання та запис" />
                             {{-- <x-forms.checkbox id="administration" label="Administration (for Github Runners)"
                             helper="Necessary for adding Github Runners to repositories.<br><br>Administration: read & write" /> --}}
                         </div>
                     @else
-                        <x-callout type="danger" title="Insufficient Permissions">
-                            You don't have permission to create new GitHub Apps. Please contact your team administrator.
+                        <x-callout type="danger" title="Недостатньо дозволів">
+                            Ви не маєте дозволу на створення нових Застосунків GitHub. Будь ласка, зв'яжіться з адміністратором вашої команди.
                         </x-callout>
                     @endcan
                 </div>

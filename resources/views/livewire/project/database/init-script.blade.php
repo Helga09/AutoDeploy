@@ -1,14 +1,14 @@
 <form wire:submit="submit">
     <div class="flex items-end gap-2">
-        <x-forms.input id="filename" label="Filename" />
-        <x-forms.button type="submit">Save</x-forms.button>
-        <x-modal-confirmation title="Confirm init-script deletion?" buttonTitle="Delete" isErrorButton
+        <x-forms.input id="filename" label="Ім'я файлу" />
+        <x-forms.button type="submit">Зберегти</x-forms.button>
+        <x-modal-confirmation title="Підтвердити видалення ініціалізаційного скрипта?" buttonTitle="Видалити" isErrorButton
             submitAction="delete" :actions="[
-                'The init-script of this database will be permanently deleted form the database and the server.',
-                'If you are actively using this init-script, it could cause errors on redeployment.',
+                'Ініціалізаційний скрипт цієї бази даних буде безповоротно видалено з бази даних та сервера.',
+                'Якщо ви активно використовуєте цей ініціалізаційний скрипт, це може спричинити помилки під час повторного розгортання.',
             ]" confirmationText="{{ $filename }}"
-            confirmationLabel="Please confirm the execution of the actions by entering the init-script name below"
-            shortConfirmationLabel="Init-script Name" :confirmWithPassword=false step2ButtonText="Permanently Delete" />
+            confirmationLabel="Будь ласка, підтвердьте виконання дій, ввівши назву ініціалізаційного скрипта нижче"
+            shortConfirmationLabel="Ім'я ініціалізаційного скрипта" :confirmWithPassword=false step2ButtonText="Видалити безповоротно" />
     </div>
-    <x-forms.textarea id="content" label="Content" />
+    <x-forms.textarea id="content" label="Вміст" />
 </form>

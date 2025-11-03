@@ -4,7 +4,7 @@
         monacoContent: @entangle($id),
         monacoLanguage: '',
         monacoPlaceholder: true,
-        monacoPlaceholderText: 'Start typing here',
+        monacoPlaceholderText: 'Почніть вводити текст тут',
         monacoLoader: true,
         monacoFontSize: '15px',
         monacoId: $id('monaco-editor'),

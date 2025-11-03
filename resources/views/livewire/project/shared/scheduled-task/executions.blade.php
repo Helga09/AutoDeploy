@@ -34,9 +34,9 @@
                 ])>
                     @php
                         $statusText = match(data_get($execution, 'status')) {
-                            'success' => 'Success',
-                            'running' => 'In Progress',
-                            'failed' => 'Failed',
+                            'success' => 'Успішно',
+                            'running' => 'Виконується',
+                            'failed' => 'Невдало',
                             default => ucfirst(data_get($execution, 'status'))
                         };
                     @endphp
@@ -44,24 +44,24 @@
                 </span>
             </div>
             <div class="text-gray-600 dark:text-gray-400 text-sm">
-                Started: {{ formatDateInServerTimezone(data_get($execution, 'created_at', now()), data_get($task, 'application.destination.server') ?? data_get($task, 'service.destination.server')) }}
+                Запущено: {{ formatDateInServerTimezone(data_get($execution, 'created_at', now()), data_get($task, 'application.destination.server') ?? data_get($task, 'service.destination.server')) }}
                 @if(data_get($execution, 'status') !== 'running')
-                    <br>Ended: {{ formatDateInServerTimezone(data_get($execution, 'finished_at'), data_get($task, 'application.destination.server') ?? data_get($task, 'service.destination.server')) }}
-                    <br>Duration: {{ calculateDuration(data_get($execution, 'created_at'), data_get($execution, 'finished_at')) }}
-                    <br>Finished {{ \Carbon\Carbon::parse(data_get($execution, 'finished_at'))->diffForHumans() }}
+                    <br>Завершено: {{ formatDateInServerTimezone(data_get($execution, 'finished_at'), data_get($task, 'application.destination.server') ?? data_get($task, 'service.destination.server')) }}
+                    <br>Тривалість: {{ calculateDuration(data_get($execution, 'created_at'), data_get($execution, 'finished_at')) }}
+                    <br>Завершено {{ \Carbon\Carbon::parse(data_get($execution, 'finished_at'))->diffForHumans() }}
                 @endif
             </div>
         </a>
         @if (strlen($execution->message) > 0)
             <x-forms.button wire:click.prevent="downloadLogs({{ data_get($execution, 'id') }})">
-                Download Logs
+                Завантажити логи
             </x-forms.button>
         @endif
         @if (data_get($execution, 'id') == $selectedKey)
             <div class="p-4 mb-2 bg-gray-100 dark:bg-coolgray-200 rounded-sm">
                 @if (data_get($execution, 'status') === 'running')
                     <div class="flex items-center gap-2 mb-2">
-                        <span>Task is running...</span>
+                        <span>Завдання виконується...</span>
                         <x-loading class="w-4 h-4" />
                     </div>
                 @endif
@@ -77,20 +77,20 @@
                         <div class="flex gap-2 mt-4">
                             @if ($this->hasMoreLogs())
                                 <x-forms.button wire:click.prevent="loadMoreLogs" isHighlighted>
-                                    Load More
+                                    Завантажити більше
                                 </x-forms.button>
                                 <x-forms.button wire:click.prevent="loadAllLogs">
-                                    Load All
+                                    Завантажити все
                                 </x-forms.button>
                             @endif
                         </div>
                     </div>
                 @else
-                    <div>No output was recorded for this execution.</div>
+                    <div>Для цього виконання не було записано виводу.</div>
                 @endif
             </div>
         @endif
     @empty
-        <div class="p-4 bg-gray-100 dark:bg-coolgray-100 rounded-sm">No executions found.</div>
+        <div class="p-4 bg-gray-100 dark:bg-coolgray-100 rounded-sm">Виконань не знайдено.</div>
     @endforelse
 </div>

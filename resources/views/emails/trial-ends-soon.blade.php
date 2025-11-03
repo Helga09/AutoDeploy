@@ -1,5 +1,5 @@
 <x-emails.layout>
-Your trial ends soon. Please update payment details [here]({{ $stripeCustomerPortal }}),
+Термін вашої пробної версії незабаром закінчується. Будь ласка, оновіть платіжні дані [тут]({{ $stripeCustomerPortal }}),
 
-Your servers & deployed resources will be untouched, but you won't be able to deploy new resources and lose all automations and integrations.
+Ваші сервери та розгорнуті ресурси залишаться недоторканими, але ви не зможете розгортати нові ресурси та втратите всі автоматизації та інтеграції.
 </x-emails.layout>

@@ -1,11 +1,11 @@
 <x-emails.layout>
-You have requested to change your email address to: {{ $newEmail }}
+Ви надіслали запит на зміну вашої електронної адреси на: {{ $newEmail }}
 
-Please use the following verification code to confirm this change:
+Будь ласка, використайте наступний код підтвердження, щоб підтвердити цю зміну:
 
-Verification Code: {{ $verificationCode }}
+Код підтвердження: {{ $verificationCode }}
 
-This code is valid for {{ $expiryMinutes }} minutes.
+Цей код дійсний протягом {{ $expiryMinutes }} хвилин.
 
-If you did not request this change, please ignore this email and your email address will remain unchanged.
+Якщо ви не надсилали цей запит, будь ласка, проігноруйте цей лист, і ваша електронна адреса залишиться без змін.
 </x-emails.layout>

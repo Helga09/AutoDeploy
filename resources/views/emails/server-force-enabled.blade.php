@@ -1,3 +1,3 @@
 <x-emails.layout>
-Your server ({{ $name }}) is enabled again!
+Ваш сервер ({{ $name }}) знову активований!
 </x-emails.layout>

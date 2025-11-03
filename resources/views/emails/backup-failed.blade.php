@@ -1,7 +1,7 @@
 <x-emails.layout>
-Database backup for {{ $name }} @if($database_name)(db:{{ $database_name }})@endif with frequency of {{ $frequency }} was FAILED.
+Резервна копія бази даних для {{ $name }} @if($database_name)(db:{{ $database_name }})@endif з частотою {{ $frequency }} завершилася ПОМИЛКОЮ.
 
-### Reason
+### Причина
 
 {{ $output }}
 </x-emails.layout>

@@ -1,13 +1,13 @@
 <x-emails.layout>
-Failed to delete Hetzner server #{{ $hetznerServerId }} from Hetzner Cloud.
+Не вдалося видалити сервер Hetzner #{{ $hetznerServerId }} з Hetzner Cloud.
 
-Error:
+Помилка:
 <pre>
 {{ $errorMessage }}
 </pre>
 
-The server has been removed from Coolify, but may still exist in your Hetzner Cloud account.
+Сервер було видалено з Coolify, але він може все ще існувати у вашому обліковому записі Hetzner Cloud.
 
-Please check your Hetzner Cloud console and manually delete the server if needed to avoid ongoing charges.
+Будь ласка, перевірте свою консоль Hetzner Cloud і вручну видаліть сервер, якщо це необхідно, щоб уникнути постійних нарахувань.
 
 </x-emails.layout>

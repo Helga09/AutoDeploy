@@ -1,29 +1,28 @@
 <div>
     <x-slot:title>
-        {{ data_get_str($server, 'name')->limit(10) }} > Delete Server | Coolify
+        {{ data_get_str($server, 'name')->limit(10) }} > Видалити сервер | Coolify
     </x-slot>
     <livewire:server.navbar :server="$server" />
     <div class="flex flex-col h-full gap-8 sm:flex-row">
         <x-server.sidebar :server="$server" activeMenu="danger" />
         <div class="w-full">
             @if ($server->id !== 0)
-                <h2>Danger Zone</h2>
-                <div class="">Woah. I hope you know what are you doing.</div>
-                <h4 class="pt-4">Delete Server</h4>
-                <div class="pb-4">This will remove this server from Coolify. Beware! There is no coming
-                    back!
+                <h2>Небезпечна зона</h2>
+                <div class="">Ого. Сподіваюся, ви знаєте, що робите.</div>
+                <h4 class="pt-4">Видалити сервер</h4>
+                <div class="pb-4">Це видалить сервер з Coolify. Будьте обережні! Повернути його буде неможливо!
                 </div>
                 @if ($server->definedResources()->count() > 0)
-                    <div class="pb-2 text-red-500">You need to delete all resources before deleting this server.</div>
+                    <div class="pb-2 text-red-500">Вам потрібно видалити всі ресурси перед видаленням цього сервера.</div>
                 @endif
 
-                <x-modal-confirmation title="Confirm Server Deletion?" isErrorButton buttonTitle="Delete"
+                <x-modal-confirmation title="Підтвердити видалення сервера?" isErrorButton buttonTitle="Видалити"
                     submitAction="delete"
-                    :actions="['This server will be permanently deleted from Coolify.']"
+                    :actions="['Цей сервер буде назавжди видалено з Coolify.']"
                     :checkboxes="$checkboxes"
                     confirmationText="{{ $server->name }}"
-                    confirmationLabel="Please confirm the execution of the actions by entering the Server Name below"
-                    shortConfirmationLabel="Server Name" />
+                    confirmationLabel="Будь ласка, підтвердьте виконання дій, ввівши ім'я сервера нижче"
+                    shortConfirmationLabel="Ім'я сервера" />
             @endif
         </div>
     </div>

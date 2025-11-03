@@ -1,6 +1,6 @@
 <x-emails.layout>
 
-Connection could not be established with one of your S3 Storage ({{ $name }}). Please fix it [here]({{ $url }}).
+Не вдалося встановити з'єднання з одним із ваших S3 сховищ ({{ $name }}). Будь ласка, виправте це [тут]({{ $url }}).
 
 {{ $reason }}
 </x-emails.layout>

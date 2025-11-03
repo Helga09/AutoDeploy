@@ -1,17 +1,17 @@
 <form wire:submit='save' class="flex flex-col gap-4 w-full">
-    <x-forms.input id="name" label="Script Name" helper="A descriptive name for this cloud-init script." required />
+    <x-forms.input id="name" label="Назва скрипта" helper="Описова назва для цього cloud-init скрипта." required />
 
-    <x-forms.textarea id="script" label="Script Content" rows="12"
-        helper="Enter your cloud-init script. Supports cloud-config YAML format." required />
+    <x-forms.textarea id="script" label="Вміст скрипта" rows="12"
+        helper="Введіть ваш cloud-init скрипт. Підтримує формат YAML cloud-config." required />
 
     <div class="flex justify-end gap-2">
         @if ($modal_mode)
             <x-forms.button type="button" @click="$dispatch('closeModal')">
-                Cancel
+                Скасувати
             </x-forms.button>
         @endif
         <x-forms.button type="submit" isHighlighted>
-            {{ $scriptId ? 'Update Script' : 'Create Script' }}
+            {{ $scriptId ? 'Оновити скрипт' : 'Створити скрипт' }}
         </x-forms.button>
     </div>
 </form>

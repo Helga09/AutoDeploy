@@ -1,21 +1,21 @@
 <div>
     <x-slot:title>
-        Profile | Coolify
+        Профіль | Coolify
     </x-slot>
-    <h1>Profile</h1>
-    <div class="subtitle -mt-2">Your user profile settings.</div>
+    <h1>Профіль</h1>
+    <div class="subtitle -mt-2">Налаштування вашого профілю користувача.</div>
     <form wire:submit='submit' class="flex flex-col">
         <div class="flex items-center gap-2">
-            <h2>General</h2>
-            <x-forms.button type="submit" label="Save">Save</x-forms.button>
+            <h2>Загальні</h2>
+            <x-forms.button type="submit" label="Зберегти">Зберегти</x-forms.button>
         </div>
         <div class="flex flex-col gap-2 lg:flex-row items-end">
-            <x-forms.input id="name" label="Name" required />
-            <x-forms.input id="email" label="Email" readonly />
+            <x-forms.input id="name" label="Ім'я" required />
+            <x-forms.input id="email" label="Електронна пошта" readonly />
             @if (!$show_email_change && !$show_verification)
-                <x-forms.button wire:click="showEmailChangeForm" type="button">Change Email</x-forms.button>
+                <x-forms.button wire:click="showEmailChangeForm" type="button">Змінити електронну пошту</x-forms.button>
             @else
-                <x-forms.button wire:click="showEmailChangeForm" type="button" disabled>Change Email</x-forms.button>
+                <x-forms.button wire:click="showEmailChangeForm" type="button" disabled>Змінити електронну пошту</x-forms.button>
             @endif
         </div>
     </form>
@@ -24,31 +24,31 @@
         @if ($show_email_change)
             <form wire:submit='requestEmailChange'>
                 <div class="flex gap-2 items-end">
-                    <x-forms.input id="new_email" label="New Email Address" required type="email" />
-                    <x-forms.button type="submit">Send Verification Code</x-forms.button>
+                    <x-forms.input id="new_email" label="Нова електронна адреса" required type="email" />
+                    <x-forms.button type="submit">Надіслати код підтвердження</x-forms.button>
                     <x-forms.button wire:click="$set('show_email_change', false)" type="button"
-                        isError>Cancel</x-forms.button>
+                        isError>Скасувати</x-forms.button>
                 </div>
-                <div class="text-xs font-bold dark:text-warning pt-2">A verification code will be sent to your
-                    new email
-                    address.</div>
+                <div class="text-xs font-bold dark:text-warning pt-2">Код підтвердження буде надіслано на вашу
+                    нову електронну
+                    адресу.</div>
             </form>
         @endif
 
         @if ($show_verification)
             <form wire:submit='verifyEmailChange'>
                 <div class="flex gap-2 items-end">
-                    <x-forms.input id="email_verification_code" label="Verification Code (6 digits)" required
+                    <x-forms.input id="email_verification_code" label="Код підтвердження (6 цифр)" required
                         maxlength="6" />
-                    <x-forms.button type="submit">Verify & Update Email</x-forms.button>
-                    <x-forms.button wire:click="resendVerificationCode" type="button" isWarning>Resend
-                        Code</x-forms.button>
-                    <x-forms.button wire:click="cancelEmailChange" type="button" isError>Cancel</x-forms.button>
+                    <x-forms.button type="submit">Підтвердити та оновити електронну пошту</x-forms.button>
+                    <x-forms.button wire:click="resendVerificationCode" type="button" isWarning>Надіслати код повторно
+                        </x-forms.button>
+                    <x-forms.button wire:click="cancelEmailChange" type="button" isError>Скасувати</x-forms.button>
                 </div>
                 <div class="text-xs font-bold dark:text-warning pt-2">
-                    Verification code sent to {{ $new_email ?? auth()->user()->pending_email }}.
-                    The code is valid for {{ config('constants.email_change.verification_code_expiry_minutes', 10) }}
-                    minutes.
+                    Код підтвердження надіслано на {{ $new_email ?? auth()->user()->pending_email }}.
+                    Код дійсний протягом {{ config('constants.email_change.verification_code_expiry_minutes', 10) }}
+                    хвилин.
                 </div>
 
 
@@ -57,30 +57,30 @@
     </div>
     <form wire:submit='resetPassword' class="flex flex-col pt-4">
         <div class="flex items-center gap-2 pb-2">
-            <h2>Change Password</h2>
-            <x-forms.button type="submit" label="Save">Save</x-forms.button>
+            <h2>Змінити пароль</h2>
+            <x-forms.button type="submit" label="Зберегти">Зберегти</x-forms.button>
         </div>
-        <div class="text-xs font-bold dark:text-warning pb-2">Resetting the password will logout all sessions.</div>
+        <div class="text-xs font-bold dark:text-warning pb-2">Скидання пароля призведе до виходу з усіх сесій.</div>
         <div class="flex flex-col gap-2">
-            <x-forms.input id="current_password" label="Current Password" required type="password" />
+            <x-forms.input id="current_password" label="Поточний пароль" required type="password" />
             <div class="flex gap-2">
-                <x-forms.input id="new_password" label="New Password" required type="password" />
-                <x-forms.input id="new_password_confirmation" label="New Password Again" required type="password" />
+                <x-forms.input id="new_password" label="Новий пароль" required type="password" />
+                <x-forms.input id="new_password_confirmation" label="Новий пароль ще раз" required type="password" />
             </div>
         </div>
     </form>
-    <h2 class="py-4">Two-factor Authentication</h2>
+    <h2 class="py-4">Двофакторна автентифікація</h2>
     @if (session('status') == 'two-factor-authentication-enabled')
         <div class="mb-4 font-medium">
-            Please finish configuring two factor authentication below. Read the QR code or enter the secret key
-            manually.
+            Будь ласка, завершіть налаштування двофакторної автентифікації нижче. Зчитайте QR-код або введіть секретний ключ
+            вручну.
         </div>
         <div class="flex flex-col gap-4">
             <form action="/user/confirmed-two-factor-authentication" method="POST" class="flex items-end gap-2">
                 @csrf
                 <x-forms.input type="text" inputmode="numeric" pattern="[0-9]*" id="code"
-                    label="One time (OTP) code" required />
-                <x-forms.button type="submit">Validate 2FA</x-forms.button>
+                    label="Одноразовий (OTP) код" required />
+                <x-forms.button type="submit">Підтвердити 2FA</x-forms.button>
             </form>
             <div class="flex flex-col items-start">
                 <div
@@ -95,18 +95,18 @@
                         <x-forms.copy-button text="{{ request()->user()->twoFactorQrCodeUrl() }}" />
                     </div>
                     <x-forms.button x-on:click="showCode = !showCode" class="mt-2">
-                        <span x-text="showCode ? 'Hide Secret Key and OTP URL' : 'Show Secret Key and OTP URL'"></span>
+                        <span x-text="showCode ? 'Приховати секретний ключ та URL OTP' : 'Показати секретний ключ та URL OTP'"></span>
                     </x-forms.button>
                 </div>
             </div>
         </div>
     @elseif(session('status') == 'two-factor-authentication-confirmed')
         <div class="mb-4 ">
-            Two factor authentication confirmed and enabled successfully.
+            Двофакторну автентифікацію успішно підтверджено та увімкнено.
         </div>
         <div>
-            <div class="pb-6 ">Here are the recovery codes for your account. Please store them in a secure
-                location.
+            <div class="pb-6 ">Ось коди відновлення для вашого облікового запису. Будь ласка, зберігайте їх у безпечному
+                місці.
             </div>
             <div class="dark:text-white">
                 @foreach (request()->user()->recoveryCodes() as $code)
@@ -116,23 +116,23 @@
         </div>
     @else
         @if (request()->user()->two_factor_confirmed_at)
-            <div class="pb-4 "> Two factor authentication is <span class="text-helper">enabled</span>.</div>
+            <div class="pb-4 "> Двофакторна автентифікація <span class="text-helper">увімкнена</span>.</div>
             <div class="flex gap-2">
                 <form action="/user/two-factor-authentication" method="POST">
                     @csrf
                     @method ('DELETE')
-                    <x-forms.button type="submit">Disable</x-forms.button>
+                    <x-forms.button type="submit">Вимкнути</x-forms.button>
                 </form>
                 <form action="/user/two-factor-recovery-codes" method="POST">
                     @csrf
-                    <x-forms.button type="submit">Regenerate Recovery Codes</x-forms.button>
+                    <x-forms.button type="submit">Відновити коди відновлення</x-forms.button>
                 </form>
             </div>
             @if (session('status') == 'recovery-codes-generated')
                 <div>
-                    <div class="py-6 ">Here are the recovery codes for your account. Please store them in a
-                        secure
-                        location.
+                    <div class="py-6 ">Ось коди відновлення для вашого облікового запису. Будь ласка, зберігайте їх у
+                        безпечному
+                        місці.
                     </div>
                     <div class="dark:text-white">
                         @foreach (request()->user()->recoveryCodes() as $code)
@@ -144,13 +144,13 @@
         @else
             <form action="/user/two-factor-authentication" method="POST">
                 @csrf
-                <x-forms.button type="submit">Configure</x-forms.button>
+                <x-forms.button type="submit">Налаштувати</x-forms.button>
             </form>
         @endif
     @endif
     @if (session()->has('errors'))
         <div class="text-error">
-            Something went wrong. Please try again.
+            Щось пішло не так. Будь ласка, спробуйте ще раз.
         </div>
     @endif
 </div>

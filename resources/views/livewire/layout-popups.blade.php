@@ -24,7 +24,7 @@
                         if (checkNumber > 5) {
                             this.popups.realtime = true;
                             console.error(
-                                'Coolify could not connect to its real-time service. This will cause unusual problems on the UI if not fixed! Please check the related documentation (https://coolify.io/docs/knowledge-base/cloudflare/tunnels/overview) or get help on Discord (https://coollabs.io/discord).)'
+                                'Coolify не вдалося підключитися до сервісу реального часу. Це спричинить незвичайні проблеми в інтерфейсі, якщо їх не виправити! Будь ласка, перевірте відповідну документацію (https://coolify.io/docs/knowledge-base/cloudflare/tunnels/overview) або зверніться за допомогою до Discord (https://coollabs.io/discord).)'
                             );
                         }
 
@@ -68,19 +68,19 @@
             @if (!isCloud())
                 <x-popup>
                     <x-slot:title>
-                        <span class="font-bold text-left text-red-500">WARNING: </span> Cannot connect to real-time service
+                        <span class="font-bold text-left text-red-500">УВАГА: </span> Не вдалося підключитися до сервісу реального часу
                     </x-slot:title>
                     <x-slot:description>
-                        <div>This will cause unusual problems on the
-                            UI! <br><br>
-                            Please ensure that you have opened the
+                        <div>Це спричинить незвичайні проблеми в
+                            інтерфейсі! <br><br>
+                            Будь ласка, переконайтеся, що ви відкрили
                             <a class="underline" href='https://coolify.io/docs/knowledge-base/server/firewall'
-                                target='_blank'>required ports</a> or get
-                            help on <a class="underline" href='https://coollabs.io/discord' target='_blank'>Discord</a>.
+                                target='_blank'>необхідні порти</a> або отримайте
+                            допомогу в <a class="underline" href='https://coollabs.io/discord' target='_blank'>Discord</a>.
                         </div>
                     </x-slot:description>
                     <x-slot:button-text @click="disableRealtime()">
-                        Acknowledge & Disable This Popup
+                        Підтвердити та Вимкнути Це Вікно
                     </x-slot:button-text>
                 </x-popup>
             @endif
@@ -96,18 +96,18 @@
                             <img src="{{ asset('heart.png') }}" class="w-20 h-20">
                         </div>
                         <div class="flex flex-col gap-2 lg:px-10 px-1">
-                            <div class="lg:text-xl text-md dark:text-white font-bold">Love Coolify? Support our work.
+                            <div class="lg:text-xl text-md dark:text-white font-bold">Подобається Coolify? Підтримайте нашу роботу.
                             </div>
                             <div class="lg:text-sm text-xs dark:text-white">
-                                We are already profitable thanks to <span class="font-bold text-pink-500">YOU</span>
-                                but...<br />We
-                                would
-                                like to
-                                make
-                                more cool features.
+                                Ми вже прибуткові завдяки <span class="font-bold text-pink-500">ВАМ</span>
+                                але...<br />Ми
+                                хотіли
+                                б
+                                створювати
+                                більше крутих функцій.
                             </div>
                             <div class="lg:text-sm text-xs dark:text-white pt-2 ">
-                                For this we need your help to support our work financially.
+                                Для цього нам потрібна ваша допомога, щоб підтримати нашу роботу фінансово.
                             </div>
                         </div>
                         <div class="flex flex-col gap-2 text-center md:mx-auto lg:py-0 pt-2">
@@ -124,7 +124,7 @@
                                     class="font-bold dark:text-white">Stripe</a></x-forms.button>
                             <div class="pt-4 dark:text-white hover:underline cursor-pointer lg:text-base text-xs"
                                 @click="bannerVisible=false;disableSponsorship()">
-                                Maybe next time
+                                Можливо, наступного разу
                             </div>
                         </div>
                     </div>
@@ -134,23 +134,23 @@
     @endif
     @if (currentTeam()->subscriptionPastOverDue())
         <x-banner :closable=false>
-            <div><span class="font-bold text-red-500">WARNING:</span> Your subscription is in over-due. If your
-                latest
-                payment is not paid within a week, all automations <span class="font-bold text-red-500">will
-                    be deactivated</span>. Visit <a href="{{ route('subscription.show') }}"
-                    class="underline dark:text-white">/subscription</a> to check your subscription status or pay
-                your
-                invoice (or check your email for the invoice).
+            <div><span class="font-bold text-red-500">УВАГА:</span> Ваша підписка прострочена. Якщо ваш
+                останній
+                платіж не буде сплачений протягом тижня, усі автоматизації <span class="font-bold text-red-500">будуть
+                    деактивовані</span>. Відвідайте <a href="{{ route('subscription.show') }}"
+                    class="underline dark:text-white">/subscription</a> щоб перевірити статус вашої підписки або сплатити
+                ваш
+                рахунок (або перевірте свою електронну пошту на наявність рахунку).
             </div>
         </x-banner>
     @endif
     @if (currentTeam()->serverOverflow())
         <x-banner :closable=false>
-            <div><span class="font-bold text-red-500">WARNING:</span> The number of active servers exceeds the limit
-                covered by your payment. If not resolved, some of your servers <span class="font-bold text-red-500">will
-                    be deactivated</span>. Visit <a href="{{ route('subscription.show') }}"
-                    class="underline dark:text-white">/subscription</a> to update your subscription or remove some
-                servers.
+            <div><span class="font-bold text-red-500">УВАГА:</span> Кількість активних серверів перевищує ліміт,
+                передбачений вашим платежем. Якщо проблема не буде вирішена, деякі з ваших серверів <span class="font-bold text-red-500">будуть
+                    деактивовані</span>. Відвідайте <a href="{{ route('subscription.show') }}"
+                    class="underline dark:text-white">/subscription</a> щоб оновити підписку або видалити деякі
+                сервери.
             </div>
         </x-banner>
     @endif
@@ -158,7 +158,7 @@
         <span x-show="popups.notification">
             <x-popup>
                 <x-slot:title>
-                    No notifications enabled.
+                    Сповіщення не активовані.
                 </x-slot:title>
                 <x-slot:icon>
                     <svg xmlns="http://www.w3.org/2000/svg" class="text-red-500 stroke-current w-14 h-14 shrink-0"
@@ -168,15 +168,15 @@
                     </svg>
                 </x-slot:icon>
                 <x-slot:description>
-                    It is
-                    highly recommended to enable at least
-                    one
-                    notification channel to receive important alerts.<br>Visit <a
-                        href="{{ route('notifications.email') }}" class="underline dark:text-white">/notification</a> to
-                    enable notifications.</span>
+                    Наполегливо
+                    рекомендується увімкнути хоча б
+                    один
+                    канал сповіщень для отримання важливих сповіщень.<br>Відвідайте <a
+                        href="{{ route('notifications.email') }}" class="underline dark:text-white">/notification</a> щоб
+                    увімкнути сповіщення.</span>
         </x-slot:description>
         <x-slot:button-text @click="disableNotification()">
-            Accept and Close
+            Прийняти та Закрити
         </x-slot:button-text>
         </x-popup>
         </span>

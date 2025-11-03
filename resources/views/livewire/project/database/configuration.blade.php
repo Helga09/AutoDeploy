@@ -1,42 +1,42 @@
 <div>
     <x-slot:title>
-        {{ data_get_str($database, 'name')->limit(10) }} > Configuration | Coolify
+        {{ data_get_str($database, 'name')->limit(10) }} > Конфігурація | Coolify
     </x-slot>
-    <h1>Configuration</h1>
+    <h1>Конфігурація</h1>
     <livewire:project.shared.configuration-checker :resource="$database" />
     <livewire:project.database.heading :database="$database" />
     <div class="flex flex-col h-full gap-8 sm:flex-row">
         <div class="flex flex-col items-start gap-2 min-w-fit">
             <a class='menu-item' wire:current.exact="menu-item-active"
-                href="{{ route('project.database.configuration', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'database_uuid' => $database->uuid]) }}">General</a>
+                href="{{ route('project.database.configuration', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'database_uuid' => $database->uuid]) }}">Загальне</a>
             <a class='menu-item' wire:current.exact="menu-item-active"
-                href="{{ route('project.database.environment-variables', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'database_uuid' => $database->uuid]) }}">Environment
-                Variables</a>
+                href="{{ route('project.database.environment-variables', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'database_uuid' => $database->uuid]) }}">Змінні
+                оточення</a>
             <a class='menu-item' wire:current.exact="menu-item-active"
-                href="{{ route('project.database.servers', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'database_uuid' => $database->uuid]) }}">Servers</a>
+                href="{{ route('project.database.servers', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'database_uuid' => $database->uuid]) }}">Сервери</a>
             <a class='menu-item' wire:current.exact="menu-item-active"
-                href="{{ route('project.database.persistent-storage', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'database_uuid' => $database->uuid]) }}">Persistent
-                Storage</a>
+                href="{{ route('project.database.persistent-storage', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'database_uuid' => $database->uuid]) }}">Постійне
+                сховище</a>
             @can('update', $database)
                 <a class='menu-item' wire:current.exact="menu-item-active"
-                    href="{{ route('project.database.import-backups', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'database_uuid' => $database->uuid]) }}">Import
-                    Backups</a>
+                    href="{{ route('project.database.import-backups', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'database_uuid' => $database->uuid]) }}">Імпорт
+                    резервних копій</a>
             @endcan
             <a class='menu-item' wire:current.exact="menu-item-active"
-                href="{{ route('project.database.webhooks', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'database_uuid' => $database->uuid]) }}">Webhooks</a>
+                href="{{ route('project.database.webhooks', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'database_uuid' => $database->uuid]) }}">Вебхуки</a>
             <a class="menu-item" wire:current.exact="menu-item-active"
-                href="{{ route('project.database.resource-limits', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'database_uuid' => $database->uuid]) }}">Resource
-                Limits</a>
+                href="{{ route('project.database.resource-limits', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'database_uuid' => $database->uuid]) }}">Обмеження
+                ресурсів</a>
             <a class="menu-item" wire:current.exact="menu-item-active"
-                href="{{ route('project.database.resource-operations', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'database_uuid' => $database->uuid]) }}">Resource
-                Operations</a>
+                href="{{ route('project.database.resource-operations', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'database_uuid' => $database->uuid]) }}">Операції
+                з ресурсами</a>
             <a class='menu-item' wire:current.exact="menu-item-active"
-                href="{{ route('project.database.metrics', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'database_uuid' => $database->uuid]) }}">Metrics</a>
+                href="{{ route('project.database.metrics', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'database_uuid' => $database->uuid]) }}">Метрики</a>
             <a class='menu-item' wire:current.exact="menu-item-active"
-                href="{{ route('project.database.tags', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'database_uuid' => $database->uuid]) }}">Tags</a>
+                href="{{ route('project.database.tags', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'database_uuid' => $database->uuid]) }}">Теги</a>
             <a class='menu-item' wire:current.exact="menu-item-active"
-                href="{{ route('project.database.danger', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'database_uuid' => $database->uuid]) }}">Danger
-                Zone</a>
+                href="{{ route('project.database.danger', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'database_uuid' => $database->uuid]) }}">Небезпечна
+                зона</a>
         </div>
         <div class="w-full">
             @if ($currentRoute === 'project.database.configuration')

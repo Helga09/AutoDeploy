@@ -1,6 +1,6 @@
 @props([
-    'title' => 'Are you sure?',
-    'buttonTitle' => 'Open Modal',
+    'title' => 'Ви впевнені?',
+    'buttonTitle' => 'Відкрити модальне вікно',
     'isErrorButton' => false,
     'isHighlightedButton' => false,
     'disabled' => false,

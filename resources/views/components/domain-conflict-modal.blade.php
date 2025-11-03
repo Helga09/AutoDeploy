@@ -20,7 +20,7 @@
                     x-transition:leave-end="opacity-0 -translate-y-2 sm:scale-95"
                     class="relative w-full py-6 border rounded-sm min-w-full lg:min-w-[36rem] max-w-[48rem] bg-neutral-100 border-neutral-400 dark:bg-base px-7 dark:border-coolgray-300">
                     <div class="flex justify-between items-center pb-3">
-                        <h2 class="pr-8 font-bold">Domain Already In Use</h2>
+                        <h2 class="pr-8 font-bold">Домен вже використовується</h2>
                         <button @click="modalOpen = false; $wire.set('showDomainConflictModal', false)"
                             class="flex absolute top-2 right-2 justify-center items-center w-8 h-8 rounded-full dark:text-white hover:bg-coolgray-300">
                             <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -30,9 +30,8 @@
                         </button>
                     </div>
                     <div class="relative w-auto">
-                        <x-callout type="danger" title="Domain Conflict Detected" class="mb-4">
-                            The following domain(s) are already in use by other resources. Using the same domain for
-                            multiple resources can cause routing conflicts and unpredictable behavior.
+                        <x-callout type="danger" title="Виявлено конфлікт доменів" class="mb-4">
+                            Наступні домени вже використовуються іншими ресурсами. Використання одного домену для кількох ресурсів може призвести до конфліктів маршрутизації та непередбачуваної поведінки.
                         </x-callout>
 
                         <div class="mb-4">
@@ -40,7 +39,7 @@
                                 @foreach ($conflicts as $conflict)
                                     <li class="flex items-start text-red-500">
                                         <div>
-                                            <strong>{{ $conflict['domain'] }}</strong> is used by
+                                            <strong>{{ $conflict['domain'] }}</strong> використовується
                                             @if ($conflict['resource_type'] === 'instance')
                                                 <strong>{{ $conflict['resource_name'] }}</strong>
                                             @else
@@ -56,15 +55,15 @@
                             </ul>
                         </div>
 
-                        <x-callout type="warning" title="What will happen if you continue?" class="mb-4">
+                        <x-callout type="warning" title="Що станеться, якщо ви продовжите?" class="mb-4">
                             @if (isset($consequences))
                                 {{ $consequences }}
                             @else
                                 <ul class="mt-2 ml-4 list-disc">
-                                    <li>Only one resource will be accessible at this domain</li>
-                                    <li>The routing behavior will be unpredictable</li>
-                                    <li>You may experience service disruptions</li>
-                                    <li>SSL certificates might not work correctly</li>
+                                    <li>Лише один ресурс буде доступний за цим доменом</li>
+                                    <li>Поведінка маршрутизації буде непередбачуваною</li>
+                                    <li>Можливі перебої в роботі сервісу</li>
+                                    <li>Сертифікати SSL можуть працювати некоректно</li>
                                 </ul>
                             @endif
                         </x-callout>
@@ -72,11 +71,11 @@
                         <div class="flex flex-wrap gap-2 justify-between mt-4">
                             <x-forms.button @click="modalOpen = false; $wire.set('showDomainConflictModal', false)"
                                 class="w-auto dark:bg-coolgray-200 dark:hover:bg-coolgray-300">
-                                Cancel
+                                Скасувати
                             </x-forms.button>
                             <x-forms.button wire:click="{{ $confirmAction }}" @click="modalOpen = false" class="w-auto"
                                 isError>
-                                I understand, proceed anyway
+                                Я розумію, продовжити
                             </x-forms.button>
                         </div>
                     </div>

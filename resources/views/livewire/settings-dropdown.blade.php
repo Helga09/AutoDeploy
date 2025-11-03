@@ -108,9 +108,9 @@
     <div class="relative">
         <button @click="dropdownOpen = !dropdownOpen"
             class="relative p-2 dark:text-neutral-400 hover:dark:text-white transition-colors cursor-pointer"
-            title="Preferences">
+            title="Налаштування">
             <!-- Sliders Icon -->
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" title="Preferences">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" title="Налаштування">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
             </svg>
@@ -141,7 +141,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
-                                <span>What's New</span>
+                                <span>Що нового</span>
                             </div>
                             <span
                                 class="bg-error text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
@@ -155,7 +155,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                             </svg>
-                            <span>Changelog</span>
+                            <span>Список змін</span>
                         </button>
                     @endif
 
@@ -164,14 +164,14 @@
 
                     <!-- Theme Section -->
                     <div class="font-bold border-b dark:border-coolgray-500 border-neutral-300 dark:text-white pb-1">
-                        Appearance</div>
+                        Вигляд</div>
                     <button @click="setTheme('dark'); dropdownOpen = false"
                         class="px-1 dropdown-item-no-padding flex items-center gap-2">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                         </svg>
-                        <span>Dark</span>
+                        <span>Темна</span>
                     </button>
                     <button @click="setTheme('light'); dropdownOpen = false"
                         class="px-1 dropdown-item-no-padding flex items-center gap-2">
@@ -179,7 +179,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                         </svg>
-                        <span>Light</span>
+                        <span>Світла</span>
                     </button>
                     <button @click="setTheme('system'); dropdownOpen = false"
                         class="px-1 dropdown-item-no-padding flex items-center gap-2">
@@ -187,20 +187,20 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
-                        <span>System</span>
+                        <span>Системна</span>
                     </button>
 
                     <!-- Width Section -->
                     <div
                         class="my-1 font-bold border-b dark:border-coolgray-500 border-neutral-300 dark:text-white text-md">
-                        Width</div>
+                        Ширина</div>
                     <button @click="switchWidth(); dropdownOpen = false"
                         class="px-1 dropdown-item-no-padding flex items-center gap-2" x-show="full === 'full'">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4 6h16M4 12h16M4 18h7" />
                         </svg>
-                        <span>Center</span>
+                        <span>По центру</span>
                     </button>
                     <button @click="switchWidth(); dropdownOpen = false"
                         class="px-1 dropdown-item-no-padding flex items-center gap-2" x-show="full === 'center'">
@@ -208,13 +208,13 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
-                        <span>Full</span>
+                        <span>На весь екран</span>
                     </button>
 
                     <!-- Zoom Section -->
                     <div
                         class="my-1 font-bold border-b dark:border-coolgray-500 border-neutral-300 dark:text-white text-md">
-                        Zoom</div>
+                        Масштаб</div>
                     <button @click="setZoom(100); dropdownOpen = false"
                         class="px-1 dropdown-item-no-padding flex items-center gap-2">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -251,13 +251,13 @@
                 <div class="flex items-center justify-between  pb-3">
                     <div>
                         <h3 class="text-2xl font-bold dark:text-white">
-                            Changelog
+                            Список змін
                         </h3>
                         <p class="mt-1 text-sm dark:text-neutral-400">
-                            Stay up to date with the latest features and improvements.
+                            Будьте в курсі останніх функцій та покращень.
                         </p>
                         <p class="mt-1 text-xs dark:text-neutral-500">
-                            Current version: <span class="font-semibold dark:text-neutral-300">{{ $currentVersion }}</span>
+                            Поточна версія: <span class="font-semibold dark:text-neutral-300">{{ $currentVersion }}</span>
                         </p>
                     </div>
                     <div class="flex items-center gap-2">
@@ -268,12 +268,12 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                                 </svg>
-                                Fetch Latest
+                                Оновити
                             </x-forms.button>
                         @endif
                         @if ($unreadCount > 0)
                             <x-forms.button @click="markAllEntriesAsRead">
-                                Mark all as read
+                                Позначити всі як прочитані
                             </x-forms.button>
                         @endif
                         <button wire:click="closeWhatsNewModal"
@@ -289,7 +289,7 @@
                 <!-- Search -->
                 <div class="pb-4 border-b dark:border-coolgray-200 flex-shrink-0">
                     <div class="relative">
-                        <input x-model="search" placeholder="Search updates..." class="input pl-10" />
+                        <input x-model="search" placeholder="Пошук оновлень..." class="input pl-10" />
                         <svg class="absolute left-3 top-2 w-4 h-4 dark:text-neutral-400" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -318,7 +318,7 @@
                                                     </a></span>
                                                 <span x-show="entry.tag_name === '{{ $currentVersion }}'"
                                                     class="px-2 py-1 text-xs font-semibold bg-success text-white rounded-sm">
-                                                    CURRENT VERSION
+                                                    ПОТОЧНА ВЕРСІЯ
                                                 </span>
                                                 <span class="text-xs dark:text-neutral-400"
                                                     x-text="new Date(entry.published_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })"></span>
@@ -330,8 +330,8 @@
 
                                         <button x-show="!entry.is_read" @click="markEntryAsRead(entry.tag_name)"
                                             class="ml-4 px-3 py-1 text-xs dark:text-neutral-400 hover:dark:text-white border dark:border-neutral-600 rounded hover:dark:bg-neutral-700 transition-colors cursor-pointer"
-                                            title="Mark as read">
-                                            mark as read
+                                            title="Позначити як прочитане">
+                                            позначити як прочитане
                                         </button>
                                     </div>
                                 </div>
@@ -345,10 +345,10 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
-                        <h3 class="mt-2 text-sm font-medium dark:text-white">No updates found</h3>
+                        <h3 class="mt-2 text-sm font-medium dark:text-white">Оновлень не знайдено</h3>
                         <p class="mt-1 text-sm dark:text-neutral-400">
-                            <span x-show="search.trim() !== ''">No updates match your search criteria.</span>
-                            <span x-show="search.trim() === ''">There are no updates available at the moment.</span>
+                            <span x-show="search.trim() !== ''">Оновлення за вашими критеріями пошуку не знайдено.</span>
+                            <span x-show="search.trim() === ''">Наразі немає доступних оновлень.</span>
                         </p>
                     </div>
                 </div>

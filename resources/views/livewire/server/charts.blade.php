@@ -1,25 +1,25 @@
 <div>
     <x-slot:title>
-        {{ data_get_str($server, 'name')->limit(10) }} > Metrics | Coolify
+        {{ data_get_str($server, 'name')->limit(10) }} > Метрики | Coolify
     </x-slot>
     <livewire:server.navbar :server="$server" />
     <div class="flex flex-col h-full gap-8 sm:flex-row">
         <x-server.sidebar :server="$server" activeMenu="metrics" />
         <div class="w-full">
-            <h2>Metrics</h2>
-            <div class="pb-4">Basic metrics for your server.</div>
+            <h2>Метрики</h2>
+            <div class="pb-4">Основні метрики для вашого сервера.</div>
             @if ($server->isMetricsEnabled())
                 <div @if ($poll) wire:poll.5000ms='pollData' @endif x-init="$wire.loadData()">
-                    <x-forms.select label="Interval" wire:change="setInterval" id="interval">
-                        <option value="5">5 minutes (live)</option>
-                        <option value="10">10 minutes (live)</option>
-                        <option value="30">30 minutes</option>
-                        <option value="60">1 hour</option>
-                        <option value="720">12 hours</option>
-                        <option value="10080">1 week</option>
-                        <option value="43200">30 days</option>
+                    <x-forms.select label="Інтервал" wire:change="setInterval" id="interval">
+                        <option value="5">5 хвилин (онлайн)</option>
+                        <option value="10">10 хвилин (онлайн)</option>
+                        <option value="30">30 хвилин</option>
+                        <option value="60">1 година</option>
+                        <option value="720">12 годин</option>
+                        <option value="10080">1 тиждень</option>
+                        <option value="43200">30 днів</option>
                     </x-forms.select>
-                    <h4 class="pt-4">CPU Usage</h4>
+                    <h4 class="pt-4">Використання ЦП</h4>
                     <div wire:ignore id="{!! $chartId !!}-cpu"></div>
 
                     <script>
@@ -75,7 +75,7 @@
                                 data: []
                             }],
                             noData: {
-                                text: 'Loading...',
+                                text: 'Завантаження...',
                                 style: {
                                     color: textColor,
                                 }
@@ -96,7 +96,7 @@
                                          String(date.getUTCMonth() + 1).padStart(2, '0') + '-' +
                                          String(date.getUTCDate()).padStart(2, '0');
                                      return '<div class="apexcharts-tooltip-custom">' +
-                                         '<div class="apexcharts-tooltip-custom-value">CPU: <span class="apexcharts-tooltip-value-bold">' + value + '%</span></div>' +
+                                         '<div class="apexcharts-tooltip-custom-value">ЦП: <span class="apexcharts-tooltip-value-bold">' + value + '%</span></div>' +
                                          '<div class="apexcharts-tooltip-custom-title">' + timeString + '</div>' +
                                          '</div>';
                                  }
@@ -138,7 +138,7 @@
                                          }
                                      },
                                     noData: {
-                                        text: 'Loading...',
+                                        text: 'Завантаження...',
                                         style: {
                                             color: textColor,
                                         }
@@ -149,7 +149,7 @@
                     </script>
 
                     <div>
-                        <h4>Memory Usage</h4>
+                        <h4>Використання пам'яті</h4>
                         <div wire:ignore id="{!! $chartId !!}-memory"></div>
 
                         <script>
@@ -211,7 +211,7 @@
                                     data: []
                                 }],
                                 noData: {
-                                    text: 'Loading...',
+                                    text: 'Завантаження...',
                                     style: {
                                         color: textColor,
                                     }
@@ -232,7 +232,7 @@
                                              String(date.getUTCMonth() + 1).padStart(2, '0') + '-' +
                                              String(date.getUTCDate()).padStart(2, '0');
                                          return '<div class="apexcharts-tooltip-custom">' +
-                                             '<div class="apexcharts-tooltip-custom-value">Memory: <span class="apexcharts-tooltip-value-bold">' + value + '%</span></div>' +
+                                             '<div class="apexcharts-tooltip-custom-value">Пам\'ять: <span class="apexcharts-tooltip-value-bold">' + value + '%</span></div>' +
                                              '<div class="apexcharts-tooltip-custom-title">' + timeString + '</div>' +
                                              '</div>';
                                      }
@@ -275,7 +275,7 @@
                                              }
                                          },
                                         noData: {
-                                            text: 'Loading...',
+                                            text: 'Завантаження...',
                                             style: {
                                                 color: textColor,
                                             }
@@ -288,8 +288,8 @@
                     </div>
                 </div>
             @else
-                <div>Metrics are disabled for this server. Enable them in <a class="underline dark:text-white"
-                        href="{{ route('server.show', ['server_uuid' => $server->uuid]) }}">General</a> settings.</div>
+                <div>Метрики вимкнені для цього сервера. Увімкніть їх у <a class="underline dark:text-white"
+                        href="{{ route('server.show', ['server_uuid' => $server->uuid]) }}">Загальні</a> налаштуваннях.</div>
             @endif
         </div>
     </div>

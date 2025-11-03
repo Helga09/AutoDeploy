@@ -2,7 +2,7 @@
     @if ($isConfigurationChanged && !is_null($resource->config_hash) && !$resource->isExited())
         <x-popup-small>
             <x-slot:title>
-                The latest configuration has not been applied
+                Остання конфігурація не була застосована
             </x-slot:title>
             <x-slot:icon>
                 <svg class="hidden w-10 h-10 dark:text-warning lg:block" viewBox="0 0 256 256"
@@ -12,10 +12,10 @@
                 </svg>
             </x-slot:icon>
             <x-slot:description>
-                <span>Please redeploy to apply the new configuration.</span>
+                <span>Будь ласка, розгорніть знову, щоб застосувати нову конфігурацію.</span>
             </x-slot:description>
             <x-slot:button-text @click="disableSponsorship()">
-                Disable This Popup
+                Вимкнути це спливаюче вікно
             </x-slot:button-text>
         </x-popup-small>
     @endif

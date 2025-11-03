@@ -1,8 +1,8 @@
 <div>
     <div class="flex items-start gap-2 pb-10">
         <div>
-            <h1 class="pb-2">Tags</h1>
-            <div>Tags help you to perform actions on multiple resources.</div>
+            <h1 class="pb-2">Теги</h1>
+            <div>Теги допомагають виконувати дії над кількома ресурсами.</div>
         </div>
     </div>
     <div class="flex flex-wrap gap-2 ">
@@ -11,24 +11,24 @@
                 class="min-w-32 box-without-bg dark:bg-coolgray-100 dark:text-white font-bold dark:hover:bg-coollabs-100 flex justify-center items-center"
                 href="{{ route('tags.show', ['tagName' => $oneTag->name]) }}">{{ data_get_str($oneTag, 'name')->limit(30) }}</a>
         @empty
-            <div>No tags yet defined yet. Go to a resource and add a tag there.</div>
+            <div>Теги ще не визначені. Перейдіть до ресурсу та додайте тег там.</div>
         @endforelse
     </div>
     @if (isset($tag))
         <div>
-            <h3 class="py-4">Tag Details</h3>
+            <h3 class="py-4">Деталі тегу</h3>
             <div class="flex items-end gap-2 ">
                 <div class="w-[500px]">
-                    <x-forms.input readonly label="Deploy Webhook URL" id="webhook" />
+                    <x-forms.input readonly label="URL вебхука розгортання" id="webhook" />
                 </div>
-                <x-modal-confirmation title="Redeploy all resources with this tag?" isHighlighted
-                    buttonTitle="Redeploy All" submitAction="redeployAll" :actions="[
-                        'All resources with this tag will be redeployed.',
-                        'During redeploy resources will be temporarily unavailable.',
+                <x-modal-confirmation title="Перерозгорнути всі ресурси з цим тегом?" isHighlighted
+                    buttonTitle="Перерозгорнути все" submitAction="redeployAll" :actions="[
+                        'Усі ресурси з цим тегом будуть перерозгорнуті.',
+                        'Під час перерозгортання ресурси будуть тимчасово недоступні.',
                     ]"
                     confirmationText="{{ $tag->name }}"
-                    confirmationLabel="Please confirm the execution of the actions by entering the Tag Name below"
-                    shortConfirmationLabel="Tag Name" :confirmWithPassword="false" step2ButtonText="Redeploy All" />
+                    confirmationLabel="Будь ласка, підтвердьте виконання дій, ввівши назву тегу нижче"
+                    shortConfirmationLabel="Назва тегу" :confirmWithPassword="false" step2ButtonText="Перерозгорнути все" />
             </div>
 
             <div class="grid grid-cols-1 gap-2 pt-4 lg:grid-cols-2 xl:grid-cols-3">
@@ -60,7 +60,7 @@
                 @endif
             </div>
             <div class="flex items-center gap-2">
-                <h3 class="py-4">Deployments</h3>
+                <h3 class="py-4">Розгортання</h3>
                 @if (count($deploymentsPerTagPerServer) > 0)
                     <x-loading />
                 @endif
@@ -88,7 +88,7 @@
                         @endforeach
                     </div>
                 @empty
-                    <div>No deployments running.</div>
+                    <div>Розгортання не виконуються.</div>
                 @endforelse
             </div>
         </div>

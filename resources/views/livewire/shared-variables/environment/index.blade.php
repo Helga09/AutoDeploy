@@ -1,14 +1,14 @@
 <div>
     <x-slot:title>
-        Environment Variables | Coolify
+        Змінні середовища | Coolify
     </x-slot>
     <div class="flex gap-2">
-        <h1>Environments</h1>
+        <h1>Середовища</h1>
     </div>
-    <div class="subtitle">List of your environments by projects.</div>
+    <div class="subtitle">Список ваших середовищ за проєктами.</div>
     <div class="flex flex-col gap-2">
         @forelse ($projects as $project)
-            <h2>Project: {{ data_get($project, 'name') }}</h2>
+            <h2>Проєкт: {{ data_get($project, 'name') }}</h2>
             <div class="pt-0 pb-3">{{ data_get($project, 'description') }}</div>
             @forelse ($project->environments as $environment)
                 <a class="box group"
@@ -23,11 +23,11 @@
                     </div>
                 </a>
             @empty
-                <p class="pb-4">No environments found.</p>
+                <p class="pb-4">Середовищ не знайдено.</p>
             @endforelse
         @empty
             <div>
-                <div>No project found.</div>
+                <div>Проєктів не знайдено.</div>
             </div>
         @endforelse
     </div>

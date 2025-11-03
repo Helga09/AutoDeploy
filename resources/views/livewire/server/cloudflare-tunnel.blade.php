@@ -10,90 +10,80 @@
                 <div class="flex gap-2 items-center">
                     <h2>Cloudflare Tunnel</h2>
                     <x-helper class="inline-flex"
-                        helper="If you are using Cloudflare Tunnel, enable this. It will proxy all SSH requests to your server through Cloudflare.<br> You then can close your server's SSH port in the firewall of your hosting provider.<br><span class='dark:text-warning'>If you choose manual configuration, Coolify does not install or set up Cloudflare (cloudflared) on your server.</span>" />
+                        helper="Якщо ви використовуєте Cloudflare Tunnel, увімкніть його. Він буде проксіювати всі SSH-запити до вашого сервера через Cloudflare.<br> Потім ви можете закрити SSH-порт вашого сервера у брандмауері вашого хостинг-провайдера.<br><span class='dark:text-warning'>Якщо ви вибираєте ручну конфігурацію, Coolify не встановлює та не налаштовує Cloudflare (cloudflared) на вашому сервері.</span>" />
                     @if ($isCloudflareTunnelsEnabled)
                         <span
                             class="px-2 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded dark:text-green-100 dark:bg-green-800">
-                            Enabled
+                            Увімкнено
                         </span>
                     @endif
                 </div>
-                <div>Secure your servers with Cloudflare Tunnel.</div>
+                <div>Захистіть свої сервери за допомогою Cloudflare Tunnel.</div>
             </div>
             <div class="flex flex-col gap-2 pt-6">
                 @if ($isCloudflareTunnelsEnabled)
                     <div class="flex flex-col gap-4">
-                        <x-callout type="warning" title="Warning!">
-                            If you disable Cloudflare Tunnel, you will need to update the server's IP address back
-                            to its real IP address in the server "General" settings. The server may become inaccessible
-                            if the IP address is not updated correctly.
+                        <x-callout type="warning" title="Попередження!">
+                            Якщо ви вимкнете Cloudflare Tunnel, вам потрібно буде оновити IP-адресу сервера на його справжню IP-адресу в налаштуваннях сервера "Загальні". Сервер може стати недоступним, якщо IP-адреса не буде оновлена ​​правильно.
                         </x-callout>
                         <div class="w-64">
                             @if ($server->ip_previous)
-                                <x-modal-confirmation title="Disable Cloudflare Tunnel?"
-                                    buttonTitle="Disable Cloudflare Tunnel" isErrorButton
+                                <x-modal-confirmation title="Вимкнути Cloudflare Tunnel?"
+                                    buttonTitle="Вимкнути Cloudflare Tunnel" isErrorButton
                                     submitAction="toggleCloudflareTunnels" :actions="[
-                                        'Cloudflare Tunnel will be disabled for this server.',
-                                        'The server IP address will be updated to its previous IP address.',
+                                        'Cloudflare Tunnel буде вимкнено для цього сервера.',
+                                        'IP-адресу сервера буде оновлено до його попередньої IP-адреси.',
                                     ]"
-                                    confirmationText="DISABLE CLOUDFLARE TUNNEL"
-                                    confirmationLabel="Please type the confirmation text to disable Cloudflare Tunnel."
-                                    shortConfirmationLabel="Confirmation text" />
+                                    confirmationText="ВИМКНУТИ CLOUDFLARE TUNNEL"
+                                    confirmationLabel="Будь ласка, введіть текст підтвердження, щоб вимкнути Cloudflare Tunnel."
+                                    shortConfirmationLabel="Текст підтвердження" />
                             @else
-                                <x-modal-confirmation title="Disable Cloudflare Tunnel?"
-                                    buttonTitle="Disable Cloudflare Tunnel" isErrorButton
+                                <x-modal-confirmation title="Вимкнути Cloudflare Tunnel?"
+                                    buttonTitle="Вимкнути Cloudflare Tunnel" isErrorButton
                                     submitAction="toggleCloudflareTunnels" :actions="[
-                                        'Cloudflare Tunnel will be disabled for this server.',
-                                        'You will need to update the server IP address to its real IP address.',
-                                        'The server may become inaccessible if the IP address is not updated correctly.',
-                                        'SSH access will revert to the standard port configuration.',
+                                        'Cloudflare Tunnel буде вимкнено для цього сервера.',
+                                        'Вам потрібно буде оновити IP-адресу сервера до його справжньої IP-адреси.',
+                                        'Сервер може стати недоступним, якщо IP-адреса не буде оновлена ​​правильно.',
+                                        'Доступ SSH повернеться до стандартної конфігурації порту.',
                                     ]"
-                                    confirmationText="DISABLE CLOUDFLARE TUNNEL"
-                                    confirmationLabel="Please type the confirmation text to disable Cloudflare Tunnel."
-                                    shortConfirmationLabel="Confirmation text" />
+                                    confirmationText="ВИМКНУТИ CLOUDFLARE TUNNEL"
+                                    confirmationLabel="Будь ласка, введіть текст підтвердження, щоб вимкнути Cloudflare Tunnel."
+                                    shortConfirmationLabel="Текст підтвердження" />
                             @endif
 
                         </div>
                     </div>
                 @elseif (!$server->isFunctional())
-                    <x-callout type="info" title="Configuration Options" class="mb-4">
-                        To <span class="font-semibold">automatically</span> configure Cloudflare Tunnel, please
-                        validate your server first. Then you will need a Cloudflare token and an SSH
-                        domain configured.
-                        <br />
-                        To <span class="font-semibold">manually</span> configure Cloudflare Tunnel, please
-                        click <span wire:click="manualCloudflareConfig" class="underline cursor-pointer">here</span>,
-                        then you should validate the server.
-                        <br /><br />
-                        For more information, please read our <a
+                    <x-callout type="info" title="Параметри конфігурації" class="mb-4">
+                        Щоб <span class="font-semibold">автоматично</span> налаштувати Cloudflare Tunnel, спочатку перевірте свій сервер. Потім вам знадобиться токен Cloudflare та налаштований домен SSH.<br />Щоб <span class="font-semibold">вручну</span> налаштувати Cloudflare Tunnel, будь ласка, натисніть <span wire:click="manualCloudflareConfig" class="underline cursor-pointer">тут</span>, а потім ви повинні перевірити сервер.<br /><br />Для отримання додаткової інформації, будь ласка, прочитайте нашу <a
                             href="https://coolify.io/docs/knowledge-base/cloudflare/tunnels/server-ssh" target="_blank"
-                            class="underline">documentation</a>.
+                            class="underline">документацію</a>.
                     </x-callout>
                 @endif
                 @if (!$isCloudflareTunnelsEnabled && $server->isFunctional())
                     <div class="flex  flex-col pb-2">
-                        <h3>Automated </h3>
+                        <h3>Автоматично </h3>
                         <a href="https://coolify.io/docs/knowledge-base/cloudflare/tunnels/server-ssh" target="_blank"
-                            class="text-xs underline hover:text-yellow-600 dark:hover:text-yellow-200">Docs<x-external-link /></a>
+                            class="text-xs underline hover:text-yellow-600 dark:hover:text-yellow-200">Документація<x-external-link /></a>
                     </div>
                     <div class="flex gap-2">
                         <x-slide-over @automated.window="slideOverOpen = true" fullScreen>
-                            <x-slot:title>Cloudflare Tunnel Configuration</x-slot:title>
+                            <x-slot:title>Конфігурація Cloudflare Tunnel</x-slot:title>
                             <x-slot:content>
-                                <livewire:activity-monitor header="Logs" fullHeight />
+                                <livewire:activity-monitor header="Журнали" fullHeight />
                             </x-slot:content>
                         </x-slide-over>
                         @can('update', $server)
                             <form @submit.prevent="$wire.dispatch('automatedCloudflareConfig')"
                                 class="flex flex-col gap-2 w-full">
-                                <x-forms.input id="cloudflare_token" required label="Cloudflare Token" type="password" />
-                                <x-forms.input id="ssh_domain" label="Configured SSH Domain" required
-                                    helper="The SSH domain you configured in Cloudflare. Make sure there is no protocol like http(s):// so you provide a FQDN not a URL. <a class='underline dark:text-white' href='https://coolify.io/docs/knowledge-base/cloudflare/tunnels/server-ssh' target='_blank'>Documentation</a>" />
-                                <x-forms.button type="submit" isHighlighted>Continue</x-forms.button>
+                                <x-forms.input id="cloudflare_token" required label="Токен Cloudflare" type="password" />
+                                <x-forms.input id="ssh_domain" label="Налаштований SSH домен" required
+                                    helper="Домен SSH, який ви налаштували в Cloudflare. Переконайтеся, що немає протоколу на кшталт http(s)://, тому ви надаєте FQDN, а не URL. <a class='underline dark:text-white' href='https://coolify.io/docs/knowledge-base/cloudflare/tunnels/server-ssh' target='_blank'>Документація</a>" />
+                                <x-forms.button type="submit" isHighlighted>Продовжити</x-forms.button>
                             </form>
                         @else
-                            <x-callout type="warning" title="Permission Required" class="mb-4">
-                                You don't have permission to configure Cloudflare Tunnel for this server.
+                            <x-callout type="warning" title="Потрібен дозвіл" class="mb-4">
+                                У вас немає дозволу на налаштування Cloudflare Tunnel для цього сервера.
                             </x-callout>
                         @endcan
                     </div>
@@ -110,20 +100,20 @@
                         </script>
                     @endscript
             </div>
-            <h3 class="pt-6 pb-2">Manual</h3>
+            <h3 class="pt-6 pb-2">Вручну</h3>
             <div class="pl-2">
                 @can('update', $server)
-                    <x-modal-confirmation buttonFullWidth title="I manually configured Cloudflare Tunnel?"
-                        buttonTitle="I manually configured Cloudflare Tunnel" submitAction="manualCloudflareConfig"
+                    <x-modal-confirmation buttonFullWidth title="Я налаштував Cloudflare Tunnel вручну?"
+                        buttonTitle="Я налаштував Cloudflare Tunnel вручну" submitAction="manualCloudflareConfig"
                         :actions="[
-                            'You set everything up manually, including in Cloudflare and on the server (cloudflared is running).',
-                            'If you missed something, the connection will not work.',
-                        ]" confirmationText="I manually configured Cloudflare Tunnel"
-                        confirmationLabel="Please type the confirmation text to confirm that you manually configured Cloudflare Tunnel."
-                        shortConfirmationLabel="Confirmation text" />
+                            'Ви налаштували все вручну, включаючи в Cloudflare та на сервері (cloudflared працює).',
+                            'Якщо ви щось пропустили, з\'єднання не працюватиме.',
+                        ]" confirmationText="Я налаштував Cloudflare Tunnel вручну"
+                        confirmationLabel="Будь ласка, введіть текст підтвердження, щоб підтвердити, що ви налаштували Cloudflare Tunnel вручну."
+                        shortConfirmationLabel="Текст підтвердження" />
                 @else
-                    <x-callout type="warning" title="Permission Required" class="mb-4">
-                        You don't have permission to configure Cloudflare Tunnel for this server.
+                    <x-callout type="warning" title="Потрібен дозвіл" class="mb-4">
+                        У вас немає дозволу на налаштування Cloudflare Tunnel для цього сервера.
                     </x-callout>
                 @endcan
             </div>

@@ -1,5 +1,5 @@
 @props([
-    'status' => 'Stopped',
+    'status' => 'Зупинено',
     'noLoading' => false,
 ])
 <div class="flex items-center">

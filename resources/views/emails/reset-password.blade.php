@@ -1,7 +1,7 @@
 <x-emails.layout>
-A password reset has been requested for this email address.
+Було надіслано запит на скидання пароля для цієї електронної адреси.
 
-Click [here]({{ $url }}) to reset your password.
+Натисніть [тут]({{ $url }}) щоб скинути ваш пароль.
 
-This link will expire in {{ $count }} minutes.
+Термін дії цього посилання закінчується через {{ $count }} хвилин.
 </x-emails.layout>

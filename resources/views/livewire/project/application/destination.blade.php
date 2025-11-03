@@ -1,8 +1,8 @@
 <div>
-    <h2>Destination</h2>
-    <div class="">The destination server / network where your application will be deployed to.</div>
+    <h2>Призначення</h2>
+    <div class="">Сервер / мережа призначення, куди буде розгорнуто ваш застосунок.</div>
     <div class="py-4 ">
-        <p>Server: {{ data_get($destination, 'server.name') }}</p>
-        <p>Destination Network: {{ $destination->network }}</p>
+        <p>Сервер: {{ data_get($destination, 'server.name') }}</p>
+        <p>Мережа призначення: {{ $destination->network }}</p>
     </div>
 </div>

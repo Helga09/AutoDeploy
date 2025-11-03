@@ -1,41 +1,41 @@
 <div>
     <x-slot:title>
-        {{ data_get_str($service, 'name')->limit(10) }} > Configuration | Coolify
+        {{ data_get_str($service, 'name')->limit(10) }} > Налаштування | Coolify
     </x-slot>
     <livewire:project.service.heading :service="$service" :parameters="$parameters" :query="$query" />
 
     <div class="flex flex-col h-full gap-8 sm:flex-row">
         <div class="flex flex-col items-start gap-2 min-w-fit">
-            <a class="menu-item sm:min-w-fit" target="_blank" href="{{ $service->documentation() }}">Documentation
+            <a class="menu-item sm:min-w-fit" target="_blank" href="{{ $service->documentation() }}">Документація
                 <x-external-link /></a>
             <a class='menu-item' wire:current.exact="menu-item-active"
-                href="{{ route('project.service.configuration', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'service_uuid' => $service->uuid]) }}">General</a>
+                href="{{ route('project.service.configuration', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'service_uuid' => $service->uuid]) }}">Загальне</a>
             <a class='menu-item' wire:current.exact="menu-item-active"
-                href="{{ route('project.service.environment-variables', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'service_uuid' => $service->uuid]) }}">Environment
-                Variables</a>
+                href="{{ route('project.service.environment-variables', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'service_uuid' => $service->uuid]) }}">Змінні
+                середовища</a>
             <a class='menu-item' wire:current.exact="menu-item-active"
-                href="{{ route('project.service.storages', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'service_uuid' => $service->uuid]) }}">Persistent
-                Storages</a>
+                href="{{ route('project.service.storages', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'service_uuid' => $service->uuid]) }}">Постійні
+                сховища</a>
             <a class='menu-item' wire:current.exact="menu-item-active"
-                href="{{ route('project.service.scheduled-tasks.show', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'service_uuid' => $service->uuid]) }}">Scheduled
-                Tasks</a>
+                href="{{ route('project.service.scheduled-tasks.show', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'service_uuid' => $service->uuid]) }}">Заплановані
+                завдання</a>
             <a class='menu-item' wire:current.exact="menu-item-active"
-                href="{{ route('project.service.webhooks', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'service_uuid' => $service->uuid]) }}">Webhooks</a>
+                href="{{ route('project.service.webhooks', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'service_uuid' => $service->uuid]) }}">Вебхуки</a>
             <a class='menu-item' wire:current.exact="menu-item-active"
-                href="{{ route('project.service.resource-operations', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'service_uuid' => $service->uuid]) }}">Resource
-                Operations</a>
+                href="{{ route('project.service.resource-operations', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'service_uuid' => $service->uuid]) }}">Операції
+                з ресурсами</a>
 
             <a class='menu-item' wire:current.exact="menu-item-active"
-                href="{{ route('project.service.tags', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'service_uuid' => $service->uuid]) }}">Tags</a>
+                href="{{ route('project.service.tags', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'service_uuid' => $service->uuid]) }}">Теги</a>
 
             <a class='menu-item' wire:current.exact="menu-item-active"
-                href="{{ route('project.service.danger', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'service_uuid' => $service->uuid]) }}">Danger
-                Zone</a>
+                href="{{ route('project.service.danger', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'service_uuid' => $service->uuid]) }}">Небезпечна
+                зона</a>
         </div>
         <div class="w-full">
             @if ($currentRoute === 'project.service.configuration')
                 <livewire:project.service.stack-form :service="$service" />
-                <h3>Services</h3>
+                <h3>Сервіси</h3>
                 <div class="grid grid-cols-1 gap-2 pt-4 xl:grid-cols-1">
                     @foreach ($applications as $application)
                         <div @class([
@@ -58,7 +58,7 @@
                                         <span class="text-xs">({{ $application->image }})</span>
                                     </div>
                                     @if ($application->configuration_required)
-                                        <span class="text-xs text-error">(configuration required)</span>
+                                        <span class="text-xs text-error">(потрібна конфігурація)</span>
                                     @endif
                                     @if ($application->description)
                                         <span class="text-xs">{{ Str::limit($application->description, 60) }}</span>
@@ -66,7 +66,7 @@
                                     @if ($application->fqdn)
                                         <span class="flex gap-1 text-xs">{{ Str::limit($application->fqdn, 60) }}
                                             @can('update', $service)
-                                                <x-modal-input title="Edit Domains" :closeOutside="false">
+                                                <x-modal-input title="Редагувати домени" :closeOutside="false">
                                                     <x-slot:content>
                                                         <span class="cursor-pointer">
                                                             <svg xmlns="http://www.w3.org/2000/svg"
@@ -95,18 +95,18 @@
                                 <div class="flex items-center px-4">
                                     <a class="mx-4 text-xs font-bold hover:underline"
                                         href="{{ route('project.service.index', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'service_uuid' => $service->uuid, 'stack_service_uuid' => $application->uuid]) }}">
-                                        Settings
+                                        Налаштування
                                     </a>
                                     @if (str($application->status)->contains('running'))
                                         @can('update', $service)
-                                            <x-modal-confirmation title="Confirm Service Application Restart?"
-                                                buttonTitle="Restart"
+                                            <x-modal-confirmation title="Підтвердити перезапуск сервісної програми?"
+                                                buttonTitle="Перезапустити"
                                                 submitAction="restartApplication({{ $application->id }})" :actions="[
-                                                    'The selected service application will be unavailable during the restart.',
-                                                    'If the service application is currently in use data could be lost.',
+                                                    'Обрана сервісна програма буде недоступна під час перезапуску.',
+                                                    'Якщо сервісна програма зараз використовується, дані можуть бути втрачені.',
                                                 ]"
                                                 :confirmWithText="false" :confirmWithPassword="false"
-                                                step2ButtonText="Restart Service Container" />
+                                                step2ButtonText="Перезапустити контейнер сервісу" />
                                         @endcan
                                     @endif
                                 </div>
@@ -134,7 +134,7 @@
                                         <span class="text-xs">({{ $database->image }})</span>
                                     </div>
                                     @if ($database->configuration_required)
-                                        <span class="text-xs text-error">(configuration required)</span>
+                                        <span class="text-xs text-error">(потрібна конфігурація)</span>
                                     @endif
                                     @if ($database->description)
                                         <span class="text-xs">{{ Str::limit($database->description, 60) }}</span>
@@ -145,22 +145,22 @@
                                     @if ($database->isBackupSolutionAvailable() || $database->is_migrated)
                                         <a class="mx-4 text-xs font-bold hover:underline"
                                             href="{{ route('project.service.index', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'service_uuid' => $service->uuid, 'stack_service_uuid' => $database->uuid]) }}#backups">
-                                            Backups
+                                            Резервні копії
                                         </a>
                                     @endif
                                     <a class="mx-4 text-xs font-bold hover:underline"
                                         href="{{ route('project.service.index', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'service_uuid' => $service->uuid, 'stack_service_uuid' => $database->uuid]) }}">
-                                        Settings
+                                        Налаштування
                                     </a>
                                     @if (str($database->status)->contains('running'))
                                         @can('update', $service)
-                                            <x-modal-confirmation title="Confirm Service Database Restart?"
-                                                buttonTitle="Restart" submitAction="restartDatabase({{ $database->id }})"
+                                            <x-modal-confirmation title="Підтвердити перезапуск бази даних сервісу?"
+                                                buttonTitle="Перезапустити" submitAction="restartDatabase({{ $database->id }})"
                                                 :actions="[
-                                                    'This service database will be unavailable during the restart.',
-                                                    'If the service database is currently in use data could be lost.',
+                                                    'Ця база даних сервісу буде недоступна під час перезапуску.',
+                                                    'Якщо база даних сервісу зараз використовується, дані можуть бути втрачені.',
                                                 ]" :confirmWithText="false" :confirmWithPassword="false"
-                                                step2ButtonText="Restart Database" />
+                                                step2ButtonText="Перезапустити базу даних" />
                                         @endcan
                                     @endif
                                 </div>
@@ -172,13 +172,13 @@
                 <livewire:project.shared.environment-variable.all :resource="$service" />
             @elseif ($currentRoute === 'project.service.storages')
                 <div class="flex gap-2 items-center">
-                    <h2>Storages</h2>
+                    <h2>Сховища</h2>
                 </div>
-                <div class="pb-4">Persistent storage to preserve data between deployments.</div>
-                <div class="pb-4 dark:text-warning text-coollabs">If you would like to add a volume, you must add it to
-                    your compose file (<a class="underline"
-                        href="{{ route('project.service.configuration', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'service_uuid' => $service->uuid]) }}">General
-                        tab</a>).</div>
+                <div class="pb-4">Постійне сховище для збереження даних між розгортаннями.</div>
+                <div class="pb-4 dark:text-warning text-coollabs">Якщо ви хочете додати том, ви повинні додати його до
+                    вашого файлу compose (<a class="underline"
+                        href="{{ route('project.service.configuration', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'service_uuid' => $service->uuid]) }}">вкладка
+                        Загальне</a>).</div>
                 @foreach ($applications as $application)
                     <livewire:project.service.storage wire:key="application-{{ $application->id }}"
                         :resource="$application" />

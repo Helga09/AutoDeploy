@@ -1,5 +1,5 @@
 <x-emails.layout>
-Your trial ended. All automations and integrations are disabled for all of your servers.
+Ваш пробний період закінчився. Усі автоматизації та інтеграції вимкнено для всіх ваших серверів.
 
-Please update payment details [here]({{ $stripeCustomerPortal }}) or in [Coolify Cloud](https://app.coolify.io) to continue using our services.
+Будь ласка, оновіть платіжні дані [тут]({{ $stripeCustomerPortal }}) або в [Coolify Cloud](https://app.coolify.io), щоб продовжити користуватися нашими послугами.
 </x-emails.layout>

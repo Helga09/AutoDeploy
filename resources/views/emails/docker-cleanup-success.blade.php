@@ -1,5 +1,5 @@
 <x-emails.layout>
-Docker Cleanup on {{ $name }} succeeded with the following message:
+Очищення Docker на {{ $name }} завершилося успішно з таким повідомленням:
 
 
 <pre>

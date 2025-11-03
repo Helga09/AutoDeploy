@@ -1,9 +1,9 @@
 <x-emails.layout>
-Database backup for {{ $name }} @if($database_name)(db:{{ $database_name }})@endif with frequency of {{ $frequency }} succeeded locally but failed to upload to S3.
+Резервне копіювання бази даних для {{ $name }} @if($database_name)(БД:{{ $database_name }})@endif з частотою {{ $frequency }} успішно виконано локально, але не вдалося завантажити до S3.
 
-S3 Error: {{ $s3_error }}
+Помилка S3: {{ $s3_error }}
 
 @if($s3_storage_url)
-Check S3 Configuration: {{ $s3_storage_url }}
+Перевірте конфігурацію S3: {{ $s3_storage_url }}
 @endif
 </x-emails.layout>

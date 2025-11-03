@@ -1,7 +1,7 @@
 <x-emails.layout>
-We would like to inform you that a {{ config('constants.limits.trial_period') }} days of trial has been added to all subscription plans.
+Ми хотіли б повідомити вам, що {{ config('constants.limits.trial_period') }} днів пробного періоду було додано до всіх планів підписки.
 
-You can try out Coolify, without payment information for free. If you like it, you can upgrade to a paid plan at any time.
+Ви можете спробувати Coolify без платіжних даних безкоштовно. Якщо вам сподобається, ви можете оновити до платного плану в будь-який час.
 
-[Click here](https://app.coolify.io/subscription/new) to start your trial.
+[Натисніть тут](https://app.coolify.io/subscription/new), щоб розпочати ваш пробний період.
 </x-emails.layout>

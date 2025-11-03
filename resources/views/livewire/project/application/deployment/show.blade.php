@@ -1,8 +1,8 @@
 <div>
     <x-slot:title>
-        {{ data_get_str($application, 'name')->limit(10) }} > Deployment | Coolify
+        {{ data_get_str($application, 'name')->limit(10) }} > Розгортання | Coolify
     </x-slot>
-    <h1 class="py-0">Deployment</h1>
+    <h1 class="py-0">Розгортання</h1>
     <livewire:project.shared.configuration-checker :resource="$application" />
     <livewire:project.application.heading :application="$application" />
     <div x-data="{
@@ -42,7 +42,7 @@
     }">
         <livewire:project.application.deployment-navbar :application_deployment_queue="$application_deployment_queue" />
         @if (data_get($application_deployment_queue, 'status') === 'in_progress')
-            <div class="flex items-center gap-1 pt-2 ">Deployment is
+            <div class="flex items-center gap-1 pt-2 ">Розгортання
                 <div class="dark:text-warning">
                     {{ Str::headline(data_get($this->application_deployment_queue, 'status')) }}.
                 </div>
@@ -50,7 +50,7 @@
             </div>
             {{-- <div class="">Logs will be updated automatically.</div> --}}
         @else
-            <div class="pt-2 ">Deployment is <span
+            <div class="pt-2 ">Розгортання <span
                     class="dark:text-warning">{{ Str::headline(data_get($application_deployment_queue, 'status')) }}</span>.
             </div>
         @endif
@@ -60,7 +60,7 @@
                 :class="fullscreen ? '' : 'min-h-14 max-h-[40rem] border border-dotted rounded-sm'">
                 <div :class="fullscreen ? 'fixed' : 'absolute'" class="top-2 right-5">
                     <div class="flex justify-end gap-4">
-                        <button title="Toggle timestamps" x-on:click="showTimestamps = !showTimestamps">
+                        <button title="Перемкнути мітки часу" x-on:click="showTimestamps = !showTimestamps">
                             <svg class="w-5 h-5 opacity-30 hover:opacity-100" viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
                                 stroke-width="2">
@@ -68,14 +68,14 @@
                                     d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                             </svg>
                         </button>
-                        <button title="Go Top" x-show="fullscreen" x-on:click="goTop">
+                        <button title="На початок" x-show="fullscreen" x-on:click="goTop">
                             <svg class="w-5 h-5 opacity-30 hover:opacity-100" viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill="none" stroke="currentColor" stroke-linecap="round"
                                     stroke-linejoin="round" stroke-width="2" d="M12 5v14m4-10l-4-4M8 9l4-4" />
                             </svg>
                         </button>
-                        <button title="Follow Logs" x-show="fullscreen" :class="alwaysScroll ? 'dark:text-warning' : ''"
+                        <button title="Слідкувати за логами" x-show="fullscreen" :class="alwaysScroll ? 'dark:text-warning' : ''"
                             x-on:click="toggleScroll">
                             <svg class="w-5 h-5 opacity-30 hover:opacity-100" viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -83,7 +83,7 @@
                                     stroke-linejoin="round" stroke-width="2" d="M12 5v14m4-4l-4 4m-4-4l4 4" />
                             </svg>
                         </button>
-                        <button title="Fullscreen" x-show="!fullscreen" x-on:click="makeFullscreen">
+                        <button title="На весь екран" x-show="!fullscreen" x-on:click="makeFullscreen">
                             <svg class="w-5 h-5 opacity-30 hover:opacity-100" viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <g fill="none">
@@ -94,7 +94,7 @@
                                 </g>
                             </svg>
                         </button>
-                        <button title="Minimize" x-show="fullscreen" x-on:click="makeFullscreen">
+                        <button title="Згорнути" x-show="fullscreen" x-on:click="makeFullscreen">
                             <svg class="w-5 h-5 opacity-30 hover:opacity-100"
                                 viewBox="0 0 24 24"xmlns="http://www.w3.org/2000/svg">
                                 <path fill="none" stroke="currentColor" stroke-linecap="round"
@@ -117,10 +117,10 @@
                                 'text-red-500' => $line['stderr'],
                                 'font-bold' => isset($line['command']) && $line['command'],
                                 'whitespace-pre-wrap',
-                            ])>{!! (isset($line['command']) && $line['command'] ? '[CMD]: ' : '') . trim($line['line']) !!}</span>
+                            ])>{!! (isset($line['command']) && $line['command'] ? '[КОМАНДА]: ' : '') . trim($line['line']) !!}</span>
                         </div>
                     @empty
-                        <span class="font-mono text-neutral-400 mb-2">No logs yet.</span>
+                        <span class="font-mono text-neutral-400 mb-2">Журналів поки немає.</span>
                     @endforelse
                 </div>
             </div>

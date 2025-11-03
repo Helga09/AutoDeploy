@@ -1,3 +1,3 @@
 <x-emails.layout>
-Verify your email [here]({{ $url }}).
+Підтвердьте свою пошту [тут]({{ $url }}).
 </x-emails.layout>

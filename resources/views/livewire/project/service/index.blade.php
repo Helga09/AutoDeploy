@@ -5,14 +5,14 @@
             <a class="menu-item"
                 class="{{ request()->routeIs('project.service.configuration') ? 'menu-item-active' : '' }}"
                 href="{{ route('project.service.configuration', [...$parameters, 'stack_service_uuid' => null]) }}">
-                <button><- Back</button>
+                <button><- Назад</button>
             </a>
             <a class="menu-item" :class="activeTab === 'general' && 'menu-item-active'"
                 @click.prevent="activeTab = 'general'; window.location.hash = 'general'; if(window.location.search) window.location.search = ''"
-                href="#">General</a>
+                href="#">Загальні</a>
             @if ($serviceDatabase?->isBackupSolutionAvailable() || $serviceDatabase?->is_migrated)
                 <a :class="activeTab === 'backups' && 'menu-item-active'" class="menu-item"
-                    @click.prevent="activeTab = 'backups'; window.location.hash = 'backups'" href="#backups">Backups</a>
+                    @click.prevent="activeTab = 'backups'; window.location.hash = 'backups'" href="#backups">Резервні копії</a>
             @endif
         </div>
         <div class="w-full">
@@ -36,10 +36,10 @@
                 @if ($serviceDatabase?->isBackupSolutionAvailable() || $serviceDatabase?->is_migrated)
                     <div x-cloak x-show="activeTab === 'backups'">
                         <div class="flex gap-2">
-                            <h2 class="pb-4">Scheduled Backups</h2>
+                            <h2 class="pb-4">Заплановані резервні копії</h2>
                             @if (filled($serviceDatabase->custom_type) || !$serviceDatabase->is_migrated)
                                 @can('update', $serviceDatabase)
-                                    <x-modal-input buttonTitle="+ Add" title="New Scheduled Backup">
+                                    <x-modal-input buttonTitle="+ Додати" title="Нова запланована резервна копія">
                                         <livewire:project.database.create-scheduled-backup :database="$serviceDatabase" />
                                     </x-modal-input>
                                 @endcan

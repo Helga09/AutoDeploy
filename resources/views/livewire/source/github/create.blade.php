@@ -1,25 +1,25 @@
 @can('createAnyResource')
     <form wire:submit='createGitHubApp' class="flex flex-col w-full gap-2">
-        <div class="pb-2">This is required, if you would like to get full integration (commit / pull request
-            deployments, etc)
-            with GitHub.</div>
+        <div class="pb-2">Це обов'язково, якщо ви бажаєте отримати повну інтеграцію (розгортання комітів/пул-реквестів
+            тощо)
+            з GitHub.</div>
         <div class="flex gap-2">
-            <x-forms.input id="name" label="Name" required />
-            <x-forms.input helper="If empty, your GitHub user will be used."
-                placeholder="If empty, your GitHub user will be used." id="organization" label="Organization (on GitHub)" />
+            <x-forms.input id="name" label="Назва" required />
+            <x-forms.input helper="Якщо порожньо, буде використано ваш користувач GitHub."
+                placeholder="Якщо порожньо, буде використано ваш користувач GitHub." id="organization" label="Організація (на GitHub)" />
         </div>
         @if (!isCloud())
             <div x-data="{ showWarning: @entangle('is_system_wide') }">
                 <div class="w-48">
-                    <x-forms.checkbox id="is_system_wide" label="System Wide"
-                        helper="If checked, this GitHub App will be available for everyone in this Coolify instance." />
+                    <x-forms.checkbox id="is_system_wide" label="Загальносистемний"
+                        helper="Якщо встановлено, цей додаток GitHub буде доступний для всіх користувачів цього екземпляра Coolify." />
                 </div>
                 <div x-show="showWarning" x-transition x-cloak class="w-full max-w-2xl mx-auto pt-2">
-                    <x-callout type="warning" title="Not Recommended">
+                    <x-callout type="warning" title="Не рекомендовано">
                         <div class="whitespace-normal break-words">
-                            System-wide GitHub Apps are shared across all teams on this Coolify instance. This means any team
-                            can use this GitHub App to deploy applications from your repositories. For better security and
-                            isolation, it's recommended to create team-specific GitHub Apps instead.
+                            Загальносистемні додатки GitHub надаються всім командам цього екземпляра Coolify. Це означає, що будь-яка команда
+                            може використовувати цей додаток GitHub для розгортання програм з ваших репозиторіїв. Для кращої безпеки та
+                            ізоляції рекомендується створювати додатки GitHub для конкретних команд.
                         </div>
                     </x-callout>
                 </div>
@@ -35,7 +35,7 @@
                 <button @click="setActiveAccordion(id)"
                     class="flex items-center justify-between w-full px-1 py-2 text-left select-none dark:hover:text-white hover:bg-white/5"
                     type="button">
-                    <h4>Self-hosted / Enterprise GitHub</h4>
+                    <h4>Самостійно розміщений / Корпоративний GitHub</h4>
                     <svg class="w-4 h-4 duration-200 ease-out" :class="{ 'rotate-180': activeAccordion == id }"
                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -45,12 +45,12 @@
                 <div x-show="activeAccordion==id" x-collapse x-cloak class="px-2">
                     <div class="flex flex-col gap-2 pt-0 opacity-70">
                         <div class="flex gap-2">
-                            <x-forms.input id="html_url" label="HTML Url" required />
-                            <x-forms.input id="api_url" label="API Url" required />
+                            <x-forms.input id="html_url" label="HTML URL" required />
+                            <x-forms.input id="api_url" label="API URL" required />
                         </div>
                         <div class="flex gap-2">
-                            <x-forms.input id="custom_user" label="Custom Git User" required />
-                            <x-forms.input id="custom_port" type="number" label="Custom Git Port" required />
+                            <x-forms.input id="custom_user" label="Користувацький користувач Git" required />
+                            <x-forms.input id="custom_port" type="number" label="Користувацький порт Git" required />
                         </div>
                     </div>
                 </div>
@@ -59,11 +59,11 @@
 
 
         <x-forms.button class="mt-4" type="submit">
-            Continue
+            Продовжити
         </x-forms.button>
     </form>
 @else
-    <x-callout type="warning" title="Permission Required">
-        You don't have permission to create new GitHub Apps. Please contact your team administrator for access.
+    <x-callout type="warning" title="Потрібен дозвіл">
+        У вас немає дозволу на створення нових додатків GitHub. Будь ласка, зв'яжіться з адміністратором вашої команди для отримання доступу.
     </x-callout>
 @endcan

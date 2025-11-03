@@ -1,11 +1,11 @@
 <x-emails.layout>
 @if ($pull_request_id === 0)
-A new version of {{ $name }} is available at [{{ $fqdn }}]({{ $fqdn }}) .
+Нова версія {{ $name }} доступна за адресою [{{ $fqdn }}]({{ $fqdn }}) .
 @else
-Pull request #{{ $pull_request_id }} of {{ $name }} deployed successfully
+Запит на витяг #{{ $pull_request_id }} {{ $name }} успішно розгорнуто
 [{{ $fqdn }}]({{ $fqdn }}).
 @endif
 
-[View Deployment Logs]({{ $deployment_url }})
+[Переглянути журнали розгортання]({{ $deployment_url }})
 
 </x-emails.layout>

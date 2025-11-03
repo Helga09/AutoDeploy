@@ -1,16 +1,16 @@
 <div>
     <x-slot:title>
-        Projects | Coolify
+        Проєкти | Coolify
     </x-slot>
     <div class="flex gap-2">
-        <h1>Projects</h1>
+        <h1>Проєкти</h1>
         @can('createAnyResource')
-            <x-modal-input buttonTitle="+ Add" title="New Project">
+            <x-modal-input buttonTitle="+ Додати" title="Новий проєкт">
                 <livewire:project.add-empty />
             </x-modal-input>
         @endcan
     </div>
-    <div class="subtitle">All your projects are here.</div>
+    <div class="subtitle">Усі ваші проєкти тут.</div>
     <div class="grid grid-cols-1 gap-4 xl:grid-cols-2 -mt-1">
         @foreach ($projects as $project)
             <div class="relative gap-2 cursor-pointer box group">
@@ -30,14 +30,14 @@
                                         'project_uuid' => $project->uuid,
                                         'environment_uuid' => $project->environments->first()->uuid,
                                     ]) }}">
-                                    + Add Resource
+                                    + Додати ресурс
                                 </a>
                             @endcan
                         @endif
                         @can('update', $project)
                             <a class="hover:underline"
                                 href="{{ route('project.edit', ['project_uuid' => $project->uuid]) }}">
-                                Settings
+                                Налаштування
                             </a>
                         @endcan
                     </div>

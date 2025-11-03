@@ -109,7 +109,7 @@
                     <button type="button" @click.stop="removeOption(value, $event)"
                         :disabled="{{ $disabled ? 'true' : 'false' }}"
                         class="inline-flex items-center gap-1.5 px-2 py-0.5 text-xs bg-coolgray-200 dark:bg-coolgray-700 rounded whitespace-nowrap {{ $disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer hover:bg-red-100 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400' }}"
-                        aria-label="Remove">
+                        aria-label="Видалити">
                         <span x-text="getSelectedText(value)" class="max-w-[200px] truncate"></span>
                     </button>
                 </template>
@@ -117,7 +117,7 @@
                 {{-- Search Input (Borderless, Inside Container) --}}
                 <input type="text" x-model="search" x-ref="searchInput" @input="filterOptions()" @focus="open = true"
                     @keydown.escape="open = false" :placeholder="(Array.isArray(selected) && selected.length > 0) ? '' :
-                        {{ json_encode($placeholder ?: 'Search...') }}" @required($required) @readonly($readonly)
+                        {{ json_encode($placeholder ?: 'Пошук...') }}" @required($required) @readonly($readonly)
                     @disabled($disabled) @if ($autofocus) autofocus @endif
                     class="flex-1 min-w-[120px] text-sm border-0 outline-none bg-transparent p-0 focus:ring-0 placeholder:text-neutral-400 dark:placeholder:text-neutral-600 text-black dark:text-white" />
             </div>
@@ -128,7 +128,7 @@
 
                 <template x-if="filteredOptions.length === 0">
                     <div class="px-3 py-2 text-sm text-neutral-500 dark:text-neutral-400">
-                        No options found
+                        Варіантів не знайдено
                     </div>
                 </template>
 
@@ -235,7 +235,7 @@
                         </template>
                         <input type="text" x-show="isDefaultValue() || open" x-model="search" x-ref="searchInput"
                             @input="filterOptions()" @focus="open = true" @keydown.escape="open = false"
-                            :placeholder="{{ json_encode($placeholder ?: 'Search...') }}" @readonly($readonly)
+                            :placeholder="{{ json_encode($placeholder ?: 'Пошук...') }}" @readonly($readonly)
                             @disabled($disabled) @if ($autofocus) autofocus @endif
                             class="flex-1 text-sm border-0 outline-none bg-transparent p-0 focus:ring-0 placeholder:text-neutral-400 dark:placeholder:text-neutral-600 text-black dark:text-white px-2" />
                     </div>
@@ -256,7 +256,7 @@
 
                     <template x-if="filteredOptions.length === 0">
                         <div class="px-3 py-2 text-sm text-neutral-500 dark:text-neutral-400">
-                            No options found
+                            Варіантів не знайдено
                         </div>
                     </template>
 

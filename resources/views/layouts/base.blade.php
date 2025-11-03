@@ -14,17 +14,17 @@
     <meta name="robots" content="noindex">
     <meta name="theme-color" content="#101010" id="theme-color-meta" />
     <meta name="color-scheme" content="dark light" />
-    <meta name="Description" content="Coolify: An open-source & self-hostable Heroku / Netlify / Vercel alternative" />
+    <meta name="Description" content="Coolify: Альтернатива Heroku / Netlify / Vercel з відкритим вихідним кодом та можливістю самостійного розміщення" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@coolifyio" />
     <meta name="twitter:title" content="Coolify" />
-    <meta name="twitter:description" content="An open-source & self-hostable Heroku / Netlify / Vercel alternative." />
+    <meta name="twitter:description" content="Альтернатива Heroku / Netlify / Vercel з відкритим вихідним кодом та можливістю самостійного розміщення." />
     <meta name="twitter:image" content="https://cdn.coollabs.io/assets/coolify/og-image.png" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://coolify.io" />
     <meta property="og:title" content="Coolify" />
-    <meta property="og:description" content="An open-source & self-hostable Heroku / Netlify / Vercel alternative." />
+    <meta property="og:description" content="Альтернатива Heroku / Netlify / Vercel з відкритим вихідним кодом та можливістю самостійного розміщення." />
     <meta property="og:site_name" content="Coolify" />
     <meta property="og:image" content="https://cdn.coollabs.io/assets/coolify/og-image.png" />
     @use('App\Models\InstanceSettings')
@@ -226,7 +226,7 @@
             }
 
             function copyToClipboard(text) {
-                navigator?.clipboard?.writeText(text) && window.Livewire.dispatch('success', 'Copied to clipboard.');
+                navigator?.clipboard?.writeText(text) && window.Livewire.dispatch('success', 'Скопійовано в буфер обміну.');
             }
             document.addEventListener('livewire:init', () => {
                 window.Livewire.on('reloadWindow', (timeout) => {
@@ -241,14 +241,14 @@
                 })
                 window.Livewire.on('info', (message) => {
                     if (typeof message === 'string') {
-                        window.toast('Info', {
-                            type: 'info',
-                            description: message,
+                        window.toast('Інформація', {
+                            type: 'info', 
+                            description: message, 
                         })
                         return;
                     }
                     if (message.length == 1) {
-                        window.toast('Info', {
+                        window.toast('Інформація', {
                             type: 'info',
                             description: message[0],
                         })
@@ -261,14 +261,14 @@
                 })
                 window.Livewire.on('error', (message) => {
                     if (typeof message === 'string') {
-                        window.toast('Error', {
+                            window.toast('Помилка', {
                             type: 'danger',
                             description: message,
                         })
                         return;
                     }
                     if (message.length == 1) {
-                        window.toast('Error', {
+                        window.toast('Помилка', {
                             type: 'danger',
                             description: message[0],
                         })
@@ -281,14 +281,14 @@
                 })
                 window.Livewire.on('warning', (message) => {
                     if (typeof message === 'string') {
-                        window.toast('Warning', {
+                        window.toast('Попередження', {
                             type: 'warning',
                             description: message,
                         })
                         return;
                     }
                     if (message.length == 1) {
-                        window.toast('Warning', {
+                        window.toast('Попередження', {
                             type: 'warning',
                             description: message[0],
                         })
@@ -301,14 +301,14 @@
                 })
                 window.Livewire.on('success', (message) => {
                     if (typeof message === 'string') {
-                        window.toast('Success', {
+                        window.toast('Успіх', {
                             type: 'success',
                             description: message,
                         })
                         return;
                     }
                     if (message.length == 1) {
-                        window.toast('Success', {
+                        window.toast('Успіх', {
                             type: 'success',
                             description: message[0],
                         })

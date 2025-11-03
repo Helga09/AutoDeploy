@@ -5,13 +5,13 @@
 
 <div style="color:red">
 
-"{{ $database_name }}" backups: There were some failed backups. Please login and check the logs for more details.
+"{{ $database_name }}" резервні копії: Були деякі невдалі резервні копії. Будь ласка, увійдіть та перевірте логи для отримання додаткової інформації.
 
 </div>
 
 @else
 
-"{{ $database_name }}" backups: All backups were successful.
+"{{ $database_name }}" резервні копії: Усі резервні копії були успішними.
 
 @endif
 

@@ -1,7 +1,7 @@
 <x-emails.layout>
-Your server ({{ $name }}) has high disk usage ({{ $disk_usage }}% used). Threshold is {{ $threshold }}%.
+Ваш сервер ({{ $name }}) має високе використання диска ({{ $disk_usage }}% використано). Поріг становить {{ $threshold }}%.
 
-Please cleanup your disk to prevent data-loss. Here are some [tips](https://coolify.io/docs/knowledge-base/server/automated-cleanup).
+Будь ласка, очистіть ваш диск, щоб запобігти втраті даних. Ось кілька [порад](https://coolify.io/docs/knowledge-base/server/automated-cleanup).
 
-(You can change the threshold in the Server Settings menu.)
+(Ви можете змінити поріг у меню Налаштування сервера.)
 </x-emails.layout>

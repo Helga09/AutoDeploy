@@ -1,87 +1,87 @@
 <div>
     <x-slot:title>
-        Notifications | Coolify
+        Сповіщення | Coolify
     </x-slot>
     <x-notification.navbar />
     <form wire:submit='submit' class="flex flex-col gap-4 pb-4">
         <div class="flex items-center gap-2">
             <h2>Pushover</h2>
             <x-forms.button canGate="update" :canResource="$settings" type="submit">
-                Save
+                Зберегти
             </x-forms.button>
             @if ($pushoverEnabled)
                 <x-forms.button canGate="sendTest" :canResource="$settings" class="normal-case dark:text-white btn btn-xs no-animation btn-primary"
                     wire:click="sendTestNotification">
-                    Send Test Notification
+                    Надіслати тестове сповіщення
                 </x-forms.button>
             @else
                 <x-forms.button canGate="sendTest" :canResource="$settings" disabled class="normal-case dark:text-white btn btn-xs no-animation btn-primary">
-                    Send Test Notification
+                    Надіслати тестове сповіщення
                 </x-forms.button>
             @endif
         </div>
         <div class="w-32">
-            <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="instantSavePushoverEnabled" id="pushoverEnabled" label="Enabled" />
+            <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="instantSavePushoverEnabled" id="pushoverEnabled" label="Увімкнено" />
         </div>
         <div class="flex  gap-2">
             <x-forms.input canGate="update" :canResource="$settings" type="password"
-                helper="Get your User Key in Pushover. You need to be logged in to Pushover to see your user key in the top right corner. <br><a class='inline-block underline dark:text-white' href='https://pushover.net/' target='_blank'>Pushover Dashboard</a>"
-                required id="pushoverUserKey" label="User Key" />
+                helper="Отримайте ваш ключ користувача в Pushover. Ви повинні бути авторизовані в Pushover, щоб побачити свій ключ користувача у верхньому правому куті. <br><a class='inline-block underline dark:text-white' href='https://pushover.net/' target='_blank'>Панель керування Pushover</a>"
+                required id="pushoverUserKey" label="Ключ користувача" />
             <x-forms.input canGate="update" :canResource="$settings" type="password"
-                helper="Generate an API Token/Key in Pushover by creating a new application. <br><a class='inline-block underline dark:text-white' href='https://pushover.net/apps/build' target='_blank'>Create Pushover Application</a>"
-                required id="pushoverApiToken" label="API Token" />
+                helper="Згенеруйте API токен/ключ у Pushover, створивши нову програму. <br><a class='inline-block underline dark:text-white' href='https://pushover.net/apps/build' target='_blank'>Створити програму Pushover</a>"
+                required id="pushoverApiToken" label="API токен" />
         </div>
     </form>
-    <h2 class="mt-4">Notification Settings</h2>
+    <h2 class="mt-4">Налаштування сповіщень</h2>
     <p class="mb-4">
-        Select events for which you would like to receive Pushover notifications.
+        Виберіть події, для яких ви бажаєте отримувати сповіщення Pushover.
     </p>
     <div class="flex flex-col gap-4 max-w-2xl">
         <div class="border dark:border-coolgray-300 border-neutral-200 p-4 rounded-lg">
-            <h3 class="font-medium mb-3">Deployments</h3>
+            <h3 class="font-medium mb-3">Розгортання</h3>
             <div class="flex flex-col gap-1.5 pl-1">
                 <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="saveModel" id="deploymentSuccessPushoverNotifications"
-                    label="Deployment Success" />
+                    label="Успішне розгортання" />
                 <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="saveModel" id="deploymentFailurePushoverNotifications"
-                    label="Deployment Failure" />
+                    label="Помилка розгортання" />
                 <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="saveModel"
-                    helper="Send a notification when a container status changes. It will notify for Stopped and Restarted events of a container."
-                    id="statusChangePushoverNotifications" label="Container Status Changes" />
+                    helper="Надіслати сповіщення при зміні статусу контейнера. Воно сповіщатиме про події зупинки та перезапуску контейнера."
+                    id="statusChangePushoverNotifications" label="Зміни статусу контейнера" />
             </div>
         </div>
         <div class="border dark:border-coolgray-300 border-neutral-200 p-4 rounded-lg">
-            <h3 class="font-medium mb-3">Backups</h3>
+            <h3 class="font-medium mb-3">Резервні копії</h3>
             <div class="flex flex-col gap-1.5 pl-1">
                 <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="saveModel" id="backupSuccessPushoverNotifications"
-                    label="Backup Success" />
+                    label="Успішне резервне копіювання" />
                 <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="saveModel" id="backupFailurePushoverNotifications"
-                    label="Backup Failure" />
+                    label="Помилка резервного копіювання" />
             </div>
         </div>
         <div class="border dark:border-coolgray-300 border-neutral-200 p-4 rounded-lg">
-            <h3 class="font-medium mb-3">Scheduled Tasks</h3>
+            <h3 class="font-medium mb-3">Заплановані завдання</h3>
             <div class="flex flex-col gap-1.5 pl-1">
                 <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="saveModel" id="scheduledTaskSuccessPushoverNotifications"
-                    label="Scheduled Task Success" />
+                    label="Успішне заплановане завдання" />
                 <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="saveModel" id="scheduledTaskFailurePushoverNotifications"
-                    label="Scheduled Task Failure" />
+                    label="Помилка запланованого завдання" />
             </div>
         </div>
         <div class="border dark:border-coolgray-300 border-neutral-200 p-4 rounded-lg">
-            <h3 class="font-medium mb-3">Server</h3>
+            <h3 class="font-medium mb-3">Сервер</h3>
             <div class="flex flex-col gap-1.5 pl-1">
                 <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="saveModel" id="dockerCleanupSuccessPushoverNotifications"
-                    label="Docker Cleanup Success" />
+                    label="Успішне очищення Docker" />
                 <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="saveModel" id="dockerCleanupFailurePushoverNotifications"
-                    label="Docker Cleanup Failure" />
+                    label="Помилка очищення Docker" />
                 <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="saveModel" id="serverDiskUsagePushoverNotifications"
-                    label="Server Disk Usage" />
+                    label="Використання диска сервера" />
                 <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="saveModel" id="serverReachablePushoverNotifications"
-                    label="Server Reachable" />
+                    label="Сервер доступний" />
                 <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="saveModel" id="serverUnreachablePushoverNotifications"
-                    label="Server Unreachable" />
+                    label="Сервер недоступний" />
                 <x-forms.checkbox canGate="update" :canResource="$settings" instantSave="saveModel" id="serverPatchPushoverNotifications"
-                    label="Server Patching" />
+                    label="Оновлення сервера" />
             </div>
         </div>
     </div>

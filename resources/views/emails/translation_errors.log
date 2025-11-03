@@ -1,0 +1,42 @@
+Mon Nov  3 09:41:51 2025: API Warning: Response had no markdown, but looks like original code. Returning as is.
+Mon Nov  3 09:42:40 2025: API Warning: Response had no markdown, but looks like original code. Returning as is.
+Mon Nov  3 09:43:45 2025: API Warning: Response had no markdown, but looks like original code. Returning as is.
+Mon Nov  3 09:44:28 2025: API Warning: Response had no markdown, but looks like original code. Returning as is.
+Mon Nov  3 09:45:12 2025: API Error: Response was conversational and NOT in a markdown block. Text: Я зрозумів завдання. Буду дотримуватися правил і надавати лише перекладений код. Надсилайте перший файл.
+
+<x-emails.layout>
+
+Не вдалося встановити з'єднання з одним із ваших S3 сховищ ({{ $name }}). Б...
+Mon Nov  3 09:45:12 2025: API call failed for /home/roman/coolify/resources/views/emails/s3-connection-error.blade.php
+Mon Nov  3 09:45:17 2025: API Warning: Response had no markdown, but looks like original code. Returning as is.
+Mon Nov  3 09:46:06 2025: API Warning: Response had no markdown, but looks like original code. Returning as is.
+Mon Nov  3 09:47:40 2025: API Warning: Response had no markdown, but looks like original code. Returning as is.
+Mon Nov  3 09:48:23 2025: API Warning: Response had no markdown, but looks like original code. Returning as is.
+Mon Nov  3 09:49:09 2025: API Warning: Response had no markdown, but looks like original code. Returning as is.
+Mon Nov  3 09:50:01 2025: API Warning: Response had no markdown, but looks like original code. Returning as is.
+Mon Nov  3 09:50:44 2025: API Warning: Response had no markdown, but looks like original code. Returning as is.
+Mon Nov  3 09:51:28 2025: API Warning: Response had no markdown, but looks like original code. Returning as is.
+Mon Nov  3 09:52:15 2025: API Warning: Response had no markdown, but looks like original code. Returning as is.
+Mon Nov  3 09:52:59 2025: API Warning: Response had no markdown, but looks like original code. Returning as is.
+Mon Nov  3 09:53:45 2025: API Warning: Response had no markdown, but looks like original code. Returning as is.
+Mon Nov  3 09:54:32 2025: API Warning: Response had no markdown, but looks like original code. Returning as is.
+Mon Nov  3 09:55:16 2025: API Warning: Response had no markdown, but looks like original code. Returning as is.
+Mon Nov  3 09:56:00 2025: API Warning: Response had no markdown, but looks like original code. Returning as is.
+Mon Nov  3 09:56:44 2025: API Warning: Response had no markdown, but looks like original code. Returning as is.
+Mon Nov  3 09:57:30 2025: API Warning: Response had no markdown, but looks like original code. Returning as is.
+Mon Nov  3 09:58:12 2025: API Warning: Response had no markdown, but looks like original code. Returning as is.
+Mon Nov  3 09:59:06 2025: API Warning: Response had no markdown, but looks like original code. Returning as is.
+Mon Nov  3 09:59:47 2025: API Warning: Response had no markdown, but looks like original code. Returning as is.
+Mon Nov  3 10:00:30 2025: API Warning: Response had no markdown, but looks like original code. Returning as is.
+Mon Nov  3 10:01:14 2025: API Error: Response was conversational and NOT in a markdown block. Text: Так, я зрозумів завдання. Будь ласка, надсилайте перший файл....
+Mon Nov  3 10:01:14 2025: API call failed for /home/roman/coolify/resources/views/emails/help.blade.php
+Mon Nov  3 10:01:20 2025: API Error: Response was conversational and NOT in a markdown block. Text: Я зрозумів завдання. Я готовий до першого файлу....
+Mon Nov  3 10:01:20 2025: API call failed for /home/roman/coolify/resources/views/emails/help.blade.php
+Mon Nov  3 10:01:20 2025: Gave up on file /home/roman/coolify/resources/views/emails/help.blade.php. File reverted to original.
+Mon Nov  3 10:01:29 2025: API Warning: Response had no markdown, but looks like original code. Returning as is.
+Mon Nov  3 10:02:15 2025: API Warning: Response had no markdown, but looks like original code. Returning as is.
+Mon Nov  3 10:03:00 2025: API Warning: Response had no markdown, but looks like original code. Returning as is.
+Mon Nov  3 10:03:45 2025: API Warning: Response had no markdown, but looks like original code. Returning as is.
+Mon Nov  3 10:04:31 2025: API Warning: Response had no markdown, but looks like original code. Returning as is.
+Mon Nov  3 10:05:15 2025: API Warning: Response had no markdown, but looks like original code. Returning as is.
+Mon Nov  3 10:06:45 2025: API Warning: Response had no markdown, but looks like original code. Returning as is.

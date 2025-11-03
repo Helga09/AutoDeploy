@@ -52,14 +52,14 @@
                                         clip-rule="evenodd" />
                                 </svg>
                                 <div>
-                                    <p class="font-bold text-warning mb-2">Email Not Configured</p>
+                                    <p class="font-bold text-warning mb-2">Електронна пошта не налаштована</p>
                                     <p class="text-sm dark:text-white text-black mb-2">
-                                        Transactional emails are not active on this instance.
+                                        Транзакційні електронні листи не активні на цьому екземплярі.
                                     </p>
                                     <p class="text-sm dark:text-white text-black">
-                                        See how to set it in our <a class="font-bold underline hover:text-coollabs"
-                                            target="_blank" href="{{ config('constants.urls.docs') }}">documentation</a>, or
-                                        learn how to manually reset your password.
+                                        Подивіться, як налаштувати це в нашій <a class="font-bold underline hover:text-coollabs"
+                                            target="_blank" href="{{ config('constants.urls.docs') }}">документації</a>, або
+                                        дізнайтеся, як вручну скинути свій пароль.
                                     </p>
                                 </div>
                             </div>
@@ -71,15 +71,14 @@
                             <div class="w-full border-t border-neutral-300 dark:border-coolgray-400"></div>
                         </div>
                         <div class="relative flex justify-center text-sm">
-                            <span class="px-2 dark:bg-base text-neutral-500 dark:text-neutral-400">
-                                Remember your password?
-                            </span>
-                        </div>
+                                                            <span class="px-2 dark:bg-base text-neutral-500 dark:text-neutral-400">
+                                                                Пам'ятаєте свій пароль?
+                                                            </span>                        </div>
                     </div>
 
                     <a href="/login"
                         class="block w-full text-center py-3 px-4 rounded-lg border border-neutral-300 dark:border-coolgray-400 font-medium hover:border-coollabs dark:hover:border-warning transition-colors">
-                        Back to Login
+                        Повернутися до Входу
                     </a>
                 </div>
             </div>

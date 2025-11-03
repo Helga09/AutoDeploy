@@ -1,32 +1,32 @@
 <div>
     <x-slot:title>
-        Settings | Coolify
+        Налаштування | Coolify
     </x-slot>
     <x-settings.navbar />
     <div x-data="{ activeTab: window.location.hash ? window.location.hash.substring(1) : 'general' }" class="flex flex-col h-full gap-8 sm:flex-row">
         <x-settings.sidebar activeMenu="general" />
         <form wire:submit='submit' class="flex flex-col">
             <div class="flex items-center gap-2">
-                <h2>General</h2>
+                <h2>Загальні</h2>
                 <x-forms.button type="submit">
-                    Save
+                    Зберегти
                 </x-forms.button>
             </div>
-            <div class="pb-4">General configuration for your Coolify instance.</div>
+            <div class="pb-4">Загальна конфігурація для вашого екземпляра Coolify.</div>
 
             <div class="flex flex-col gap-2">
                 <div class="flex flex-wrap items-end gap-2">
                     <div class="flex gap-2 md:flex-row flex-col w-full">
-                        <x-forms.input id="fqdn" label="Domain"
-                            helper="Enter the full domain name (FQDN) of the instance, including 'https://' if you want to secure the dashboard with HTTPS. Setting this will make the dashboard accessible via this domain, secured by HTTPS, instead of just the IP address."
+                        <x-forms.input id="fqdn" label="Домен"
+                            helper="Введіть повне доменне ім'я (FQDN) екземпляра, включаючи 'https://', якщо ви хочете захистити панель керування за допомогою HTTPS. Це дозволить отримати доступ до панелі керування через цей домен, захищений HTTPS, замість просто IP-адреси."
                             placeholder="https://coolify.yourdomain.com" />
-                        <x-forms.input id="instance_name" label="Name" placeholder="Coolify"
-                            helper="Custom name for your Coolify instance, shown in the URL." />
+                        <x-forms.input id="instance_name" label="Ім'я" placeholder="Coolify"
+                            helper="Власна назва для вашого екземпляра Coolify, відображається в URL." />
                         <div class="w-full" x-data="{
                             open: false,
                             search: '{{ $settings->instance_timezone ?: '' }}',
                             timezones: @js($this->timezones),
-                            placeholder: '{{ $settings->instance_timezone ? 'Search timezone...' : 'Select Server Timezone' }}',
+                            placeholder: '{{ $settings->instance_timezone ? 'Пошук часового поясу...' : 'Вибрати часовий пояс сервера' }}',
                             init() {
                                 this.$watch('search', value => {
                                     if (value === '') {
@@ -36,10 +36,9 @@
                             }
                         }">
                             <div class="flex items-center mb-1">
-                                <label for="instance_timezone">Instance
-                                    Timezone</label>
+                                <label for="instance_timezone">Часовий пояс екземпляра</label>
                                 <x-helper class="ml-2"
-                                    helper="Timezone for the Coolify instance. This is used for the update check and automatic update frequency." />
+                                    helper="Часовий пояс для екземпляра Coolify. Використовується для перевірки оновлень та частоти автоматичних оновлень." />
                             </div>
                             <div class="relative">
                                 <div class="inline-flex relative items-center w-full">
@@ -69,11 +68,11 @@
                         </div>
                     </div>
                     <div class="flex gap-2 md:flex-row flex-col w-full">
-                        <x-forms.input id="public_ipv4" type="password" label="Instance's Public IPv4"
-                            helper="Enter the IPv4 address of the instance.<br><br>It is useful if you have several IPv4 addresses and Coolify could not detect the correct one."
+                        <x-forms.input id="public_ipv4" type="password" label="Публічний IPv4 екземпляра"
+                            helper="Введіть IPv4-адресу екземпляра.<br><br>Це корисно, якщо у вас є кілька IPv4-адрес і Coolify не зміг визначити правильну."
                             placeholder="1.2.3.4" autocomplete="new-password" />
-                        <x-forms.input id="public_ipv6" type="password" label="Instance's Public IPv6"
-                            helper="Enter the IPv6 address of the instance.<br><br>It is useful if you have several IPv6 addresses and Coolify could not detect the correct one."
+                        <x-forms.input id="public_ipv6" type="password" label="Публічний IPv6 екземпляра"
+                            helper="Введіть IPv6-адресу екземпляра.<br><br>Це корисно, якщо у вас є кілька IPv6-адрес і Coolify не зміг визначити правильну."
                             placeholder="2001:db8::1" autocomplete="new-password" />
                     </div>
                 </div>
@@ -86,10 +85,10 @@
             confirmAction="confirmDomainUsage">
             <x-slot:consequences>
                 <ul class="mt-2 ml-4 list-disc">
-                    <li>The Coolify instance domain will conflict with existing resources</li>
-                    <li>SSL certificates might not work correctly</li>
-                    <li>Routing behavior will be unpredictable</li>
-                    <li>You may not be able to access the Coolify dashboard properly</li>
+                    <li>Домен екземпляра Coolify конфліктуватиме з наявними ресурсами</li>
+                    <li>Сертифікати SSL можуть працювати некоректно</li>
+                    <li>Поведінка маршрутизації буде непередбачуваною</li>
+                    <li>Ви можете не отримати доступ до панелі керування Coolify належним чином</li>
                 </ul>
             </x-slot:consequences>
         </x-domain-conflict-modal>

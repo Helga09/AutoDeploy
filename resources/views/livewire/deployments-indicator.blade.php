@@ -18,7 +18,7 @@
 
                 <!-- Deployment count -->
                 <span class="text-sm font-medium dark:text-neutral-200 text-gray-800">
-                    {{ $this->deploymentCount }} {{ Str::plural('deployment', $this->deploymentCount) }}
+                    {{ $this->deploymentCount }} {{ Str::plural('розгортання', $this->deploymentCount) }}
                 </span>
 
                 <!-- Expand/collapse icon -->
@@ -75,7 +75,7 @@
                                 </p>
                                 @if ($deployment->pull_request_id)
                                     <p class="text-xs dark:text-neutral-400 text-gray-600">
-                                        PR #{{ $deployment->pull_request_id }}
+                                        ПР №{{ $deployment->pull_request_id }}
                                     </p>
                                 @endif
                                 <p class="text-xs mt-1 capitalize"

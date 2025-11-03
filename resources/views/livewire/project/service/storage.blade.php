@@ -11,11 +11,9 @@
             $resource->getMorphClass() == 'App\Models\StandaloneMysql')
         <div>
             <div class="flex items-center gap-2">
-                <h2>Storages</h2>
+                <h2>Сховища</h2>
                 <x-helper
-                    helper="For Preview Deployments, storage has a <span class='text-helper'>-pr-#PRNumber</span> in their
-                        volume
-                        name, example: <span class='text-helper'>-pr-1</span>" />
+                    helper="Для попередніх розгортань, сховище має <span class='text-helper'>-pr-#PRNumber</span> у назві свого тому, наприклад: <span class='text-helper'>-pr-1</span>" />
                 @if ($resource?->build_pack !== 'dockercompose')
                     @can('update', $resource)
                         <div x-data="{
@@ -31,7 +29,7 @@
                         ">
                             <div class="relative" @click.outside="dropdownOpen = false">
                                 <x-forms.button @click="dropdownOpen = !dropdownOpen">
-                                    + Add
+                                    + Додати
                                     <svg class="w-4 h-4 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none"
                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -52,7 +50,7 @@
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                         d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z" />
                                                 </svg>
-                                                Volume Mount
+                                                Монтування тому
                                             </a>
                                             <a class="dropdown-item" @click="fileModalOpen = true; dropdownOpen = false">
                                                 <svg class="size-4" fill="none" stroke="currentColor"
@@ -60,7 +58,7 @@
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                         d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                                                 </svg>
-                                                File Mount
+                                                Монтування файлу
                                             </a>
                                             <a class="dropdown-item"
                                                 @click="directoryModalOpen = true; dropdownOpen = false">
@@ -69,7 +67,7 @@
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                         d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
                                                 </svg>
-                                                Directory Mount
+                                                Монтування директорії
                                             </a>
                                         </div>
                                     </div>
@@ -94,7 +92,7 @@
                                         x-transition:leave-end="opacity-0 -translate-y-2 sm:scale-95"
                                         class="relative w-full py-6 border rounded-sm drop-shadow-sm min-w-full lg:min-w-[36rem] max-w-fit bg-white border-neutral-200 dark:bg-base px-6 dark:border-coolgray-300">
                                         <div class="flex items-center justify-between pb-3">
-                                            <h3 class="text-2xl font-bold">Add Volume Mount</h3>
+                                            <h3 class="text-2xl font-bold">Додати монтування тому</h3>
                                             <button @click="volumeModalOpen=false"
                                                 class="absolute top-0 right-0 flex items-center justify-center w-8 h-8 mt-5 mr-5 rounded-full dark:text-white hover:bg-neutral-100 dark:hover:bg-coolgray-300 outline-0 focus-visible:ring-2 focus-visible:ring-coollabs dark:focus-visible:ring-warning">
                                                 <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -116,32 +114,30 @@
                                             <form class="flex flex-col w-full gap-2 rounded-sm"
                                                 wire:submit='submitPersistentVolume'>
                                                 <div class="flex flex-col">
-                                                    <div>Docker Volumes mounted to the container.</div>
+                                                    <div>Томи Docker, змонтовані до контейнера.</div>
                                                 </div>
                                                 @if ($isSwarm)
-                                                    <div class="text-warning">Swarm Mode detected: You need to set a shared
-                                                        volume
-                                                        (EFS/NFS/etc) on all the worker nodes if you would like to use a
-                                                        persistent
-                                                        volumes.</div>
+                                                    <div class="text-warning">Виявлено режим Swarm: Вам потрібно налаштувати спільний том
+                                                        (EFS/NFS/тощо) на всіх робочих вузлах, якщо ви бажаєте використовувати постійні
+                                                        томи.</div>
                                                 @endif
                                                 <div class="flex flex-col gap-2">
                                                     <x-forms.input canGate="update" :canResource="$resource" placeholder="pv-name"
-                                                        id="name" label="Name" required helper="Volume name." />
+                                                        id="name" label="Назва" required helper="Назва тому." />
                                                     @if ($isSwarm)
                                                         <x-forms.input canGate="update" :canResource="$resource"
-                                                            placeholder="/root" id="host_path" label="Source Path" required
-                                                            helper="Directory on the host system." />
+                                                            placeholder="/root" id="host_path" label="Шлях джерела" required
+                                                            helper="Директорія на хост-системі." />
                                                     @else
                                                         <x-forms.input canGate="update" :canResource="$resource"
-                                                            placeholder="/root" id="host_path" label="Source Path"
-                                                            helper="Directory on the host system." />
+                                                            placeholder="/root" id="host_path" label="Шлях джерела"
+                                                            helper="Директорія на хост-системі." />
                                                     @endif
                                                     <x-forms.input canGate="update" :canResource="$resource"
-                                                        placeholder="/tmp/root" id="mount_path" label="Destination Path"
-                                                        required helper="Directory inside the container." />
+                                                        placeholder="/tmp/root" id="mount_path" label="Шлях призначення"
+                                                        required helper="Директорія всередині контейнера." />
                                                     <x-forms.button canGate="update" :canResource="$resource" type="submit">
-                                                        Add
+                                                        Додати
                                                     </x-forms.button>
                                                 </div>
                                             </form>
@@ -168,7 +164,7 @@
                                         x-transition:leave-end="opacity-0 -translate-y-2 sm:scale-95"
                                         class="relative w-full py-6 border rounded-sm drop-shadow-sm min-w-full lg:min-w-[36rem] max-w-fit bg-white border-neutral-200 dark:bg-base px-6 dark:border-coolgray-300">
                                         <div class="flex items-center justify-between pb-3">
-                                            <h3 class="text-2xl font-bold">Add File Mount</h3>
+                                            <h3 class="text-2xl font-bold">Додати монтування файлу</h3>
                                             <button @click="fileModalOpen=false"
                                                 class="absolute top-0 right-0 flex items-center justify-center w-8 h-8 mt-5 mr-5 rounded-full dark:text-white hover:bg-neutral-100 dark:hover:bg-coolgray-300 outline-0 focus-visible:ring-2 focus-visible:ring-coollabs dark:focus-visible:ring-warning">
                                                 <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -190,17 +186,17 @@
                                             <form class="flex flex-col w-full gap-2 rounded-sm"
                                                 wire:submit='submitFileStorage'>
                                                 <div class="flex flex-col">
-                                                    <div>Actual file mounted from the host system to the container.</div>
+                                                    <div>Фактичний файл, змонтований з хост-системи до контейнера.</div>
                                                 </div>
                                                 <div class="flex flex-col gap-2">
                                                     <x-forms.input canGate="update" :canResource="$resource"
                                                         placeholder="/etc/nginx/nginx.conf" id="file_storage_path"
-                                                        label="Destination Path" required
-                                                        helper="File location inside the container" />
-                                                    <x-forms.textarea canGate="update" :canResource="$resource" label="Content"
+                                                        label="Шлях призначення" required
+                                                        helper="Розташування файлу всередині контейнера" />
+                                                    <x-forms.textarea canGate="update" :canResource="$resource" label="Вміст"
                                                         id="file_storage_content"></x-forms.textarea>
                                                     <x-forms.button canGate="update" :canResource="$resource" type="submit">
-                                                        Add
+                                                        Додати
                                                     </x-forms.button>
                                                 </div>
                                             </form>
@@ -227,7 +223,7 @@
                                         x-transition:leave-end="opacity-0 -translate-y-2 sm:scale-95"
                                         class="relative w-full py-6 border rounded-sm drop-shadow-sm min-w-full lg:min-w-[36rem] max-w-fit bg-white border-neutral-200 dark:bg-base px-6 dark:border-coolgray-300">
                                         <div class="flex items-center justify-between pb-3">
-                                            <h3 class="text-2xl font-bold">Add Directory Mount</h3>
+                                            <h3 class="text-2xl font-bold">Додати монтування директорії</h3>
                                             <button @click="directoryModalOpen=false"
                                                 class="absolute top-0 right-0 flex items-center justify-center w-8 h-8 mt-5 mr-5 rounded-full dark:text-white hover:bg-neutral-100 dark:hover:bg-coolgray-300 outline-0 focus-visible:ring-2 focus-visible:ring-coollabs dark:focus-visible:ring-warning">
                                                 <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -249,19 +245,19 @@
                                             <form class="flex flex-col w-full gap-2 rounded-sm"
                                                 wire:submit='submitFileStorageDirectory'>
                                                 <div class="flex flex-col">
-                                                    <div>Directory mounted from the host system to the container.</div>
+                                                    <div>Директорія, змонтована з хост-системи до контейнера.</div>
                                                 </div>
                                                 <div class="flex flex-col gap-2">
                                                     <x-forms.input canGate="update" :canResource="$resource"
                                                         placeholder="{{ application_configuration_dir() }}/{{ $resource->uuid }}/etc/nginx"
-                                                        id="file_storage_directory_source" label="Source Directory"
-                                                        required helper="Directory on the host system." />
+                                                        id="file_storage_directory_source" label="Вихідна директорія"
+                                                        required helper="Директорія на хост-системі." />
                                                     <x-forms.input canGate="update" :canResource="$resource"
                                                         placeholder="/etc/nginx" id="file_storage_directory_destination"
-                                                        label="Destination Directory" required
-                                                        helper="Directory inside the container." />
+                                                        label="Директорія призначення" required
+                                                        helper="Директорія всередині контейнера." />
                                                     <x-forms.button canGate="update" :canResource="$resource" type="submit">
-                                                        Add
+                                                        Додати
                                                     </x-forms.button>
                                                 </div>
                                             </form>
@@ -273,14 +269,14 @@
                     @endcan
                 @endif
             </div>
-            <div>Persistent storage to preserve data between deployments.</div>
+            <div>Постійне сховище для збереження даних між розгортаннями.</div>
         </div>
         @if ($resource?->build_pack === 'dockercompose')
-            <div class="dark:text-warning text-coollabs">Please modify storage layout in your Docker Compose
-                file or reload the compose file to reread the storage layout.</div>
+            <div class="dark:text-warning text-coollabs">Будь ласка, змініть структуру сховища у вашому файлі Docker Compose
+                або перезавантажте файл compose, щоб перечитати структуру сховища.</div>
         @else
             @if ($resource->persistentStorages()->get()->count() === 0 && $fileStorage->count() == 0)
-                <div>No storage found.</div>
+                <div>Сховища не знайдено.</div>
             @endif
         @endif
 
@@ -302,21 +298,21 @@
                             'border-b-2 border-transparent'"
                         @if (!$hasVolumes) disabled @endif
                         class="px-4 py-2 -mb-px font-medium transition-colors {{ $hasVolumes ? 'dark:text-neutral-400 dark:hover:text-white text-neutral-600 hover:text-black cursor-pointer' : 'opacity-50 cursor-not-allowed' }} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coollabs dark:focus-visible:ring-warning focus-visible:ring-offset-2 dark:focus-visible:ring-offset-coolgray-100">
-                        Volumes ({{ $this->volumeCount }})
+                        Томи ({{ $this->volumeCount }})
                     </button>
                     <button @click="activeTab = 'files'"
                         :class="activeTab === 'files' ? 'border-b-2 dark:border-white border-black' :
                             'border-b-2 border-transparent'"
                         @if (!$hasFiles) disabled @endif
                         class="px-4 py-2 -mb-px font-medium transition-colors {{ $hasFiles ? 'dark:text-neutral-400 dark:hover:text-white text-neutral-600 hover:text-black cursor-pointer' : 'opacity-50 cursor-not-allowed' }} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coollabs dark:focus-visible:ring-warning focus-visible:ring-offset-2 dark:focus-visible:ring-offset-coolgray-100">
-                        Files ({{ $this->fileCount }})
+                        Файли ({{ $this->fileCount }})
                     </button>
                     <button @click="activeTab = 'directories'"
                         :class="activeTab === 'directories' ? 'border-b-2 dark:border-white border-black' :
                             'border-b-2 border-transparent'"
                         @if (!$hasDirectories) disabled @endif
                         class="px-4 py-2 -mb-px font-medium transition-colors {{ $hasDirectories ? 'dark:text-neutral-400 dark:hover:text-white text-neutral-600 hover:text-black cursor-pointer' : 'opacity-50 cursor-not-allowed' }} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coollabs dark:focus-visible:ring-warning focus-visible:ring-offset-2 dark:focus-visible:ring-offset-coolgray-100">
-                        Directories ({{ $this->directoryCount }})
+                        Директорії ({{ $this->directoryCount }})
                     </button>
                 </div>
 
@@ -328,7 +324,7 @@
                             <livewire:project.shared.storages.all :resource="$resource" />
                         @else
                             <div class="text-center py-8 dark:text-neutral-500 text-neutral-400">
-                                No volumes configured.
+                                Томи не налаштовані.
                             </div>
                         @endif
                     </div>
@@ -342,7 +338,7 @@
                             @endforeach
                         @else
                             <div class="text-center py-8 dark:text-neutral-500 text-neutral-400">
-                                No file mounts configured.
+                                Монтування файлів не налаштовано.
                             </div>
                         @endif
                     </div>
@@ -356,7 +352,7 @@
                             @endforeach
                         @else
                             <div class="text-center py-8 dark:text-neutral-500 text-neutral-400">
-                                No directory mounts configured.
+                                Монтування директорій не налаштовано.
                             </div>
                         @endif
                     </div>
@@ -372,7 +368,7 @@
             </div>
 
             @if ($resource->persistentStorages()->get()->count() === 0 && $fileStorage->count() == 0)
-                <div>No storage found.</div>
+                <div>Сховища не знайдено.</div>
             @endif
 
             @php
@@ -393,21 +389,21 @@
                                 'border-b-2 border-transparent'"
                             @if (!$hasVolumes) disabled @endif
                             class="px-4 py-2 -mb-px font-medium transition-colors {{ $hasVolumes ? 'dark:text-neutral-400 dark:hover:text-white text-neutral-600 hover:text-black cursor-pointer' : 'opacity-50 cursor-not-allowed' }} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coollabs dark:focus-visible:ring-warning focus-visible:ring-offset-2 dark:focus-visible:ring-offset-coolgray-100">
-                            Volumes ({{ $this->volumeCount }})
+                            Томи ({{ $this->volumeCount }})
                         </button>
                         <button @click="activeTab = 'files'"
                             :class="activeTab === 'files' ? 'border-b-2 dark:border-white border-black' :
                                 'border-b-2 border-transparent'"
                             @if (!$hasFiles) disabled @endif
                             class="px-4 py-2 -mb-px font-medium transition-colors {{ $hasFiles ? 'dark:text-neutral-400 dark:hover:text-white text-neutral-600 hover:text-black cursor-pointer' : 'opacity-50 cursor-not-allowed' }} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coollabs dark:focus-visible:ring-warning focus-visible:ring-offset-2 dark:focus-visible:ring-offset-coolgray-100">
-                            Files ({{ $this->fileCount }})
+                            Файли ({{ $this->fileCount }})
                         </button>
                         <button @click="activeTab = 'directories'"
                             :class="activeTab === 'directories' ? 'border-b-2 dark:border-white border-black' :
                                 'border-b-2 border-transparent'"
                             @if (!$hasDirectories) disabled @endif
                             class="px-4 py-2 -mb-px font-medium transition-colors {{ $hasDirectories ? 'dark:text-neutral-400 dark:hover:text-white text-neutral-600 hover:text-black cursor-pointer' : 'opacity-50 cursor-not-allowed' }} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coollabs dark:focus-visible:ring-warning focus-visible:ring-offset-2 dark:focus-visible:ring-offset-coolgray-100">
-                            Directories ({{ $this->directoryCount }})
+                            Директорії ({{ $this->directoryCount }})
                         </button>
                     </div>
 
@@ -419,7 +415,7 @@
                                 <livewire:project.shared.storages.all :resource="$resource" />
                             @else
                                 <div class="text-center py-8 dark:text-neutral-500 text-neutral-400">
-                                    No volumes configured.
+                                    Томи не налаштовані.
                                 </div>
                             @endif
                         </div>
@@ -433,7 +429,7 @@
                                 @endforeach
                             @else
                                 <div class="text-center py-8 dark:text-neutral-500 text-neutral-400">
-                                    No file mounts configured.
+                                    Монтування файлів не налаштовано.
                                 </div>
                             @endif
                         </div>
@@ -447,7 +443,7 @@
                                 @endforeach
                             @else
                                 <div class="text-center py-8 dark:text-neutral-500 text-neutral-400">
-                                    No directory mounts configured.
+                                    Монтування директорій не налаштовано.
                                 </div>
                             @endif
                         </div>

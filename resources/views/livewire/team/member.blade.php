@@ -16,36 +16,36 @@
             @if ($member->id !== Auth::id())
                 @if (Auth::user()->isOwner())
                     @if (data_get($member, 'pivot.role') === 'owner')
-                        <x-forms.button wire:click="makeAdmin">To Admin</x-forms.button>
-                        <x-forms.button wire:click="makeReadonly">To Member</x-forms.button>
-                        <x-forms.button isError wire:click="remove">Remove</x-forms.button>
+                        <x-forms.button wire:click="makeAdmin">Зробити Адміном</x-forms.button>
+                        <x-forms.button wire:click="makeReadonly">Зробити Учасником</x-forms.button>
+                        <x-forms.button isError wire:click="remove">Видалити</x-forms.button>
                     @endif
                     @if (data_get($member, 'pivot.role') === 'admin')
-                        <x-forms.button wire:click="makeOwner">To Owner</x-forms.button>
-                        <x-forms.button wire:click="makeReadonly">To Member</x-forms.button>
-                        <x-forms.button isError wire:click="remove">Remove</x-forms.button>
+                        <x-forms.button wire:click="makeOwner">Зробити Власником</x-forms.button>
+                        <x-forms.button wire:click="makeReadonly">Зробити Учасником</x-forms.button>
+                        <x-forms.button isError wire:click="remove">Видалити</x-forms.button>
                     @endif
                     @if (data_get($member, 'pivot.role') === 'member')
-                        <x-forms.button wire:click="makeOwner">To Owner</x-forms.button>
-                        <x-forms.button wire:click="makeAdmin">To Admin</x-forms.button>
-                        <x-forms.button isError wire:click="remove">Remove</x-forms.button>
+                        <x-forms.button wire:click="makeOwner">Зробити Власником</x-forms.button>
+                        <x-forms.button wire:click="makeAdmin">Зробити Адміном</x-forms.button>
+                        <x-forms.button isError wire:click="remove">Видалити</x-forms.button>
                     @endif
                 @elseif (Auth::user()->isAdmin())
                     @if (data_get($member, 'pivot.role') === 'admin')
-                        <x-forms.button wire:click="makeReadonly">To Member</x-forms.button>
-                        <x-forms.button isError wire:click="remove">Remove</x-forms.button>
+                        <x-forms.button wire:click="makeReadonly">Зробити Учасником</x-forms.button>
+                        <x-forms.button isError wire:click="remove">Видалити</x-forms.button>
                     @endif
                     @if (data_get($member, 'pivot.role') === 'member')
-                        <x-forms.button wire:click="makeAdmin">To Admin</x-forms.button>
-                        <x-forms.button isError wire:click="remove">Remove</x-forms.button>
+                        <x-forms.button wire:click="makeAdmin">Зробити Адміном</x-forms.button>
+                        <x-forms.button isError wire:click="remove">Видалити</x-forms.button>
                     @endif
                 @endif
             @else
-                <div>(This is you)</div>
+                <div>(Це ви)</div>
             @endif
         @else
             @if ($member->id === Auth::id())
-                <div>(This is you)</div>
+                <div>(Це ви)</div>
             @endif
         @endcan
     </td>

@@ -1,21 +1,21 @@
 <div>
     <livewire:project.application.preview.form :application="$application" />
     @if (count($application->additional_servers) > 0)
-        <div class="pb-4">Previews will be deployed on <span
+        <div class="pb-4">Попередні перегляди будуть розгорнуті на <span
                 class="dark:text-warning">{{ $application->destination->server->name }}</span>.</div>
     @endif
     <div>
         @if ($application->is_github_based())
             <div class="flex items-center gap-2">
                 @can('update', $application)
-                    <h3>Pull Requests on Git</h3>
-                    <x-forms.button wire:click="load_prs">Load Pull Requests
+                    <h3>Запити на злиття (Pull Requests) на Git</h3>
+                    <x-forms.button wire:click="load_prs">Завантажити запити на злиття
                     </x-forms.button>
                 @endcan
             </div>
         @endif
         @isset($rate_limit_remaining)
-            <div class="pt-1 pb-4">Requests remaining till rate limited by Git: {{ $rate_limit_remaining }}</div>
+            <div class="pt-1 pb-4">Залишилось запитів до обмеження Git: {{ $rate_limit_remaining }}</div>
         @endisset
         <div wire:loading.remove wire:target='load_prs'>
             @if ($pull_requests->count() > 0)
@@ -23,10 +23,10 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>PR Number</th>
-                                <th>PR Title</th>
+                                <th>Номер PR</th>
+                                <th>Назва PR</th>
                                 <th>Git</th>
-                                <th>Actions</th>
+                                <th>Дії</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -36,7 +36,7 @@
                                     <td>{{ data_get($pull_request, 'title') }}</td>
                                     <td>
                                         <a target="_blank" class="text-xs"
-                                            href="{{ data_get($pull_request, 'html_url') }}">Open PR on
+                                            href="{{ data_get($pull_request, 'html_url') }}">Відкрити PR на
                                             Git
                                             <x-external-link />
                                         </a>
@@ -45,7 +45,7 @@
                                         @can('update', $application)
                                             <x-forms.button
                                                 wire:click="add('{{ data_get($pull_request, 'number') }}', '{{ data_get($pull_request, 'html_url') }}')">
-                                                Configure
+                                                Налаштувати
                                             </x-forms.button>
                                         @endcan
                                         @can('deploy', $application)
@@ -56,7 +56,7 @@
                                                     fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                     <path d="M7 4v16l13 -8z" />
-                                                </svg>Deploy
+                                                </svg>Розгорнути
                                             </x-forms.button>
                                         @endcan
                                     </td>
@@ -69,7 +69,7 @@
         </div>
     </div>
     @if ($application->previews->count() > 0)
-        <h3 class="py-4">Deployments</h3>
+        <h3 class="py-4">Розгортання</h3>
         <div class="flex flex-wrap w-full gap-4">
             @foreach (data_get($application, 'previews') as $previewName => $preview)
                 <div class="flex flex-col w-full p-4 border dark:border-coolgray-200"
@@ -83,25 +83,25 @@
                             <x-status.stopped :status="data_get($preview, 'status')" />
                         @endif
                         @if (data_get($preview, 'status') !== 'exited')
-                            | <a target="_blank" href="{{ data_get($preview, 'fqdn') }}">Open Preview
+                            | <a target="_blank" href="{{ data_get($preview, 'fqdn') }}">Відкрити попередній перегляд
                                 <x-external-link />
                             </a>
                         @endif
                         |
-                        <a target="_blank" href="{{ data_get($preview, 'pull_request_html_url') }}">Open
-                            PR on Git
+                        <a target="_blank" href="{{ data_get($preview, 'pull_request_html_url') }}">Відкрити
+                            PR на Git
                             <x-external-link />
                         </a>
                         @if (count($parameters) > 0)
                             |
                             <a
                                 href="{{ route('project.application.deployment.index', [...$parameters, 'pull_request_id' => data_get($preview, 'pull_request_id')]) }}">
-                                Deployment Logs
+                                Журнали розгортання
                             </a>
                             |
                             <a
                                 href="{{ route('project.application.logs', [...$parameters, 'pull_request_id' => data_get($preview, 'pull_request_id')]) }}">
-                                Application Logs
+                                Журнали застосунку
                             </a>
                         @endif
                     </div>
@@ -111,12 +111,12 @@
                             @if (collect(json_decode($preview->docker_compose_domains))->count() === 0)
                                 <form wire:submit="save_preview('{{ $preview->id }}')"
                                     class="flex items-end gap-2 pt-4">
-                                    <x-forms.input label="Domain" helper="One domain per preview."
+                                    <x-forms.input label="Домен" helper="Один домен на один попередній перегляд."
                                         id="previewFqdns.{{ $previewName }}" canGate="update" :canResource="$application"></x-forms.input>
                                     @can('update', $application)
-                                        <x-forms.button type="submit">Save</x-forms.button>
-                                        <x-forms.button wire:click="generate_preview('{{ $preview->id }}')">Generate
-                                            Domain</x-forms.button>
+                                        <x-forms.button type="submit">Зберегти</x-forms.button>
+                                        <x-forms.button wire:click="generate_preview('{{ $preview->id }}')">Згенерувати
+                                            домен</x-forms.button>
                                     @endcan
                                 </form>
                             @else
@@ -129,12 +129,12 @@
                         </div>
                     @else
                         <form wire:submit="save_preview('{{ $preview->id }}')" class="flex items-end gap-2 pt-4">
-                            <x-forms.input label="Domain" helper="One domain per preview."
+                            <x-forms.input label="Домен" helper="Один домен на один попередній перегляд."
                                 id="previewFqdns.{{ $previewName }}" canGate="update" :canResource="$application"></x-forms.input>
                             @can('update', $application)
-                                <x-forms.button type="submit">Save</x-forms.button>
-                                <x-forms.button wire:click="generate_preview('{{ $preview->id }}')">Generate
-                                    Domain</x-forms.button>
+                                <x-forms.button type="submit">Зберегти</x-forms.button>
+                                <x-forms.button wire:click="generate_preview('{{ $preview->id }}')">Згенерувати
+                                    домен</x-forms.button>
                             @endcan
                         </form>
                     @endif
@@ -154,8 +154,8 @@
                                     <path d="M4 12v6c0 1.657 3.582 3 8 3c3.217 0 5.991 -.712 7.261 -1.74m.739 -3.26v-4" />
                                     <path d="M3 3l18 18" />
                                 </svg>
-                                Force deploy (without
-                                cache)
+                                Примусове розгортання (без
+                                кешу)
                             </x-forms.button>
                             <x-forms.button wire:click="deploy({{ data_get($preview, 'pull_request_id') }})">
                                 @if (data_get($preview, 'status') === 'exited')
@@ -165,7 +165,7 @@
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                         <path d="M7 4v16l13 -8z" />
                                     </svg>
-                                    Deploy
+                                    Розгорнути
                                 @else
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 dark:text-orange-400"
                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -175,19 +175,19 @@
                                             d="M10.09 4.01l.496 -.495a2 2 0 0 1 2.828 0l7.071 7.07a2 2 0 0 1 0 2.83l-7.07 7.07a2 2 0 0 1 -2.83 0l-7.07 -7.07a2 2 0 0 1 0 -2.83l3.535 -3.535h-3.988">
                                         </path>
                                         <path d="M7.05 11.038v-3.988"></path>
-                                    </svg> Redeploy
+                                    </svg> Перерозгорнути
                                 @endif
                             </x-forms.button>
                         @endcan
                         @if (data_get($preview, 'status') !== 'exited')
                             @can('deploy', $application)
-                                <x-modal-confirmation title="Confirm Preview Deployment Stopping?" buttonTitle="Stop"
+                                <x-modal-confirmation title="Підтвердити зупинку розгортання попереднього перегляду?" buttonTitle="Зупинити"
                                     submitAction="stop({{ data_get($preview, 'pull_request_id') }})" :actions="[
-                                        'This preview deployment will be stopped.',
-                                        'If the preview deployment is currently in use data could be lost.',
-                                        'All non-persistent data of this preview deployment (containers, networks, unused images) will be deleted (don\'t worry, no data is lost and you can start the preview deployment again).',
+                                        'Це розгортання попереднього перегляду буде зупинено.',
+                                        'Якщо розгортання попереднього перегляду використовується, дані можуть бути втрачені.',
+                                        'Усі непостійні дані цього розгортання попереднього перегляду (контейнери, мережі, невикористані образи) буде видалено (не хвилюйтеся, дані не втрачаються, і ви можете знову запустити розгортання попереднього перегляду).',
                                     ]"
-                                    :confirmWithText="false" :confirmWithPassword="false" step2ButtonText="Stop Preview Deployment">
+                                    :confirmWithText="false" :confirmWithPassword="false" step2ButtonText="Зупинити розгортання попереднього перегляду">
                                     <x-slot:customButton>
                                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-error"
                                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -200,19 +200,19 @@
                                                 d="M14 5m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z">
                                             </path>
                                         </svg>
-                                        Stop
+                                        Зупинити
                                     </x-slot:customButton>
                                 </x-modal-confirmation>
                             @endcan
                         @endif
                         @can('delete', $application)
-                            <x-modal-confirmation title="Confirm Preview Deployment Deletion?" buttonTitle="Delete"
+                            <x-modal-confirmation title="Підтвердити видалення розгортання попереднього перегляду?" buttonTitle="Видалити"
                                 isErrorButton submitAction="delete({{ data_get($preview, 'pull_request_id') }})"
                                 :actions="[
-                                    'All containers of this preview deployment will be stopped and permanently deleted.',
+                                    'Усі контейнери цього розгортання попереднього перегляду буде зупинено та назавжди видалено.',
                                 ]" confirmationText="{{ data_get($preview, 'fqdn') . '/' }}"
-                                confirmationLabel="Please confirm the execution of the actions by entering the Preview Deployment name below"
-                                shortConfirmationLabel="Preview Deployment Name" :confirmWithPassword="false" />
+                                confirmationLabel="Будь ласка, підтвердьте виконання дій, ввівши назву розгортання попереднього перегляду нижче"
+                                shortConfirmationLabel="Назва розгортання попереднього перегляду" :confirmWithPassword="false" />
                         @endcan
                     </div>
                 </div>
@@ -224,13 +224,13 @@
         :conflicts="$domainConflicts" 
         :showModal="$showDomainConflictModal" 
         confirmAction="confirmDomainUsage">
-        The preview deployment domain is already in use by other resources. Using the same domain for multiple resources can cause routing conflicts and unpredictable behavior.
+        Домен розгортання попереднього перегляду вже використовується іншими ресурсами. Використання того самого домену для кількох ресурсів може спричинити конфлікти маршрутизації та непередбачувану поведінку.
         <x-slot:consequences>
             <ul class="mt-2 ml-4 list-disc">
-                <li>The preview deployment may not be accessible</li>
-                <li>Conflicts with production or other preview deployments</li>
-                <li>SSL certificates might not work correctly</li>
-                <li>Unpredictable routing behavior</li>
+                <li>Розгортання попереднього перегляду може бути недоступним</li>
+                <li>Конфлікти з робочими або іншими розгортаннями попереднього перегляду</li>
+                <li>Сертифікати SSL можуть працювати некоректно</li>
+                <li>Непередбачувана поведінка маршрутизації</li>
             </ul>
         </x-slot:consequences>
     </x-domain-conflict-modal>

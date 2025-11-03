@@ -1,7 +1,7 @@
 <x-emails.layout>
-{{ $name }} has been stopped.
+{{ $name }} було зупинено.
 
-If it was your intention to stop this application, you can ignore this email.
+Якщо ви мали намір зупинити цю програму, ви можете проігнорувати цей лист.
 
-If not, [check what is going on]({{ $application_url }}).
+Якщо ні, [перевірте, що відбувається]({{ $application_url }}).
 </x-emails.layout>

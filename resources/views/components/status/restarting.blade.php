@@ -1,5 +1,5 @@
 @props([
-    'status' => 'Restarting',
+    'status' => 'Перезавантаження',
     'title' => null,
     'lastDeploymentLink' => null,
     'noLoading' => false,

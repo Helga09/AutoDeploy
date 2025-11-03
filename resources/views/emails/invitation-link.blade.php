@@ -1,9 +1,9 @@
 <x-emails.layout>
-You have been invited to "{{ $team }}" on "{{ config('app.name') }}".
+Вас запрошено до "{{ $team }}" у команді "{{ config('app.name') }}".
 
-Please [click here]({{ $invitation_link }}) to accept the invitation.
+Будь ласка, [натисніть тут]({{ $invitation_link }}) щоб прийняти запрошення.
 
-If you have any questions, please contact the team owner.<br><br>
+Якщо у вас виникли запитання, будь ласка, зв'яжіться з власником команди.<br><br>
 
-If it was not you who requested this invitation, please ignore this email.
+Якщо ви не запитували це запрошення, будь ласка, проігноруйте цей лист.
 </x-emails.layout>

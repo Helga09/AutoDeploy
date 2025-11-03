@@ -1,3 +1,3 @@
 <x-emails.layout>
-Database backup for {{ $name }} @if($database_name)(db:{{ $database_name }})@endif with frequency of {{ $frequency }} was successful.
+Резервне копіювання бази даних для {{ $name }} @if($database_name)(БД:{{ $database_name }})@endif з частотою {{ $frequency }} успішно виконано.
 </x-emails.layout>

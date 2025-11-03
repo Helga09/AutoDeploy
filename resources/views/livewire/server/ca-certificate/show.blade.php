@@ -1,46 +1,46 @@
 <div>
     <x-slot:title>
-        {{ data_get_str($server, 'name')->limit(10) }} > CA Certificate | Coolify
+        {{ data_get_str($server, 'name')->limit(10) }} > Сертифікат CA | Coolify
     </x-slot>
     <livewire:server.navbar :server="$server" />
     <div class="flex flex-col h-full gap-8 sm:flex-row">
         <x-server.sidebar :server="$server" activeMenu="ca-certificate" />
         <div class="flex flex-col gap-4">
             <div class="flex items-center gap-2">
-                <h2>CA Certificate</h2>
+                <h2>Сертифікат CA</h2>
                 @can('update', $server)
                     <div class="flex gap-2">
-                        <x-modal-confirmation title="Confirm changing of CA Certificate?" buttonTitle="Save"
+                        <x-modal-confirmation title="Підтвердити зміну сертифіката CA?" buttonTitle="Зберегти"
                             submitAction="saveCaCertificate" :actions="[
-                                'This will overwrite the existing CA certificate at /data/coolify/ssl/coolify-ca.crt with your custom CA certificate.',
-                                'This will regenerate all SSL certificates for databases on this server and it will sign them with your custom CA.',
-                                'You must manually redeploy all your databases on this server so that they use the new SSL certificates signed with your new CA certificate.',
-                                'Because of caching, you probably also need to redeploy all your resources on this server that are using this CA certificate.',
+                                'Це перезапише наявний сертифікат CA за адресою /data/coolify/ssl/coolify-ca.crt вашим власним сертифікатом CA.',
+                                'Це повторно згенерує всі SSL-сертифікати для баз даних на цьому сервері та підпише їх вашим власним CA.',
+                                'Ви повинні вручну перерозгорнути всі ваші бази даних на цьому сервері, щоб вони використовували нові SSL-сертифікати, підписані вашим новим сертифікатом CA.',
+                                'Через кешування вам, ймовірно, також потрібно буде перерозгорнути всі ваші ресурси на цьому сервері, які використовують цей сертифікат CA.',
                             ]"
-                            confirmationText="/data/coolify/ssl/coolify-ca.crt" shortConfirmationLabel="CA Certificate Path"
-                            step3ButtonText="Save Certificate">
+                            confirmationText="/data/coolify/ssl/coolify-ca.crt" shortConfirmationLabel="Шлях до сертифіката CA"
+                            step3ButtonText="Зберегти сертифікат">
                         </x-modal-confirmation>
-                        <x-modal-confirmation title="Confirm Regenerate Certificate?" buttonTitle="Regenerate "
+                        <x-modal-confirmation title="Підтвердити повторну генерацію сертифіката?" buttonTitle="Відновити "
                             submitAction="regenerateCaCertificate" :actions="[
-                                'This will generate a new CA certificate at /data/coolify/ssl/coolify-ca.crt and replace the existing one.',
-                                'This will regenerate all SSL certificates for databases on this server and it will sign them with the new CA certificate.',
-                                'You must manually redeploy all your databases on this server so that they use the new SSL certificates signed with the new CA certificate.',
-                                'Because of caching, you probably also need to redeploy all your resources on this server that are using this CA certificate.',
+                                'Це згенерує новий сертифікат CA за адресою /data/coolify/ssl/coolify-ca.crt та замінить існуючий.',
+                                'Це повторно згенерує всі SSL-сертифікати для баз даних на цьому сервері та підпише їх новим сертифікатом CA.',
+                                'Ви повинні вручну перерозгорнути всі ваші бази даних на цьому сервері, щоб вони використовували нові SSL-сертифікати, підписані новим сертифікатом CA.',
+                                'Через кешування вам, ймовірно, також потрібно буде перерозгорнути всі ваші ресурси на цьому сервері, які використовують цей сертифікат CA.',
                             ]"
-                            confirmationText="/data/coolify/ssl/coolify-ca.crt" shortConfirmationLabel="CA Certificate Path"
-                            step3ButtonText="Regenerate Certificate">
+                            confirmationText="/data/coolify/ssl/coolify-ca.crt" shortConfirmationLabel="Шлях до сертифіката CA"
+                            step3ButtonText="Відновити сертифікат">
                         </x-modal-confirmation>
                     </div>
                 @endcan
             </div>
             <div class="space-y-4">
                 <div class="text-sm">
-                    <p class="font-medium mb-2">Recommended Configuration:</p>
+                    <p class="font-medium mb-2">Рекомендована конфігурація:</p>
                     <ul class="list-disc pl-5 space-y-1">
-                        <li>Mount this CA certificate of Coolify into all containers that need to connect to one of
-                            your databases over SSL. You can see and copy the bind mount below.</li>
-                        <li>Read more when and why this is needed <a class="underline dark:text-white"
-                                href="https://coolify.io/docs/databases/ssl" target="_blank">here</a>.</li>
+                        <li>Змонтуйте цей сертифікат CA Coolify у всі контейнери, яким потрібно підключитися до однієї з
+                            ваших баз даних через SSL. Ви можете побачити та скопіювати точку монтування нижче.</li>
+                        <li>Дізнайтеся більше про те, коли і чому це потрібно <a class="underline dark:text-white"
+                                href="https://coolify.io/docs/databases/ssl" target="_blank">тут</a>.</li>
                     </ul>
                 </div>
                 <div class="relative">
@@ -50,15 +50,15 @@
             <div>
                 <div class="flex items-center justify-between mb-2">
                     <div class="flex items-center gap-2">
-                        <span class="text-sm">CA Certificate</span>
+                        <span class="text-sm">Сертифікат CA</span>
                         @if ($certificateValidUntil)
-                            <span class="text-sm">(Valid until:
+                            <span class="text-sm">(Дійсний до:
                                 @if (now()->gt($certificateValidUntil))
                                     <span class="text-red-500">{{ $certificateValidUntil->format('d.m.Y H:i:s') }} -
-                                        Expired)</span>
+                                        Прострочено)</span>
                                 @elseif(now()->addDays(30)->gt($certificateValidUntil))
                                     <span class="text-red-500">{{ $certificateValidUntil->format('d.m.Y H:i:s') }} -
-                                        Expiring soon)</span>
+                                        Незабаром закінчується)</span>
                                 @else
                                     <span>{{ $certificateValidUntil->format('d.m.Y H:i:s') }})</span>
                                 @endif
@@ -67,21 +67,21 @@
                     </div>
                     @can('view', $server)
                         <x-forms.button wire:click="toggleCertificate" type="button" class="py-1! px-2! text-sm">
-                            {{ $showCertificate ? 'Hide' : 'Show' }}
+                            {{ $showCertificate ? 'Сховати' : 'Показати' }}
                         </x-forms.button>
                     @endcan
                 </div>
                 @if ($showCertificate)
                     <textarea class="w-full h-[370px] input" wire:model="certificateContent"
-                        placeholder="Paste or edit CA certificate content here..."></textarea>
+                        placeholder="Вставте або відредагуйте вміст сертифіката CA тут..."></textarea>
                 @else
                     <div class="w-full h-[370px] input">
                         <div class="h-full flex flex-col items-center justify-center text-gray-300">
                             <div class="mb-2">
-                                ━━━━━━━━ CERTIFICATE CONTENT ━━━━━━━━
+                                ━━━━━━━━ ВМІСТ СЕРТИФІКАТА ━━━━━━━━
                             </div>
                             <div class="text-sm">
-                                Click "Show" to view or edit
+                                Натисніть "Показати", щоб переглянути або відредагувати
                             </div>
                         </div>
                     </div>

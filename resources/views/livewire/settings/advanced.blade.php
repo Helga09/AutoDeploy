@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Advanced Settings | Coolify
+        Розширені Налаштування | Coolify
         </x-slot>
         <x-settings.navbar />
         <div x-data="{ activeTab: window.location.hash ? window.location.hash.substring(1) : 'general' }"
@@ -8,83 +8,82 @@
             <x-settings.sidebar activeMenu="advanced" />
             <form wire:submit='submit' class="flex flex-col w-full">
                 <div class="flex items-center gap-2">
-                    <h2>Advanced</h2>
+                    <h2>Розширені</h2>
                     <x-forms.button type="submit">
-                        Save
+                        Зберегти
                     </x-forms.button>
                 </div>
-                <div class="pb-4">Advanced settings for your Coolify instance.</div>
+                <div class="pb-4">Розширені налаштування для вашого екземпляра Coolify.</div>
 
                 <div class="flex flex-col gap-1">
                     <div class="md:w-96">
                         <x-forms.checkbox instantSave id="is_registration_enabled"
-                            helper="If enabled, users can register themselves. If disabled, only administrators can create new users."
-                            label="Registration Allowed" />
+                            helper="Якщо увімкнено, користувачі можуть реєструватися самостійно. Якщо вимкнено, лише адміністратори можуть створювати нових користувачів."
+                            label="Дозволена Реєстрація" />
                     </div>
                     <div class="md:w-96">
                         <x-forms.checkbox instantSave id="do_not_track"
-                            helper="If enabled, Coolify will not track any data. This is useful if you are concerned about privacy."
-                            label="Do Not Track" />
+                            helper="Якщо увімкнено, Coolify не буде відстежувати жодних даних. Це корисно, якщо ви стурбовані конфіденційністю."
+                            label="Не Відстежувати" />
                     </div>
-                    <h4 class="pt-4">DNS Settings</h4>
+                    <h4 class="pt-4">Налаштування DNS</h4>
                     <div class="md:w-96">
                         <x-forms.checkbox instantSave id="is_dns_validation_enabled"
-                            helper="If you set a custom domain, Coolify will validate the domain in your DNS provider."
-                            label="DNS Validation" />
+                            helper="Якщо ви встановлюєте власний домен, Coolify перевірятиме його у вашому DNS-провайдері."
+                            label="Валідація DNS" />
                     </div>
 
-                    <x-forms.input id="custom_dns_servers" label="Custom DNS Servers"
-                        helper="DNS servers to validate domains against. A comma separated list of DNS servers."
+                    <x-forms.input id="custom_dns_servers" label="Власні DNS-сервери"
+                        helper="DNS-сервери для перевірки доменів. Список DNS-серверів, розділених комою."
                         placeholder="1.1.1.1,8.8.8.8" />
-                    <h4 class="pt-4">API Settings</h4>
+                    <h4 class="pt-4">Налаштування API</h4>
                     <div class="md:w-96">
-                        <x-forms.checkbox instantSave id="is_api_enabled" label="API Access"
-                            helper="If enabled, the API will be enabled. If disabled, the API will be disabled." />
+                        <x-forms.checkbox instantSave id="is_api_enabled" label="Доступ до API"
+                            helper="Якщо увімкнено, API буде активним. Якщо вимкнено, API буде деактивовано." />
                     </div>
-                    <x-forms.input id="allowed_ips" label="Allowed IPs for API Access"
-                        helper="Allowed IP addresses or subnets for API access.<br>Supports single IPs (192.168.1.100) and CIDR notation (192.168.1.0/24).<br>Use comma to separate multiple entries.<br>Use 0.0.0.0 or leave empty to allow from anywhere."
+                    <x-forms.input id="allowed_ips" label="Дозволені IP для доступу до API"
+                        helper="Дозволені IP-адреси або підмережі для доступу до API.&lt;br&gt;Підтримуються окремі IP (192.168.1.100) та нотація CIDR (192.168.1.0/24).&lt;br&gt;Використовуйте кому для розділення кількох записів.&lt;br&gt;Використовуйте 0.0.0.0 або залиште порожнім, щоб дозволити доступ з будь-якого місця."
                         placeholder="192.168.1.100,10.0.0.0/8,203.0.113.0/24" />
                     @if (empty($allowed_ips) || in_array('0.0.0.0', array_map('trim', explode(',', $allowed_ips ?? ''))))
-                        <x-callout type="warning" title="Warning" class="mt-2">
-                            Using 0.0.0.0 (or empty) allows API access from anywhere. This is not recommended for production
-                            environments!
+                        <x-callout type="warning" title="Попередження" class="mt-2">
+                            Використання 0.0.0.0 (або порожнього значення) дозволяє доступ до API з будь-якого місця. Це не рекомендується для виробничих середовищ!
                         </x-callout>
                     @endif
-                    <h4 class="pt-4">Confirmation Settings</h4>
+                    <h4 class="pt-4">Налаштування Підтвердження</h4>
                     <div class="md:w-96">
-                        <x-forms.checkbox instantSave id=" is_sponsorship_popup_enabled" label="Show Sponsorship Popup"
-                            helper="When enabled, sponsorship popups will be shown monthly to users. When disabled, the sponsorship popup will be permanently hidden for all users." />
+                        <x-forms.checkbox instantSave id=" is_sponsorship_popup_enabled" label="Показувати Спливаюче Вікно Спонсорства"
+                            helper="Коли увімкнено, спливаючі вікна спонсорства відображатимуться користувачам щомісяця. Коли вимкнено, спливаюче вікно спонсорства буде постійно приховано для всіх користувачів." />
                     </div>
                 </div>
                 <div class="flex flex-col gap-1">
                     @if ($disable_two_step_confirmation)
                         <div class="pb-4 md:w-96" wire:key="two-step-confirmation-enabled">
                             <x-forms.checkbox instantSave id="disable_two_step_confirmation"
-                                label="Disable Two Step Confirmation"
-                                helper="When disabled, you will not need to confirm actions with a text and user password. This significantly reduces security and may lead to accidental deletions or unwanted changes. Use with extreme caution, especially on production servers." />
+                                label="Вимкнути Двохетапне Підтвердження"
+                                helper="Коли вимкнено, вам не потрібно буде підтверджувати дії текстом і паролем користувача. Це значно знижує безпеку і може призвести до випадкових видалень або небажаних змін. Використовуйте з надзвичайною обережністю, особливо на виробничих серверах." />
                         </div>
                     @else
                                     <div class="pb-4 flex items-center justify-between gap-2 md:w-96"
                                         wire:key="two-step-confirmation-disabled">
                                         <label class="flex items-center gap-2">
-                                            Disable Two Step Confirmation
+                                            Вимкнути Двохетапне Підтвердження
                                             <x-helper
-                                                helper="When disabled, you will not need to confirm actions with a text and user password. This significantly reduces security and may lead to accidental deletions or unwanted changes. Use with extreme caution, especially on production servers.">
+                                                helper="Коли вимкнено, вам не потрібно буде підтверджувати дії текстом і паролем користувача. Це значно знижує безпеку і може призвести до випадкових видалень або небажаних змін. Використовуйте з надзвичайною обережністю, особливо на виробничих серверах.">
                                             </x-helper>
                                         </label>
-                                        <x-modal-confirmation title="Disable Two Step Confirmation?" buttonTitle="Disable" isErrorButton
+                                        <x-modal-confirmation title="Вимкнути Двохетапне Підтвердження?" buttonTitle="Вимкнути" isErrorButton
                                             submitAction="toggleTwoStepConfirmation" :actions="[
-                            'Two Step confirmation will be disabled globally.',
-                            'Disabling two step confirmation reduces security (as anyone can easily delete anything).',
-                            'The risk of accidental actions will increase.',
+                            'Двохетапне підтвердження буде вимкнено глобально.',
+                            'Вимкнення двохетапного підтвердження знижує безпеку (оскільки будь-хто може легко видалити що завгодно).',
+                            'Ризик випадкових дій зросте.',
                         ]"
-                                            confirmationText="DISABLE TWO STEP CONFIRMATION"
-                                            confirmationLabel="Please type the confirmation text to disable two step confirmation."
-                                            shortConfirmationLabel="Confirmation text" />
+                                            confirmationText="ВИМКНУТИ ДВОХЕТАПНЕ ПІДТВЕРДЖЕННЯ"
+                                            confirmationLabel="Будь ласка, введіть текст підтвердження, щоб вимкнути двохетапне підтвердження."
+                                            shortConfirmationLabel="Текст підтвердження" />
                                     </div>
-                                    <x-callout type="danger" title="Warning!" class="mb-4">
-                                        Disabling two step confirmation reduces security (as anyone can easily delete anything) and
-                                        increases the risk of accidental actions. This is not recommended for production servers.
+                                    <x-callout type="danger" title="Увага!" class="mb-4">
+                                        Вимкнення двохетапного підтвердження знижує безпеку (оскільки будь-хто може легко видалити що завгодно) та
+                                        збільшує ризик випадкових дій. Це не рекомендується для виробничих серверів.
                                     </x-callout>
                     @endif
                 </div>

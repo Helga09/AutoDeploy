@@ -1,5 +1,5 @@
 <x-emails.layout>
-Your last invoice has failed to be paid for Coolify Cloud.
+Ваш останній рахунок за Coolify Cloud не було сплачено.
 
-Please update payment details [here]({{ $stripeCustomerPortal }}).
+Будь ласка, оновіть платіжні дані [тут]({{ $stripeCustomerPortal }}).
 </x-emails.layout>

@@ -1,22 +1,22 @@
 <div>
     <x-slot:title>
-        {{ data_get_str($server, 'name')->limit(10) }} > Server Resources | Coolify
+        {{ data_get_str($server, 'name')->limit(10) }} > Ресурси сервера | Coolify
     </x-slot>
     <livewire:server.navbar :server="$server" />
     <div x-data="{ activeTab: 'managed' }" class="flex flex-col h-full gap-8 md:flex-row">
         <div class="w-full">
             <div class="flex flex-col">
                 <div class="flex gap-2">
-                    <h2>Resources</h2>
-                    <x-forms.button wire:click="refreshStatus">Refresh</x-forms.button>
+                    <h2>Ресурси</h2>
+                    <x-forms.button wire:click="refreshStatus">Оновити</x-forms.button>
                 </div>
-                <div>Here you can find all resources that are managed by Coolify.</div>
+                <div>Тут ви можете знайти всі ресурси, якими керує Coolify.</div>
                 <div class="flex flex-row gap-4 py-10">
                     <div @class([
                         'box-without-bg cursor-pointer dark:bg-coolgray-100 dark:text-white w-full text-center items-center justify-center',
                         'dark:bg-coollabs bg-coollabs text-white' => $activeTab === 'managed',
                     ]) wire:click="loadManagedContainers">
-                        Managed
+                        Керовані
                         <div class="flex flex-col items-center justify-center">
                             <x-loading wire:loading wire:target="loadManagedContainers" />
                         </div>
@@ -25,7 +25,7 @@
                         'box-without-bg cursor-pointer dark:bg-coolgray-100 dark:text-white w-full text-center items-center justify-center',
                         'dark:bg-coollabs bg-coollabs text-white' => $activeTab === 'unmanaged',
                     ]) wire:click="loadUnmanagedContainers">
-                        Unmanaged
+                        Некеровані
                         <div class="flex flex-col items-center justify-center">
                             <x-loading wire:loading wire:target="loadUnmanagedContainers" />
                         </div>
@@ -43,18 +43,18 @@
                                             <thead>
                                                 <tr>
                                                     <th class="px-5 py-3 text-xs font-medium text-left uppercase">
-                                                        Project
+                                                        Проєкт
                                                     </th>
                                                     <th class="px-5 py-3 text-xs font-medium text-left uppercase">
-                                                        Environment</th>
+                                                        Середовище</th>
                                                     <th class="px-5 py-3 text-xs font-medium text-left uppercase">
-                                                        Name
+                                                        Ім'я
                                                     </th>
                                                     <th class="px-5 py-3 text-xs font-medium text-left uppercase">
-                                                        Type
+                                                        Тип
                                                     </th>
                                                     <th class="px-5 py-3 text-xs font-medium text-left uppercase">
-                                                        Status
+                                                        Статус
                                                     </th>
                                                 </tr>
                                             </thead>
@@ -102,16 +102,16 @@
                                             <thead>
                                                 <tr>
                                                     <th class="px-5 py-3 text-xs font-medium text-left uppercase">
-                                                        Name
+                                                        Ім'я
                                                     </th>
                                                     <th class="px-5 py-3 text-xs font-medium text-left uppercase">
-                                                        Image
+                                                        Образ
                                                     </th>
                                                     <th class="px-5 py-3 text-xs font-medium text-left uppercase">
-                                                        Status
+                                                        Статус
                                                     </th>
                                                     <th class="px-5 py-3 text-xs font-medium text-left uppercase">
-                                                        Action
+                                                        Дія
                                                     </th>
                                                 </tr>
                                             </thead>
@@ -131,18 +131,18 @@
                                                             @if (data_get($resource, 'State') === 'running')
                                                                 <x-forms.button
                                                                     wire:click="restartUnmanaged('{{ data_get($resource, 'ID') }}')"
-                                                                    wire:key="{{ data_get($resource, 'ID') }}">Restart</x-forms.button>
+                                                                    wire:key="{{ data_get($resource, 'ID') }}">Перезапустити</x-forms.button>
                                                                 <x-forms.button isError
                                                                     wire:click="stopUnmanaged('{{ data_get($resource, 'ID') }}')"
-                                                                    wire:key="{{ data_get($resource, 'ID') }}">Stop</x-forms.button>
+                                                                    wire:key="{{ data_get($resource, 'ID') }}">Зупинити</x-forms.button>
                                                             @elseif (data_get($resource, 'State') === 'exited')
                                                                 <x-forms.button
                                                                     wire:click="startUnmanaged('{{ data_get($resource, 'ID') }}')"
-                                                                    wire:key="{{ data_get($resource, 'ID') }}">Start</x-forms.button>
+                                                                    wire:key="{{ data_get($resource, 'ID') }}">Запустити</x-forms.button>
                                                             @elseif (data_get($resource, 'State') === 'restarting')
                                                                 <x-forms.button
                                                                     wire:click="stopUnmanaged('{{ data_get($resource, 'ID') }}')"
-                                                                    wire:key="{{ data_get($resource, 'ID') }}">Stop</x-forms.button>
+                                                                    wire:key="{{ data_get($resource, 'ID') }}">Зупинити</x-forms.button>
                                                             @endif
                                                         </td>
                                                     </tr>
@@ -157,9 +157,9 @@
                 @endif
             @else
                 @if ($activeTab === 'managed')
-                    <div>No managed resources found.</div>
+                    <div>Керовані ресурси не знайдено.</div>
                 @elseif ($activeTab === 'unmanaged')
-                    <div>No unmanaged resources found.</div>
+                    <div>Некеровані ресурси не знайдено.</div>
                 @endif
             @endif
         </div>

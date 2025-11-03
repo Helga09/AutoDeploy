@@ -1,6 +1,6 @@
 <div class="w-full px-2">
-    <x-modal-confirmation buttonFullWidth title="Confirm Team Deletion?" buttonTitle="Delete Team" isErrorButton
-        submitAction="delete" :actions="['The current Team will be permanently deleted.']" confirmationText="{{ $team }}"
-        confirmationLabel="Please confirm the execution of the actions by entering the Team Name below"
-        shortConfirmationLabel="Team Name" />
+    <x-modal-confirmation buttonFullWidth title="Підтвердити видалення команди?" buttonTitle="Видалити команду" isErrorButton
+        submitAction="delete" :actions="['Поточну команду буде безповоротно видалено.']" confirmationText="{{ $team }}"
+        confirmationLabel="Будь ласка, підтвердьте виконання дій, ввівши назву команди нижче"
+        shortConfirmationLabel="Назва команди" />
 </div>

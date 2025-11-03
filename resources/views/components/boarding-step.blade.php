@@ -18,7 +18,7 @@
         @isset($explanation)
             <div class=" border-t border-neutral-200 dark:border-coolgray-300 p-8 lg:p-12 ">
                 <h3 class="text-sm font-bold uppercase tracking-wide mb-4 dark:text-neutral-400">
-                    Technical Details
+                    Технічні деталі
                 </h3>
                 <div class="space-y-3 text-sm dark:text-neutral-400">
                     {{ $explanation }}

@@ -36,7 +36,7 @@
 
                     <div class="mb-6">
                         <p class="text-sm dark:text-neutral-400">
-                            Enter your new password below. Make sure it's strong and secure.
+                            Введіть свій новий пароль нижче. Переконайтеся, що він надійний та безпечний.
                         </p>
                     </div>
 
@@ -52,7 +52,7 @@
 
                         <div class="p-4 bg-neutral-50 dark:bg-coolgray-200 rounded-lg border border-neutral-200 dark:border-coolgray-400">
                             <p class="text-xs dark:text-neutral-400">
-                                Your password should be min 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one symbol.
+                                Ваш пароль повинен містити щонайменше 8 символів, одну велику літеру, одну малу літеру, одну цифру та один символ.
                             </p>
                         </div>
 
@@ -66,14 +66,13 @@
                             <div class="w-full border-t border-neutral-300 dark:border-coolgray-400"></div>
                         </div>
                         <div class="relative flex justify-center text-sm">
-                            <span class="px-2 dark:bg-base text-neutral-500 dark:text-neutral-400">
-                                Remember your password?
-                            </span>
-                        </div>
+                                                            <span class="px-2 dark:bg-base text-neutral-500 dark:text-neutral-400">
+                                                                Пам'ятаєте свій пароль?
+                                                            </span>                        </div>
                     </div>
 
                     <a href="/login" class="block w-full text-center py-3 px-4 rounded-lg border border-neutral-300 dark:border-coolgray-400 font-medium hover:border-coollabs dark:hover:border-warning transition-colors">
-                        Back to Login
+                        Повернутися до Входу
                     </a>
                 </div>
             </div>

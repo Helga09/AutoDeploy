@@ -14,11 +14,11 @@
                     </g>
                 </svg>
                 @can('delete', $this->env)
-                    <x-modal-confirmation title="Confirm Environment Variable Deletion?" isErrorButton buttonTitle="Delete"
-                        submitAction="delete" :actions="['The selected environment variable will be permanently deleted.']" confirmationText="{{ $env->key }}"
-                        confirmationLabel="Please confirm the execution of the actions by entering the Environment Variable Name below"
-                        shortConfirmationLabel="Environment Variable Name" :confirmWithPassword="false"
-                        step2ButtonText="Permanently Delete" />
+                    <x-modal-confirmation title="Підтвердити видалення змінної середовища?" isErrorButton buttonTitle="Видалити"
+                        submitAction="delete" :actions="['Вибрана змінна середовища буде безповоротно видалена.']" confirmationText="{{ $env->key }}"
+                        confirmationLabel="Будь ласка, підтвердьте виконання дій, ввівши назву змінної середовища нижче"
+                        shortConfirmationLabel="Назва змінної середовища" :confirmWithPassword="false"
+                        step2ButtonText="Видалити безповоротно" />
                 @endcan
             </div>
             @can('update', $this->env)
@@ -27,38 +27,38 @@
                         @if (!$is_redis_credential)
                             @if ($type === 'service')
                                 <x-forms.checkbox instantSave id="is_buildtime"
-                                    helper="Make this variable available during Docker build process. Useful for build secrets and dependencies."
-                                    label="Available at Buildtime" />
+                                    helper="Зробити цю змінну доступною під час процесу збірки Docker. Корисно для секретів збірки та залежностей."
+                                    label="Доступно під час збірки" />
                                 <x-forms.checkbox instantSave id="is_runtime"
-                                    helper="Make this variable available in the running container at runtime."
-                                    label="Available at Runtime" />
-                                <x-forms.checkbox instantSave id="is_multiline" label="Is Multiline?" />
+                                    helper="Зробити цю змінну доступною у запущеному контейнері під час виконання."
+                                    label="Доступно під час виконання" />
+                                <x-forms.checkbox instantSave id="is_multiline" label="Багаторядкова?" />
                                 <x-forms.checkbox instantSave id="is_literal"
-                                    helper="This means that when you use $VARIABLES in a value, it should be interpreted as the actual characters '$VARIABLES' and not as the value of a variable named VARIABLE.<br><br>Useful if you have $ sign in your value and there are some characters after it, but you would not like to interpolate it from another value. In this case, you should set this to true."
-                                    label="Is Literal?" />
+                                    helper="Це означає, що при використанні $ЗМІННИХ у значенні, вони повинні інтерпретуватися як фактичні символи '$ЗМІННІ', а не як значення змінної з назвою ЗМІННА.<br><br>Корисно, якщо у вашому значенні є знак $, і після нього є символи, але ви не хотіли б інтерполювати його з іншого значення. У цьому випадку, ви повинні встановити це значення як 'true'."
+                                    label="Буквальне значення?" />
                             @else
                                 @if ($is_shared)
                                     <x-forms.checkbox instantSave id="is_literal"
-                                        helper="This means that when you use $VARIABLES in a value, it should be interpreted as the actual characters '$VARIABLES' and not as the value of a variable named VARIABLE.<br><br>Useful if you have $ sign in your value and there are some characters after it, but you would not like to interpolate it from another value. In this case, you should set this to true."
-                                        label="Is Literal?" />
+                                        helper="Це означає, що при використанні $ЗМІННИХ у значенні, вони повинні інтерпретуватися як фактичні символи '$ЗМІННІ', а не як значення змінної з назвою ЗМІННА.<br><br>Корисно, якщо у вашому значенні є знак $, і після нього є символи, але ви не хотіли б інтерполювати його з іншого значення. У цьому випадку, ви повинні встановити це значення як 'true'."
+                                        label="Буквальне значення?" />
                                 @else
                                     @if ($isSharedVariable)
-                                        <x-forms.checkbox instantSave id="is_multiline" label="Is Multiline?" />
+                                        <x-forms.checkbox instantSave id="is_multiline" label="Багаторядкова?" />
                                     @else
                                         @if (!$env->is_nixpacks)
                                             <x-forms.checkbox instantSave id="is_buildtime"
-                                                helper="Make this variable available during Docker build process. Useful for build secrets and dependencies."
-                                                label="Available at Buildtime" />
+                                                helper="Зробити цю змінну доступною під час процесу збірки Docker. Корисно для секретів збірки та залежностей."
+                                                label="Доступно під час збірки" />
                                         @endif
                                         <x-forms.checkbox instantSave id="is_runtime"
-                                            helper="Make this variable available in the running container at runtime."
-                                            label="Available at Runtime" />
+                                            helper="Зробити цю змінну доступною у запущеному контейнері під час виконання."
+                                            label="Доступно під час виконання" />
                                         @if (!$env->is_nixpacks)
-                                            <x-forms.checkbox instantSave id="is_multiline" label="Is Multiline?" />
+                                            <x-forms.checkbox instantSave id="is_multiline" label="Багаторядкова?" />
                                             @if ($is_multiline === false)
                                                 <x-forms.checkbox instantSave id="is_literal"
-                                                    helper="This means that when you use $VARIABLES in a value, it should be interpreted as the actual characters '$VARIABLES' and not as the value of a variable named VARIABLE.<br><br>Useful if you have $ sign in your value and there are some characters after it, but you would not like to interpolate it from another value. In this case, you should set this to true."
-                                                    label="Is Literal?" />
+                                                    helper="Це означає, що при використанні $ЗМІННИХ у значенні, вони повинні інтерпретуватися як фактичні символи '$ЗМІННІ', а не як значення змінної з назвою ЗМІННА.<br><br>Корисно, якщо у вашому значенні є знак $, і після нього є символи, але ви не хотіли б інтерполювати його з іншого значення. У цьому випадку, ви повинні встановити це значення як 'true'."
+                                                    label="Буквальне значення?" />
                                             @endif
                                         @endif
                                     @endif
@@ -73,35 +73,35 @@
                         @if (!$is_redis_credential)
                             @if ($type === 'service')
                                 <x-forms.checkbox disabled id="is_buildtime"
-                                    helper="Make this variable available during Docker build process. Useful for build secrets and dependencies."
-                                    label="Available at Buildtime" />
+                                    helper="Зробити цю змінну доступною під час процесу збірки Docker. Корисно для секретів збірки та залежностей."
+                                    label="Доступно під час збірки" />
                                 <x-forms.checkbox disabled id="is_runtime"
-                                    helper="Make this variable available in the running container at runtime."
-                                    label="Available at Runtime" />
-                                <x-forms.checkbox disabled id="is_multiline" label="Is Multiline?" />
+                                    helper="Зробити цю змінну доступною у запущеному контейнері під час виконання."
+                                    label="Доступно під час виконання" />
+                                <x-forms.checkbox disabled id="is_multiline" label="Багаторядкова?" />
                                 <x-forms.checkbox disabled id="is_literal"
-                                    helper="This means that when you use $VARIABLES in a value, it should be interpreted as the actual characters '$VARIABLES' and not as the value of a variable named VARIABLE.<br><br>Useful if you have $ sign in your value and there are some characters after it, but you would not like to interpolate it from another value. In this case, you should set this to true."
-                                    label="Is Literal?" />
+                                    helper="Це означає, що при використанні $ЗМІННИХ у значенні, вони повинні інтерпретуватися як фактичні символи '$ЗМІННІ', а не як значення змінної з назвою ЗМІННА.<br><br>Корисно, якщо у вашому значенні є знак $, і після нього є символи, але ви не хотіли б інтерполювати його з іншого значення. У цьому випадку, ви повинні встановити це значення як 'true'."
+                                    label="Буквальне значення?" />
                             @else
                                 @if ($is_shared)
                                     <x-forms.checkbox disabled id="is_literal"
-                                        helper="This means that when you use $VARIABLES in a value, it should be interpreted as the actual characters '$VARIABLES' and not as the value of a variable named VARIABLE.<br><br>Useful if you have $ sign in your value and there are some characters after it, but you would not like to interpolate it from another value. In this case, you should set this to true."
-                                        label="Is Literal?" />
+                                        helper="Це означає, що при використанні $ЗМІННИХ у значенні, вони повинні інтерпретуватися як фактичні символи '$ЗМІННІ', а не як значення змінної з назвою ЗМІННА.<br><br>Корисно, якщо у вашому значенні є знак $, і після нього є символи, але ви не хотіли б інтерполювати його з іншого значення. У цьому випадку, ви повинні встановити це значення як 'true'."
+                                        label="Буквальне значення?" />
                                 @else
                                     @if ($isSharedVariable)
-                                        <x-forms.checkbox disabled id="is_multiline" label="Is Multiline?" />
+                                        <x-forms.checkbox disabled id="is_multiline" label="Багаторядкова?" />
                                     @else
                                         <x-forms.checkbox disabled id="is_buildtime"
-                                            helper="Make this variable available during Docker build process. Useful for build secrets and dependencies."
-                                            label="Available at Buildtime" />
+                                            helper="Зробити цю змінну доступною під час процесу збірки Docker. Корисно для секретів збірки та залежностей."
+                                            label="Доступно під час збірки" />
                                         <x-forms.checkbox disabled id="is_runtime"
-                                            helper="Make this variable available in the running container at runtime."
-                                            label="Available at Runtime" />
-                                        <x-forms.checkbox disabled id="is_multiline" label="Is Multiline?" />
+                                            helper="Зробити цю змінну доступною у запущеному контейнері під час виконання."
+                                            label="Доступно під час виконання" />
+                                        <x-forms.checkbox disabled id="is_multiline" label="Багаторядкова?" />
                                         @if ($is_multiline === false)
                                             <x-forms.checkbox disabled id="is_literal"
-                                                helper="This means that when you use $VARIABLES in a value, it should be interpreted as the actual characters '$VARIABLES' and not as the value of a variable named VARIABLE.<br><br>Useful if you have $ sign in your value and there are some characters after it, but you would not like to interpolate it from another value. In this case, you should set this to true."
-                                                label="Is Literal?" />
+                                                helper="Це означає, що при використанні $ЗМІННИХ у значенні, вони повинні інтерпретуватися як фактичні символи '$ЗМІННІ', а не як значення змінної з назвою ЗМІННА.<br><br>Корисно, якщо у вашому значенні є знак $, і після нього є символи, але ви не хотіли б інтерполювати його з іншого значення. У цьому випадку, ви повинні встановити це значення як 'true'."
+                                                label="Буквальне значення?" />
                                         @endif
                                     @endif
                                 @endif
@@ -149,38 +149,38 @@
                         @if (!$is_redis_credential)
                             @if ($type === 'service')
                                 <x-forms.checkbox instantSave id="is_buildtime"
-                                    helper="Make this variable available during Docker build process. Useful for build secrets and dependencies."
-                                    label="Available at Buildtime" />
+                                    helper="Зробити цю змінну доступною під час процесу збірки Docker. Корисно для секретів збірки та залежностей."
+                                    label="Доступно під час збірки" />
                                 <x-forms.checkbox instantSave id="is_runtime"
-                                    helper="Make this variable available in the running container at runtime."
-                                    label="Available at Runtime" />
-                                <x-forms.checkbox instantSave id="is_multiline" label="Is Multiline?" />
+                                    helper="Зробити цю змінну доступною у запущеному контейнері під час виконання."
+                                    label="Доступно під час виконання" />
+                                <x-forms.checkbox instantSave id="is_multiline" label="Багаторядкова?" />
                                 <x-forms.checkbox instantSave id="is_literal"
-                                    helper="This means that when you use $VARIABLES in a value, it should be interpreted as the actual characters '$VARIABLES' and not as the value of a variable named VARIABLE.<br><br>Useful if you have $ sign in your value and there are some characters after it, but you would not like to interpolate it from another value. In this case, you should set this to true."
-                                    label="Is Literal?" />
+                                    helper="Це означає, що при використанні $ЗМІННИХ у значенні, вони повинні інтерпретуватися як фактичні символи '$ЗМІННІ', а не як значення змінної з назвою ЗМІННА.<br><br>Корисно, якщо у вашому значенні є знак $, і після нього є символи, але ви не хотіли б інтерполювати його з іншого значення. У цьому випадку, ви повинні встановити це значення як 'true'."
+                                    label="Буквальне значення?" />
                             @else
                                 @if ($is_shared)
                                     <x-forms.checkbox instantSave id="is_literal"
-                                        helper="This means that when you use $VARIABLES in a value, it should be interpreted as the actual characters '$VARIABLES' and not as the value of a variable named VARIABLE.<br><br>Useful if you have $ sign in your value and there are some characters after it, but you would not like to interpolate it from another value. In this case, you should set this to true."
-                                        label="Is Literal?" />
+                                        helper="Це означає, що при використанні $ЗМІННИХ у значенні, вони повинні інтерпретуватися як фактичні символи '$ЗМІННІ', а не як значення змінної з назвою ЗМІННА.<br><br>Корисно, якщо у вашому значенні є знак $, і після нього є символи, але ви не хотіли б інтерполювати його з іншого значення. У цьому випадку, ви повинні встановити це значення як 'true'."
+                                        label="Буквальне значення?" />
                                 @else
                                     @if ($isSharedVariable)
-                                        <x-forms.checkbox instantSave id="is_multiline" label="Is Multiline?" />
+                                        <x-forms.checkbox instantSave id="is_multiline" label="Багаторядкова?" />
                                     @else
                                         @if (!$env->is_nixpacks)
                                             <x-forms.checkbox instantSave id="is_buildtime"
-                                                helper="Make this variable available during Docker build process. Useful for build secrets and dependencies."
-                                                label="Available at Buildtime" />
+                                                helper="Зробити цю змінну доступною під час процесу збірки Docker. Корисно для секретів збірки та залежностей."
+                                                label="Доступно під час збірки" />
                                         @endif
                                         <x-forms.checkbox instantSave id="is_runtime"
-                                            helper="Make this variable available in the running container at runtime."
-                                            label="Available at Runtime" />
+                                            helper="Зробити цю змінну доступною у запущеному контейнері під час виконання."
+                                            label="Доступно під час виконання" />
                                         @if (!$env->is_nixpacks)
-                                            <x-forms.checkbox instantSave id="is_multiline" label="Is Multiline?" />
+                                            <x-forms.checkbox instantSave id="is_multiline" label="Багаторядкова?" />
                                             @if ($is_multiline === false)
                                                 <x-forms.checkbox instantSave id="is_literal"
-                                                    helper="This means that when you use $VARIABLES in a value, it should be interpreted as the actual characters '$VARIABLES' and not as the value of a variable named VARIABLE.<br><br>Useful if you have $ sign in your value and there are some characters after it, but you would not like to interpolate it from another value. In this case, you should set this to true."
-                                                    label="Is Literal?" />
+                                                    helper="Це означає, що при використанні $ЗМІННИХ у значенні, вони повинні інтерпретуватися як фактичні символи '$ЗМІННІ', а не як значення змінної з назвою ЗМІННА.<br><br>Корисно, якщо у вашому значенні є знак $, і після нього є символи, але ви не хотіли б інтерполювати його з іншого значення. У цьому випадку, ви повинні встановити це значення як 'true'."
+                                                    label="Буквальне значення?" />
                                             @endif
                                         @endif
                                     @endif
@@ -191,23 +191,23 @@
                     <x-environment-variable-warning :problematic-variables="$problematicVariables" />
                     <div class="flex w-full justify-end gap-2">
                         @if ($isDisabled)
-                            <x-forms.button disabled type="submit">Update</x-forms.button>
-                            <x-forms.button wire:click='lock'>Lock</x-forms.button>
-                            <x-modal-confirmation title="Confirm Environment Variable Deletion?" isErrorButton
-                                buttonTitle="Delete" submitAction="delete" :actions="['The selected environment variable will be permanently deleted.']"
+                            <x-forms.button disabled type="submit">Оновити</x-forms.button>
+                            <x-forms.button wire:click='lock'>Заблокувати</x-forms.button>
+                            <x-modal-confirmation title="Підтвердити видалення змінної середовища?" isErrorButton
+                                buttonTitle="Видалити" submitAction="delete" :actions="['Вибрана змінна середовища буде безповоротно видалена.']"
                                 confirmationText="{{ $key }}" buttonFullWidth="true"
-                                confirmationLabel="Please confirm the execution of the actions by entering the Environment Variable Name below"
-                                shortConfirmationLabel="Environment Variable Name" :confirmWithPassword="false"
-                                step2ButtonText="Permanently Delete" />
+                                confirmationLabel="Будь ласка, підтвердьте виконання дій, ввівши назву змінної середовища нижче"
+                                shortConfirmationLabel="Назва змінної середовища" :confirmWithPassword="false"
+                                step2ButtonText="Видалити безповоротно" />
                         @else
-                            <x-forms.button type="submit">Update</x-forms.button>
-                            <x-forms.button wire:click='lock'>Lock</x-forms.button>
-                            <x-modal-confirmation title="Confirm Environment Variable Deletion?" isErrorButton
-                                buttonTitle="Delete" submitAction="delete" :actions="['The selected environment variable will be permanently deleted.']"
+                            <x-forms.button type="submit">Оновити</x-forms.button>
+                            <x-forms.button wire:click='lock'>Заблокувати</x-forms.button>
+                            <x-modal-confirmation title="Підтвердити видалення змінної середовища?" isErrorButton
+                                buttonTitle="Видалити" submitAction="delete" :actions="['Вибрана змінна середовища буде безповоротно видалена.']"
                                 confirmationText="{{ $key }}" buttonFullWidth="true"
-                                confirmationLabel="Please confirm the execution of the actions by entering the Environment Variable Name below"
-                                shortConfirmationLabel="Environment Variable Name" :confirmWithPassword="false"
-                                step2ButtonText="Permanently Delete" />
+                                confirmationLabel="Будь ласка, підтвердьте виконання дій, ввівши назву змінної середовища нижче"
+                                shortConfirmationLabel="Назва змінної середовища" :confirmWithPassword="false"
+                                step2ButtonText="Видалити безповоротно" />
                         @endif
                     </div>
                 </div>
@@ -217,35 +217,35 @@
                         @if (!$is_redis_credential)
                             @if ($type === 'service')
                                 <x-forms.checkbox disabled id="is_buildtime"
-                                    helper="Make this variable available during Docker build process. Useful for build secrets and dependencies."
-                                    label="Available at Buildtime" />
+                                    helper="Зробити цю змінну доступною під час процесу збірки Docker. Корисно для секретів збірки та залежностей."
+                                    label="Доступно під час збірки" />
                                 <x-forms.checkbox disabled id="is_runtime"
-                                    helper="Make this variable available in the running container at runtime."
-                                    label="Available at Runtime" />
-                                <x-forms.checkbox disabled id="is_multiline" label="Is Multiline?" />
+                                    helper="Зробити цю змінну доступною у запущеному контейнері під час виконання."
+                                    label="Доступно під час виконання" />
+                                <x-forms.checkbox disabled id="is_multiline" label="Багаторядкова?" />
                                 <x-forms.checkbox disabled id="is_literal"
-                                    helper="This means that when you use $VARIABLES in a value, it should be interpreted as the actual characters '$VARIABLES' and not as the value of a variable named VARIABLE.<br><br>Useful if you have $ sign in your value and there are some characters after it, but you would not like to interpolate it from another value. In this case, you should set this to true."
-                                    label="Is Literal?" />
+                                    helper="Це означає, що при використанні $ЗМІННИХ у значенні, вони повинні інтерпретуватися як фактичні символи '$ЗМІННІ', а не як значення змінної з назвою ЗМІННА.<br><br>Корисно, якщо у вашому значенні є знак $, і після нього є символи, але ви не хотіли б інтерполювати його з іншого значення. У цьому випадку, ви повинні встановити це значення як 'true'."
+                                    label="Буквальне значення?" />
                             @else
                                 @if ($is_shared)
                                     <x-forms.checkbox disabled id="is_literal"
-                                        helper="This means that when you use $VARIABLES in a value, it should be interpreted as the actual characters '$VARIABLES' and not as the value of a variable named VARIABLE.<br><br>Useful if you have $ sign in your value and there are some characters after it, but you would not like to interpolate it from another value. In this case, you should set this to true."
-                                        label="Is Literal?" />
+                                        helper="Це означає, що при використанні $ЗМІННИХ у значенні, вони повинні інтерпретуватися як фактичні символи '$ЗМІННІ', а не як значення змінної з назвою ЗМІННА.<br><br>Корисно, якщо у вашому значенні є знак $, і після нього є символи, але ви не хотіли б інтерполювати його з іншого значення. У цьому випадку, ви повинні встановити це значення як 'true'."
+                                        label="Буквальне значення?" />
                                 @else
                                     @if ($isSharedVariable)
-                                        <x-forms.checkbox disabled id="is_multiline" label="Is Multiline?" />
+                                        <x-forms.checkbox disabled id="is_multiline" label="Багаторядкова?" />
                                     @else
                                         <x-forms.checkbox disabled id="is_buildtime"
-                                            helper="Make this variable available during Docker build process. Useful for build secrets and dependencies."
-                                            label="Available at Buildtime" />
+                                            helper="Зробити цю змінну доступною під час процесу збірки Docker. Корисно для секретів збірки та залежностей."
+                                            label="Доступно під час збірки" />
                                         <x-forms.checkbox disabled id="is_runtime"
-                                            helper="Make this variable available in the running container at runtime."
-                                            label="Available at Runtime" />
-                                        <x-forms.checkbox disabled id="is_multiline" label="Is Multiline?" />
+                                            helper="Зробити цю змінну доступною у запущеному контейнері під час виконання."
+                                            label="Доступно під час виконання" />
+                                        <x-forms.checkbox disabled id="is_multiline" label="Багаторядкова?" />
                                         @if ($is_multiline === false)
                                             <x-forms.checkbox disabled id="is_literal"
-                                                helper="This means that when you use $VARIABLES in a value, it should be interpreted as the actual characters '$VARIABLES' and not as the value of a variable named VARIABLE.<br><br>Useful if you have $ sign in your value and there are some characters after it, but you would not like to interpolate it from another value. In this case, you should set this to true."
-                                                label="Is Literal?" />
+                                                helper="Це означає, що при використанні $ЗМІННИХ у значенні, вони повинні інтерпретуватися як фактичні символи '$ЗМІННІ', а не як значення змінної з назвою ЗМІННА.<br><br>Корисно, якщо у вашому значенні є знак $, і після нього є символи, але ви не хотіли б інтерполювати його з іншого значення. У цьому випадку, ви повинні встановити це значення як 'true'."
+                                                label="Буквальне значення?" />
                                         @endif
                                     @endif
                                 @endif

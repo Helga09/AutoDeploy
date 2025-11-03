@@ -27,11 +27,11 @@
                     <span
                         class="mt-2 text-xs font-medium text-black dark:text-white">
                         @if ($i === 1)
-                            Server
+                            Сервер
                         @elseif ($i === 2)
-                            Connection
+                            З'єднання
                         @elseif ($i === 3)
-                            Complete
+                            Завершено
                         @endif
                     </span>
                 </div>

@@ -1,5 +1,5 @@
 @props([
-    'status' => 'Degraded',
+    'status' => 'Погіршено',
 ])
 <div class="flex items-center" >
     <x-loading wire:loading.delay.longer />

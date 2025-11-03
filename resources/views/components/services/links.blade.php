@@ -1,7 +1,7 @@
 @if ($links->count() > 0)
     <x-dropdown>
         <x-slot:title>
-            Links
+            Посилання
         </x-slot>
         @foreach ($links as $link)
             <a class="dropdown-item" target="_blank" href="{{ $link }}">

@@ -1,4 +1,4 @@
-@props(['title' => 'Default title', 'description' => 'Default Description', 'buttonText' => 'Default Button Text'])
+@props(['title' => 'Заголовок за замовчуванням', 'description' => 'Опис за замовчуванням', 'buttonText' => 'Текст кнопки за замовчуванням'])
 <div x-data="{
     bannerVisible: true,
     bannerVisibleAfter: 100

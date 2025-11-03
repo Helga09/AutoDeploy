@@ -1,8 +1,8 @@
 <div>
     <div class="flex gap-2">
-        <h2>Scheduled Tasks</h2>
+        <h2>Заплановані завдання</h2>
         @can('update', $resource)
-            <x-modal-input buttonTitle="+ Add" title="New Scheduled Task" :closeOutside="false">
+            <x-modal-input buttonTitle="+ Додати" title="Нове заплановане завдання" :closeOutside="false">
                 @if ($resource->type() == 'application')
                     <livewire:project.shared.scheduled-task.add :type="$resource->type()" :id="$resource->id" :containerNames="$containerNames" />
                 @elseif ($resource->type() == 'service')
@@ -23,8 +23,8 @@
                             @endif
                         </span>
 
-                        <span>Frequency: {{ $task->frequency }}</span>
-                        <span>Last run: {{ data_get($task->latest_log, 'status', 'No runs yet') }}
+                        <span>Частота: {{ $task->frequency }}</span>
+                        <span>Останній запуск: {{ data_get($task->latest_log, 'status', 'Запусків ще не було') }}
                         </span>
                     </span>
                 </a>
@@ -37,14 +37,14 @@
                                 <span class="text-xs font-normal">({{ $task->container }})</span>
                             @endif
                         </span>
-                        <span>Frequency: {{ $task->frequency }}</span>
-                        <span>Last run: {{ data_get($task->latest_log, 'status', 'No runs yet') }}
+                        <span>Частота: {{ $task->frequency }}</span>
+                        <span>Останній запуск: {{ data_get($task->latest_log, 'status', 'Запусків ще не було') }}
                         </span>
                     </span>
                 </a>
             @endif
         @empty
-            <div>No scheduled tasks configured.</div>
+            <div>Заплановані завдання не налаштовані.</div>
         @endforelse
     </div>
 </div>

@@ -50,13 +50,13 @@
         </div>
         <form wire:submit='getLogs(true)' class="flex flex-col gap-4">
             <div class="w-full sm:w-96">
-                <x-forms.input label="Only Show Number of Lines" placeholder="100" type="number" required
+                <x-forms.input label="Показувати лише кількість рядків" placeholder="100" type="number" required
                     id="numberOfLines" :readonly="$streamLogs"></x-forms.input>
             </div>
             <div class="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:gap-2 sm:items-center">
-                <x-forms.button type="submit">Refresh</x-forms.button>
-                <x-forms.checkbox instantSave label="Stream Logs" id="streamLogs"></x-forms.checkbox>
-                <x-forms.checkbox instantSave label="Include Timestamps" id="showTimeStamps"></x-forms.checkbox>
+                <x-forms.button type="submit">Оновити</x-forms.button>
+                <x-forms.checkbox instantSave label="Трансляція логів" id="streamLogs"></x-forms.checkbox>
+                <x-forms.checkbox instantSave label="Включити мітки часу" id="showTimeStamps"></x-forms.checkbox>
             </div>
         </form>
         <div :class="fullscreen ? 'fullscreen' : 'relative w-full py-4 mx-auto'">
@@ -80,7 +80,7 @@
                                     stroke-linejoin="round" stroke-width="2" d="M12 5v14m4-4l-4 4m-4-4l4 4" />
                             </svg>
                         </button> --}}
-                        <button title="Fullscreen" x-show="!fullscreen" x-on:click="makeFullscreen">
+                        <button title="На весь екран" x-show="!fullscreen" x-on:click="makeFullscreen">
                             <svg class="w-5 h-5 opacity-30 hover:opacity-100" viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <g fill="none">
@@ -91,7 +91,7 @@
                                 </g>
                             </svg>
                         </button>
-                        <button title="Minimize" x-show="fullscreen" x-on:click="makeFullscreen">
+                        <button title="Згорнути" x-show="fullscreen" x-on:click="makeFullscreen">
                             <svg class="w-5 h-5 opacity-30 hover:opacity-100"
                                 viewBox="0 0 24 24"xmlns="http://www.w3.org/2000/svg">
                                 <path fill="none" stroke="currentColor" stroke-linecap="round"
@@ -104,7 +104,7 @@
                 @if ($outputs)
                     <pre id="logs" class="font-mono whitespace-pre-wrap break-all max-w-full">{{ $outputs }}</pre>
                 @else
-                    <pre id="logs" class="font-mono whitespace-pre-wrap break-all max-w-full">Refresh to get the logs...</pre>
+                    <pre id="logs" class="font-mono whitespace-pre-wrap break-all max-w-full">Оновіть, щоб отримати логи...</pre>
                 @endif
             </div>
         </div>

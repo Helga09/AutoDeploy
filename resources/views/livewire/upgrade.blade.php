@@ -1,4 +1,4 @@
-<div @if ($isUpgradeAvailable) title="New version available" @else title="No upgrade available" @endif
+<div @if ($isUpgradeAvailable) title="Доступна нова версія" @else title="Оновлення недоступне" @endif
     x-init="$wire.checkUpdate" x-data="upgradeModal">
     @if ($isUpgradeAvailable)
         <div :class="{ 'z-40': modalOpen }" class="relative w-auto h-auto">
@@ -10,7 +10,7 @@
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                     <path d="M19.5 13.572l-7.5 7.428l-7.5 -7.428m0 0a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
                 </svg>
-                In progress
+                Виконується
             </button>
             <button class="menu-item cursor-pointer" @click="modalOpen=true" x-show="!showProgress">
                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -23,7 +23,7 @@
                     <path d="M9 21h6" />
                     <path d="M9 18h6" />
                 </svg>
-                Upgrade
+                Оновити
             </button>
             <template x-teleport="body">
                 <div x-show="modalOpen"
@@ -41,7 +41,7 @@
                         x-transition:leave-end="opacity-0 -translate-y-2 sm:scale-95"
                         class="relative w-full py-6 border rounded-sm min-w-full lg:min-w-[36rem] max-w-fit bg-neutral-100 border-neutral-400 dark:bg-base px-7 dark:border-coolgray-300">
                         <div class="flex items-center justify-between pb-3">
-                            <h3 class="text-lg font-semibold">Upgrade confirmation</h3>
+                            <h3 class="text-lg font-semibold">Підтвердження оновлення</h3>
                             <button x-show="!showProgress" @click="modalOpen=false"
                                 class="absolute top-0 right-0 flex items-center justify-center w-8 h-8 mt-5 mr-5 text-gray-600 rounded-full hover:text-gray-800 hover:bg-gray-50">
                                 <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -51,33 +51,33 @@
                             </button>
                         </div>
                         <div class="relative w-auto pb-8">
-                            <p>Are you sure you would like to upgrade your instance to {{ $latestVersion }}?</p>
+                            <p>Ви впевнені, що бажаєте оновити ваш екземпляр до {{ $latestVersion }}?</p>
                             <br />
 
-                            <x-callout type="warning" title="Caution">
-                                <p>Any deployments running during the update process will
-                                    fail. Please ensure no deployments are in progress on any server before continuing.
+                            <x-callout type="warning" title="Увага">
+                                <p>Будь-які розгортання, що виконуються під час процесу оновлення, завершаться помилкою.
+                                    Будь ласка, переконайтеся, що на жодному сервері не відбувається розгортання, перш ніж продовжити.
                                 </p>
                             </x-callout>
                             <br />
-                            <p>You can review the changelogs <a class="font-bold underline dark:text-white"
-                                    href="https://github.com/coollabsio/coolify/releases" target="_blank">here</a>.</p>
+                            <p>Ви можете переглянути зміни <a class="font-bold underline dark:text-white"
+                                    href="https://github.com/coollabsio/coolify/releases" target="_blank">тут</a>.</p>
                             <br />
-                            <p>If something goes wrong and you cannot upgrade your instance, You can check the following
+                            <p>Якщо щось піде не так, і ви не зможете оновити свій екземпляр, ви можете переглянути наступний
                                 <a class="font-bold underline dark:text-white" href="https://coolify.io/docs/upgrade"
-                                    target="_blank">guide</a> on what to do.
+                                    target="_blank">посібник</a> що робити.
                             </p>
                             <div class="flex flex-col pt-4" x-show="showProgress">
-                                <h2>Progress <x-loading /></h2>
+                                <h2>Прогрес <x-loading /></h2>
                                 <div x-html="currentStatus"></div>
                             </div>
                         </div>
                         <div class="flex gap-4" x-show="!showProgress">
                             <x-forms.button @click="modalOpen=false"
-                                class="w-24 dark:bg-coolgray-200 dark:hover:bg-coolgray-300">Cancel
+                                class="w-24 dark:bg-coolgray-200 dark:hover:bg-coolgray-300">Скасувати
                             </x-forms.button>
                             <div class="flex-1"></div>
-                            <x-forms.button @click="confirmed" class="w-24" isHighlighted type="button">Continue
+                            <x-forms.button @click="confirmed" class="w-24" isHighlighted type="button">Продовжити
                             </x-forms.button>
                         </div>
                     </div>
@@ -110,7 +110,7 @@
                         .then(response => {
                             if (response.ok) {
                                 this.currentStatus =
-                                    'Coolify is back online. Reloading this page (you can manually reload if its not done automatically)...';
+                                    'Coolify знову в мережі. Перезавантаження цієї сторінки (ви можете перезавантажити вручну, якщо це не відбудеться автоматично)...';
                                 if (checkHealthInterval) clearInterval(
                                     checkHealthInterval);
                                 setTimeout(() => {
@@ -118,22 +118,22 @@
                                 }, 5000)
                             } else {
                                 this.currentStatus =
-                                    "Waiting for Coolify to come back from the dead..."
+                                    "Очікування, поки Coolify повернеться з того світу..."
                             }
                         })
                 }, 2000);
             },
             upgrade() {
                 if (checkIfIamDeadInterval || this.$wire.showProgress) return true;
-                this.currentStatus = 'Pulling new images and updating Coolify.';
+                this.currentStatus = 'Завантаження нових образів та оновлення Coolify.';
                 checkIfIamDeadInterval = setInterval(() => {
                     fetch('/api/health')
                         .then(response => {
                             if (response.ok) {
-                                this.currentStatus = "Waiting for the update process..."
+                                this.currentStatus = "Очікування процесу оновлення..."
                             } else {
                                 this.currentStatus =
-                                    "Update done, restarting Coolify & waiting until it is revived!"
+                                    "Оновлення завершено, перезапуск Coolify та очікування, поки він відновиться!"
                                 if (checkIfIamDeadInterval) clearInterval(
                                     checkIfIamDeadInterval);
                                 this.revive();

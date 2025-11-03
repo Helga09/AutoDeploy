@@ -1,18 +1,18 @@
 <div>
     <x-slot:title>
-        Destinations | Coolify
+        Призначення | Coolify
     </x-slot>
     <div class="flex items-center gap-2">
-        <h1>Destinations</h1>
+        <h1>Призначення</h1>
         @if ($servers->count() > 0)
             @can('createAnyResource')
-                <x-modal-input buttonTitle="+ Add" title="New Destination">
+                <x-modal-input buttonTitle="+ Додати" title="Нове Призначення">
                     <livewire:destination.new.docker />
                 </x-modal-input>
             @endcan
         @endif
     </div>
-    <div class="subtitle">Network endpoints to deploy your resources.</div>
+    <div class="subtitle">Мережеві кінцеві точки для розгортання ваших ресурсів.</div>
     <div class="grid gap-4 lg:grid-cols-2 -mt-1">
         @forelse ($servers as $server)
             @forelse ($server->destinations() as $destination)
@@ -21,7 +21,7 @@
                         href="{{ route('destination.show', ['destination_uuid' => data_get($destination, 'uuid')]) }}">
                         <div class="flex flex-col justify-center mx-6">
                             <div class="box-title">{{ $destination->name }}</div>
-                            <div class="box-description">Server: {{ $destination->server->name }}</div>
+                            <div class="box-description">Сервер: {{ $destination->server->name }}</div>
                         </div>
                     </a>
                 @endif
@@ -30,15 +30,15 @@
                         href="{{ route('destination.show', ['destination_uuid' => data_get($destination, 'uuid')]) }}">
                         <div class="flex flex-col mx-6">
                             <div class="box-title">{{ $destination->name }}</div>
-                            <div class="box-description">server: {{ $destination->server->name }}</div>
+                            <div class="box-description">Сервер: {{ $destination->server->name }}</div>
                         </div>
                     </a>
                 @endif
             @empty
-                <div>No destinations found.</div>
+                <div>Призначень не знайдено.</div>
             @endforelse
         @empty
-            <div>No servers found.</div>
+            <div>Серверів не знайдено.</div>
         @endforelse
     </div>
 </div>

@@ -1,16 +1,16 @@
 <div>
     <x-slot:title>
-        Storages | Coolify
+        Сховища | Coolify
     </x-slot>
     <div class="flex items-center gap-2">
-        <h1>S3 Storages</h1>
+        <h1>S3 Сховища</h1>
         @can('create', App\Models\S3Storage::class)
-            <x-modal-input buttonTitle="+ Add" title="New S3 Storage" :closeOutside="false">
+            <x-modal-input buttonTitle="+ Додати" title="Нове S3 сховище" :closeOutside="false">
                 <livewire:storage.create />
             </x-modal-input>
         @endcan
     </div>
-    <div class="subtitle">S3 storages for backups.</div>
+    <div class="subtitle">S3 сховища для резервних копій.</div>
     <div class="grid gap-4 lg:grid-cols-2 -mt-1">
         @forelse ($s3 as $storage)
             <a href="/storages/{{ $storage->uuid }}" @class(['gap-2 border cursor-pointer box group'])>
@@ -24,14 +24,14 @@
                     @if (!$storage->is_usable)
                         <span
                             class="px-2 py-1 text-xs font-semibold text-red-800 bg-red-100 rounded dark:text-red-100 dark:bg-red-800">
-                            Not Usable
+                            Непридатне для використання
                         </span>
                     @endif
                 </div>
             </a>
         @empty
             <div>
-                <div>No storage found.</div>
+                <div>Сховищ не знайдено.</div>
             </div>
         @endforelse
     </div>
