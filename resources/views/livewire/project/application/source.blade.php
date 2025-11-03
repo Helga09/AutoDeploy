@@ -34,7 +34,7 @@
                 </div>
             @endif
             <div class="flex gap-2">
-                <x-forms.input placeholder="coollabsio/coolify-example" id="gitRepository" label="Репозиторій"
+                <x-forms.input placeholder="coollabsio/AutoDeploy-example" id="gitRepository" label="Репозиторій"
                     canGate="update" :canResource="$application" />
                 <x-forms.input placeholder="main" id="gitBranch" label="Гілка" canGate="update" :canResource="$application" />
             </div>

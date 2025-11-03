@@ -1,12 +1,12 @@
 <div>
     <x-slot:title>
-        Термінал | Coolify
+        Термінал | AutoDeploy
         </x-slot>
         <h1>Термінал</h1>
         <div class="flex gap-2 items-end subtitle">
             <div>Виконуйте команди на ваших серверах і контейнерах, не виходячи з браузера.</div>
             <x-helper
-                helper="Якщо у вас виникли проблеми з підключенням до сервера, переконайтеся, що порт відкритий.<br><br><a class='underline' href='https://coolify.io/docs/knowledge-base/server/firewall/#terminal' target='_blank'>Документація</a>"></x-helper>
+                helper="Якщо у вас виникли проблеми з підключенням до сервера, переконайтеся, що порт відкритий.<br><br><a class='underline' href='https://AutoDeploy.io/docs/knowledge-base/server/firewall/#terminal' target='_blank'>Документація</a>"></x-helper>
         </div>
         <div x-init="$wire.loadContainers()">
             @if ($isLoadingContainers)

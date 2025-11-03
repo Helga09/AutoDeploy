@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Токени API | Coolify
+        Токени API | AutoDeploy
     </x-slot>
     <x-security.navbar />
     <div class="pb-4">

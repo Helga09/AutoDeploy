@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Налаштування проксі | Coolify
+        Налаштування проксі | AutoDeploy
     </x-slot>
     <livewire:server.navbar :server="$server" />
     @if ($server->isFunctional())

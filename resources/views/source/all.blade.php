@@ -1,6 +1,6 @@
 <x-layout>
     <x-slot:title>
-        Джерела | Coolify
+        Джерела | AutoDeploy
     </x-slot>
     <div class="flex items-center gap-2">
         <h1>Джерела</h1>

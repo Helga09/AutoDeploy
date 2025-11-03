@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Сповіщення | Coolify
+        Сповіщення | AutoDeploy
     </x-slot>
     <x-notification.navbar />
     <form wire:submit='submit' class="flex flex-col gap-4 pb-4">

@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Сервери | Coolify
+        Сервери | AutoDeploy
     </x-slot>
     <div class="flex items-center gap-2">
         <h1>Сервери</h1>
@@ -33,7 +33,7 @@
                             &
                         @endif
                         @if (!$server->settings->is_usable)
-                            <span>Не може бути використаний Coolify</span>
+                            <span>Не може бути використаний AutoDeploy</span>
                         @endif
                         @if ($server->settings->force_disabled)
                             <span>Вимкнено системою</span>

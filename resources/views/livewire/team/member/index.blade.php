@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Учасники команди | Coolify
+        Учасники команди | AutoDeploy
     </x-slot>
     <x-team.navbar />
     <h2>Учасники</h2>

@@ -24,7 +24,7 @@
                         if (checkNumber > 5) {
                             this.popups.realtime = true;
                             console.error(
-                                'Coolify не вдалося підключитися до сервісу реального часу. Це спричинить незвичайні проблеми в інтерфейсі, якщо їх не виправити! Будь ласка, перевірте відповідну документацію (https://coolify.io/docs/knowledge-base/cloudflare/tunnels/overview) або зверніться за допомогою до Discord (https://coollabs.io/discord).)'
+                                'AutoDeploy не вдалося підключитися до сервісу реального часу. Це спричинить незвичайні проблеми в інтерфейсі, якщо їх не виправити! Будь ласка, перевірте відповідну документацію (https://AutoDeploy.io/docs/knowledge-base/cloudflare/tunnels/overview) або зверніться за допомогою до Discord (https://coollabs.io/discord).)'
                             );
                         }
 
@@ -74,7 +74,7 @@
                         <div>Це спричинить незвичайні проблеми в
                             інтерфейсі! <br><br>
                             Будь ласка, переконайтеся, що ви відкрили
-                            <a class="underline" href='https://coolify.io/docs/knowledge-base/server/firewall'
+                            <a class="underline" href='https://AutoDeploy.io/docs/knowledge-base/server/firewall'
                                 target='_blank'>необхідні порти</a> або отримайте
                             допомогу в <a class="underline" href='https://coollabs.io/discord' target='_blank'>Discord</a>.
                         </div>
@@ -96,7 +96,7 @@
                             <img src="{{ asset('heart.png') }}" class="w-20 h-20">
                         </div>
                         <div class="flex flex-col gap-2 lg:px-10 px-1">
-                            <div class="lg:text-xl text-md dark:text-white font-bold">Подобається Coolify? Підтримайте нашу роботу.
+                            <div class="lg:text-xl text-md dark:text-white font-bold">Подобається AutoDeploy? Підтримайте нашу роботу.
                             </div>
                             <div class="lg:text-sm text-xs dark:text-white">
                                 Ми вже прибуткові завдяки <span class="font-bold text-pink-500">ВАМ</span>

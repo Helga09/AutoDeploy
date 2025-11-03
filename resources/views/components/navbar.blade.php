@@ -79,7 +79,7 @@
     }">
     <div class="flex lg:pt-6 pt-4 pb-4 pl-2">
         <div class="flex flex-col w-full">
-            <a href="/" class="text-2xl font-bold tracking-wide dark:text-white hover:opacity-80 transition-opacity">Coolify</a>
+            <a href="/" class="text-2xl font-bold tracking-wide dark:text-white hover:opacity-80 transition-opacity">AutoDeploy</a>
             <x-version />
         </div>
         <div>
@@ -358,7 +358,7 @@
                         </a>
                     </li> --}}
                     <li>
-                        <a title="Спонсоруйте нас" class="menu-item" href="https://coolify.io/sponsorships"
+                        <a title="Спонсоруйте нас" class="menu-item" href="https://AutoDeploy.io/sponsorships"
                             target="_blank">
                             <svg class="text-pink-500 icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <g fill="none" stroke="currentColor" stroke-linecap="round"

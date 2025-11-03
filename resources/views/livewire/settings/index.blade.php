@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Налаштування | Coolify
+        Налаштування | AutoDeploy
     </x-slot>
     <x-settings.navbar />
     <div x-data="{ activeTab: window.location.hash ? window.location.hash.substring(1) : 'general' }" class="flex flex-col h-full gap-8 sm:flex-row">
@@ -12,16 +12,16 @@
                     Зберегти
                 </x-forms.button>
             </div>
-            <div class="pb-4">Загальна конфігурація для вашого екземпляра Coolify.</div>
+            <div class="pb-4">Загальна конфігурація для вашого екземпляра AutoDeploy.</div>
 
             <div class="flex flex-col gap-2">
                 <div class="flex flex-wrap items-end gap-2">
                     <div class="flex gap-2 md:flex-row flex-col w-full">
                         <x-forms.input id="fqdn" label="Домен"
                             helper="Введіть повне доменне ім'я (FQDN) екземпляра, включаючи 'https://', якщо ви хочете захистити панель керування за допомогою HTTPS. Це дозволить отримати доступ до панелі керування через цей домен, захищений HTTPS, замість просто IP-адреси."
-                            placeholder="https://coolify.yourdomain.com" />
-                        <x-forms.input id="instance_name" label="Ім'я" placeholder="Coolify"
-                            helper="Власна назва для вашого екземпляра Coolify, відображається в URL." />
+                            placeholder="https://AutoDeploy.yourdomain.com" />
+                        <x-forms.input id="instance_name" label="Ім'я" placeholder="AutoDeploy"
+                            helper="Власна назва для вашого екземпляра AutoDeploy, відображається в URL." />
                         <div class="w-full" x-data="{
                             open: false,
                             search: '{{ $settings->instance_timezone ?: '' }}',
@@ -38,7 +38,7 @@
                             <div class="flex items-center mb-1">
                                 <label for="instance_timezone">Часовий пояс екземпляра</label>
                                 <x-helper class="ml-2"
-                                    helper="Часовий пояс для екземпляра Coolify. Використовується для перевірки оновлень та частоти автоматичних оновлень." />
+                                    helper="Часовий пояс для екземпляра AutoDeploy. Використовується для перевірки оновлень та частоти автоматичних оновлень." />
                             </div>
                             <div class="relative">
                                 <div class="inline-flex relative items-center w-full">
@@ -69,10 +69,10 @@
                     </div>
                     <div class="flex gap-2 md:flex-row flex-col w-full">
                         <x-forms.input id="public_ipv4" type="password" label="Публічний IPv4 екземпляра"
-                            helper="Введіть IPv4-адресу екземпляра.<br><br>Це корисно, якщо у вас є кілька IPv4-адрес і Coolify не зміг визначити правильну."
+                            helper="Введіть IPv4-адресу екземпляра.<br><br>Це корисно, якщо у вас є кілька IPv4-адрес і AutoDeploy не зміг визначити правильну."
                             placeholder="1.2.3.4" autocomplete="new-password" />
                         <x-forms.input id="public_ipv6" type="password" label="Публічний IPv6 екземпляра"
-                            helper="Введіть IPv6-адресу екземпляра.<br><br>Це корисно, якщо у вас є кілька IPv6-адрес і Coolify не зміг визначити правильну."
+                            helper="Введіть IPv6-адресу екземпляра.<br><br>Це корисно, якщо у вас є кілька IPv6-адрес і AutoDeploy не зміг визначити правильну."
                             placeholder="2001:db8::1" autocomplete="new-password" />
                     </div>
                 </div>
@@ -85,10 +85,10 @@
             confirmAction="confirmDomainUsage">
             <x-slot:consequences>
                 <ul class="mt-2 ml-4 list-disc">
-                    <li>Домен екземпляра Coolify конфліктуватиме з наявними ресурсами</li>
+                    <li>Домен екземпляра AutoDeploy конфліктуватиме з наявними ресурсами</li>
                     <li>Сертифікати SSL можуть працювати некоректно</li>
                     <li>Поведінка маршрутизації буде непередбачуваною</li>
-                    <li>Ви можете не отримати доступ до панелі керування Coolify належним чином</li>
+                    <li>Ви можете не отримати доступ до панелі керування AutoDeploy належним чином</li>
                 </ul>
             </x-slot:consequences>
         </x-domain-conflict-modal>

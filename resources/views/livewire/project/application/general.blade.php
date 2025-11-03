@@ -49,7 +49,7 @@
                                 @if (!isDatabaseImage(data_get($service, 'image')))
                                     <div class="flex items-end gap-2">
                                         <x-forms.input
-                                            helper="Ви можете вказати один домен зі шляхом або кілька через кому. Ви можете вказати порт, до якого буде прив'язано домен.<br><br><span class='text-helper'>Приклад</span><br>- http://app.coolify.io,https://cloud.coolify.io/dashboard<br>- http://app.coolify.io/api/v3<br>- http://app.coolify.io:3000 -> app.coolify.io буде вказувати на порт 3000 всередині контейнера. "
+                                            helper="Ви можете вказати один домен зі шляхом або кілька через кому. Ви можете вказати порт, до якого буде прив'язано домен.<br><br><span class='text-helper'>Приклад</span><br>- http://app.AutoDeploy.io,https://cloud.AutoDeploy.io/dashboard<br>- http://app.AutoDeploy.io/api/v3<br>- http://app.AutoDeploy.io:3000 -> app.AutoDeploy.io буде вказувати на порт 3000 всередині контейнера. "
                                             label="Домени для {{ $serviceName }}"
                                             id="parsedServiceDomains.{{ str($serviceName)->replace('-', '_')->replace('.', '_') }}.domain"
                                             x-bind:disabled="shouldDisable()"></x-forms.input>
@@ -90,14 +90,14 @@
             @if ($application->build_pack !== 'dockercompose')
                 <div class="flex items-end gap-2">
                     @if ($application->settings->is_container_label_readonly_enabled == false)
-                        <x-forms.input placeholder="https://coolify.io" wire:model="fqdn"
+                        <x-forms.input placeholder="https://AutoDeploy.io" wire:model="fqdn"
                             label="Домени" readonly
                             helper="Мітки тільки для читання вимкнено. Ви можете встановити домени в розділі міток."
                             x-bind:disabled="!canUpdate" />
                     @else
-                        <x-forms.input placeholder="https://coolify.io" wire:model="fqdn"
+                        <x-forms.input placeholder="https://AutoDeploy.io" wire:model="fqdn"
                             label="Домени"
-                            helper="Ви можете вказати один домен зі шляхом або кілька через кому. Ви можете вказати порт, до якого буде прив'язано домен.<br><br><span class='text-helper'>Приклад</span><br>- http://app.coolify.io,https://cloud.coolify.io/dashboard<br>- http://app.coolify.io/api/v3<br>- http://app.coolify.io:3000 -> app.coolify.io буде вказувати на порт 3000 всередині контейнера. "
+                            helper="Ви можете вказати один домен зі шляхом або кілька через кому. Ви можете вказати порт, до якого буде прив'язано домен.<br><br><span class='text-helper'>Приклад</span><br>- http://app.AutoDeploy.io,https://cloud.AutoDeploy.io/dashboard<br>- http://app.AutoDeploy.io/api/v3<br>- http://app.AutoDeploy.io:3000 -> app.AutoDeploy.io буде вказувати на порт 3000 всередині контейнера. "
                             x-bind:disabled="!canUpdate" />
                         @can('update', $application)
                             <x-forms.button wire:click="getWildcardDomain">Згенерувати домен
@@ -151,13 +151,13 @@
                     <h3>Реєстр Docker</h3>
                     @if ($application->build_pack !== 'dockerimage' && !$application->destination->server->isSwarm())
                         <x-helper
-                            helper="Відправити зібраний образ до реєстру Docker. Додаткова інформація <a class='underline' href='https://coolify.io/docs/knowledge-base/docker/registry' target='_blank'>тут</a>." />
+                            helper="Відправити зібраний образ до реєстру Docker. Додаткова інформація <a class='underline' href='https://AutoDeploy.io/docs/knowledge-base/docker/registry' target='_blank'>тут</a>." />
                     @endif
                 </div>
                 @if ($application->destination->server->isSwarm())
                     @if ($application->build_pack !== 'dockerimage')
                         <div>Docker Swarm вимагає, щоб образ був доступний у реєстрі. Додаткова інформація <a
-                                class="underline" href="https://coolify.io/docs/knowledge-base/docker/registry"
+                                class="underline" href="https://AutoDeploy.io/docs/knowledge-base/docker/registry"
                                 target="_blank">тут</a>.</div>
                     @endif
                 @endif
@@ -204,7 +204,7 @@
                 <h3>Збірка</h3>
                 @if ($application->build_pack === 'dockerimage')
                     <x-forms.input
-                        helper="Ви можете додати власні опції запуску Docker, які будуть використані при запуску вашого контейнера.<br>Примітка: Не всі опції підтримуються, оскільки вони можуть порушити автоматизацію Coolify та спричинити неприємності для користувачів.<br><br>Перегляньте <a class='underline dark:text-white' href='https://coolify.io/docs/knowledge-base/docker/custom-commands'>документацію.</a>"
+                        helper="Ви можете додати власні опції запуску Docker, які будуть використані при запуску вашого контейнера.<br>Примітка: Не всі опції підтримуються, оскільки вони можуть порушити автоматизацію AutoDeploy та спричинити неприємності для користувачів.<br><br>Перегляньте <a class='underline dark:text-white' href='https://AutoDeploy.io/docs/knowledge-base/docker/custom-commands'>документацію.</a>"
                         placeholder="--cap-add SYS_ADMIN --device=/dev/fuse --security-opt apparmor:unconfined --ulimit nofile=1024:1024 --tmpfs /run:rw,noexec,nosuid,size=65536k --hostname=myapp"
                         id="custom_docker_run_options" label="Власні опції Docker"
                         x-bind:disabled="!canUpdate" />
@@ -223,7 +223,7 @@
                                     x-bind:disabled="!canUpdate" />
                             </div>
                             <div class="pt-1 text-xs">Nixpacks автоматично виявить необхідну конфігурацію.
-                                <a class="underline" href="https://coolify.io/docs/applications/">Документація по фреймворках</a>
+                                <a class="underline" href="https://AutoDeploy.io/docs/applications/">Документація по фреймворках</a>
                             </div>
                         @endif
 
@@ -315,7 +315,7 @@
                                     </div>
                                 @endif
                                 <x-forms.input
-                                    helper="Ви можете додати власні опції запуску Docker, які будуть використані при запуску вашого контейнера.<br>Примітка: Не всі опції підтримуються, оскільки вони можуть порушити автоматизацію Coolify та спричинити неприємності для користувачів.<br><br>Перегляньте <a class='underline dark:text-white' href='https://coolify.io/docs/knowledge-base/docker/custom-commands'>документацію.</a>"
+                                    helper="Ви можете додати власні опції запуску Docker, які будуть використані при запуску вашого контейнера.<br>Примітка: Не всі опції підтримуються, оскільки вони можуть порушити автоматизацію AutoDeploy та спричинити неприємності для користувачів.<br><br>Перегляньте <a class='underline dark:text-white' href='https://AutoDeploy.io/docs/knowledge-base/docker/custom-commands'>документацію.</a>"
                                     placeholder="--cap-add SYS_ADMIN --device=/dev/fuse --security-opt apparmor:unconfined --ulimit nofile=1024:1024 --tmpfs /run:rw,noexec,nosuid,size=65536k --hostname=myapp"
                                     id="custom_docker_run_options" label="Власні опції Docker"
                                     x-bind:disabled="!canUpdate" />
@@ -323,7 +323,7 @@
                                 @if ($application->build_pack !== 'dockercompose')
                                     <div class="pt-2 w-96">
                                         <x-forms.checkbox
-                                            helper="Використовуйте сервер збірки для створення вашої програми. Ви можете налаштувати сервер збірки в налаштуваннях сервера. Для отримання додаткової інформації перегляньте <a href='https://coolify.io/docs/knowledge-base/server/build-server' class='underline' target='_blank'>документацію</a>."
+                                            helper="Використовуйте сервер збірки для створення вашої програми. Ви можете налаштувати сервер збірки в налаштуваннях сервера. Для отримання додаткової інформації перегляньте <a href='https://AutoDeploy.io/docs/knowledge-base/server/build-server' class='underline' target='_blank'>документацію</a>."
                                             instantSave id="is_build_server_enabled"
                                             label="Використовувати сервер збірки?" x-bind:disabled="!canUpdate" />
                                     </div>
@@ -363,7 +363,7 @@
                         id="is_container_label_escape_enabled" instantSave
                         x-bind:disabled="!canUpdate"></x-forms.checkbox>
                     {{-- <x-forms.checkbox label="Readonly labels"
-                        helper="Labels are readonly by default. Readonly means that edits you do to the labels could be lost and Coolify will autogenerate the labels for you. If you want to edit the labels directly, disable this option. <br><br>Be careful, it could break the proxy configuration after you restart the container as Coolify will now NOT autogenerate the labels for you (ofc you can always reset the labels to the coolify defaults manually)."
+                        helper="Labels are readonly by default. Readonly means that edits you do to the labels could be lost and AutoDeploy will autogenerate the labels for you. If you want to edit the labels directly, disable this option. <br><br>Be careful, it could break the proxy configuration after you restart the container as AutoDeploy will now NOT autogenerate the labels for you (ofc you can always reset the labels to the AutoDeploy defaults manually)."
                         id="is_container_label_readonly_enabled" instantSave></x-forms.checkbox> --}}
                 </div>
             @endif
@@ -428,7 +428,7 @@
                 @endif
                 <div class="w-96">
                     <x-forms.checkbox label="Мітки тільки для читання"
-                        helper="Мітки за замовчуванням доступні лише для читання. Режим 'лише для читання' означає, що внесені вами зміни до міток можуть бути втрачені, і Coolify автоматично згенерує мітки для вас. Якщо ви хочете редагувати мітки безпосередньо, вимкніть цю опцію. <br><br>Будьте обережні, це може порушити конфігурацію проксі після перезапуску контейнера, оскільки Coolify тепер НЕ буде автоматично генерувати мітки для вас (звісно, ви завжди можете скинути мітки до стандартних налаштувань Coolify вручну)."
+                        helper="Мітки за замовчуванням доступні лише для читання. Режим 'лише для читання' означає, що внесені вами зміни до міток можуть бути втрачені, і AutoDeploy автоматично згенерує мітки для вас. Якщо ви хочете редагувати мітки безпосередньо, вимкніть цю опцію. <br><br>Будьте обережні, це може порушити конфігурацію проксі після перезапуску контейнера, оскільки AutoDeploy тепер НЕ буде автоматично генерувати мітки для вас (звісно, ви завжди можете скинути мітки до стандартних налаштувань AutoDeploy вручну)."
                         id="is_container_label_readonly_enabled" instantSave
                         x-bind:disabled="!canUpdate"></x-forms.checkbox>
                     <x-forms.checkbox label="Екранувати спеціальні символи в мітках?"
@@ -437,11 +437,11 @@
                         x-bind:disabled="!canUpdate"></x-forms.checkbox>
                 </div>
                 @can('update', $application)
-                    <x-modal-confirmation title="Підтвердити скидання міток до стандартних налаштувань Coolify?"
+                    <x-modal-confirmation title="Підтвердити скидання міток до стандартних налаштувань AutoDeploy?"
                         buttonTitle="Скинути мітки до стандартних" buttonFullWidth submitAction="resetDefaultLabels(true)"
                         :actions="[
                             'Усі ваші власні мітки проксі буде втрачено.',
-                            'Мітки проксі (traefik, caddy тощо) буде скинуто до стандартних налаштувань Coolify.',
+                            'Мітки проксі (traefik, caddy тощо) буде скинуто до стандартних налаштувань AutoDeploy.',
                         ]" confirmationText="{{ $application->fqdn . '/' }}"
                         confirmationLabel="Будь ласка, підтвердьте виконання дій, ввівши URL програми нижче"
                         shortConfirmationLabel="URL програми" :confirmWithPassword="false"

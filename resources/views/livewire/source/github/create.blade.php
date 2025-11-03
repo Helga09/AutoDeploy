@@ -12,12 +12,12 @@
             <div x-data="{ showWarning: @entangle('is_system_wide') }">
                 <div class="w-48">
                     <x-forms.checkbox id="is_system_wide" label="Загальносистемний"
-                        helper="Якщо встановлено, цей додаток GitHub буде доступний для всіх користувачів цього екземпляра Coolify." />
+                        helper="Якщо встановлено, цей додаток GitHub буде доступний для всіх користувачів цього екземпляра AutoDeploy." />
                 </div>
                 <div x-show="showWarning" x-transition x-cloak class="w-full max-w-2xl mx-auto pt-2">
                     <x-callout type="warning" title="Не рекомендовано">
                         <div class="whitespace-normal break-words">
-                            Загальносистемні додатки GitHub надаються всім командам цього екземпляра Coolify. Це означає, що будь-яка команда
+                            Загальносистемні додатки GitHub надаються всім командам цього екземпляра AutoDeploy. Це означає, що будь-яка команда
                             може використовувати цей додаток GitHub для розгортання програм з ваших репозиторіїв. Для кращої безпеки та
                             ізоляції рекомендується створювати додатки GitHub для конкретних команд.
                         </div>

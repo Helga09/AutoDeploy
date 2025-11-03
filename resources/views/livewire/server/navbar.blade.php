@@ -119,7 +119,7 @@
                             <x-modal-confirmation title="Підтвердити перезапуск проксі?" buttonTitle="Перезапустити проксі"
                                 submitAction="restart" :actions="[
                                     'Цей проксі буде зупинено та знову запущено.',
-                                    'Усі ресурси, розміщені на coolify, будуть недоступні під час перезапуску.',
+                                    'Усі ресурси, розміщені на AutoDeploy, будуть недоступні під час перезапуску.',
                                 ]" :confirmWithText="false" :confirmWithPassword="false"
                                 step2ButtonText="Перезапустити проксі" :dispatchEvent="true" dispatchEventType="restartEvent">
                                 <x-slot:button-title>
@@ -137,8 +137,8 @@
                             </x-modal-confirmation>
                             <x-modal-confirmation title="Підтвердити зупинку проксі?" buttonTitle="Зупинити проксі"
                                 submitAction="stop(true)" :actions="[
-                                    'Проксі coolify буде зупинено.',
-                                    'Усі ресурси, розміщені на coolify, будуть недоступні.',
+                                    'Проксі AutoDeploy буде зупинено.',
+                                    'Усі ресурси, розміщені на AutoDeploy, будуть недоступні.',
                                 ]" :confirmWithText="false" :confirmWithPassword="false"
                                 step2ButtonText="Зупинити проксі" :dispatchEvent="true" dispatchEventType="stopEvent">
                                 <x-slot:button-title>

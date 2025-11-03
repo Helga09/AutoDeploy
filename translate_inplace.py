@@ -8,14 +8,11 @@ import google.generativeai as genai
 # --- 1. ГОЛОВНІ НАЛАШТУВАННЯ ---
 
 # Вставте ваш API-ключ тут
-GEMINI_API_KEY = "AIzaSyD3_a-rE6wn_m2vjIFThbfOSPM0XDgE_9c"
+GEMINI_API_KEY = "AIzaSyBo_ef7xvWhXabVbgUu3j84XPDkwU0Xv8Y"
 MODEL_NAME = 'gemini-2.5-flash'
 # Папки, які потрібно рекурсивно сканувати
 PROJECT_DIRS = [
-    '/home/roman/coolify/resources/views/server',
-    '/home/roman/coolify/resources/views/source',
-    '/home/roman/coolify/resources/views/vendor'
-    # '/home/roman/coolify/resources/views/vendor'
+    '/home/roman/coolify/resources/views'
 ]
 
 # Файли з якими розширеннями обробляти

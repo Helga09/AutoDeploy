@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        {{ data_get_str($database, 'name')->limit(10) }} > Резервна копія | Coolify
+        {{ data_get_str($database, 'name')->limit(10) }} > Резервна копія | AutoDeploy
     </x-slot>
     <h1>Резервні копії</h1>
     <livewire:project.shared.configuration-checker :resource="$database" />

@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Розширені Налаштування | Coolify
+        Розширені Налаштування | AutoDeploy
         </x-slot>
         <x-settings.navbar />
         <div x-data="{ activeTab: window.location.hash ? window.location.hash.substring(1) : 'general' }"
@@ -13,7 +13,7 @@
                         Зберегти
                     </x-forms.button>
                 </div>
-                <div class="pb-4">Розширені налаштування для вашого екземпляра Coolify.</div>
+                <div class="pb-4">Розширені налаштування для вашого екземпляра AutoDeploy.</div>
 
                 <div class="flex flex-col gap-1">
                     <div class="md:w-96">
@@ -23,13 +23,13 @@
                     </div>
                     <div class="md:w-96">
                         <x-forms.checkbox instantSave id="do_not_track"
-                            helper="Якщо увімкнено, Coolify не буде відстежувати жодних даних. Це корисно, якщо ви стурбовані конфіденційністю."
+                            helper="Якщо увімкнено, AutoDeploy не буде відстежувати жодних даних. Це корисно, якщо ви стурбовані конфіденційністю."
                             label="Не Відстежувати" />
                     </div>
                     <h4 class="pt-4">Налаштування DNS</h4>
                     <div class="md:w-96">
                         <x-forms.checkbox instantSave id="is_dns_validation_enabled"
-                            helper="Якщо ви встановлюєте власний домен, Coolify перевірятиме його у вашому DNS-провайдері."
+                            helper="Якщо ви встановлюєте власний домен, AutoDeploy перевірятиме його у вашому DNS-провайдері."
                             label="Валідація DNS" />
                     </div>
 

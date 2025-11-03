@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Налаштування | Coolify
+        Налаштування | AutoDeploy
     </x-slot>
     <x-settings.navbar />
     <div class="flex flex-col">
@@ -12,7 +12,7 @@
                 </x-forms.button>
             @endif
         </div>
-        <div class="pb-4">Конфігурація резервного копіювання для інстансу Coolify.</div>
+        <div class="pb-4">Конфігурація резервного копіювання для інстансу AutoDeploy.</div>
         <div>
             @if ($server->isFunctional())
                 @if (isset($database) && isset($backup))
@@ -32,8 +32,8 @@
                         <livewire:project.database.backup-executions :backup="$backup" />
                     </div>
                 @else
-                    Щоб налаштувати автоматичне резервне копіювання для вашого інстансу Coolify, спочатку потрібно додати ресурс бази даних до Coolify.
-                    <x-forms.button class="mt-2" wire:click="addCoolifyDatabase">Налаштувати резервне копіювання</x-forms.button>
+                    Щоб налаштувати автоматичне резервне копіювання для вашого інстансу AutoDeploy, спочатку потрібно додати ресурс бази даних до AutoDeploy.
+                    <x-forms.button class="mt-2" wire:click="addAutoDeployDatabase">Налаштувати резервне копіювання</x-forms.button>
                 @endif
             @else
                 <div class="p-6 bg-red-500/10 rounded-lg border border-red-500/20">

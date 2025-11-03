@@ -23,10 +23,10 @@
                         class='underline dark:text-white'>Консолі {{ ucfirst($provider) }}</a> → виберіть Проект → Безпека → API Токени.
                     @if ($provider === 'hetzner')
                         <br><br>
-                        Немає облікового запису Hetzner? <a href='https://coolify.io/hetzner' target='_blank'
+                        Немає облікового запису Hetzner? <a href='https://AutoDeploy.io/hetzner' target='_blank'
                             class='underline dark:text-white'>Зареєструйтесь тут</a>
                         <br>
-                        <span class="text-xs">(Партнерське посилання Coolify, лише для нових облікових записів - підтримує нас (€10)
+                        <span class="text-xs">(Партнерське посилання AutoDeploy, лише для нових облікових записів - підтримує нас (€10)
                         і дає вам €20)</span>
                     @endif
                 </div>
@@ -55,10 +55,10 @@
                             class='underline dark:text-white'>Консолі Hetzner</a> → виберіть Проект → Безпека → API
                         Токени.
                         <br><br>
-                        Немає облікового запису Hetzner? <a href='https://coolify.io/hetzner' target='_blank'
+                        Немає облікового запису Hetzner? <a href='https://AutoDeploy.io/hetzner' target='_blank'
                             class='underline dark:text-white'>Зареєструйтесь тут</a>
                         <br>
-                        <span class="text-xs">(Партнерське посилання Coolify, лише для нових облікових записів - підтримує нас (€10)
+                        <span class="text-xs">(Партнерське посилання AutoDeploy, лише для нових облікових записів - підтримує нас (€10)
                         і дає вам €20)</span>
                     </div>
                 @endif

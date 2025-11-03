@@ -37,7 +37,7 @@
         <div class="p-4 rounded-sm bg-coolgray-400">
             <h2 id="tier-hobby" class="flex items-start gap-4 text-4xl font-bold tracking-tight">Необмежений пробний період
                 <x-forms.button><a class="font-bold dark:text-white hover:no-underline"
-                        href="https://github.com/coollabsio/coolify">Почати</a></x-forms.button>
+                        href="https://github.com/coollabsio/AutoDeploy">Почати</a></x-forms.button>
             </h2>
             <p class="mt-4 text-sm leading-6">Почніть самостійний хостинг <span class="dark:text-warning">без обмежень</span>
                 з нашою
@@ -46,7 +46,7 @@
 
         <div class="flow-root mt-12">
             <div class="pb-10 text-xl text-center">Для детального списку функцій відвідайте нашу цільову сторінку: <a
-                    class="font-bold underline dark:text-white" href="https://coolify.io">coolify.io</a></div>
+                    class="font-bold underline dark:text-white" href="https://AutoDeploy.io">AutoDeploy.io</a></div>
             <div
                 class="grid max-w-sm grid-cols-1 -mt-16 divide-y divide-neutral-200 dark:divide-coolgray-500 isolate gap-y-16 sm:mx-auto lg:-mx-8 lg:mt-0 lg:max-w-none lg:grid-cols-3 lg:divide-x lg:divide-y-0 xl:-mx-4">
 

@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Змінні середовища | Coolify
+        Змінні середовища | AutoDeploy
     </x-slot>
     <div class="flex gap-2">
         <h1>Середовища</h1>

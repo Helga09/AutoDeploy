@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Проєкти | Coolify
+        Проєкти | AutoDeploy
     </x-slot>
     <div class="flex gap-2">
         <h1>Проєкти</h1>

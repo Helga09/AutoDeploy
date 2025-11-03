@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Сповіщення | Coolify
+        Сповіщення | AutoDeploy
     </x-slot>
     <x-notification.navbar />
     <form wire:submit='submit' class="flex flex-col gap-4 pb-4">
@@ -29,7 +29,7 @@
         <div class="flex items-end gap-2">
 
             <x-forms.input canGate="update" :canResource="$settings" type="password"
-                helper="Введіть дійсний URL-адресу HTTP або HTTPS. Coolify надсилатиме POST-запити на цю кінцеву точку при виникненні подій."
+                helper="Введіть дійсний URL-адресу HTTP або HTTPS. AutoDeploy надсилатиме POST-запити на цю кінцеву точку при виникненні подій."
                 required id="webhookUrl" label="URL вебхука (POST)" />
         </div>
     </form>

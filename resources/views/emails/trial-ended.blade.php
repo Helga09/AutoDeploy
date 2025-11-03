@@ -1,5 +1,5 @@
 <x-emails.layout>
 Ваш пробний період закінчився. Усі автоматизації та інтеграції вимкнено для всіх ваших серверів.
 
-Будь ласка, оновіть платіжні дані [тут]({{ $stripeCustomerPortal }}) або в [Coolify Cloud](https://app.coolify.io), щоб продовжити користуватися нашими послугами.
+Будь ласка, оновіть платіжні дані [тут]({{ $stripeCustomerPortal }}) або в [AutoDeploy Cloud](https://app.AutoDeploy.io), щоб продовжити користуватися нашими послугами.
 </x-emails.layout>

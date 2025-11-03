@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Призначення | Coolify
+        Призначення | AutoDeploy
     </x-slot>
     <div class="flex items-center gap-2">
         <h1>Призначення</h1>

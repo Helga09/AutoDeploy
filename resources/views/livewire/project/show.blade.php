@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        {{ data_get_str($project, 'name')->limit(10) }} > Середовища | Coolify
+        {{ data_get_str($project, 'name')->limit(10) }} > Середовища | AutoDeploy
     </x-slot>
     <div class="flex items-center gap-2">
         <h1>Середовища</h1>

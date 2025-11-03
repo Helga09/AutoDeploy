@@ -10,7 +10,7 @@
                             @can('update', $server)
                                 <x-modal-confirmation title="Підтвердити перемикання проксі?" buttonTitle="Перемкнути проксі"
                                     submitAction="changeProxy" :actions="['Користувацькі конфігурації проксі можуть бути скинуті до налаштувань за замовчуванням.']"
-                                    warningMessage="Ця операція може спричинити проблеми. Будь ласка, зверніться до посібника <a href='https://coolify.io/docs/knowledge-base/server/proxies#switch-between-proxies' target='_blank' class='underline text-white'>перемикання між проксі</a> перед продовженням!"
+                                    warningMessage="Ця операція може спричинити проблеми. Будь ласка, зверніться до посібника <a href='https://AutoDeploy.io/docs/knowledge-base/server/proxies#switch-between-proxies' target='_blank' class='underline text-white'>перемикання між проксі</a> перед продовженням!"
                                     step2ButtonText="Перемкнути проксі" :confirmWithText="false" :confirmWithPassword="false">
                                 </x-modal-confirmation>
                             @endcan
@@ -32,15 +32,15 @@
                             id="redirectEnabled" label="Перевизначити обробник запитів за замовчуванням"
                             helper="Запити до невідомих хостів або зупинених служб отримають відповідь 503 або будуть перенаправлені на URL-адресу, яку ви встановили нижче (потрібно спочатку увімкнути)." />
                         @if ($redirectEnabled)
-                            <x-forms.input canGate="update" :canResource="$server" placeholder="https://app.coolify.io"
+                            <x-forms.input canGate="update" :canResource="$server" placeholder="https://app.AutoDeploy.io"
                                 id="redirectUrl" label="Перенаправити на (необов'язково)" />
                         @endif
                     </div>
                     @php
                         $proxyTitle =
                             $server->proxyType() === ProxyTypes::TRAEFIK->value
-                                ? 'Traefik (Проксі Coolify)'
-                                : 'Caddy (Проксі Coolify)';
+                                ? 'Traefik (Проксі AutoDeploy)'
+                                : 'Caddy (Проксі AutoDeploy)';
                     @endphp
                     @if ($server->proxyType() === ProxyTypes::TRAEFIK->value || $server->proxyType() === 'CADDY')
                         <div class="flex items-center gap-2">

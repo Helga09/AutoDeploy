@@ -1,13 +1,13 @@
 @php use App\Enums\ProxyTypes; @endphp
 <x-slot:title>
-    Налаштування | Coolify
+    Налаштування | AutoDeploy
     </x-slot>
     <section class="w-full">
         <div class="flex flex-col items-center w-full space-y-8">
             @if ($currentState === 'welcome')
                 <div class="w-full max-w-2xl text-center space-y-8">
                     <div class="space-y-4">
-                        <h1 class="text-4xl font-bold lg:text-6xl">Ласкаво просимо до Coolify</h1>
+                        <h1 class="text-4xl font-bold lg:text-6xl">Ласкаво просимо до AutoDeploy</h1>
                         <p class="text-lg lg:text-xl dark:text-neutral-400">
                             Підключіть свій перший сервер та розпочніть розгортання за лічені хвилини
                         </p>
@@ -81,11 +81,11 @@
                 <x-boarding-progress :currentStep="0" />
                 <x-boarding-step title="Огляд платформи">
                     <x-slot:question>
-                        Coolify автоматизує розгортання та керування інфраструктурою на ваших власних серверах. Розгортайте застосунки з Git, керуйте базами даних та моніторте все – без прив'язки до постачальника.
+                        AutoDeploy автоматизує розгортання та керування інфраструктурою на ваших власних серверах. Розгортайте застосунки з Git, керуйте базами даних та моніторте все – без прив'язки до постачальника.
                     </x-slot:question>
                     <x-slot:explanation>
                         <p>
-                            <x-highlighted text="Автоматизація:" /> Coolify автоматично керує конфігурацією сервера, управлінням Docker та розгортанням.
+                            <x-highlighted text="Автоматизація:" /> AutoDeploy автоматично керує конфігурацією сервера, управлінням Docker та розгортанням.
                         </p>
                         <p>
                             <x-highlighted text="Самостійне розміщення:" /> Усі дані та конфігурації зберігаються у вашій інфраструктурі. Працює офлайн, за винятком зовнішніх інтеграцій.
@@ -127,7 +127,7 @@
                                     <div>
                                         <h3 class="text-xl font-bold mb-2">Ця машина</h3>
                                         <p class="text-sm dark:text-neutral-400">
-                                            Розгорнути на сервері, що запускає Coolify. Найкраще для тестування та налаштування одного сервера.
+                                            Розгорнути на сервері, що запускає AutoDeploy. Найкраще для тестування та налаштування одного сервера.
                                         </p>
                                     </div>
                                 </div>
@@ -206,7 +206,7 @@
                                         <p class="text-xs mt-1">
                                             Не-root користувач є експериментальним:
                                             <a class="font-bold underline" target="_blank"
-                                                href="https://coolify.io/docs/knowledge-base/server/non-root-user">документація</a>
+                                                href="https://AutoDeploy.io/docs/knowledge-base/server/non-root-user">документація</a>
                                         </p>
                                     </div>
                                 </div>
@@ -217,13 +217,13 @@
                                         <li>Правильний публічний ключ знаходиться у вашому файлі <code
                                                 class="bg-red-200 dark:bg-red-900 px-1 rounded-sm">~/.ssh/authorized_keys</code>
                                             для зазначеного користувача</li>
-                                        <li>Або пропустіть процес налаштування та вручну додайте новий приватний ключ до Coolify та сервера</li>
+                                        <li>Або пропустіть процес налаштування та вручну додайте новий приватний ключ до AutoDeploy та сервера</li>
                                     </ul>
                                 </div>
 
                                 <p class="mb-4">
                                     Для отримання додаткової допомоги перегляньте цю <a target="_blank" class="underline font-semibold"
-                                        href="https://coolify.io/docs/knowledge-base/server/openssh">документацію</a>.
+                                        href="https://AutoDeploy.io/docs/knowledge-base/server/openssh">документацію</a>.
                                 </p>
 
                                 <x-forms.input readonly id="serverPublicKey" class="mb-4"
@@ -240,7 +240,7 @@
                             <x-highlighted text="Сервери" /> розміщують ваші застосунки, бази даних та сервіси (що разом називаються ресурсами). Усі операції, що вимагають великих обчислювальних ресурсів, виконуються на цільовому сервері.
                         </p>
                         <p>
-                            <x-highlighted text="Локальний хост:" /> Машина, на якій працює Coolify. Не рекомендується для виробничих навантажень через конкуренцію за ресурси.
+                            <x-highlighted text="Локальний хост:" /> Машина, на якій працює AutoDeploy. Не рекомендується для виробничих навантажень через конкуренцію за ресурси.
                         </p>
                         <p>
                             <x-highlighted text="Віддалений сервер:" /> Будь-який SSH-доступний сервер — хмарні провайдери (AWS, Hetzner, DigitalOcean), bare metal або самостійно розміщена інфраструктура.
@@ -323,7 +323,7 @@
                                 class="text-xs bg-coolgray-300 dark:bg-coolgray-400 px-1 py-0.5 rounded">~/.ssh/authorized_keys</code> на вашому сервері.
                         </p>
                         <p>
-                            <x-highlighted text="Генерація ключів:" /> Coolify генерує ключі ED25519 за замовчуванням для оптимальної безпеки та продуктивності.
+                            <x-highlighted text="Генерація ключів:" /> AutoDeploy генерує ключі ED25519 за замовчуванням для оптимальної безпеки та продуктивності.
                         </p>
                     </x-slot:explanation>
                 </x-boarding-step>
@@ -370,7 +370,7 @@
                     </x-slot:actions>
                     <x-slot:explanation>
                         <p>
-                            <x-highlighted text="Зберігання ключів:" /> Приватні ключі зашифровані в базі даних Coolify.
+                            <x-highlighted text="Зберігання ключів:" /> Приватні ключі зашифровані в базі даних AutoDeploy.
                         </p>
                         <p>
                             <x-highlighted text="Розповсюдження публічного ключа:" /> Розгорніть публічний ключ до <code
@@ -425,7 +425,7 @@
                                         <p class="mt-1 text-xs dark:text-white text-black">
                                             Підтримка користувачів без root є експериментальною.
                                             <a class="font-bold underline hover:text-coollabs" target="_blank"
-                                                href="https://coolify.io/docs/knowledge-base/server/non-root-user">Дізнатися більше</a>
+                                                href="https://AutoDeploy.io/docs/knowledge-base/server/non-root-user">Дізнатися більше</a>
                                         </p>
                                     </div>
                                 </div>
@@ -449,7 +449,7 @@
                 <x-boarding-progress :currentStep="2" />
                 <x-boarding-step title="Перевірка сервера">
                     <x-slot:question>
-                        Coolify автоматично встановить Docker {{ $minDockerVersion }}+, якщо його немає.
+                        AutoDeploy автоматично встановить Docker {{ $minDockerVersion }}+, якщо його немає.
                     </x-slot:question>
                     <x-slot:actions>
                         <div class="w-full space-y-6">
@@ -535,7 +535,7 @@
                     </x-slot:actions>
                     <x-slot:explanation>
                         <p>
-                            <x-highlighted text="Автоматичне налаштування:" /> Coolify автоматично встановлює Docker Engine, Docker Compose та налаштовує системні вимоги.
+                            <x-highlighted text="Автоматичне налаштування:" /> AutoDeploy автоматично встановлює Docker Engine, Docker Compose та налаштовує системні вимоги.
                         </p>
                         <p>
                             <x-highlighted text="Вимоги до версії:" /> Потрібна мінімальна версія Docker Engine {{ $minDockerVersion }}.x.

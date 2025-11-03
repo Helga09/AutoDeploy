@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Панель приладів | Coolify
+        Панель приладів | AutoDeploy
     </x-slot>
     @if (session('error'))
         <span x-data x-init="$wire.emit('error', '{{ session('error') }}')" />
@@ -120,7 +120,7 @@
                                     та
                                 @endif
                                 @if (!$server->settings->is_usable)
-                                    Непридатний для використання Coolify
+                                    Непридатний для використання AutoDeploy
                                 @endif
                             </div>
                         </div>

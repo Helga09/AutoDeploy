@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Профіль | Coolify
+        Профіль | AutoDeploy
     </x-slot>
     <h1>Профіль</h1>
     <div class="subtitle -mt-2">Налаштування вашого профілю користувача.</div>

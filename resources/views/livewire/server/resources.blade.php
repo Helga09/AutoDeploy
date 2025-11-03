@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        {{ data_get_str($server, 'name')->limit(10) }} > Ресурси сервера | Coolify
+        {{ data_get_str($server, 'name')->limit(10) }} > Ресурси сервера | AutoDeploy
     </x-slot>
     <livewire:server.navbar :server="$server" />
     <div x-data="{ activeTab: 'managed' }" class="flex flex-col h-full gap-8 md:flex-row">
@@ -10,7 +10,7 @@
                     <h2>Ресурси</h2>
                     <x-forms.button wire:click="refreshStatus">Оновити</x-forms.button>
                 </div>
-                <div>Тут ви можете знайти всі ресурси, якими керує Coolify.</div>
+                <div>Тут ви можете знайти всі ресурси, якими керує AutoDeploy.</div>
                 <div class="flex flex-row gap-4 py-10">
                     <div @class([
                         'box-without-bg cursor-pointer dark:bg-coolgray-100 dark:text-white w-full text-center items-center justify-center',

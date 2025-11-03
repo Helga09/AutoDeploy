@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        {{ data_get_str($service, 'name')->limit(10) }} > Налаштування | Coolify
+        {{ data_get_str($service, 'name')->limit(10) }} > Налаштування | AutoDeploy
     </x-slot>
     <livewire:project.service.heading :service="$service" :parameters="$parameters" :query="$query" />
 

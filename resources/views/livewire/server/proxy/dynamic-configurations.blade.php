@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Динамічна Конфігурація Проксі | Coolify
+        Динамічна Конфігурація Проксі | AutoDeploy
     </x-slot>
     <livewire:server.navbar :server="$server" />
     <div class="flex flex-col h-full gap-8 sm:flex-row">
@@ -28,9 +28,9 @@
                     @if ($contents?->isNotEmpty())
                         @foreach ($contents as $fileName => $value)
                             <div class="flex flex-col gap-2 py-2">
-                                @if (str_replace('|', '.', $fileName) === 'coolify.yaml' ||
+                                @if (str_replace('|', '.', $fileName) === 'AutoDeploy.yaml' ||
                                         str_replace('|', '.', $fileName) === 'Caddyfile' ||
-                                        str_replace('|', '.', $fileName) === 'coolify.caddy' ||
+                                        str_replace('|', '.', $fileName) === 'AutoDeploy.caddy' ||
                                         str_replace('|', '.', $fileName) === 'default_redirect_503.yaml' ||
                                         str_replace('|', '.', $fileName) === 'default_redirect_503.caddy')
                                     <div>

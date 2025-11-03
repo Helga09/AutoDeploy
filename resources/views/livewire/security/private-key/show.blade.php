@@ -1,6 +1,6 @@
 <div x-init="$wire.loadPublicKey()">
     <x-slot:title>
-        Приватний ключ | Coolify
+        Приватний ключ | AutoDeploy
     </x-slot>
     <x-security.navbar />
     <div x-data="{ showPrivateKey: false }">

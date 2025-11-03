@@ -14,7 +14,7 @@
             </div>
             <div>
                 Для прикладів розгортання застосунків, перегляньте <a class="underline dark:text-white"
-                    href="https://github.com/coollabsio/coolify-examples/" target="_blank">Приклади Coolify</a>.
+                    href="https://github.com/coollabsio/AutoDeploy-examples/" target="_blank">Приклади AutoDeploy</a>.
             </div>
         </div>
     </form>

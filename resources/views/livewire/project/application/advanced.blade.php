@@ -46,7 +46,7 @@
             @if ($application->build_pack === 'dockercompose')
                 <h3>Docker Compose</h3>
                 <x-forms.checkbox instantSave id="isRawComposeDeploymentEnabled" label="Розгортання Raw Compose"
-                    helper="УВАГА: Лише для просунутих випадків використання. Ваш файл docker-compose буде розгорнуто як є. Coolify нічого не змінює. Вам потрібно налаштувати частини проксі. Більше інформації в <a class='underline dark:text-white' href='https://coolify.io/docs/knowledge-base/docker/compose#raw-docker-compose-deployment'>документації.</a>"
+                    helper="УВАГА: Лише для просунутих випадків використання. Ваш файл docker-compose буде розгорнуто як є. AutoDeploy нічого не змінює. Вам потрібно налаштувати частини проксі. Більше інформації в <a class='underline dark:text-white' href='https://AutoDeploy.io/docs/knowledge-base/docker/compose#raw-docker-compose-deployment'>документації.</a>"
                     canGate="update" :canResource="$application" />
             @endif
             <h3 class="pt-4">Імена контейнерів</h3>
@@ -66,7 +66,7 @@
             @if ($application->build_pack === 'dockercompose')
                 <h3 class="pt-4">Мережа</h3>
                 <x-forms.checkbox instantSave id="isConnectToDockerNetworkEnabled" label="Підключити до визначеної мережі"
-                    helper="За замовчуванням, ви не матимете доступу до мереж, визначених Coolify.<br>Запуск ресурсу на основі docker-compose матиме внутрішню мережу. <br>Якщо ви підключаєтеся до мережі, визначеної Coolify, можливо, вам знадобиться використовувати різні внутрішні DNS-імена для підключення до ресурсу.<br><br>Для отримання додаткової інформації перегляньте <a class='underline dark:text-white' target='_blank' href='https://coolify.io/docs/knowledge-base/docker/compose#connect-to-predefined-networks'>це</a>."
+                    helper="За замовчуванням, ви не матимете доступу до мереж, визначених AutoDeploy.<br>Запуск ресурсу на основі docker-compose матиме внутрішню мережу. <br>Якщо ви підключаєтеся до мережі, визначеної AutoDeploy, можливо, вам знадобиться використовувати різні внутрішні DNS-імена для підключення до ресурсу.<br><br>Для отримання додаткової інформації перегляньте <a class='underline dark:text-white' target='_blank' href='https://AutoDeploy.io/docs/knowledge-base/docker/compose#connect-to-predefined-networks'>це</a>."
                     canGate="update" :canResource="$application" />
             @endif
             <h3 class="pt-4">Журнали</h3>

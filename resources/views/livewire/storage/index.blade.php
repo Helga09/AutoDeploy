@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Сховища | Coolify
+        Сховища | AutoDeploy
     </x-slot>
     <div class="flex items-center gap-2">
         <h1>S3 Сховища</h1>

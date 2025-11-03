@@ -1,4 +1,4 @@
-<div wire:key="{{ rand() }}" class="coolify-monaco-editor flex-1">
+<div wire:key="{{ rand() }}" class="AutoDeploy-monaco-editor flex-1">
     <div x-ref="monacoRef" x-data="{
         monacoVersion: '0.52.2',
         monacoContent: @entangle($id),
@@ -31,21 +31,21 @@
         },
         monacoEditorAddLoaderScriptToHead() {
             // Use a global flag to prevent duplicate script loading
-            if (!window.__coolifyMonacoLoaderAdding && typeof _amdLoaderGlobal === 'undefined') {
-                window.__coolifyMonacoLoaderAdding = true;
+            if (!window.__AutoDeployMonacoLoaderAdding && typeof _amdLoaderGlobal === 'undefined') {
+                window.__AutoDeployMonacoLoaderAdding = true;
                 let script = document.createElement('script');
                 script.src = `/js/monaco-editor-${this.monacoVersion}/min/vs/loader.js`;
                 script.onload = () => {
-                    window.__coolifyMonacoLoaderAdding = false;
+                    window.__AutoDeployMonacoLoaderAdding = false;
                 };
                 script.onerror = () => {
-                    window.__coolifyMonacoLoaderAdding = false;
+                    window.__AutoDeployMonacoLoaderAdding = false;
                 };
                 document.head.appendChild(script);
             }
         }
     }" x-modelable="monacoContent">
-        <div x-cloak x-init="if (typeof _amdLoaderGlobal == 'undefined' && !window.__coolifyMonacoLoaderAdding) {
+        <div x-cloak x-init="if (typeof _amdLoaderGlobal == 'undefined' && !window.__AutoDeployMonacoLoaderAdding) {
             monacoEditorAddLoaderScriptToHead();
         }
         checkTheme();

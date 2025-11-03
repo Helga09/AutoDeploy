@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Команди | Coolify
+        Команди | AutoDeploy
     </x-slot>
     <x-team.navbar />
 
@@ -37,7 +37,7 @@
                 @if (currentTeam()->isEmpty())
                     <div class="pb-4">Це призведе до видалення вашої команди. Будьте обережні! Повернення немає!</div>
                     <x-modal-confirmation title="Підтвердити видалення команди?" buttonTitle="Видалити" isErrorButton
-                        submitAction="delete({{ currentTeam()->id }})" :actions="['Поточна команда буде безповоротно видалена з Coolify та бази даних.']"
+                        submitAction="delete({{ currentTeam()->id }})" :actions="['Поточна команда буде безповоротно видалена з AutoDeploy та бази даних.']"
                         confirmationText="{{ currentTeam()->name }}"
                         confirmationLabel="Будь ласка, підтвердіть виконання дій, ввівши назву команди нижче"
                         shortConfirmationLabel="Назва команди" :confirmWithPassword="false" step2ButtonText="Видалити безповоротно" />

@@ -136,7 +136,7 @@
                     </div>
                     <div>
                         <x-forms.datalist label="Додаткові SSH ключі (з Hetzner)" id="selectedHetznerSshKeyIds"
-                            helper="Виберіть існуючі ключі SSH з вашого облікового запису Hetzner, щоб додати їх до цього сервера. Ключ Coolify SSH буде додано автоматично."
+                            helper="Виберіть існуючі ключі SSH з вашого облікового запису Hetzner, щоб додати їх до цього сервера. Ключ AutoDeploy SSH буде додано автоматично."
                             :multiple="true" :disabled="count($hetznerSshKeys) === 0" :placeholder="count($hetznerSshKeys) > 0
                                 ? 'Шукайте та виберіть ключі SSH...'
                                 : 'Ключі SSH не знайдено в обліковому записі Hetzner'">

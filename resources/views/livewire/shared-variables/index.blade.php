@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Спільні змінні | Coolify
+        Спільні змінні | AutoDeploy
     </x-slot>
     <div class="flex items-start gap-2">
         <h1>Спільні змінні</h1>

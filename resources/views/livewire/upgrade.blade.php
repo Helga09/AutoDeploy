@@ -61,10 +61,10 @@
                             </x-callout>
                             <br />
                             <p>Ви можете переглянути зміни <a class="font-bold underline dark:text-white"
-                                    href="https://github.com/coollabsio/coolify/releases" target="_blank">тут</a>.</p>
+                                    href="https://github.com/coollabsio/AutoDeploy/releases" target="_blank">тут</a>.</p>
                             <br />
                             <p>Якщо щось піде не так, і ви не зможете оновити свій екземпляр, ви можете переглянути наступний
-                                <a class="font-bold underline dark:text-white" href="https://coolify.io/docs/upgrade"
+                                <a class="font-bold underline dark:text-white" href="https://AutoDeploy.io/docs/upgrade"
                                     target="_blank">посібник</a> що робити.
                             </p>
                             <div class="flex flex-col pt-4" x-show="showProgress">
@@ -110,7 +110,7 @@
                         .then(response => {
                             if (response.ok) {
                                 this.currentStatus =
-                                    'Coolify знову в мережі. Перезавантаження цієї сторінки (ви можете перезавантажити вручну, якщо це не відбудеться автоматично)...';
+                                    'AutoDeploy знову в мережі. Перезавантаження цієї сторінки (ви можете перезавантажити вручну, якщо це не відбудеться автоматично)...';
                                 if (checkHealthInterval) clearInterval(
                                     checkHealthInterval);
                                 setTimeout(() => {
@@ -118,14 +118,14 @@
                                 }, 5000)
                             } else {
                                 this.currentStatus =
-                                    "Очікування, поки Coolify повернеться з того світу..."
+                                    "Очікування, поки AutoDeploy повернеться з того світу..."
                             }
                         })
                 }, 2000);
             },
             upgrade() {
                 if (checkIfIamDeadInterval || this.$wire.showProgress) return true;
-                this.currentStatus = 'Завантаження нових образів та оновлення Coolify.';
+                this.currentStatus = 'Завантаження нових образів та оновлення AutoDeploy.';
                 checkIfIamDeadInterval = setInterval(() => {
                     fetch('/api/health')
                         .then(response => {
@@ -133,7 +133,7 @@
                                 this.currentStatus = "Очікування процесу оновлення..."
                             } else {
                                 this.currentStatus =
-                                    "Оновлення завершено, перезапуск Coolify та очікування, поки він відновиться!"
+                                    "Оновлення завершено, перезапуск AutoDeploy та очікування, поки він відновиться!"
                                 if (checkIfIamDeadInterval) clearInterval(
                                     checkIfIamDeadInterval);
                                 this.revive();

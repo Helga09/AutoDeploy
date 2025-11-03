@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        {{ data_get_str($resource, 'name')->limit(10) }} > Заплановані завдання | Coolify
+        {{ data_get_str($resource, 'name')->limit(10) }} > Заплановані завдання | AutoDeploy
     </x-slot>
     @if ($type === 'application')
         <h1>Заплановане завдання</h1>

@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Підписка | Coolify
+        Підписка | AutoDeploy
     </x-slot>
     @if (auth()->user()->isAdminFromSession())
         @if (request()->query->get('cancelled'))
@@ -24,7 +24,7 @@
         @else
             @if ($isUnpaid)
                 <div class="mb-6 rounded-sm alert-error">
-                    <span>Ваш останній платіж для Coolify Cloud не вдався.</span>
+                    <span>Ваш останній платіж для AutoDeploy Cloud не вдався.</span>
                 </div>
                 <div>
                     <p class="mb-2">Відкрийте наступне посилання, перейдіть до кнопки та сплатіть свою
@@ -42,7 +42,7 @@
                             <div class="alert-error">
                                 <span>Схоже, вашу попередню підписку було скасовано, оскільки ви забули сплатити
                                     рахунки.<br />Будь ласка, підпишіться знову, щоб продовжувати користуватися
-                                    Coolify.</span>
+                                    AutoDeploy.</span>
                             </div>
                         @endif
                     </div>

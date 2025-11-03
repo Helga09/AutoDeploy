@@ -31,13 +31,13 @@
             <div class="flex gap-2">
                 @if (!$application->serviceType()?->contains(str($application->image)->before(':')))
                     @if ($application->required_fqdn)
-                        <x-forms.input canGate="update" :canResource="$application" required placeholder="https://app.coolify.io"
+                        <x-forms.input canGate="update" :canResource="$application" required placeholder="https://app.AutoDeploy.io"
                             label="Домени" id="fqdn"
-                            helper="Ви можете вказати один домен зі шляхом або кілька через кому. Ви можете вказати порт для прив'язки домену.<br><br><span class='text-helper'>Приклад</span><br>- http://app.coolify.io,https://cloud.coolify.io/dashboard<br>- http://app.coolify.io/api/v3<br>- http://app.coolify.io:3000 -> app.coolify.io буде вказувати на порт 3000 всередині контейнера. "></x-forms.input>
+                            helper="Ви можете вказати один домен зі шляхом або кілька через кому. Ви можете вказати порт для прив'язки домену.<br><br><span class='text-helper'>Приклад</span><br>- http://app.AutoDeploy.io,https://cloud.AutoDeploy.io/dashboard<br>- http://app.AutoDeploy.io/api/v3<br>- http://app.AutoDeploy.io:3000 -> app.AutoDeploy.io буде вказувати на порт 3000 всередині контейнера. "></x-forms.input>
                     @else
-                        <x-forms.input canGate="update" :canResource="$application" placeholder="https://app.coolify.io"
+                        <x-forms.input canGate="update" :canResource="$application" placeholder="https://app.AutoDeploy.io"
                             label="Домени" id="fqdn"
-                            helper="Ви можете вказати один домен зі шляхом або кілька через кому. Ви можете вказати порт для прив'язки домену.<br><br><span class='text-helper'>Приклад</span><br>- http://app.coolify.io,https://cloud.coolify.io/dashboard<br>- http://app.coolify.io/api/v3<br>- http://app.coolify.io:3000 -> app.coolify.io буде вказувати на порт 3000 всередині контейнера. "></x-forms.input>
+                            helper="Ви можете вказати один домен зі шляхом або кілька через кому. Ви можете вказати порт для прив'язки домену.<br><br><span class='text-helper'>Приклад</span><br>- http://app.AutoDeploy.io,https://cloud.AutoDeploy.io/dashboard<br>- http://app.AutoDeploy.io/api/v3<br>- http://app.AutoDeploy.io:3000 -> app.AutoDeploy.io буде вказувати на порт 3000 всередині контейнера. "></x-forms.input>
                     @endif
                 @endif
                 <x-forms.input canGate="update" :canResource="$application"

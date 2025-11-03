@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        {{ data_get_str($server, 'name')->limit(10) }} > Додатково | Coolify
+        {{ data_get_str($server, 'name')->limit(10) }} > Додатково | AutoDeploy
     </x-slot>
     <livewire:server.navbar :server="$server" />
     <div x-data="{ activeTab: window.location.hash ? window.location.hash.substring(1) : 'general' }" class="flex flex-col h-full gap-8 sm:flex-row">
@@ -23,7 +23,7 @@
                             helper="Cron-вираз для частоти перевірки використання диска.<br>Ви можете використовувати every_minute, hourly, daily, weekly, monthly, yearly.<br><br>За замовчуванням: щоночі о 23:00." />
                         <x-forms.input canGate="update" :canResource="$server" id="serverDiskUsageNotificationThreshold"
                             label="Поріг сповіщення про використання диска сервера (%)" required
-                            helper="Якщо використання диска сервера перевищить цей поріг, Coolify надішле сповіщення членам команди." />
+                            helper="Якщо використання диска сервера перевищить цей поріг, AutoDeploy надішле сповіщення членам команди." />
                     </div>
                 </div>
 

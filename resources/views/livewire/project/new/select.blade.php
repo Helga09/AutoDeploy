@@ -128,7 +128,7 @@
                         відповідним
                         компаніям, і їх використання не передбачає будь-якої приналежності або схвалення.<br>Знайдіть більше сервісів
                         <a class="dark:text-white underline" target="_blank"
-                            href="https://coolify.io/docs/services/overview">тут</a>.
+                            href="https://AutoDeploy.io/docs/services/overview">тут</a>.
                     </div>
 
                     <div class="grid justify-start grid-cols-1 gap-4 text-left xl:grid-cols-2">
@@ -152,7 +152,7 @@
                                                         :src='service.logo'
                                                         x-on:error.window="$event.target.src = service.logo_github_url"
                                                         onerror="this.onerror=null; this.src=this.getAttribute('data-fallback');"
-                                                        x-on:error="$event.target.src = '/coolify-logo.svg'"
+                                                        x-on:error="$event.target.src = '/AutoDeploy-logo.svg'"
                                                         :data-fallback='service.logo_github_url' />
                                                 </template>
                                             </x-slot:logo>
@@ -319,7 +319,7 @@
         <h2>Виберіть призначення</h2>
         <div class="pb-4">Призначення використовуються для відокремлення ресурсів за мережею. Якщо ви не впевнені, виберіть
             стандартний
-            Standalone Docker (coolify).</div>
+            Standalone Docker (AutoDeploy).</div>
         <div class="flex flex-col justify-center gap-4 text-left xl:flex-row xl:flex-wrap">
             @if ($server->isSwarm())
                 @foreach ($swarmDockers as $swarmDocker)

@@ -66,12 +66,12 @@
                         <div class="flex flex-col text-sm dark:text-white">
                             <div>
                                 Вам потрібно використовувати власні сервери від будь-якого хмарного провайдера (наприклад, <a class="underline"
-                                    href="https://coolify.io/hetzner" target="_blank">Hetzner</a>, DigitalOcean, AWS тощо)
+                                    href="https://AutoDeploy.io/hetzner" target="_blank">Hetzner</a>, DigitalOcean, AWS тощо)
                             </div>
                             <div>
                                 (Ви можете підключити свій RPi, старий ноутбук або будь-який інший пристрій, який працює на
                                 <a class="underline"
-                                    href="https://coolify.io/docs/installation#supported-operating-systems"
+                                    href="https://AutoDeploy.io/docs/installation#supported-operating-systems"
                                     target="_blank">підтримуваних операційних системах</a>.)
                             </div>
                         </div>
@@ -151,7 +151,7 @@
                             </svg>
 
                             Вам потрібна офіційна підтримка для вашого самостійно розміщеного екземпляра?<a class="underline"
-                                href="https://coolify.io/docs/contact">Зв'яжіться з нами</a>
+                                href="https://AutoDeploy.io/docs/contact">Зв'яжіться з нами</a>
                         </li>
                     </ul>
                 </div>

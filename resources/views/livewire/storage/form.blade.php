@@ -24,7 +24,7 @@
             @can('delete', $storage)
                 <x-modal-confirmation title="Підтвердити видалення сховища?" isErrorButton buttonTitle="Видалити"
                     submitAction="delete({{ $storage->id }})" :actions="[
-                        'Вибране сховище буде остаточно видалено з Coolify.',
+                        'Вибране сховище буде остаточно видалено з AutoDeploy.',
                         'Якщо сховище використовується завданнями резервного копіювання, ці завдання зберігатимуть резервні копії лише локально на сервері.',
                     ]" confirmationText="{{ $storage->name }}"
                     confirmationLabel="Будь ласка, підтвердьте виконання дій, ввівши назву сховища нижче"

@@ -2,11 +2,11 @@
     <div class="flex items-center gap-2">
         <h2>Вебхуки</h2>
         <x-helper
-            helper="Для отримання додаткової інформації перейдіть до нашої <a class='underline dark:text-white' href='https://coolify.io/docs/api/operations/deploy-by-tag-or-uuid' target='_blank'>документації</a>." />
+            helper="Для отримання додаткової інформації перейдіть до нашої <a class='underline dark:text-white' href='https://AutoDeploy.io/docs/api/operations/deploy-by-tag-or-uuid' target='_blank'>документації</a>." />
     </div>
     <div>
         <x-forms.input readonly
-            helper="Дивіться деталі в нашій <a target='_blank' class='underline dark:text-white' href='https://coolify.io/docs/api/operations/deploy-by-tag-or-uuid'>документації</a>."
+            helper="Дивіться деталі в нашій <a target='_blank' class='underline dark:text-white' href='https://AutoDeploy.io/docs/api/operations/deploy-by-tag-or-uuid'>документації</a>."
             label="Вебхук розгортання (потрібна автентифікація)" id="deploywebhook"></x-forms.input>
     </div>
     @if ($resource->type() === 'application')

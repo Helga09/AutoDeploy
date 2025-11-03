@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        {{ data_get_str($application, 'name')->limit(10) }} > Розгортання | Coolify
+        {{ data_get_str($application, 'name')->limit(10) }} > Розгортання | AutoDeploy
     </x-slot>
     <h1 class="py-0">Розгортання</h1>
     <livewire:project.shared.configuration-checker :resource="$application" />

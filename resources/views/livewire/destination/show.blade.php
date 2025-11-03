@@ -4,7 +4,7 @@
             <h1>Призначення</h1>
             <x-forms.button canGate="update" :canResource="$destination" wire:click.prevent='submit'
                 type="submit">Зберегти</x-forms.button>
-            @if ($network !== 'coolify')
+            @if ($network !== 'AutoDeploy')
                 <x-modal-confirmation title="Підтвердити видалення призначення?" buttonTitle="Видалити призначення" isErrorButton
                     submitAction="delete" :actions="['Це видалить вибране призначення/мережу.']" confirmationText="{{ $destination->name }}"
                     confirmationLabel="Будь ласка, підтвердьте виконання дій, ввівши назву призначення нижче"

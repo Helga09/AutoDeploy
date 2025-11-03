@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Транзакційні листи | Coolify
+        Транзакційні листи | AutoDeploy
     </x-slot>
     <x-settings.navbar />
     <form wire:submit='submit' class="flex flex-col gap-2 pb-4">

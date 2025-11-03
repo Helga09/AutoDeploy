@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        {{ data_get_str($server, 'name')->limit(10) }} > Сертифікат CA | Coolify
+        {{ data_get_str($server, 'name')->limit(10) }} > Сертифікат CA | AutoDeploy
     </x-slot>
     <livewire:server.navbar :server="$server" />
     <div class="flex flex-col h-full gap-8 sm:flex-row">
@@ -12,22 +12,22 @@
                     <div class="flex gap-2">
                         <x-modal-confirmation title="Підтвердити зміну сертифіката CA?" buttonTitle="Зберегти"
                             submitAction="saveCaCertificate" :actions="[
-                                'Це перезапише наявний сертифікат CA за адресою /data/coolify/ssl/coolify-ca.crt вашим власним сертифікатом CA.',
+                                'Це перезапише наявний сертифікат CA за адресою /data/AutoDeploy/ssl/AutoDeploy-ca.crt вашим власним сертифікатом CA.',
                                 'Це повторно згенерує всі SSL-сертифікати для баз даних на цьому сервері та підпише їх вашим власним CA.',
                                 'Ви повинні вручну перерозгорнути всі ваші бази даних на цьому сервері, щоб вони використовували нові SSL-сертифікати, підписані вашим новим сертифікатом CA.',
                                 'Через кешування вам, ймовірно, також потрібно буде перерозгорнути всі ваші ресурси на цьому сервері, які використовують цей сертифікат CA.',
                             ]"
-                            confirmationText="/data/coolify/ssl/coolify-ca.crt" shortConfirmationLabel="Шлях до сертифіката CA"
+                            confirmationText="/data/AutoDeploy/ssl/AutoDeploy-ca.crt" shortConfirmationLabel="Шлях до сертифіката CA"
                             step3ButtonText="Зберегти сертифікат">
                         </x-modal-confirmation>
                         <x-modal-confirmation title="Підтвердити повторну генерацію сертифіката?" buttonTitle="Відновити "
                             submitAction="regenerateCaCertificate" :actions="[
-                                'Це згенерує новий сертифікат CA за адресою /data/coolify/ssl/coolify-ca.crt та замінить існуючий.',
+                                'Це згенерує новий сертифікат CA за адресою /data/AutoDeploy/ssl/AutoDeploy-ca.crt та замінить існуючий.',
                                 'Це повторно згенерує всі SSL-сертифікати для баз даних на цьому сервері та підпише їх новим сертифікатом CA.',
                                 'Ви повинні вручну перерозгорнути всі ваші бази даних на цьому сервері, щоб вони використовували нові SSL-сертифікати, підписані новим сертифікатом CA.',
                                 'Через кешування вам, ймовірно, також потрібно буде перерозгорнути всі ваші ресурси на цьому сервері, які використовують цей сертифікат CA.',
                             ]"
-                            confirmationText="/data/coolify/ssl/coolify-ca.crt" shortConfirmationLabel="Шлях до сертифіката CA"
+                            confirmationText="/data/AutoDeploy/ssl/AutoDeploy-ca.crt" shortConfirmationLabel="Шлях до сертифіката CA"
                             step3ButtonText="Відновити сертифікат">
                         </x-modal-confirmation>
                     </div>
@@ -37,14 +37,14 @@
                 <div class="text-sm">
                     <p class="font-medium mb-2">Рекомендована конфігурація:</p>
                     <ul class="list-disc pl-5 space-y-1">
-                        <li>Змонтуйте цей сертифікат CA Coolify у всі контейнери, яким потрібно підключитися до однієї з
+                        <li>Змонтуйте цей сертифікат CA AutoDeploy у всі контейнери, яким потрібно підключитися до однієї з
                             ваших баз даних через SSL. Ви можете побачити та скопіювати точку монтування нижче.</li>
                         <li>Дізнайтеся більше про те, коли і чому це потрібно <a class="underline dark:text-white"
-                                href="https://coolify.io/docs/databases/ssl" target="_blank">тут</a>.</li>
+                                href="https://AutoDeploy.io/docs/databases/ssl" target="_blank">тут</a>.</li>
                     </ul>
                 </div>
                 <div class="relative">
-                    <x-forms.copy-button text="- /data/coolify/ssl/coolify-ca.crt:/etc/ssl/certs/coolify-ca.crt:ro" />
+                    <x-forms.copy-button text="- /data/AutoDeploy/ssl/AutoDeploy-ca.crt:/etc/ssl/certs/AutoDeploy-ca.crt:ro" />
                 </div>
             </div>
             <div>

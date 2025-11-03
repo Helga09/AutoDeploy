@@ -1,6 +1,6 @@
 <div>
     <x-slot:title>
-        Змінна проєкту | Coolify
+        Змінна проєкту | AutoDeploy
     </x-slot>
     <div class="flex gap-2 items-center">
         <h1>Спільні змінні для {{ data_get($project, 'name') }}</h1>
@@ -14,7 +14,7 @@
         <div>Ви можете використовувати ці змінні будь-де за допомогою</div>
         <div class="dark:text-warning text-coollabs">@{{ project.VARIABLENAME }} </div>
         <x-helper
-            helper="Більше інформації <a class='underline dark:text-white' href='https://coolify.io/docs/knowledge-base/environment-variables#shared-variables' target='_blank'>тут</a>."></x-helper>
+            helper="Більше інформації <a class='underline dark:text-white' href='https://AutoDeploy.io/docs/knowledge-base/environment-variables#shared-variables' target='_blank'>тут</a>."></x-helper>
     </div>
     <div class="flex flex-col gap-2">
         @forelse ($project->environment_variables->sort()->sortBy('key') as $env)
