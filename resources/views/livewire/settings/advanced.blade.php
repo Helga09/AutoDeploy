@@ -16,7 +16,7 @@
                 <div class="pb-4">Розширені налаштування для вашого екземпляра AutoDeploy.</div>
 
                 <div class="flex flex-col gap-1">
-                    <div class="md:w-96">
+                    <!-- <div class="md:w-96">
                         <x-forms.checkbox instantSave id="is_registration_enabled"
                             helper="Якщо увімкнено, користувачі можуть реєструватися самостійно. Якщо вимкнено, лише адміністратори можуть створювати нових користувачів."
                             label="Дозволена Реєстрація" />
@@ -25,7 +25,7 @@
                         <x-forms.checkbox instantSave id="do_not_track"
                             helper="Якщо увімкнено, AutoDeploy не буде відстежувати жодних даних. Це корисно, якщо ви стурбовані конфіденційністю."
                             label="Не Відстежувати" />
-                    </div>
+                    </div> -->
                     <h4 class="pt-4">Налаштування DNS</h4>
                     <div class="md:w-96">
                         <x-forms.checkbox instantSave id="is_dns_validation_enabled"
@@ -44,18 +44,18 @@
                     <x-forms.input id="allowed_ips" label="Дозволені IP для доступу до API"
                         helper="Дозволені IP-адреси або підмережі для доступу до API.&lt;br&gt;Підтримуються окремі IP (192.168.1.100) та нотація CIDR (192.168.1.0/24).&lt;br&gt;Використовуйте кому для розділення кількох записів.&lt;br&gt;Використовуйте 0.0.0.0 або залиште порожнім, щоб дозволити доступ з будь-якого місця."
                         placeholder="192.168.1.100,10.0.0.0/8,203.0.113.0/24" />
-                    @if (empty($allowed_ips) || in_array('0.0.0.0', array_map('trim', explode(',', $allowed_ips ?? ''))))
+                    <!-- @if (empty($allowed_ips) || in_array('0.0.0.0', array_map('trim', explode(',', $allowed_ips ?? ''))))
                         <x-callout type="warning" title="Попередження" class="mt-2">
                             Використання 0.0.0.0 (або порожнього значення) дозволяє доступ до API з будь-якого місця. Це не рекомендується для виробничих середовищ!
                         </x-callout>
-                    @endif
-                    <h4 class="pt-4">Налаштування Підтвердження</h4>
+                    @endif -->
+                    <!-- <h4 class="pt-4">Налаштування Підтвердження</h4>
                     <div class="md:w-96">
                         <x-forms.checkbox instantSave id=" is_sponsorship_popup_enabled" label="Показувати Спливаюче Вікно Спонсорства"
                             helper="Коли увімкнено, спливаючі вікна спонсорства відображатимуться користувачам щомісяця. Коли вимкнено, спливаюче вікно спонсорства буде постійно приховано для всіх користувачів." />
-                    </div>
+                    </div> -->
                 </div>
-                <div class="flex flex-col gap-1">
+                <!-- <div class="flex flex-col gap-1">
                     @if ($disable_two_step_confirmation)
                         <div class="pb-4 md:w-96" wire:key="two-step-confirmation-enabled">
                             <x-forms.checkbox instantSave id="disable_two_step_confirmation"
@@ -81,12 +81,8 @@
                                             confirmationLabel="Будь ласка, введіть текст підтвердження, щоб вимкнути двохетапне підтвердження."
                                             shortConfirmationLabel="Текст підтвердження" />
                                     </div>
-                                    <x-callout type="danger" title="Увага!" class="mb-4">
-                                        Вимкнення двохетапного підтвердження знижує безпеку (оскільки будь-хто може легко видалити що завгодно) та
-                                        збільшує ризик випадкових дій. Це не рекомендується для виробничих серверів.
-                                    </x-callout>
                     @endif
-                </div>
+                </div> -->
             </form>
         </div>
 </div>

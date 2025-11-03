@@ -3,6 +3,4 @@
         href="{{ route('settings.index') }}">Загальні</a>
     <a class="menu-item {{ $activeMenu === 'advanced' ? 'menu-item-active' : '' }}"
         href="{{ route('settings.advanced') }}">Розширені</a>
-    <a class="menu-item {{ $activeMenu === 'updates' ? 'menu-item-active' : '' }}"
-        href="{{ route('settings.updates') }}">Оновлення</a>
 </div>

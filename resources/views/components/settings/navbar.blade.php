@@ -7,7 +7,7 @@
                 href="{{ route('settings.index') }}">
                 Конфігурація
             </a>
-            <a class="{{ request()->routeIs('settings.backup') ? 'dark:text-white' : '' }}"
+            <!-- <a class="{{ request()->routeIs('settings.backup') ? 'dark:text-white' : '' }}"
                 href="{{ route('settings.backup') }}">
                 Резервне копіювання
             </a>
@@ -18,7 +18,7 @@
             <a class="{{ request()->routeIs('settings.oauth') ? 'dark:text-white' : '' }}"
                 href="{{ route('settings.oauth') }}">
                 OAuth
-            </a>
+            </a> -->
             <div class="flex-1"></div>
         </nav>
     </div>

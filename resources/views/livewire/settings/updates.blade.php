@@ -3,7 +3,7 @@
         Автоматичне оновлення | AutoDeploy
     </x-slot>
     <x-settings.navbar />
-    <div x-data="{ activeTab: window.location.hash ? window.location.hash.substring(1) : 'general' }" class="flex flex-col h-full gap-8 sm:flex-row">
+    <!-- <div x-data="{ activeTab: window.location.hash ? window.location.hash.substring(1) : 'general' }" class="flex flex-col h-full gap-8 sm:flex-row">
         <x-settings.sidebar activeMenu="updates" />
         <form wire:submit='submit' class="flex flex-col w-full">
             <div class="flex items-center gap-2">
@@ -47,5 +47,5 @@
             </div>
 
         </form>
-    </div>
+    </div> -->
 </div>
