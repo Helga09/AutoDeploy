@@ -46,20 +46,7 @@
                     </span>
                 @endif
             </a>
-            <a class="menu-item" wire:current.exact="menu-item-active"
-                href="{{ route('project.application.scheduled-tasks.show', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'application_uuid' => $application->uuid]) }}">Заплановані
-                завдання</a>
-            <a class="menu-item" wire:current.exact="menu-item-active"
-                href="{{ route('project.application.webhooks', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'application_uuid' => $application->uuid]) }}">Вебхуки</a>
             @if ($application->deploymentType() !== 'deploy_key')
-                <a class="menu-item" wire:current.exact="menu-item-active"
-                    href="{{ route('project.application.preview-deployments', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'application_uuid' => $application->uuid]) }}">Попередні
-                    розгортання</a>
-            @endif
-            @if ($application->build_pack !== 'dockercompose')
-                <a class="menu-item" wire:current.exact="menu-item-active"
-                    href="{{ route('project.application.healthcheck', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'application_uuid' => $application->uuid]) }}">Перевірка
-                    стану</a>
             @endif
             <a class="menu-item" wire:current.exact="menu-item-active"
                 href="{{ route('project.application.rollback', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'application_uuid' => $application->uuid]) }}">Відкат</a>
@@ -67,15 +54,7 @@
                 href="{{ route('project.application.resource-limits', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'application_uuid' => $application->uuid]) }}">Ліміти
                 ресурсів</a>
             <a class="menu-item" wire:current.exact="menu-item-active"
-                href="{{ route('project.application.resource-operations', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'application_uuid' => $application->uuid]) }}">Операції
-                з ресурсами</a>
-            <a class="menu-item" wire:current.exact="menu-item-active"
-                href="{{ route('project.application.metrics', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'application_uuid' => $application->uuid]) }}">Метрики</a>
-            <a class="menu-item" wire:current.exact="menu-item-active"
-                href="{{ route('project.application.tags', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'application_uuid' => $application->uuid]) }}">Теги</a>
-            <a class="menu-item" wire:current.exact="menu-item-active"
-                href="{{ route('project.application.danger', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'application_uuid' => $application->uuid]) }}">Небезпечна
-                зона</a>
+                href="{{ route('project.application.danger', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'application_uuid' => $application->uuid]) }}">Налаштування</a>
         </div>
         <div class="w-full">
             @if ($currentRoute === 'project.application.configuration')

@@ -22,21 +22,12 @@
                     href="{{ route('project.database.import-backups', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'database_uuid' => $database->uuid]) }}">Імпорт
                     резервних копій</a>
             @endcan
-            <a class='menu-item' wire:current.exact="menu-item-active"
-                href="{{ route('project.database.webhooks', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'database_uuid' => $database->uuid]) }}">Вебхуки</a>
             <a class="menu-item" wire:current.exact="menu-item-active"
                 href="{{ route('project.database.resource-limits', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'database_uuid' => $database->uuid]) }}">Обмеження
                 ресурсів</a>
-            <a class="menu-item" wire:current.exact="menu-item-active"
-                href="{{ route('project.database.resource-operations', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'database_uuid' => $database->uuid]) }}">Операції
-                з ресурсами</a>
+
             <a class='menu-item' wire:current.exact="menu-item-active"
-                href="{{ route('project.database.metrics', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'database_uuid' => $database->uuid]) }}">Метрики</a>
-            <a class='menu-item' wire:current.exact="menu-item-active"
-                href="{{ route('project.database.tags', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'database_uuid' => $database->uuid]) }}">Теги</a>
-            <a class='menu-item' wire:current.exact="menu-item-active"
-                href="{{ route('project.database.danger', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'database_uuid' => $database->uuid]) }}">Небезпечна
-                зона</a>
+                href="{{ route('project.database.danger', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'database_uuid' => $database->uuid]) }}">Налаштування</a>
         </div>
         <div class="w-full">
             @if ($currentRoute === 'project.database.configuration')

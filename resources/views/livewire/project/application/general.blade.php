@@ -228,7 +228,7 @@
                         @endif
 
                     @endif
-                    <div class="flex flex-col gap-2 pt-6 pb-10">
+                    <div class="flex flex-col gap-2 pt-6 pb-0">
                         @if ($application->build_pack === 'dockercompose')
                             @can('update', $application)
                                 <div class="flex flex-col gap-2" x-init="$wire.dispatch('loadCompose', true)">
@@ -402,74 +402,8 @@
                     @endif
                 </div>
 
-                <h3 class="pt-8">Базова HTTP-аутентифікація</h3>
-                <div>
-                    <div class="w-96">
-                        <x-forms.checkbox helper="Це додасть відповідні мітки проксі до контейнера." instantSave
-                            label="Увімкнути" id="is_http_basic_auth_enabled"
-                            x-bind:disabled="!canUpdate" />
-                    </div>
-                    @if ($application->is_http_basic_auth_enabled)
-                        <div class="flex gap-2 py-2">
-                            <x-forms.input id="http_basic_auth_username" label="Ім'я користувача" required
-                                x-bind:disabled="!canUpdate" />
-                            <x-forms.input id="http_basic_auth_password" type="password" label="Пароль"
-                                required x-bind:disabled="!canUpdate" />
-                        </div>
-                    @endif
-                </div>
-
-                @if ($application->settings->is_container_label_readonly_enabled)
-                    <x-forms.textarea readonly disabled label="Мітки контейнера" rows="15" id="customLabels"
-                        monacoEditorLanguage="ini" useMonacoEditor x-bind:disabled="!canUpdate"></x-forms.textarea>
-                @else
-                    <x-forms.textarea label="Мітки контейнера" rows="15" id="customLabels"
-                        monacoEditorLanguage="ini" useMonacoEditor x-bind:disabled="!canUpdate"></x-forms.textarea>
-                @endif
-                <div class="w-96">
-                    <x-forms.checkbox label="Мітки тільки для читання"
-                        helper="Мітки за замовчуванням доступні лише для читання. Режим 'лише для читання' означає, що внесені вами зміни до міток можуть бути втрачені, і AutoDeploy автоматично згенерує мітки для вас. Якщо ви хочете редагувати мітки безпосередньо, вимкніть цю опцію. <br><br>Будьте обережні, це може порушити конфігурацію проксі після перезапуску контейнера, оскільки AutoDeploy тепер НЕ буде автоматично генерувати мітки для вас (звісно, ви завжди можете скинути мітки до стандартних налаштувань AutoDeploy вручну)."
-                        id="is_container_label_readonly_enabled" instantSave
-                        x-bind:disabled="!canUpdate"></x-forms.checkbox>
-                    <x-forms.checkbox label="Екранувати спеціальні символи в мітках?"
-                        helper="За замовчуванням, $ (та інші символи) екрануються. Тому, якщо ви напишете $ у мітках, воно буде збережено як $$.<br><br>Якщо ви хочете використовувати змінні середовища всередині міток, вимкніть цю опцію."
-                        id="is_container_label_escape_enabled" instantSave
-                        x-bind:disabled="!canUpdate"></x-forms.checkbox>
-                </div>
-                @can('update', $application)
-                    <x-modal-confirmation title="Підтвердити скидання міток до стандартних налаштувань AutoDeploy?"
-                        buttonTitle="Скинути мітки до стандартних" buttonFullWidth submitAction="resetDefaultLabels(true)"
-                        :actions="[
-                            'Усі ваші власні мітки проксі буде втрачено.',
-                            'Мітки проксі (traefik, caddy тощо) буде скинуто до стандартних налаштувань AutoDeploy.',
-                        ]" confirmationText="{{ $application->fqdn . '/' }}"
-                        confirmationLabel="Будь ласка, підтвердьте виконання дій, ввівши URL програми нижче"
-                        shortConfirmationLabel="URL програми" :confirmWithPassword="false"
-                        step2ButtonText="Остаточно скинути мітки" />
-                @endcan
             @endif
 
-            <h3 class="pt-8">Команди перед/після розгортання</h3>
-            <div class="flex flex-col gap-2 xl:flex-row">
-                <x-forms.input x-bind:disabled="shouldDisable()" placeholder="php artisan migrate"
-                    id="pre_deployment_command" label="Перед розгортанням "
-                    helper="Необов'язковий скрипт або команда для виконання в існуючому контейнері перед початком розгортання.<br>Завжди виконується за допомогою 'sh -c', тому вам не потрібно додавати це вручну." />
-                @if ($application->build_pack === 'dockercompose')
-                    <x-forms.input x-bind:disabled="shouldDisable()" id="pre_deployment_command_container"
-                        label="Ім'я контейнера"
-                        helper="Назва контейнера, в якому буде виконано команду. Ви можете залишити поле порожнім, якщо ваша програма має лише один контейнер." />
-                @endif
-            </div>
-            <div class="flex flex-col gap-2 xl:flex-row">
-                <x-forms.input x-bind:disabled="shouldDisable()" placeholder="php artisan migrate"
-                    id="post_deployment_command" label="Після розгортання "
-                    helper="Необов'язковий скрипт або команда для виконання в щойно створеному контейнері після завершення розгортання.<br>Завжди виконується за допомогою 'sh -c', тому вам не потрібно додавати це вручну." />
-                @if ($application->build_pack === 'dockercompose')
-                    <x-forms.input x-bind:disabled="shouldDisable()"
-                        id="post_deployment_command_container" label="Ім'я контейнера"
-                        helper="Назва контейнера, в якому буде виконано команду. Ви можете залишити поле порожнім, якщо ваша програма має лише один контейнер." />
-                @endif
-            </div>
         </div>
     </form>
 

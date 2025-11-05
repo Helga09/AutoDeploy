@@ -1,9 +1,9 @@
 <div>
-    <h2>Servers</h2>
-    <div class="">Server related configurations.</div>
+    <h2>Сервери</h2>
+    <div class="">Конфігурації пов'язані з сервером.</div>
     <div class="grid grid-cols-1 gap-4 py-4">
         <div class="flex flex-col gap-2">
-            <h3>Primary Server</h3>
+            <h3>Основний сервер</h3>
             <div
                 class="relative flex flex-col bg-white border cursor-default dark:text-white box-without-bg dark:bg-coolgray-100 dark:border-coolgray-300">
                 @if (str($resource->realStatus())->startsWith('running'))
@@ -14,10 +14,10 @@
                     </div>
                 @endif
                 <div class="box-title">
-                    Server: {{ data_get($resource, 'destination.server.name') }}
+                    Сервер: {{ data_get($resource, 'destination.server.name') }}
                 </div>
                 <div class="box-description">
-                    Network: {{ data_get($resource, 'destination.network') }}
+                    Мережа: {{ data_get($resource, 'destination.network') }}
                 </div>
             </div>
             @if ($resource?->additional_networks?->count() > 0)
@@ -32,7 +32,7 @@
             @endif
         </div>
         @if ($resource?->additional_networks?->count() > 0 && data_get($resource, 'build_pack') !== 'dockercompose')
-            <h3>Additional Server(s)</h3>
+            <h3>Додаткові сервери</h3>
             @foreach ($resource->additional_networks as $destination)
                 <div class="flex flex-col gap-2" wire:key="destination-{{ $destination->id }}">
                     <div
@@ -46,10 +46,10 @@
                         @endif
                         <div>
                             <div class="box-title">
-                                Server: {{ data_get($destination, 'server.name') }}
+                                Сервер: {{ data_get($destination, 'server.name') }}
                             </div>
                             <div class="box-description">
-                                Network: {{ data_get($destination, 'network') }}
+                                Мережа: {{ data_get($destination, 'network') }}
                             </div>
                         </div>
                     </div>
@@ -79,31 +79,29 @@
     @if ($resource->getMorphClass() === 'App\Models\Application' && data_get($resource, 'build_pack') !== 'dockercompose')
         <div class="flex flex-col gap-2">
             @if ($resource->persistentStorages()->count() > 0)
-                <h3>Add another server</h3>
+                <h3>Додати інший сервер</h3>
                 <x-callout type="warning" title="Cannot add additional servers">
-                    This application has persistent storage volumes configured. Applications with persistent
-                    storage cannot be deployed to multiple servers as the storage would not be accessible
-                    across different servers.
+                    Для цієї програми налаштовано постійні томи сховища. Програми з постійним сховищем не можна розгорнути на кількох серверах, оскільки сховище буде недоступним на різних серверах.       
                 </x-callout>
             @elseif (count($networks) > 0)
-                <h3>Add another server</h3>
+                <h3>Додати інший сервер</h3>
                 <div class="grid grid-cols-1 gap-4">
                     @foreach ($networks as $network)
                         <div wire:click="addServer('{{ $network->id }}','{{ data_get($network, 'server.id') }}')"
                             class="relative flex flex-col dark:text-white box group">
                             <div>
                                 <div class="box-title">
-                                    Server: {{ data_get($network, 'server.name') }}
+                                    Сервер: {{ data_get($network, 'server.name') }}
                                 </div>
                                 <div class="box-description">
-                                    Network: {{ data_get($network, 'name') }}
+                                    Мережа: {{ data_get($network, 'name') }}
                                 </div>
                             </div>
                         </div>
                     @endforeach
                 </div>
             @else
-                <div>No additional servers available to attach.</div>
+                <div>Немає додаткових серверів для підключення.</div>
             @endif
         </div>
     @endif

@@ -7,7 +7,7 @@
         <x-server.sidebar :server="$server" activeMenu="danger" />
         <div class="w-full">
             @if ($server->id !== 0)
-                <h2>Небезпечна зона</h2>
+                <h2>Налаштування</h2>
                 <div class="">Ого. Сподіваюся, ви знаєте, що робите.</div>
                 <h4 class="pt-4">Видалити сервер</h4>
                 <div class="pb-4">Це видалить сервер з AutoDeploy. Будьте обережні! Повернути його буде неможливо!

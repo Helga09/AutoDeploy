@@ -23,7 +23,7 @@
 
     @can('delete', $team)
         <div>
-            <h2>Небезпечна зона</h2>
+            <h2>Налаштування</h2>
             <div class="pb-4">Ого. Сподіваюся, ви знаєте, що робите.</div>
             <h4 class="pb-4">Видалити команду</h4>
             @if (session('currentTeam.id') === 0)

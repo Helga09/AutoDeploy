@@ -12,10 +12,6 @@
                     Перевірити репозиторій
                 </x-forms.button>
             </div>
-            <div>
-                Для прикладів розгортання застосунків, перегляньте <a class="underline dark:text-white"
-                    href="https://github.com/coollabsio/AutoDeploy-examples/" target="_blank">Приклади AutoDeploy</a>.
-            </div>
         </div>
     </form>
 

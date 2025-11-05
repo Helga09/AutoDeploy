@@ -37,6 +37,6 @@
     @endif
     @if (!$server->isLocalhost())
         <a class="menu-item {{ $activeMenu === 'danger' ? 'menu-item-active' : '' }}"
-            href="{{ route('server.delete', ['server_uuid' => $server->uuid]) }}">Небезпека</a>
+            href="{{ route('server.delete', ['server_uuid' => $server->uuid]) }}">Налаштування</a>
     @endif
 </div>
