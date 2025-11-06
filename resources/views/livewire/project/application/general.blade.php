@@ -121,27 +121,7 @@
                                 x-bind:disabled="!canUpdate" />
                         @endif
                     @else
-                        <x-forms.select label="Напрямок" id="redirect" required
-                            helper="Вам необхідно додати www та без-www як записи A DNS. Переконайтеся, що домен www додано в розділі 'Домени'."
-                            x-bind:disabled="!canUpdate">
-                            <option value="both">Дозволити www та без-www.</option>
-                            <option value="www">Перенаправляти на www.</option>
-                            <option value="non-www">Перенаправляти на без-www.</option>
-                        </x-forms.select>
-                        @if ($application->settings->is_container_label_readonly_enabled)
-                            @can('update', $application)
-                                <x-modal-confirmation title="Підтвердити налаштування перенаправлення?" buttonTitle="Встановити напрямок"
-                                    submitAction="setRedirect" :actions="['Весь трафік буде перенаправлено до обраного напрямку.']"
-                                    confirmationText="{{ $application->fqdn . '/' }}"
-                                    confirmationLabel="Будь ласка, підтвердьте виконання дії, ввівши URL програми нижче"
-                                    shortConfirmationLabel="URL програми" :confirmWithPassword="false"
-                                    step2ButtonText="Встановити напрямок">
-                                    <x-slot:customButton>
-                                        <div class="w-[7.2rem]">Встановити напрямок</div>
-                                    </x-slot:customButton>
-                                </x-modal-confirmation>
-                            @endcan
-                        @endif
+
                     @endif
                 </div>
             @endif
