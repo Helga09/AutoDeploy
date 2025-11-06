@@ -18,7 +18,7 @@
     "auth.register_now": "Зареєструватися",
     "auth.logout": "Вийти",
     "auth.register": "Реєстрація",
-    "auth.registration_disabled": "Реєстрація вимкнена. Зверніться до адміністратора.",
+    "auth.registration_disabled": "",
     "auth.reset_password": "Скинути пароль",
     "auth.failed": "Ці облікові дані не збігаються з нашими записами.",
     "auth.failed.callback": "Не вдалося обробити зворотний виклик від провайдера входу.",
