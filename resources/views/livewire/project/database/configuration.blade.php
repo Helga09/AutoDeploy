@@ -18,9 +18,6 @@
                 href="{{ route('project.database.persistent-storage', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'database_uuid' => $database->uuid]) }}">Постійне
                 сховище</a>
             @can('update', $database)
-                <a class='menu-item' wire:current.exact="menu-item-active"
-                    href="{{ route('project.database.import-backups', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'database_uuid' => $database->uuid]) }}">Імпорт
-                    резервних копій</a>
             @endcan
             <a class="menu-item" wire:current.exact="menu-item-active"
                 href="{{ route('project.database.resource-limits', ['project_uuid' => $project->uuid, 'environment_uuid' => $environment->uuid, 'database_uuid' => $database->uuid]) }}">Обмеження

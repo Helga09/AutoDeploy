@@ -24,16 +24,6 @@
                     Термінал
                 </a>
             @endcan
-            @if (
-                $database->getMorphClass() === 'App\Models\StandalonePostgresql' ||
-                    $database->getMorphClass() === 'App\Models\StandaloneMongodb' ||
-                    $database->getMorphClass() === 'App\Models\StandaloneMysql' ||
-                    $database->getMorphClass() === 'App\Models\StandaloneMariadb')
-                <a class="{{ request()->routeIs('project.database.backup.index') ? 'dark:text-white' : '' }}"
-                    href="{{ route('project.database.backup.index', $parameters) }}">
-                    Резервні копії
-                </a>
-            @endif
         </nav>
         @if ($database->destination->server->isFunctional())
             <div class="flex flex-wrap gap-2 items-center">
