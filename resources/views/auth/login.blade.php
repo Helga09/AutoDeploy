@@ -72,7 +72,6 @@
                         </a>
                     @else
                         <div class="mt-6 text-center text-sm text-neutral-500 dark:text-neutral-400">
-                            {{ __('auth.registration_disabled') }}
                         </div>
                     @endif
 
