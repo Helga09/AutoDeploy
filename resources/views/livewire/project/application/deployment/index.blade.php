@@ -67,6 +67,7 @@
                                         'in_progress' => 'В процесі',
                                         'cancelled-by-user' => 'Скасовано',
                                         'queued' => 'В черзі',
+                                        'failed' => 'Невдало',
                                         default => ucfirst(data_get($deployment, 'status')),
                                     };
                                 @endphp

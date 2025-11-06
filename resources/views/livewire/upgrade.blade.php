@@ -12,7 +12,7 @@
                 </svg>
                 Виконується
             </button>
-            <button class="menu-item cursor-pointer" @click="modalOpen=true" x-show="!showProgress">
+            <!-- <button class="menu-item cursor-pointer" @click="modalOpen=true" x-show="!showProgress">
                 <svg xmlns="http://www.w3.org/2000/svg"
                     class="w-6 h-6 text-pink-500 transition-colors hover:text-pink-300" viewBox="0 0 24 24"
                     stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round"
@@ -24,7 +24,7 @@
                     <path d="M9 18h6" />
                 </svg>
                 Оновити
-            </button>
+            </button> -->
             <template x-teleport="body">
                 <div x-show="modalOpen"
                     class="fixed top-0 lg:pt-10 left-0 z-99 flex items-start justify-center w-screen h-screen" x-cloak>

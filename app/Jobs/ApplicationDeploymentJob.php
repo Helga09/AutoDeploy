@@ -475,7 +475,7 @@ class ApplicationDeploymentJob implements ShouldBeEncrypted, ShouldQueue
             $this->server = $this->build_server;
         }
         $dockerfile_base64 = base64_encode($this->application->dockerfile);
-        $this->application_deployment_queue->addLogEntry("Starting deployment of {$this->application->name} to {$this->server->name}.");
+        $this->application_deployment_queue->addLogEntry("Starting deployment of {$this->application->name}");
         $this->prepare_builder_image();
         $this->execute_remote_command(
             [
@@ -1801,7 +1801,7 @@ class ApplicationDeploymentJob implements ShouldBeEncrypted, ShouldQueue
             }
         }
         if ($firstTry) {
-            $this->application_deployment_queue->addLogEntry("Preparing container with helper image: $helperImage");
+            $this->application_deployment_queue->addLogEntry("Preparing container with helper image");
         } else {
             $this->application_deployment_queue->addLogEntry('Preparing container with helper image with updated envs.');
         }

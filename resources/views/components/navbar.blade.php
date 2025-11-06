@@ -97,7 +97,6 @@
         <livewire:settings-dropdown />
     </div>
     <div class="px-2 pt-2 pb-7">
-        <livewire:switch-team />
     </div>
     <ul role="list" class="flex flex-col flex-1 gap-y-7">
         <li class="flex-1 overflow-x-hidden">

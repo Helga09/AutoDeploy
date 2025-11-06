@@ -23,7 +23,7 @@
                             helper="Cron-вираз для частоти перевірки використання диска.<br>Ви можете використовувати every_minute, hourly, daily, weekly, monthly, yearly.<br><br>За замовчуванням: щоночі о 23:00." />
                         <x-forms.input canGate="update" :canResource="$server" id="serverDiskUsageNotificationThreshold"
                             label="Поріг сповіщення про використання диска сервера (%)" required
-                            helper="Якщо використання диска сервера перевищить цей поріг, AutoDeploy надішле сповіщення членам команди." />
+                            helper="Якщо використання диска сервера перевищить цей поріг, AutoDeploy надішле сповіщення." />
                     </div>
                 </div>
 
