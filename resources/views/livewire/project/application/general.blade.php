@@ -131,14 +131,12 @@
                     <h3>Реєстр Docker</h3>
                     @if ($application->build_pack !== 'dockerimage' && !$application->destination->server->isSwarm())
                         <x-helper
-                            helper="Відправити зібраний образ до реєстру Docker. Додаткова інформація <a class='underline' href='https://AutoDeploy.io/docs/knowledge-base/docker/registry' target='_blank'>тут</a>." />
+                            helper="Відправити зібраний образ до реєстру Docker." />
                     @endif
                 </div>
                 @if ($application->destination->server->isSwarm())
                     @if ($application->build_pack !== 'dockerimage')
-                        <div>Docker Swarm вимагає, щоб образ був доступний у реєстрі. Додаткова інформація <a
-                                class="underline" href="https://AutoDeploy.io/docs/knowledge-base/docker/registry"
-                                target="_blank">тут</a>.</div>
+                        <div>Docker Swarm вимагає, щоб образ був доступний у реєстрі.</div>
                     @endif
                 @endif
                 <div class="flex flex-col gap-2 xl:flex-row">
@@ -184,7 +182,7 @@
                 <h3>Збірка</h3>
                 @if ($application->build_pack === 'dockerimage')
                     <x-forms.input
-                        helper="Ви можете додати власні опції запуску Docker, які будуть використані при запуску вашого контейнера.<br>Примітка: Не всі опції підтримуються, оскільки вони можуть порушити автоматизацію AutoDeploy та спричинити неприємності для користувачів.<br><br>Перегляньте <a class='underline dark:text-white' href='https://AutoDeploy.io/docs/knowledge-base/docker/custom-commands'>документацію.</a>"
+                        helper="Ви можете додати власні опції запуску Docker, які будуть використані при запуску вашого контейнера.<br>Примітка: Не всі опції підтримуються, оскільки вони можуть порушити автоматизацію AutoDeploy та спричинити неприємності для користувачів."
                         placeholder="--cap-add SYS_ADMIN --device=/dev/fuse --security-opt apparmor:unconfined --ulimit nofile=1024:1024 --tmpfs /run:rw,noexec,nosuid,size=65536k --hostname=myapp"
                         id="custom_docker_run_options" label="Власні опції Docker"
                         x-bind:disabled="!canUpdate" />
@@ -203,7 +201,6 @@
                                     x-bind:disabled="!canUpdate" />
                             </div>
                             <div class="pt-1 text-xs">Nixpacks автоматично виявить необхідну конфігурацію.
-                                <a class="underline" href="https://AutoDeploy.io/docs/applications/">Документація по фреймворках</a>
                             </div>
                         @endif
 
@@ -295,7 +292,7 @@
                                     </div>
                                 @endif
                                 <x-forms.input
-                                    helper="Ви можете додати власні опції запуску Docker, які будуть використані при запуску вашого контейнера.<br>Примітка: Не всі опції підтримуються, оскільки вони можуть порушити автоматизацію AutoDeploy та спричинити неприємності для користувачів.<br><br>Перегляньте <a class='underline dark:text-white' href='https://AutoDeploy.io/docs/knowledge-base/docker/custom-commands'>документацію.</a>"
+                                    helper="Ви можете додати власні опції запуску Docker, які будуть використані при запуску вашого контейнера.<br>Примітка: Не всі опції підтримуються, оскільки вони можуть порушити автоматизацію AutoDeploy та спричинити неприємності для користувачів."
                                     placeholder="--cap-add SYS_ADMIN --device=/dev/fuse --security-opt apparmor:unconfined --ulimit nofile=1024:1024 --tmpfs /run:rw,noexec,nosuid,size=65536k --hostname=myapp"
                                     id="custom_docker_run_options" label="Власні опції Docker"
                                     x-bind:disabled="!canUpdate" />
@@ -303,7 +300,7 @@
                                 @if ($application->build_pack !== 'dockercompose')
                                     <div class="pt-2 w-96">
                                         <x-forms.checkbox
-                                            helper="Використовуйте сервер збірки для створення вашої програми. Ви можете налаштувати сервер збірки в налаштуваннях сервера. Для отримання додаткової інформації перегляньте <a href='https://AutoDeploy.io/docs/knowledge-base/server/build-server' class='underline' target='_blank'>документацію</a>."
+                                            helper="Використовуйте сервер збірки для створення вашої програми. Ви можете налаштувати сервер збірки в налаштуваннях сервера."
                                             instantSave id="is_build_server_enabled"
                                             label="Використовувати сервер збірки?" x-bind:disabled="!canUpdate" />
                                     </div>

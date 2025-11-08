@@ -203,11 +203,6 @@
                                     <div>
                                         <x-forms.input placeholder="За замовчуванням root" label="Користувач" id="remoteServerUser"
                                             wire:model="remoteServerUser" :value="$remoteServerUser" />
-                                        <p class="text-xs mt-1">
-                                            Не-root користувач є експериментальним:
-                                            <a class="font-bold underline" target="_blank"
-                                                href="https://AutoDeploy.io/docs/knowledge-base/server/non-root-user">документація</a>
-                                        </p>
                                     </div>
                                 </div>
 
@@ -221,10 +216,6 @@
                                     </ul>
                                 </div>
 
-                                <p class="mb-4">
-                                    Для отримання додаткової допомоги перегляньте цю <a target="_blank" class="underline font-semibold"
-                                        href="https://AutoDeploy.io/docs/knowledge-base/server/openssh">документацію</a>.
-                                </p>
 
                                 <x-forms.input readonly id="serverPublicKey" class="mb-4"
                                     label="Поточний публічний ключ"></x-forms.input>
@@ -422,11 +413,6 @@
                                     <div>
                                         <x-forms.input placeholder="За замовчуванням: root" label="Користувач SSH" id="remoteServerUser"
                                             wire:model="remoteServerUser" />
-                                        <p class="mt-1 text-xs dark:text-white text-black">
-                                            Підтримка користувачів без root є експериментальною.
-                                            <a class="font-bold underline hover:text-coollabs" target="_blank"
-                                                href="https://AutoDeploy.io/docs/knowledge-base/server/non-root-user">Дізнатися більше</a>
-                                        </p>
                                     </div>
                                 </div>
                             </div>

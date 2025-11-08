@@ -49,7 +49,7 @@
         @endif
         <div class="pt-2">
             <x-forms.input
-                helper="Ви можете додати власні параметри виконання Docker, які будуть використані під час запуску вашого контейнера.<br>Примітка: Не всі параметри підтримуються, оскільки вони можуть порушити автоматизацію AutoDeploy та спричинити поганий досвід для користувачів.<br><br>Перегляньте <a class='underline dark:text-white' href='https://AutoDeploy.io/docs/knowledge-base/docker/custom-commands'>документацію.</a>"
+                helper="Ви можете додати власні параметри виконання Docker, які будуть використані під час запуску вашого контейнера.<br>Примітка: Не всі параметри підтримуються, оскільки вони можуть порушити автоматизацію AutoDeploy та спричинити поганий досвід для користувачів."
                 placeholder="--cap-add SYS_ADMIN --device=/dev/fuse --security-opt apparmor:unconfined --ulimit nofile=1024:1024 --tmpfs /run:rw,noexec,nosuid,size=65536k"
                 id="customDockerRunOptions" label="Власні параметри Docker" canGate="update"
                 :canResource="$database" />

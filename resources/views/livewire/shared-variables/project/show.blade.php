@@ -13,8 +13,6 @@
     <div class="flex flex-wrap gap-1 subtitle">
         <div>Ви можете використовувати ці змінні будь-де за допомогою</div>
         <div class="dark:text-warning text-coollabs">@{{ project.VARIABLENAME }} </div>
-        <x-helper
-            helper="Більше інформації <a class='underline dark:text-white' href='https://AutoDeploy.io/docs/knowledge-base/environment-variables#shared-variables' target='_blank'>тут</a>."></x-helper>
     </div>
     <div class="flex flex-col gap-2">
         @forelse ($project->environment_variables->sort()->sortBy('key') as $env)

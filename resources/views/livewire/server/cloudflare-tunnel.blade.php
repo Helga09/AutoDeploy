@@ -55,16 +55,12 @@
                     </div>
                 @elseif (!$server->isFunctional())
                     <x-callout type="info" title="Параметри конфігурації" class="mb-4">
-                        Щоб <span class="font-semibold">автоматично</span> налаштувати Cloudflare Tunnel, спочатку перевірте свій сервер. Потім вам знадобиться токен Cloudflare та налаштований домен SSH.<br />Щоб <span class="font-semibold">вручну</span> налаштувати Cloudflare Tunnel, будь ласка, натисніть <span wire:click="manualCloudflareConfig" class="underline cursor-pointer">тут</span>, а потім ви повинні перевірити сервер.<br /><br />Для отримання додаткової інформації, будь ласка, прочитайте нашу <a
-                            href="https://AutoDeploy.io/docs/knowledge-base/cloudflare/tunnels/server-ssh" target="_blank"
-                            class="underline">документацію</a>.
+                        Щоб <span class="font-semibold">автоматично</span> налаштувати Cloudflare Tunnel, спочатку перевірте свій сервер. Потім вам знадобиться токен Cloudflare та налаштований домен SSH.<br />Щоб <span class="font-semibold">вручну</span> налаштувати Cloudflare Tunnel, будь ласка, натисніть <span wire:click="manualCloudflareConfig" class="underline cursor-pointer">тут</span>, а потім ви повинні перевірити сервер.
                     </x-callout>
                 @endif
                 @if (!$isCloudflareTunnelsEnabled && $server->isFunctional())
                     <div class="flex  flex-col pb-2">
                         <h3>Автоматично </h3>
-                        <a href="https://AutoDeploy.io/docs/knowledge-base/cloudflare/tunnels/server-ssh" target="_blank"
-                            class="text-xs underline hover:text-yellow-600 dark:hover:text-yellow-200">Документація<x-external-link /></a>
                     </div>
                     <div class="flex gap-2">
                         <x-slide-over @automated.window="slideOverOpen = true" fullScreen>
@@ -78,7 +74,7 @@
                                 class="flex flex-col gap-2 w-full">
                                 <x-forms.input id="cloudflare_token" required label="Токен Cloudflare" type="password" />
                                 <x-forms.input id="ssh_domain" label="Налаштований SSH домен" required
-                                    helper="Домен SSH, який ви налаштували в Cloudflare. Переконайтеся, що немає протоколу на кшталт http(s)://, тому ви надаєте FQDN, а не URL. <a class='underline dark:text-white' href='https://AutoDeploy.io/docs/knowledge-base/cloudflare/tunnels/server-ssh' target='_blank'>Документація</a>" />
+                                    helper="Домен SSH, який ви налаштували в Cloudflare. Переконайтеся, що немає протоколу на кшталт http(s)://, тому ви надаєте FQDN, а не URL." />
                                 <x-forms.button type="submit" isHighlighted>Продовжити</x-forms.button>
                             </form>
                         @else

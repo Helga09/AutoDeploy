@@ -13,9 +13,7 @@
                 <x-forms.input type="number" id="port" label="Порт" required />
             </div>
             <x-forms.input id="user" label="Користувач" required />
-            <div class="text-xs dark:text-warning text-coollabs ">Користувач без root-прав є експериментальним: <a
-                    class="font-bold underline" target="_blank"
-                    href="https://AutoDeploy.io/docs/knowledge-base/server/non-root-user">документація</a>.</div>
+            <div class="text-xs dark:text-warning text-coollabs ">Користувач без root-прав є експериментальним.</div>
             <x-forms.select label="Приватний ключ" id="private_key_id">
                 <option disabled>Виберіть приватний ключ</option>
                 @foreach ($private_keys as $key)

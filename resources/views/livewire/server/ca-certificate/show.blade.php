@@ -39,8 +39,6 @@
                     <ul class="list-disc pl-5 space-y-1">
                         <li>Змонтуйте цей сертифікат CA AutoDeploy у всі контейнери, яким потрібно підключитися до однієї з
                             ваших баз даних через SSL. Ви можете побачити та скопіювати точку монтування нижче.</li>
-                        <li>Дізнайтеся більше про те, коли і чому це потрібно <a class="underline dark:text-white"
-                                href="https://AutoDeploy.io/docs/databases/ssl" target="_blank">тут</a>.</li>
                     </ul>
                 </div>
                 <div class="relative">

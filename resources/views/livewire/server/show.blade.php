@@ -287,31 +287,14 @@
                             @if (!$server->isBuildServer() && !$server->settings->is_cloudflare_tunnel)
                                 <h3 class="pt-6">Swarm <span class="text-xs text-neutral-500">(експериментально)</span>
                                 </h3>
-                                <div class="pb-4">Прочитайте документацію <a class='underline dark:text-white'
-                                        href='https://AutoDeploy.io/docs/knowledge-base/docker/swarm'
-                                        target='_blank'>тут</a>.
                                 </div>
                                 <div class="w-96">
                                     @if ($server->settings->is_swarm_worker)
-                                        <x-forms.checkbox disabled instantSave type="checkbox" id="isSwarmManager"
-                                            helper="Для отримання додаткової інформації прочитайте документацію <a class='dark:text-white' href='https://AutoDeploy.io/docs/knowledge-base/docker/swarm' target='_blank'>тут</a>."
-                                            label="Це Swarm Manager?" />
                                     @else
-                                        <x-forms.checkbox canGate="update" :canResource="$server" instantSave
-                                            type="checkbox" id="isSwarmManager"
-                                            helper="Для отримання додаткової інформації прочитайте документацію <a class='dark:text-white' href='https://AutoDeploy.io/docs/knowledge-base/docker/swarm' target='_blank'>тут</a>."
-                                            label="Це Swarm Manager?" :disabled="$isValidating" />
                                     @endif
 
                                     @if ($server->settings->is_swarm_manager)
-                                        <x-forms.checkbox disabled instantSave type="checkbox" id="isSwarmWorker"
-                                            helper="Для отримання додаткової інформації прочитайте документацію <a class='dark:text-white' href='https://AutoDeploy.io/docs/knowledge-base/docker/swarm' target='_blank'>тут</a>."
-                                            label="Це Swarm Worker?" />
                                     @else
-                                        <x-forms.checkbox canGate="update" :canResource="$server" instantSave
-                                            type="checkbox" id="isSwarmWorker"
-                                            helper="Для отримання додаткової інформації прочитайте документацію <a class='dark:text-white' href='https://AutoDeploy.io/docs/knowledge-base/docker/swarm' target='_blank'>тут</a>."
-                                            label="Це Swarm Worker?" :disabled="$isValidating" />
                                     @endif
                                 </div>
                             @endif

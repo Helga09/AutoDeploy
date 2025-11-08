@@ -22,12 +22,6 @@ curl -fsSL https://cdn.coollabs.io/coolify/install.sh | bash
 ```
 You can find the installation script source [here](./scripts/install.sh).
 
-> [!NOTE]
-> Please refer to the [docs](https://coolify.io/docs/installation) for more information about the installation.
-
-# Support
-
-Contact us at [coolify.io/docs/contact](https://coolify.io/docs/contact).
 
 # Cloud
 

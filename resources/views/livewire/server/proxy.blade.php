@@ -10,7 +10,7 @@
                             @can('update', $server)
                                 <x-modal-confirmation title="Підтвердити перемикання проксі?" buttonTitle="Перемкнути проксі"
                                     submitAction="changeProxy" :actions="['Користувацькі конфігурації проксі можуть бути скинуті до налаштувань за замовчуванням.']"
-                                    warningMessage="Ця операція може спричинити проблеми. Будь ласка, зверніться до посібника <a href='https://AutoDeploy.io/docs/knowledge-base/server/proxies#switch-between-proxies' target='_blank' class='underline text-white'>перемикання між проксі</a> перед продовженням!"
+                                    warningMessage="Ця операція може спричинити проблеми."
                                     step2ButtonText="Перемкнути проксі" :confirmWithText="false" :confirmWithPassword="false">
                                 </x-modal-confirmation>
                             @endcan

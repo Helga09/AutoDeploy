@@ -11,8 +11,7 @@
         @endcan
     </div>
     <div class="flex items-center gap-1 subtitle">Ви можете використовувати ці змінні будь-де за допомогою <span
-            class="dark:text-warning text-coollabs">@{{ team.VARIABLENAME }}</span> <x-helper
-            helper="Більше інформації <a class='underline dark:text-white' href='https://AutoDeploy.io/docs/knowledge-base/environment-variables#shared-variables' target='_blank'>тут</a>."></x-helper>
+            class="dark:text-warning text-coollabs">@{{ team.VARIABLENAME }}</span>
     </div>
 
     <div class="flex flex-col gap-2">

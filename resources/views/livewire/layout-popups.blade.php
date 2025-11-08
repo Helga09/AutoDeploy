@@ -24,7 +24,7 @@
                         if (checkNumber > 5) {
                             this.popups.realtime = true;
                             console.error(
-                                'AutoDeploy не вдалося підключитися до сервісу реального часу. Це спричинить незвичайні проблеми в інтерфейсі, якщо їх не виправити! Будь ласка, перевірте відповідну документацію (https://AutoDeploy.io/docs/knowledge-base/cloudflare/tunnels/overview) або зверніться за допомогою до Discord (https://coollabs.io/discord).)'
+                                'AutoDeploy не вдалося підключитися до сервісу реального часу. Це спричинить незвичайні проблеми в інтерфейсі, якщо їх не виправити!)'
                             );
                         }
 
@@ -72,11 +72,7 @@
                     </x-slot:title>
                     <x-slot:description>
                         <div>Це спричинить незвичайні проблеми в
-                            інтерфейсі! <br><br>
-                            Будь ласка, переконайтеся, що ви відкрили
-                            <a class="underline" href='https://AutoDeploy.io/docs/knowledge-base/server/firewall'
-                                target='_blank'>необхідні порти</a> або отримайте
-                            допомогу в <a class="underline" href='https://coollabs.io/discord' target='_blank'>Discord</a>.
+                            інтерфейсі!
                         </div>
                     </x-slot:description>
                     <x-slot:button-text @click="disableRealtime()">

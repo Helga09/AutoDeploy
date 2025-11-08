@@ -23,7 +23,7 @@
     <div class="w-96">
         <x-forms.checkbox canGate="update" :canResource="$service" instantSave id="connectToDockerNetwork"
             label="Підключитися до заздалегідь визначеної мережі"
-            helper="За замовчуванням ви не маєте доступу до мереж, визначених AutoDeploy.<br>Запуск ресурсу на основі Docker Compose матиме внутрішню мережу. <br>Якщо ви підключаєтеся до мережі, визначеної AutoDeploy, вам може знадобитися використовувати різні внутрішні імена DNS для підключення до ресурсу.<br><br>Для отримання додаткової інформації перегляньте <a class='underline dark:text-white' target='_blank' href='https://AutoDeploy.io/docs/knowledge-base/docker/compose#connect-to-predefined-networks'>це</a>." />
+            helper="За замовчуванням ви не маєте доступу до мереж, визначених AutoDeploy.<br>Запуск ресурсу на основі Docker Compose матиме внутрішню мережу. <br>Якщо ви підключаєтеся до мережі, визначеної AutoDeploy, вам може знадобитися використовувати різні внутрішні імена DNS для підключення до ресурсу." />
     </div>
     @if ($fields->count() > 0)
         <div>

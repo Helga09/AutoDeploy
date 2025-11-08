@@ -68,12 +68,6 @@
                                 Вам потрібно використовувати власні сервери від будь-якого хмарного провайдера (наприклад, <a class="underline"
                                     href="https://AutoDeploy.io/hetzner" target="_blank">Hetzner</a>, DigitalOcean, AWS тощо)
                             </div>
-                            <div>
-                                (Ви можете підключити свій RPi, старий ноутбук або будь-який інший пристрій, який працює на
-                                <a class="underline"
-                                    href="https://AutoDeploy.io/docs/installation#supported-operating-systems"
-                                    target="_blank">підтримуваних операційних системах</a>.)
-                            </div>
                         </div>
                     </div>
                     <div class="flex pt-4 h-14">
@@ -149,9 +143,6 @@
                                     fill="none" stroke="currentColor" stroke-linecap="round"
                                     stroke-linejoin="round" stroke-width="16" />
                             </svg>
-
-                            Вам потрібна офіційна підтримка для вашого самостійно розміщеного екземпляра?<a class="underline"
-                                href="https://AutoDeploy.io/docs/contact">Зв'яжіться з нами</a>
                         </li>
                     </ul>
                 </div>

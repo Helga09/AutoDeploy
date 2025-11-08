@@ -5,7 +5,7 @@
         @if (!$healthCheckEnabled)
             <x-modal-confirmation title="Підтвердити увімкнення перевірки стану?" buttonTitle="Увімкнути перевірку стану"
                 submitAction="toggleHealthcheck" :actions="['Увімкнути перевірку стану для цього ресурсу.']"
-                warningMessage="Якщо перевірка стану не пройде, ваша програма стане недоступною. Будь ласка, перегляньте посібник <a href='https://AutoDeploy.io/docs/knowledge-base/health-checks' target='_blank' class='underline text-white'>Перевірки стану</a>, перш ніж продовжити!"
+                warningMessage="Якщо перевірка стану не пройде, ваша програма стане недоступною."
                 step2ButtonText="Увімкнути перевірку стану" :confirmWithText="false" :confirmWithPassword="false"
                 isHighlightedButton>
             </x-modal-confirmation>

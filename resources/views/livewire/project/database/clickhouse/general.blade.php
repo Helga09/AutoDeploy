@@ -31,7 +31,7 @@
             </div>
         @endif
         <x-forms.input
-            helper="Ви можете додати власні опції запуску Docker, які будуть використані при старті вашого контейнера.<br>Примітка: Не всі опції підтримуються, оскільки вони можуть порушити автоматизацію AutoDeploy та спричинити негативний досвід для користувачів.<br><br>Перегляньте <a class='underline dark:text-white' href='https://AutoDeploy.io/docs/knowledge-base/docker/custom-commands'>документацію.</a>"
+            helper="Ви можете додати власні опції запуску Docker, які будуть використані при старті вашого контейнера.<br>Примітка: Не всі опції підтримуються, оскільки вони можуть порушити автоматизацію AutoDeploy та спричинити негативний досвід для користувачів."
             placeholder="--cap-add SYS_ADMIN --device=/dev/fuse --security-opt apparmor:unconfined --ulimit nofile=1024:1024 --tmpfs /run:rw,noexec,nosuid,size=65536k"
             id="customDockerRunOptions" label="Власні опції Docker" canGate="update" :canResource="$database" />
         <div class="flex flex-col gap-2">

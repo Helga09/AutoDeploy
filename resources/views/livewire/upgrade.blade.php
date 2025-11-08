@@ -60,13 +60,6 @@
                                 </p>
                             </x-callout>
                             <br />
-                            <p>Ви можете переглянути зміни <a class="font-bold underline dark:text-white"
-                                    href="https://github.com/coollabsio/AutoDeploy/releases" target="_blank">тут</a>.</p>
-                            <br />
-                            <p>Якщо щось піде не так, і ви не зможете оновити свій екземпляр, ви можете переглянути наступний
-                                <a class="font-bold underline dark:text-white" href="https://AutoDeploy.io/docs/upgrade"
-                                    target="_blank">посібник</a> що робити.
-                            </p>
                             <div class="flex flex-col pt-4" x-show="showProgress">
                                 <h2>Прогрес <x-loading /></h2>
                                 <div x-html="currentStatus"></div>
