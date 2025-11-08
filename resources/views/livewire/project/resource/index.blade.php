@@ -129,9 +129,6 @@
                                 <a :href="`/tags/${tag.name}`" class="tag" x-text="tag.name">
                                 </a>
                             </template>
-                            <a :href="`${item.hrefLink}/tags`" class="add-tag">
-                                Додати тег
-                            </a>
                         </div>
                     </span>
                 </template>
@@ -178,9 +175,6 @@
                                 <a :href="`/tags/${tag.name}`" class="tag" x-text="tag.name">
                                 </a>
                             </template>
-                            <a :href="`${item.hrefLink}/tags`" class="add-tag">
-                                Додати тег
-                            </a>
                         </div>
                     </span>
                 </template>
@@ -227,9 +221,6 @@
                                 <a :href="`/tags/${tag.name}`" class="tag" x-text="tag.name">
                                 </a>
                             </template>
-                            <a :href="`${item.hrefLink}/tags`" class="add-tag">
-                                Додати тег
-                            </a>
                         </div>
                     </span>
                 </template>

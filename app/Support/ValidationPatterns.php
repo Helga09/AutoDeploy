@@ -11,13 +11,13 @@ class ValidationPatterns
      * Pattern for names (allows letters, numbers, spaces, dashes, underscores, dots, slashes, colons, parentheses)
      * Matches CleanupNames::sanitizeName() allowed characters
      */
-    public const NAME_PATTERN = '/^[a-zA-Z0-9\s\-_.:\/()]+$/';
+    public const NAME_PATTERN = '/^[\p{Cyrillic}a-zA-Z0-9\s\-_.:\/()]+$/u';
 
     /**
      * Pattern for descriptions (allows more characters including quotes, commas, etc.)
      * More permissive than names but still restricts dangerous characters
      */
-    public const DESCRIPTION_PATTERN = '/^[a-zA-Z0-9\s\-_.:\/()\'\",.!?@#%&+=\[\]{}|~`*]+$/';
+    public const DESCRIPTION_PATTERN = '/^[\p{Cyrillic}a-zA-Z0-9\s\-_.:\/()\'\",.!?@#%&+=\[\]{}|~`*]+$/u';
 
     /**
      * Get validation rules for name fields
