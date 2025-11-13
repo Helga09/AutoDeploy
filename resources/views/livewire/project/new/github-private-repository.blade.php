@@ -1,6 +1,6 @@
 <div>
     <div class="flex items-end gap-2">
-        <h1>Створити нову Застосунок</h1>
+        <h1>Створити новий застосунок</h1>
         <x-modal-input buttonTitle="+ Додати GitHub Застосунок" title="Новий GitHub Застосунок" closeOutside="false">
             <livewire:source.github.create />
         </x-modal-input>

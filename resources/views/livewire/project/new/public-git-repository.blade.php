@@ -1,5 +1,5 @@
 <div x-data x-init="$nextTick(() => { if ($refs.autofocusInput) $refs.autofocusInput.focus(); })">
-    <h1>Створити нову Застосунок</h1>
+    <h1>Створити новий застосунок</h1>
     <div class="pb-8">Розгорнути будь-які публічні Git-репозиторії.</div>
 
     <!-- Repository URL Form -->

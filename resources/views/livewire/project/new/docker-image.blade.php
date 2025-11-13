@@ -1,5 +1,5 @@
 <div x-data x-init="$nextTick(() => { if ($refs.autofocusInput) $refs.autofocusInput.focus(); })">
-    <h1>Створити нову Застосунок</h1>
+    <h1>Створити новий застосунок</h1>
     <div class="pb-4">Ви можете розгорнути існуючий образ Docker з будь-якого реєстру.</div>
     <form wire:submit="submit">
         <div class="flex gap-2 pt-4 pb-1">

@@ -2047,7 +2047,7 @@ class ApplicationDeploymentJob implements ShouldBeEncrypted, ShouldQueue
     private function generate_nixpacks_confs()
     {
         $nixpacks_command = $this->nixpacks_build_cmd();
-        $this->application_deployment_queue->addLogEntry("Generating nixpacks configuration with: $nixpacks_command");
+        $this->application_deployment_queue->addLogEntry("Generating nixpacks configuration");
 
         $this->execute_remote_command(
             [executeInDocker($this->deployment_uuid, $nixpacks_command), 'save' => 'nixpacks_plan', 'hidden' => true],
@@ -2067,8 +2067,6 @@ class ApplicationDeploymentJob implements ShouldBeEncrypted, ShouldQueue
                 $this->application_deployment_queue->addLogEntry("If you need further customization, please check the documentation of Nixpacks: https://nixpacks.com/docs/providers/{$this->nixpacks_type}");
                 $parsed = json_decode($this->nixpacks_plan, true);
 
-                // Do any modifications here
-                // We need to generate envs here because nixpacks need to know to generate a proper Dockerfile
                 $this->generate_env_variables();
                 $merged_envs = collect(data_get($parsed, 'variables', []))->merge($this->env_args);
                 $aptPkgs = data_get($parsed, 'phases.setup.aptPkgs', []);
@@ -2095,7 +2093,6 @@ class ApplicationDeploymentJob implements ShouldBeEncrypted, ShouldQueue
                     $this->elixir_finetunes();
                 }
                 if ($this->nixpacks_type === 'node') {
-                    // Check if NIXPACKS_NODE_VERSION is set
                     $variables = data_get($parsed, 'variables', []);
                     if (! isset($variables['NIXPACKS_NODE_VERSION'])) {
                         $this->application_deployment_queue->addLogEntry('----------------------------------------');
@@ -2107,7 +2104,7 @@ class ApplicationDeploymentJob implements ShouldBeEncrypted, ShouldQueue
                 $this->nixpacks_plan_json = collect($parsed);
                 $this->application_deployment_queue->addLogEntry("Final Nixpacks plan: {$this->nixpacks_plan}", hidden: true);
                 if ($this->nixpacks_type === 'rust') {
-                    // temporary: disable healthcheck for rust because the start phase does not have curl/wget
+                    
                     $this->application->health_check_enabled = false;
                     $this->application->save();
                 }
